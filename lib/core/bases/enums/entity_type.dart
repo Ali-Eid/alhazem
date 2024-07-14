@@ -1,0 +1,4 @@
+enum EntityType {
+  company,
+  person,
+}
