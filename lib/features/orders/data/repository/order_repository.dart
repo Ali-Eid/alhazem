@@ -5,6 +5,7 @@ import 'package:alhazem/core/bases/models/static_models/static_model.dart';
 import 'package:alhazem/features/orders/data/datasource/order_api.dart';
 import 'package:alhazem/features/orders/domain/models/create_order_model/create_order_model.dart';
 import 'package:alhazem/features/orders/domain/models/input_models/input_create_model/input_create_order_model.dart';
+import 'package:alhazem/features/orders/domain/models/order_details_model/order_details_model.dart';
 import 'package:alhazem/features/orders/domain/repository/order_repository.dart';
 import 'package:dio/dio.dart';
 import 'package:multiple_result/src/result.dart';
@@ -83,6 +84,26 @@ class OrderRepositoryImpl implements OrderRepository {
     if (await networkInfo.isConnected) {
       try {
         final response = await ordersServiceClient.getTypesOrder();
+        if (response.response.statusCode == 200) {
+          return Success(response.data);
+        } else {
+          return Error(FailureModel.fromJson(response.response.data));
+        }
+      } on DioException catch (e) {
+        return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
+      }
+    } else {
+      return Error(FailureModel(message: "noInternetError"));
+    }
+  }
+
+  @override
+  Future<Result<ResponseModel<List<OrderDetailsModel>>, FailureModel>>
+      getOrderDetails({required int orderId}) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final response =
+            await ordersServiceClient.getOrderDetails(orderId: orderId);
         if (response.response.statusCode == 200) {
           return Success(response.data);
         } else {

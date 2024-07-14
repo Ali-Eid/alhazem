@@ -8,6 +8,7 @@ import 'package:alhazem/features/orders/domain/repository/order_repository.dart'
 import 'package:multiple_result/src/result.dart';
 
 import '../../../../core/bases/models/static_models/static_model.dart';
+import '../models/order_details_model/order_details_model.dart';
 import '../models/order_model/order_model.dart';
 
 class CreateOrderUsecase
@@ -59,5 +60,18 @@ class GetTypeOrdersUsecase
   Future<Result<ResponseModel<List<OrderTypeModel>>, FailureModel>>
       execute() async {
     return await repository.getOrderTypes();
+  }
+}
+
+class GetOrderDetailsUsecase
+    implements BaseUseCase<int, ResponseModel<List<OrderDetailsModel>>> {
+  final OrderRepository repository;
+
+  GetOrderDetailsUsecase({required this.repository});
+
+  @override
+  Future<Result<ResponseModel<List<OrderDetailsModel>>, FailureModel>> execute(
+      int input) async {
+    return await repository.getOrderDetails(orderId: input);
   }
 }

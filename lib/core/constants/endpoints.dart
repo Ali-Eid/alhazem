@@ -17,6 +17,7 @@ class Endpoints {
   //Orders
   static const String CREATE_ORDER = "/order/create";
   static const String ORDERS = "/orders";
+  static const String ORDER_DETAILS = "/order/{id}";
   static const String TYPES_ORDERS = "$ORDERS/types";
 
   //CRM

@@ -181,7 +181,9 @@ Future<void> InitOrder() async {
   );
 
   instance.registerFactory(
-    () => OrdersBloc(getOrdersUsecase: instance<GetOrdersUsecase>()),
+    () => OrdersBloc(
+        getOrdersUsecase: instance<GetOrdersUsecase>(),
+        getOrderDetailsUsecase: instance<GetOrderDetailsUsecase>()),
   );
 
   //repository
@@ -206,6 +208,11 @@ Future<void> InitOrder() async {
   if (!GetIt.I.isRegistered<GetOrdersUsecase>()) {
     instance.registerLazySingleton(
         () => GetOrdersUsecase(repository: instance<OrderRepository>()));
+  }
+
+  if (!GetIt.I.isRegistered<GetOrderDetailsUsecase>()) {
+    instance.registerLazySingleton(
+        () => GetOrderDetailsUsecase(repository: instance<OrderRepository>()));
   }
 }
 

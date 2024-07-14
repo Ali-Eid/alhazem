@@ -1,6 +1,7 @@
 import 'package:alhazem/features/contacts/presentation/views/contacts_view.dart';
 import 'package:alhazem/features/contacts/presentation/views/create_contract_view.dart';
 import 'package:alhazem/features/main/presentation/views/main_view.dart';
+import 'package:alhazem/features/orders/presentation/views/order_details_view.dart';
 import 'package:alhazem/features/orders/presentation/views/orders_view.dart';
 import 'package:alhazem/features/services/presentation/views/service_details_view.dart';
 import 'package:alhazem/features/services/presentation/views/service_view.dart';
@@ -22,6 +23,7 @@ class RoutesNames {
   static const String contactsRoute = '/contacts';
   static const String createContactRoute = 'create-contact';
   static const String ordersRoute = '/orders';
+  static const String orderDetailsRoute = 'order-details';
   static const String settingsRoute = '/settings';
 }
 
@@ -35,6 +37,7 @@ class RoutesPaths {
   static const String contactsRoute = '/contacts';
   static const String createContactRoute = 'create-contact';
   static const String ordersRoute = '/orders';
+  static const String orderDetailsRoute = 'order-details/:id';
   static const String settingsRoute = '/settings';
 }
 
@@ -141,15 +144,28 @@ class AppRouter {
                   ),
                 ]),
             GoRoute(
-              name: RoutesNames.ordersRoute,
-              path: RoutesPaths.ordersRoute,
-              pageBuilder: (context, state) {
-                return NoTransitionPage(
-                  key: state.pageKey,
-                  child: const OrderssView(),
-                );
-              },
-            ),
+                name: RoutesNames.ordersRoute,
+                path: RoutesPaths.ordersRoute,
+                pageBuilder: (context, state) {
+                  return NoTransitionPage(
+                    key: state.pageKey,
+                    child: const OrdersView(),
+                  );
+                },
+                routes: [
+                  GoRoute(
+                    name: RoutesNames.orderDetailsRoute,
+                    path: RoutesPaths.orderDetailsRoute,
+                    pageBuilder: (context, state) {
+                      return NoTransitionPage(
+                        key: state.pageKey,
+                        child: OrderDetailsView(
+                          orderId: int.parse(state.pathParameters["id"] ?? "0"),
+                        ),
+                      );
+                    },
+                  )
+                ]),
             GoRoute(
               name: RoutesNames.settingsRoute,
               path: RoutesPaths.settingsRoute,

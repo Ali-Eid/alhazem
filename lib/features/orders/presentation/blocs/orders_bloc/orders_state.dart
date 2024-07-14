@@ -6,5 +6,8 @@ class OrdersState with _$OrdersState {
   const factory OrdersState.loading() = _Loading;
   const factory OrdersState.loaded(
       {required ResponsePaginationModel<List<OrderModel>> orders}) = _Loaded;
+  const factory OrdersState.loadedOrderDetails(
+          {required ResponseModel<List<OrderDetailsModel>> orderDetails}) =
+      _LoadedOrderDetails;
   const factory OrdersState.error({required String message}) = _Error;
 }
