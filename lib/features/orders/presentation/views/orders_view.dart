@@ -27,143 +27,171 @@ class _OrderssViewState extends State<OrderssView> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder(
-      bloc: ordersBloc,
-      builder: (context, OrdersState state) {
-        return state.maybeMap(
-          loading: (value) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          },
-          loaded: (value) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: AppSizeH.s15),
-                Wrap(
-                  children: context.read<CurrenciesBloc>().orderTypes.map(
-                    (e) {
-                      return Padding(
-                        padding: EdgeInsets.symmetric(horizontal: AppSizeW.s15),
-                        child: ElevatedButton(
-                            onPressed: () {
-                              ordersBloc.add(
-                                  OrdersEvent.getOrders(type: e.key, page: 1));
-                            },
-                            style: ButtonStyle(
-                              backgroundColor: WidgetStateProperty.all(
-                                  ordersBloc.typeOrder == e.key
-                                      ? ColorManager.primary
-                                      : ColorManager.white),
-                              shape: WidgetStateProperty.all(
-                                RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.circular(AppSizeR.s7),
-                                  side: BorderSide(color: ColorManager.primary),
-                                ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(height: AppSizeH.s15),
+        BlocBuilder(
+          bloc: ordersBloc,
+          builder: (context, state) {
+            return Row(
+              children: context.read<CurrenciesBloc>().orderTypes.map(
+                (e) {
+                  return Expanded(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: AppSizeW.s15),
+                      child: ElevatedButton(
+                          onPressed: () {
+                            ordersBloc.add(
+                                OrdersEvent.getOrders(type: e.key, page: 1));
+                          },
+                          style: ButtonStyle(
+                            backgroundColor: WidgetStateProperty.all(
+                                ordersBloc.typeOrder == e.key
+                                    ? ColorManager.primary
+                                    : ColorManager.white),
+                            shape: WidgetStateProperty.all(
+                              RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.circular(AppSizeR.s7),
+                                side: BorderSide(color: ColorManager.primary),
                               ),
                             ),
-                            child: Text(
-                              e.value,
-                              style: Theme.of(context).textTheme.displayMedium,
-                            )),
-                      );
-                    },
-                  ).toList(),
-                ),
-                SizedBox(height: AppSizeH.s15),
-                Expanded(
-                  child: GridView.builder(
-                    itemCount: value.orders.data.length,
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                            childAspectRatio: 3 / 2, crossAxisCount: 4),
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: EdgeInsets.all(AppSizeW.s8),
-                        child: Container(
-                          // padding: EdgeInsets.all(AppSizeW.s8),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                  blurRadius: AppSizeR.s3,
-                                  spreadRadius: AppSizeR.s3,
-                                  color: Colors.grey.withOpacity(.3))
-                            ],
-                            borderRadius: BorderRadius.circular(AppSizeR.s15),
                           ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              SizedBox(
-                                height: AppSizeH.s30,
-                                child: Row(
+                          child: Text(
+                            e.value,
+                            style: Theme.of(context)
+                                .textTheme
+                                .displayMedium!
+                                .copyWith(
+                                    color: ordersBloc.typeOrder == e.key
+                                        ? ColorManager.white
+                                        : ColorManager.primary),
+                          )),
+                    ),
+                  );
+                },
+              ).toList(),
+            );
+          },
+        ),
+        Expanded(
+          child: BlocBuilder(
+            bloc: ordersBloc,
+            builder: (context, OrdersState state) {
+              return state.maybeMap(
+                loading: (value) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                },
+                loaded: (value) {
+                  return Column(
+                    children: [
+                      SizedBox(height: AppSizeH.s15),
+                      Expanded(
+                        child: GridView.builder(
+                          itemCount: value.orders.data.length,
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                                  childAspectRatio: 3 / 2, crossAxisCount: 4),
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: EdgeInsets.all(AppSizeW.s8),
+                              child: Container(
+                                // padding: EdgeInsets.all(AppSizeW.s8),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  boxShadow: [
+                                    BoxShadow(
+                                        blurRadius: AppSizeR.s3,
+                                        spreadRadius: AppSizeR.s3,
+                                        color: Colors.grey.withOpacity(.3))
+                                  ],
+                                  borderRadius:
+                                      BorderRadius.circular(AppSizeR.s15),
+                                ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Expanded(
-                                      child: Container(
-                                        alignment: Alignment.center,
-                                        decoration: BoxDecoration(
-                                            color: ColorManager.error,
-                                            borderRadius:
-                                                BorderRadiusDirectional.only(
-                                                    topStart: Radius.circular(
-                                                        AppSizeR.s15),
-                                                    topEnd: Radius.circular(
-                                                        AppSizeR.s15))),
-                                        padding: EdgeInsets.all(AppSizeW.s2),
-                                        child: Text(
-                                          value.orders.data[index].state,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .displayMedium,
-                                        ),
+                                    SizedBox(
+                                      height: AppSizeH.s30,
+                                      child: Row(
+                                        children: [
+                                          Expanded(
+                                            child: Container(
+                                              alignment: Alignment.center,
+                                              decoration: BoxDecoration(
+                                                  color: ColorManager.error,
+                                                  borderRadius:
+                                                      BorderRadiusDirectional
+                                                          .only(
+                                                              topStart: Radius
+                                                                  .circular(
+                                                                      AppSizeR
+                                                                          .s15),
+                                                              topEnd: Radius
+                                                                  .circular(
+                                                                      AppSizeR
+                                                                          .s15))),
+                                              padding:
+                                                  EdgeInsets.all(AppSizeW.s2),
+                                              child: Text(
+                                                value.orders.data[index].state,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .displayMedium,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ),
+                                    Padding(
+                                      padding: EdgeInsets.all(AppSizeW.s12),
+                                      child: Column(
+                                        children: [
+                                          TitleValueItemOrder(
+                                              title: "الرقم",
+                                              value: value
+                                                  .orders.data[index].name),
+                                          SizedBox(height: AppSizeH.s15),
+                                          TitleValueItemOrder(
+                                              title: "تاريخ الطلب",
+                                              value: value
+                                                  .orders.data[index].date),
+                                          SizedBox(height: AppSizeH.s15),
+                                          TitleValueItemOrder(
+                                              title: "الزبون",
+                                              value: value.orders.data[index]
+                                                  .partnerName),
+                                          SizedBox(height: AppSizeH.s15),
+                                          TitleValueItemOrder(
+                                              title: "رقم الهاتف",
+                                              value: value.orders.data[index]
+                                                  .partnerNumber),
+                                          SizedBox(height: AppSizeH.s15),
+                                        ],
+                                      ),
+                                    )
                                   ],
                                 ),
                               ),
-                              Padding(
-                                padding: EdgeInsets.all(AppSizeW.s12),
-                                child: Column(
-                                  children: [
-                                    TitleValueItemOrder(
-                                        title: "الرقم",
-                                        value: value.orders.data[index].name),
-                                    SizedBox(height: AppSizeH.s15),
-                                    TitleValueItemOrder(
-                                        title: "تاريخ الطلب",
-                                        value: value.orders.data[index].date),
-                                    SizedBox(height: AppSizeH.s15),
-                                    TitleValueItemOrder(
-                                        title: "الزبون",
-                                        value: value
-                                            .orders.data[index].partnerName),
-                                    SizedBox(height: AppSizeH.s15),
-                                    TitleValueItemOrder(
-                                        title: "رقم الهاتف",
-                                        value: value
-                                            .orders.data[index].partnerNumber),
-                                    SizedBox(height: AppSizeH.s15),
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
+                            );
+                          },
                         ),
-                      );
-                    },
-                  ),
-                )
-              ],
-            );
-          },
-          orElse: () {
-            return const Text("error");
-          },
-        );
-      },
+                      )
+                    ],
+                  );
+                },
+                orElse: () {
+                  return const Text("error");
+                },
+              );
+            },
+          ),
+        ),
+      ],
     );
   }
 }
