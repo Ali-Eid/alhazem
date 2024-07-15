@@ -6,6 +6,9 @@ import '../../../../core/app/depndency_injection.dart';
 import '../../../../core/constants/color_manager.dart';
 import '../../../../core/constants/values_manager.dart';
 import '../../domain/models/order_details_model/order_details_model.dart';
+import '../widgets/return_reason_order_details_widget.dart';
+import '../widgets/travelers_order_details_widget.dart';
+import '../widgets/variants_order_details_widget.dart';
 
 class OrderDetailsView extends StatefulWidget {
   final int orderId;
@@ -98,7 +101,16 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                       title: "الخدمات الأضافية",
                       model: value
                           .orderDetails.data.first.orderItems.first.variants,
-                    )
+                    ),
+                    SizedBox(height: AppSizeH.s10),
+                    Visibility(
+                      visible: value
+                          .orderDetails.data.first.returnReasons.isNotEmpty,
+                      child: ReturnReasonOrderDetailsWidget(
+                        title: "اسباب إعادة الطلب",
+                        model: value.orderDetails.data.first.returnReasons,
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -137,148 +149,6 @@ class OrderDetailsWidget extends StatelessWidget {
           ),
         )
       ],
-    );
-  }
-}
-
-class TravelersOrderDetailsWidget extends StatelessWidget {
-  final String title;
-  final List<OrderLineModel> model;
-  const TravelersOrderDetailsWidget({
-    super.key,
-    required this.title,
-    required this.model,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(AppSizeW.s15),
-      width: double.infinity,
-      decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(AppSizeR.s15),
-          boxShadow: [
-            BoxShadow(color: ColorManager.shadow, blurRadius: AppSizeR.s10)
-          ]),
-      child: Column(
-        children: [
-          Row(
-            children: [
-              Expanded(
-                child: Text(
-                  title,
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-              ),
-            ],
-          ),
-          SizedBox(height: AppSizeH.s10),
-          Column(
-            children: model.map(
-              (e) {
-                return Padding(
-                  padding: EdgeInsets.symmetric(vertical: AppSizeH.s4),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.person,
-                        size: AppSizeSp.s20,
-                      ),
-                      SizedBox(width: AppSizeW.s4),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            e.customer.name,
-                            style: Theme.of(context).textTheme.headlineMedium,
-                          ),
-                          Text(
-                            e.customer.nationalNumber,
-                            style: Theme.of(context).textTheme.headlineMedium,
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-                );
-              },
-            ).toList(),
-          )
-        ],
-      ),
-    );
-  }
-}
-
-class VariantsOrderDetailsWidget extends StatelessWidget {
-  final String title;
-  final List<OrderVariantModel> model;
-  const VariantsOrderDetailsWidget({
-    super.key,
-    required this.title,
-    required this.model,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(AppSizeW.s15),
-      width: double.infinity,
-      decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(AppSizeR.s15),
-          boxShadow: [
-            BoxShadow(color: ColorManager.shadow, blurRadius: AppSizeR.s10)
-          ]),
-      child: Column(
-        children: [
-          Row(
-            children: [
-              Expanded(
-                child: Text(
-                  title,
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-              ),
-            ],
-          ),
-          SizedBox(height: AppSizeH.s10),
-          Column(
-            children: model.map(
-              (e) {
-                return Padding(
-                  padding: EdgeInsets.symmetric(vertical: AppSizeH.s4),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.person,
-                        size: AppSizeSp.s20,
-                      ),
-                      SizedBox(width: AppSizeW.s4),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            e.name,
-                            style: Theme.of(context).textTheme.headlineMedium,
-                          ),
-                          Text(
-                            e.price.toString(),
-                            style: Theme.of(context).textTheme.headlineMedium,
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-                );
-              },
-            ).toList(),
-          )
-        ],
-      ),
     );
   }
 }

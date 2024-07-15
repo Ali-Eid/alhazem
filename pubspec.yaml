@@ -37,6 +37,8 @@ dependencies:
   toastification: ^2.0.0
   number_pagination: ^1.0.7
   fast_cached_network_image: ^1.2.9
+  intl: ^0.19.0
+  flutter_barcode_listener: ^0.1.4
 
 
 dev_dependencies:
@@ -56,7 +58,7 @@ flutter:
     - assets/images/
     - assets/icons/
     - assets/lang/
-    - assets/jsons/
+    # - assets/jsons/
 
     
   # example:

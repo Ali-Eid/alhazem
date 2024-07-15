@@ -1,8 +1,10 @@
 import 'package:alhazem/core/bases/enums/entity_type.dart';
 import 'package:alhazem/core/bases/models/failure_model/failure_model.dart';
 import 'package:alhazem/core/bases/models/response_model/response_model.dart';
+import 'package:alhazem/core/bases/models/static_models/static_model.dart';
 import 'package:alhazem/core/bases/usecases/base_usecase.dart';
 import 'package:alhazem/features/contacts/domain/models/contact_model/contact_model.dart';
+import 'package:alhazem/features/contacts/domain/models/input_create_traveler_model/input_create_traveler_model.dart';
 import 'package:alhazem/features/contacts/domain/models/input_lead_model/input_lead_model.dart';
 import 'package:alhazem/features/contacts/domain/repository/contact_repository.dart';
 import 'package:multiple_result/src/result.dart';
@@ -48,5 +50,57 @@ class SearchContactsUsecase
   Future<Result<ResponsePaginationModel<List<ContactModel>>, FailureModel>>
       execute(({String name, int page}) input) async {
     return await repository.searchContact(name: input.name, page: input.page);
+  }
+}
+
+class CreateTravelerUsecase
+    implements
+        BaseUseCase<InputCreateTravelerModel, ResponseModel<ContactModel>> {
+  final ContactRepository repository;
+
+  CreateTravelerUsecase({required this.repository});
+
+  @override
+  Future<Result<ResponseModel<ContactModel>, FailureModel>> execute(
+      InputCreateTravelerModel input) async {
+    return await repository.createTraveler(input: input);
+  }
+}
+
+//Static
+class GetAttachmentsTypeUsecase
+    implements BaseUseCaseEmptyInput<ResponseModel<List<StaticModel>>> {
+  final ContactRepository repository;
+
+  GetAttachmentsTypeUsecase({required this.repository});
+  @override
+  Future<Result<ResponseModel<List<StaticModel>>, FailureModel>>
+      execute() async {
+    return await repository.getTypeAttachments();
+  }
+}
+
+class GetCountriesUsecase
+    implements BaseUseCaseEmptyInput<ResponseModel<List<StaticModel>>> {
+  final ContactRepository repository;
+
+  GetCountriesUsecase({required this.repository});
+  @override
+  Future<Result<ResponseModel<List<StaticModel>>, FailureModel>>
+      execute() async {
+    return await repository.getCountries();
+  }
+}
+
+class GetStatesUsecase
+    implements BaseUseCase<int, ResponseModel<List<StaticModel>>> {
+  final ContactRepository repository;
+
+  GetStatesUsecase({required this.repository});
+
+  @override
+  Future<Result<ResponseModel<List<StaticModel>>, FailureModel>> execute(
+      int countryId) async {
+    return await repository.getStates(countryId: countryId);
   }
 }

@@ -26,7 +26,8 @@ class _OrdersViewState extends State<OrdersView> {
   void initState() {
     ordersBloc = instance<OrdersBloc>()
       ..add(OrdersEvent.getOrders(
-          type: context.read<CurrenciesBloc>().orderTypes.first.key,
+          type:
+              context.read<CurrenciesBloc>().orderTypes.first.key.toLowerCase(),
           page: selectedPageNumber));
     super.initState();
   }
@@ -47,8 +48,8 @@ class _OrdersViewState extends State<OrdersView> {
                     padding: EdgeInsets.symmetric(horizontal: AppSizeW.s15),
                     child: ElevatedButton(
                         onPressed: () {
-                          ordersBloc
-                              .add(OrdersEvent.getOrders(type: e.key, page: 1));
+                          ordersBloc.add(OrdersEvent.getOrders(
+                              type: e.key.toLowerCase(), page: 1));
                         },
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all(

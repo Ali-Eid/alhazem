@@ -8,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:toastification/toastification.dart';
 import '../../features/contacts/presentation/blocs/lead_contact_bloc/lead_contact_bloc.dart';
+import '../../features/contacts/presentation/blocs/static_bloc/static_bloc.dart';
 import '../../features/splash/presentations/blocs/app_bloc/app_bloc.dart';
 import '../cache/app_preferences.dart';
 import '../routers/routes_manager.dart';
@@ -40,6 +41,12 @@ class _MyAppState extends State<MyApp> {
         ),
         BlocProvider(
           create: (context) => instance<SearchBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => instance<StaticBloc>()
+            ..add(const StaticEvent.getAttachmentsType())
+            ..add(const StaticEvent.getCountries()),
+          lazy: false,
         ),
         BlocProvider(
           create: (context) => instance<CurrenciesBloc>()

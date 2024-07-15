@@ -79,6 +79,7 @@ ThemeData lightTheme() {
           TextStyle(color: ColorManager.shipGrey, fontSize: AppSizeSp.s12),
       labelStyle: TextStyle(
           color: ColorManager.smokeyGrey,
+          fontWeight: FontWeight.w500,
           fontSize: AppSizeSp.s14), // Example label style
     ),
     textTheme: TextTheme(

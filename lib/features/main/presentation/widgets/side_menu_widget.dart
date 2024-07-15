@@ -23,9 +23,9 @@ class SideMenuWidget extends StatelessWidget {
                 children: [
                   DrawerHeader(
                     padding: EdgeInsets.zero,
-                    child: Image.asset(
+                    child: SvgPicture.asset(
                       ImageAssets.logo,
-                      fit: BoxFit.cover,
+                      fit: BoxFit.fill,
                     ),
                   ),
                   DrawerListTile(

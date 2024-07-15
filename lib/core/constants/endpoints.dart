@@ -23,6 +23,7 @@ class Endpoints {
   //CRM
   static const String CRM = "/crm";
   static const String CREATE_LEAD = "$CRM/lead";
+  static const String CREATE_TRAVELER = "/contact/create/traveler";
 
   //Contacts
   static const String CONTACTS = "/contacts";
@@ -32,4 +33,9 @@ class Endpoints {
 
   //Currencies
   static const String CURRENCIES = "/currencies/get";
+
+  //statis
+  static const String TYPE_ATTACHMENTS = "/type_of_attachment";
+  static const String COUNTRIES = "/countries";
+  static const String STATES = "/states";
 }

@@ -26,6 +26,8 @@ import '../../features/contacts/domain/repository/contact_repository.dart';
 import '../../features/contacts/domain/usecases/contact_usecases.dart';
 import '../../features/contacts/presentation/blocs/contact_bloc/contact_bloc.dart';
 import '../../features/contacts/presentation/blocs/lead_contact_bloc/lead_contact_bloc.dart';
+import '../../features/contacts/presentation/blocs/static_bloc/static_bloc.dart';
+import '../../features/contacts/presentation/blocs/traveler_bloc/traveler_bloc.dart';
 import '../../features/home/data/datasource/remote_data_source/home_api.dart';
 import '../../features/home/data/repository/post_repository_impl.dart';
 import '../../features/home/domain/repositories/post_repository.dart';
@@ -144,6 +146,16 @@ Future<void> initContact() async {
     instance.registerFactory(
         () => ContactBloc(getContactsUsecase: instance<GetContactsUsecase>()));
   }
+  if (!GetIt.I.isRegistered<StaticBloc>()) {
+    instance.registerFactory(() => StaticBloc(
+        getCountriesUsecase: instance<GetCountriesUsecase>(),
+        getStatesUsecase: instance<GetStatesUsecase>(),
+        getAttachmentsTypeUsecase: instance<GetAttachmentsTypeUsecase>()));
+  }
+  if (!GetIt.I.isRegistered<TravelerBloc>()) {
+    instance.registerFactory(() =>
+        TravelerBloc(createTravelerUsecase: instance<CreateTravelerUsecase>()));
+  }
 
   //repositories
 
@@ -166,6 +178,23 @@ Future<void> initContact() async {
   if (!GetIt.I.isRegistered<GetContactsUsecase>()) {
     instance.registerLazySingleton(
         () => GetContactsUsecase(repository: instance<ContactRepository>()));
+  }
+  if (!GetIt.I.isRegistered<GetAttachmentsTypeUsecase>()) {
+    instance.registerLazySingleton(() =>
+        GetAttachmentsTypeUsecase(repository: instance<ContactRepository>()));
+  }
+  if (!GetIt.I.isRegistered<CreateTravelerUsecase>()) {
+    instance.registerLazySingleton(
+        () => CreateTravelerUsecase(repository: instance<ContactRepository>()));
+  }
+
+  if (!GetIt.I.isRegistered<GetCountriesUsecase>()) {
+    instance.registerLazySingleton(
+        () => GetCountriesUsecase(repository: instance<ContactRepository>()));
+  }
+  if (!GetIt.I.isRegistered<GetStatesUsecase>()) {
+    instance.registerLazySingleton(
+        () => GetStatesUsecase(repository: instance<ContactRepository>()));
   }
 }
 

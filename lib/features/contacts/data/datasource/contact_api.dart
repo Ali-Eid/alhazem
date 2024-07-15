@@ -1,5 +1,7 @@
 import 'package:alhazem/core/bases/enums/entity_type.dart';
+import 'package:alhazem/core/bases/models/static_models/static_model.dart';
 import 'package:alhazem/features/contacts/domain/models/contact_model/contact_model.dart';
+import 'package:alhazem/features/contacts/domain/models/input_create_traveler_model/input_create_traveler_model.dart';
 import 'package:alhazem/features/contacts/domain/models/input_lead_model/input_lead_model.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +24,9 @@ abstract class ContactsServiceClient {
   @POST(Endpoints.CREATE_LEAD)
   Future<HttpResponse<ResponseModel<CreateLeadModel>>> createLead(
       {@Body() required InputLeadModel input});
+  @POST(Endpoints.CREATE_TRAVELER)
+  Future<HttpResponse<ResponseModel<ContactModel>>> createTraveler(
+      {@Body() required InputCreateTravelerModel input});
 
   @GET(Endpoints.CONTACTS)
   Future<HttpResponse<ResponsePaginationModel<List<ContactModel>>>>
@@ -36,5 +41,16 @@ abstract class ContactsServiceClient {
     @Query("key") KeysFilterType type = KeysFilterType.contact,
     @Query("name") required String name,
     @Query("page") required int page,
+  });
+
+  //Static
+  @GET(Endpoints.TYPE_ATTACHMENTS)
+  Future<HttpResponse<ResponseModel<List<StaticModel>>>> getAttachmentsType();
+
+  @GET(Endpoints.COUNTRIES)
+  Future<HttpResponse<ResponseModel<List<StaticModel>>>> getCountries();
+  @GET(Endpoints.STATES)
+  Future<HttpResponse<ResponseModel<List<StaticModel>>>> getStates({
+    @Query("country_id") required int countryId,
   });
 }
