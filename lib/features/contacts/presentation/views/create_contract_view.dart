@@ -863,21 +863,65 @@ class _CreateContractViewState extends State<CreateContractView> {
                                                       mainAxisSize:
                                                           MainAxisSize.min,
                                                       children: [
-                                                        ElevatedButton(
-                                                          onPressed: () async {
-                                                            final List<XFile>
-                                                                images =
-                                                                await picker
-                                                                    .pickMultiImage();
-                                                          },
-                                                          child: Text(
-                                                            e.name,
-                                                            style: Theme.of(
-                                                                    context)
-                                                                .textTheme
-                                                                .displayMedium,
+                                                        SizedBox(
+                                                          height: AppSizeH.s40,
+                                                          child: ElevatedButton(
+                                                            onPressed:
+                                                                () async {
+                                                              List<String>
+                                                                  imgBytes = [];
+                                                              final List<XFile>
+                                                                  images =
+                                                                  await picker
+                                                                      .pickMultiImage();
+                                                              for (var image
+                                                                  in images) {
+                                                                imgBytes.add(base64Encode(
+                                                                    File(image
+                                                                            .path)
+                                                                        .readAsBytesSync()));
+                                                              }
+                                                              inputValueCubit.addUploadAttachments(
+                                                                  AttachmentsCreateTravelerModel(
+                                                                      type:
+                                                                          e.id,
+                                                                      name: e
+                                                                          .name,
+                                                                      file:
+                                                                          imgBytes));
+                                                            },
+                                                            child: Text(
+                                                              e.name,
+                                                              style: Theme.of(
+                                                                      context)
+                                                                  .textTheme
+                                                                  .displayMedium,
+                                                            ),
                                                           ),
                                                         ),
+                                                        Wrap(
+                                                          children: inputValueCubit
+                                                              .attachmentsUpload
+                                                              .firstWhere(
+                                                                (element) =>
+                                                                    element
+                                                                        .type ==
+                                                                    e.id,
+                                                              )
+                                                              .file
+                                                              .map(
+                                                            (e) {
+                                                              return Image
+                                                                  .memory(
+                                                                base64Decode(e),
+                                                                width: AppSizeW
+                                                                    .s54,
+                                                                height: AppSizeH
+                                                                    .s40,
+                                                              );
+                                                            },
+                                                          ).toList(),
+                                                        )
                                                       ],
                                                     ),
                                                   ),
@@ -887,6 +931,12 @@ class _CreateContractViewState extends State<CreateContractView> {
                                           ),
                                         ),
                                         SizedBox(height: AppSizeH.s10),
+                                        // ElevatedButton(
+                                        //     onPressed: () {
+                                        //       print(inputValueCubit
+                                        //           .attachmentsUpload);
+                                        //     },
+                                        //     child: const Text("data"))
                                       ],
                                     ),
                             )

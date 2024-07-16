@@ -1,11 +1,14 @@
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:alhazem/core/utils/extensions/extensions.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../../../../core/bases/models/static_models/static_model.dart';
+import '../../../domain/models/input_create_traveler_model/input_create_traveler_model.dart';
 
 class InputValueCreateCubit extends Cubit<int> {
   InputValueCreateCubit(super.initialState);
@@ -51,10 +54,12 @@ class InputValueCreateCubit extends Cubit<int> {
   TextEditingController nationalNumberIdentityController =
       TextEditingController();
 
-//Attachments
-
+//select type Attachments
   List<StaticModel> attachmentsTypes = [];
   List<StaticModel> attachmentsTypesTemp = [];
+
+//upload attachments
+  List<AttachmentsCreateTravelerModel> attachmentsUpload = [];
 
   StaticModel? countrySelected;
   StaticModel? genderSelected;
@@ -125,6 +130,12 @@ class InputValueCreateCubit extends Cubit<int> {
   void setAttachmentsType() {
     attachmentsTypes.clear();
     attachmentsTypes.addAll(attachmentsTypesTemp);
+    emit(Random().nextInt(100));
+  }
+
+//Upload attachments
+  void addUploadAttachments(AttachmentsCreateTravelerModel attachment) {
+    attachmentsUpload.add(attachment);
     emit(Random().nextInt(100));
   }
 }
