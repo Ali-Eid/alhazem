@@ -5,6 +5,7 @@ const String JSONS_PATH = 'assets/jsons/';
 class ImageAssets {
   static String authBackground = '${IMAGE_PATH}background.jpg';
   static String logo = '${IMAGE_PATH}logo.svg';
+  // static String logo = '${IMAGE_PATH}logo.jpg';
   static String profile = '${IMAGE_PATH}profile_pic.png';
   //orders status
   static String orderWaiting = '${IMAGE_PATH}order_waiting.png';

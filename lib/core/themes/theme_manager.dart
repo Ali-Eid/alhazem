@@ -11,7 +11,9 @@ ThemeData lightTheme() {
     brightness: Brightness.light,
     useMaterial3: true,
     scaffoldBackgroundColor: ColorManager.background,
-    primaryColor: ColorManager.primary,
+    // primaryColor: ColorManager.primary,
+    colorSchemeSeed: ColorManager.primary,
+
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
         backgroundColor: WidgetStateProperty.resolveWith<Color>(
@@ -63,6 +65,7 @@ ThemeData lightTheme() {
             color: ColorManager.error,
             width: AppSizeW.s2), // Example border style
       ),
+
       contentPadding:
           EdgeInsets.symmetric(vertical: AppSizeH.s6, horizontal: AppSizeW.s10),
       focusedBorder: OutlineInputBorder(
@@ -91,12 +94,12 @@ ThemeData lightTheme() {
         titleMedium: TextStyle(
           fontSize: AppSizeSp.s16,
           fontWeight: FontWeight.w600,
-          color: ColorManager.primaryDark,
+          color: ColorManager.primary,
         ),
         titleLarge: TextStyle(
           fontSize: AppSizeSp.s24,
           fontWeight: FontWeight.bold,
-          color: ColorManager.primaryDark,
+          color: ColorManager.primary,
         ),
         bodyLarge: TextStyle(
           fontSize: AppSizeSp.s18,
@@ -148,6 +151,13 @@ ThemeData lightTheme() {
           fontWeight: FontWeight.w500,
           color: ColorManager.white,
         )),
+    datePickerTheme: DatePickerThemeData(
+      backgroundColor: ColorManager.background,
+      headerBackgroundColor: ColorManager.primary,
+      headerForegroundColor: ColorManager.white,
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(AppSizeR.s12)),
+    ),
   );
 }
 

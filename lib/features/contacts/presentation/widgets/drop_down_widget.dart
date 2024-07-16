@@ -6,7 +6,6 @@ import 'package:flutter/widgets.dart';
 
 class DropDownWidget extends StatefulWidget {
   final List<StaticModel> items;
-  final String? hintText;
   final String? labelText;
   final Function(StaticModel?)? onChanged;
   final FormFieldValidator<StaticModel>? validator;
@@ -14,7 +13,6 @@ class DropDownWidget extends StatefulWidget {
   const DropDownWidget({
     super.key,
     required this.items,
-    this.hintText,
     this.labelText,
     this.validator,
     this.onChanged,

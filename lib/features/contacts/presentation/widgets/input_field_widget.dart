@@ -1,5 +1,6 @@
 import 'package:alhazem/core/constants/values_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class InputFieldWidget extends StatelessWidget {
   final TextEditingController controller;
@@ -8,6 +9,9 @@ class InputFieldWidget extends StatelessWidget {
   final bool obscureText;
   final String? hintText;
   final String? labelText;
+  final bool? isReadOnly;
+  final List<TextInputFormatter>? inputFormatters;
+  final Function()? onTap;
 
   const InputFieldWidget({
     super.key,
@@ -17,6 +21,9 @@ class InputFieldWidget extends StatelessWidget {
     this.obscureText = false,
     this.hintText,
     this.labelText,
+    this.inputFormatters,
+    this.isReadOnly,
+    this.onTap,
   });
 
   @override
@@ -26,7 +33,10 @@ class InputFieldWidget extends StatelessWidget {
       child: SizedBox(
         width: AppSizeW.s250,
         child: TextFormField(
+          onTap: isReadOnly ?? false ? onTap : null,
+          readOnly: isReadOnly ?? false,
           style: Theme.of(context).textTheme.bodyMedium,
+          inputFormatters: inputFormatters,
           controller: controller,
           keyboardType: keyboardType,
           validator: validator,
