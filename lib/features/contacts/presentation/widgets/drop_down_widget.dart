@@ -27,6 +27,7 @@ class _DropDownWidgetState extends State<DropDownWidget> {
   Widget build(BuildContext context) {
     return DropdownButtonFormField2<StaticModel>(
       isExpanded: true,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: InputDecoration(
         labelText: widget.labelText, // Set label text
       ),

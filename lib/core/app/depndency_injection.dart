@@ -148,9 +148,11 @@ Future<void> initContact() async {
   }
   if (!GetIt.I.isRegistered<StaticBloc>()) {
     instance.registerFactory(() => StaticBloc(
-        getCountriesUsecase: instance<GetCountriesUsecase>(),
-        getStatesUsecase: instance<GetStatesUsecase>(),
-        getAttachmentsTypeUsecase: instance<GetAttachmentsTypeUsecase>()));
+          getCountriesUsecase: instance<GetCountriesUsecase>(),
+          getStatesUsecase: instance<GetStatesUsecase>(),
+          getAttachmentsTypeUsecase: instance<GetAttachmentsTypeUsecase>(),
+          getOfficesUsecase: instance<GetOfficesUsecase>(),
+        ));
   }
   if (!GetIt.I.isRegistered<TravelerBloc>()) {
     instance.registerFactory(() =>
@@ -195,6 +197,10 @@ Future<void> initContact() async {
   if (!GetIt.I.isRegistered<GetStatesUsecase>()) {
     instance.registerLazySingleton(
         () => GetStatesUsecase(repository: instance<ContactRepository>()));
+  }
+  if (!GetIt.I.isRegistered<GetOfficesUsecase>()) {
+    instance.registerLazySingleton(
+        () => GetOfficesUsecase(repository: instance<ContactRepository>()));
   }
 }
 

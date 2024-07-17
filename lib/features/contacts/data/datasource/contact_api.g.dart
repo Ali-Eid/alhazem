@@ -211,6 +211,42 @@ class _ContactsServiceClient implements ContactsServiceClient {
   }
 
   @override
+  Future<HttpResponse<ResponseModel<List<StaticModel>>>> getOffices() async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseModel<List<StaticModel>>>>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/office',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = ResponseModel<List<StaticModel>>.fromJson(
+      _result.data!,
+      (json) => json is List<dynamic>
+          ? json
+              .map<StaticModel>(
+                  (i) => StaticModel.fromJson(i as Map<String, dynamic>))
+              .toList()
+          : List.empty(),
+    );
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
+  @override
   Future<HttpResponse<ResponseModel<List<StaticModel>>>> getCountries() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};

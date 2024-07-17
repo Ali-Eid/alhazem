@@ -80,6 +80,18 @@ class GetAttachmentsTypeUsecase
   }
 }
 
+class GetOfficesUsecase
+    implements BaseUseCaseEmptyInput<ResponseModel<List<StaticModel>>> {
+  final ContactRepository repository;
+
+  GetOfficesUsecase({required this.repository});
+  @override
+  Future<Result<ResponseModel<List<StaticModel>>, FailureModel>>
+      execute() async {
+    return await repository.getOffices();
+  }
+}
+
 class GetCountriesUsecase
     implements BaseUseCaseEmptyInput<ResponseModel<List<StaticModel>>> {
   final ContactRepository repository;

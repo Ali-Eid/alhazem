@@ -11,6 +11,8 @@ class ImageAssets {
   static String orderWaiting = '${IMAGE_PATH}order_waiting.png';
   static String orderSuccess = '${IMAGE_PATH}order_success.png';
   static String orderCanceled = '${IMAGE_PATH}order_canceld.png';
+  static String traveler = '${IMAGE_PATH}traveler.png';
+  static String office = '${IMAGE_PATH}office.png';
 }
 
 class IconAssets {

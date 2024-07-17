@@ -46,7 +46,8 @@ abstract class ContactsServiceClient {
   //Static
   @GET(Endpoints.TYPE_ATTACHMENTS)
   Future<HttpResponse<ResponseModel<List<StaticModel>>>> getAttachmentsType();
-
+  @GET(Endpoints.OFFICE)
+  Future<HttpResponse<ResponseModel<List<StaticModel>>>> getOffices();
   @GET(Endpoints.COUNTRIES)
   Future<HttpResponse<ResponseModel<List<StaticModel>>>> getCountries();
   @GET(Endpoints.STATES)

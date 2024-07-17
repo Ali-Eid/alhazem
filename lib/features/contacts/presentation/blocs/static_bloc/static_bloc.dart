@@ -12,13 +12,16 @@ class StaticBloc extends Bloc<StaticEvent, StaticState> {
   final GetAttachmentsTypeUsecase getAttachmentsTypeUsecase;
   final GetCountriesUsecase getCountriesUsecase;
   final GetStatesUsecase getStatesUsecase;
+  final GetOfficesUsecase getOfficesUsecase;
   List<StaticModel> countries = [];
   List<StaticModel> attachmentsTypes = [];
-  StaticBloc(
-      {required this.getAttachmentsTypeUsecase,
-      required this.getCountriesUsecase,
-      required this.getStatesUsecase})
-      : super(const _Initial()) {
+  List<StaticModel> offices = [];
+  StaticBloc({
+    required this.getAttachmentsTypeUsecase,
+    required this.getCountriesUsecase,
+    required this.getStatesUsecase,
+    required this.getOfficesUsecase,
+  }) : super(const _Initial()) {
     on<StaticEvent>((event, emit) async {
       await event.map(
         getAttachmentsType: (value) async {
@@ -56,6 +59,21 @@ class StaticBloc extends Bloc<StaticEvent, StaticState> {
           failureOrSuccess.when(
             (success) {
               emit(StaticState.loaded(states: success.data));
+            },
+            (error) {
+              emit(StaticState.error(message: error.message));
+            },
+          );
+        },
+        getOffices: (value) async {
+          offices.clear();
+          emit(const StaticState.loading());
+          final failureOrSuccess = await getOfficesUsecase.execute();
+          failureOrSuccess.when(
+            (success) {
+              offices.addAll(success.data);
+              offices.insert(0, StaticModel(id: 0, name: "بلا مكتب"));
+              emit(StaticState.loaded(offices: success.data));
             },
             (error) {
               emit(StaticState.error(message: error.message));

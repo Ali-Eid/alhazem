@@ -45,7 +45,8 @@ class _MyAppState extends State<MyApp> {
         BlocProvider(
           create: (context) => instance<StaticBloc>()
             ..add(const StaticEvent.getAttachmentsType())
-            ..add(const StaticEvent.getCountries()),
+            ..add(const StaticEvent.getCountries())
+            ..add(const StaticEvent.getOffices()),
           lazy: false,
         ),
         BlocProvider(

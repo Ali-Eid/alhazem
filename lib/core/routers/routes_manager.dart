@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../features/auth/presentation/views/login_view.dart';
+import '../../features/contacts/presentation/views/create_office_view.dart';
 import '../../features/home/presentation/views/home_view.dart';
 import '../../features/services/presentation/views/types_services_view.dart';
 import '../../features/splash/presentations/views/splash_view.dart';
@@ -22,6 +23,7 @@ class RoutesNames {
   static const String servicesDetailsRoute = 'services-details';
   static const String contactsRoute = '/contacts';
   static const String createContactRoute = 'create-contact';
+  static const String createOfficeRoute = 'create-office';
   static const String ordersRoute = '/orders';
   static const String orderDetailsRoute = 'order-details';
   static const String settingsRoute = '/settings';
@@ -36,6 +38,8 @@ class RoutesPaths {
   static const String servicesDetailsRoute = 'services-details/:serviceId';
   static const String contactsRoute = '/contacts';
   static const String createContactRoute = 'create-contact';
+  static const String createOfficeRoute = 'create-office';
+
   static const String ordersRoute = '/orders';
   static const String orderDetailsRoute = 'order-details/:id';
   static const String settingsRoute = '/settings';
@@ -140,6 +144,14 @@ class AppRouter {
                       return NoTransitionPage(
                           key: state.pageKey,
                           child: const CreateContractView());
+                    },
+                  ),
+                  GoRoute(
+                    name: RoutesNames.createOfficeRoute,
+                    path: RoutesPaths.createOfficeRoute,
+                    pageBuilder: (context, state) {
+                      return NoTransitionPage(
+                          key: state.pageKey, child: const CreateOfficeView());
                     },
                   ),
                 ]),

@@ -158,4 +158,23 @@ class ContactRepositoryImpl implements ContactRepository {
       return Error(FailureModel(message: "noInternetError"));
     }
   }
+
+  @override
+  Future<Result<ResponseModel<List<StaticModel>>, FailureModel>>
+      getOffices() async {
+    if (await networkInfo.isConnected) {
+      try {
+        final response = await contactsServiceClient.getOffices();
+        if (response.response.statusCode == 200) {
+          return Success(response.data);
+        } else {
+          return Error(FailureModel.fromJson(response.response.data));
+        }
+      } on DioException catch (e) {
+        return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
+      }
+    } else {
+      return Error(FailureModel(message: "noInternetError"));
+    }
+  }
 }

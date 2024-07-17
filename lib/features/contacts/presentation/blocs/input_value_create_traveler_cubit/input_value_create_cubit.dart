@@ -1,9 +1,11 @@
 import 'dart:convert';
+import 'dart:io';
 import 'dart:math';
 
 import 'package:alhazem/core/utils/extensions/extensions.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -13,6 +15,8 @@ import '../../../domain/models/input_create_traveler_model/input_create_traveler
 class InputValueCreateCubit extends Cubit<int> {
   InputValueCreateCubit(super.initialState);
 
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
 // Basic Info
   TextEditingController nameController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
@@ -20,6 +24,8 @@ class InputValueCreateCubit extends Cubit<int> {
   TextEditingController cityController = TextEditingController();
   TextEditingController streetController = TextEditingController();
   TextEditingController street2Controller = TextEditingController();
+  TextEditingController noteController = TextEditingController();
+  bool? isVip = false;
 
 // Passport Info
   TextEditingController namePassportController = TextEditingController();
@@ -63,17 +69,28 @@ class InputValueCreateCubit extends Cubit<int> {
 
   StaticModel? countrySelected;
   StaticModel? genderSelected;
+
+  void setVip(bool? vip) {
+    isVip = vip;
+    emit(isVip.hashCode);
+  }
+
   void setCountry(StaticModel? country) {
     countrySelected = country;
     emit(countrySelected.hashCode);
   }
 
   StaticModel? stateSelected;
+  StaticModel? officeSelected;
   void setState(StaticModel? state) {
     stateSelected = state;
     emit(stateSelected.hashCode);
   }
 
+  void setOffice(StaticModel? office) {
+    officeSelected = office;
+    emit(officeSelected.hashCode);
+  }
   //public info
 
   void setDob(DateTime? dateTime) {
@@ -124,18 +141,104 @@ class InputValueCreateCubit extends Cubit<int> {
 
   void removeAttachmentType(StaticModel attachment) {
     attachmentsTypesTemp.remove(attachment);
+
     emit(Random().nextInt(100));
   }
 
   void setAttachmentsType() {
     attachmentsTypes.clear();
     attachmentsTypes.addAll(attachmentsTypesTemp);
+    attachmentsUpload
+        .removeWhere((att) => !attachmentsTypes.contains(att.type));
     emit(Random().nextInt(100));
   }
 
 //Upload attachments
-  void addUploadAttachments(AttachmentsCreateTravelerModel attachment) {
-    attachmentsUpload.add(attachment);
+  // void addUploadAttachments(AttachmentsCreateTravelerModel attachment) {
+  //   attachmentsUpload.add(attachment);
+  //   emit(Random().nextInt(100));
+  // }
+  void addUploadAttachments(int id, String name, List<XFile> files) {
+    if (files.isNotEmpty) {
+      var temp = attachmentsUpload.firstWhere(
+        (element) => element.type == id,
+        orElse: () {
+          return const AttachmentsCreateTravelerModel();
+        },
+      );
+      if (temp == const AttachmentsCreateTravelerModel()) {
+        attachmentsUpload.add(AttachmentsCreateTravelerModel(
+            type: id,
+            name: name,
+            file: files.map(
+              (e) {
+                return base64Encode(File(e.path).readAsBytesSync());
+              },
+            ).toList()));
+      } else {
+        attachmentsUpload.remove(temp);
+        attachmentsUpload.add(AttachmentsCreateTravelerModel(
+            type: id,
+            name: name,
+            file: files.map(
+              (e) {
+                return base64Encode(File(e.path).readAsBytesSync());
+              },
+            ).toList()));
+      }
+    }
+
+    emit(Random().nextInt(100));
+  }
+
+  //------Reset--------
+  void resetValues() {
+    // Basic Info
+    nameController.clear();
+    phoneController.clear();
+    whatsAppController.clear();
+    cityController.clear();
+    streetController.clear();
+    street2Controller.clear();
+    noteController.clear();
+
+    //passport
+    namePassportController.clear();
+    eNamePassportController.clear();
+    surnamePassportController.clear();
+    eSurnamePassportController.clear();
+    fatherNamePassportController.clear();
+    eFatherNamePassportController.clear();
+    motherNamePassportController.clear();
+    eMotherNamePassportController.clear();
+    dobPassportController.clear();
+    birthPlacePassportController.clear();
+    eBirthPlacePassportController.clear();
+    numberPassportController.clear();
+    placeIssuePassportController.clear();
+    nationalNumberPassportController.clear();
+    jobPassportController.clear();
+    issuedDatePassportController.clear();
+    expirationDatePassportController.clear();
+
+    //Identity
+    nameIdentityController.clear();
+    surnameIdentityController.clear();
+    fatherNameIdentityController.clear();
+    motherNameIdentityController.clear();
+    dobIdentityController.clear();
+    birthPlaceIdentityController.clear();
+    nationalNumberIdentityController.clear();
+//select type Attachments
+    attachmentsTypes.clear();
+    attachmentsTypesTemp.clear();
+
+//upload attachments
+    attachmentsUpload.clear();
+    countrySelected = null;
+    genderSelected = null;
+    officeSelected = null;
+    isVip = false;
     emit(Random().nextInt(100));
   }
 }

@@ -19,6 +19,7 @@ mixin _$StaticEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getAttachmentsType,
+    required TResult Function() getOffices,
     required TResult Function() getCountries,
     required TResult Function(int countryId) getStates,
   }) =>
@@ -26,6 +27,7 @@ mixin _$StaticEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getAttachmentsType,
+    TResult? Function()? getOffices,
     TResult? Function()? getCountries,
     TResult? Function(int countryId)? getStates,
   }) =>
@@ -33,6 +35,7 @@ mixin _$StaticEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getAttachmentsType,
+    TResult Function()? getOffices,
     TResult Function()? getCountries,
     TResult Function(int countryId)? getStates,
     required TResult orElse(),
@@ -41,6 +44,7 @@ mixin _$StaticEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetAttachmentsType value) getAttachmentsType,
+    required TResult Function(_GetOffices value) getOffices,
     required TResult Function(_GetCountries value) getCountries,
     required TResult Function(_GetStates value) getStates,
   }) =>
@@ -48,6 +52,7 @@ mixin _$StaticEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetAttachmentsType value)? getAttachmentsType,
+    TResult? Function(_GetOffices value)? getOffices,
     TResult? Function(_GetCountries value)? getCountries,
     TResult? Function(_GetStates value)? getStates,
   }) =>
@@ -55,6 +60,7 @@ mixin _$StaticEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetAttachmentsType value)? getAttachmentsType,
+    TResult Function(_GetOffices value)? getOffices,
     TResult Function(_GetCountries value)? getCountries,
     TResult Function(_GetStates value)? getStates,
     required TResult orElse(),
@@ -119,6 +125,7 @@ class _$GetAttachmentsTypeImpl implements _GetAttachmentsType {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getAttachmentsType,
+    required TResult Function() getOffices,
     required TResult Function() getCountries,
     required TResult Function(int countryId) getStates,
   }) {
@@ -129,6 +136,7 @@ class _$GetAttachmentsTypeImpl implements _GetAttachmentsType {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getAttachmentsType,
+    TResult? Function()? getOffices,
     TResult? Function()? getCountries,
     TResult? Function(int countryId)? getStates,
   }) {
@@ -139,6 +147,7 @@ class _$GetAttachmentsTypeImpl implements _GetAttachmentsType {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getAttachmentsType,
+    TResult Function()? getOffices,
     TResult Function()? getCountries,
     TResult Function(int countryId)? getStates,
     required TResult orElse(),
@@ -153,6 +162,7 @@ class _$GetAttachmentsTypeImpl implements _GetAttachmentsType {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetAttachmentsType value) getAttachmentsType,
+    required TResult Function(_GetOffices value) getOffices,
     required TResult Function(_GetCountries value) getCountries,
     required TResult Function(_GetStates value) getStates,
   }) {
@@ -163,6 +173,7 @@ class _$GetAttachmentsTypeImpl implements _GetAttachmentsType {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetAttachmentsType value)? getAttachmentsType,
+    TResult? Function(_GetOffices value)? getOffices,
     TResult? Function(_GetCountries value)? getCountries,
     TResult? Function(_GetStates value)? getStates,
   }) {
@@ -173,6 +184,7 @@ class _$GetAttachmentsTypeImpl implements _GetAttachmentsType {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetAttachmentsType value)? getAttachmentsType,
+    TResult Function(_GetOffices value)? getOffices,
     TResult Function(_GetCountries value)? getCountries,
     TResult Function(_GetStates value)? getStates,
     required TResult orElse(),
@@ -186,6 +198,120 @@ class _$GetAttachmentsTypeImpl implements _GetAttachmentsType {
 
 abstract class _GetAttachmentsType implements StaticEvent {
   const factory _GetAttachmentsType() = _$GetAttachmentsTypeImpl;
+}
+
+/// @nodoc
+abstract class _$$GetOfficesImplCopyWith<$Res> {
+  factory _$$GetOfficesImplCopyWith(
+          _$GetOfficesImpl value, $Res Function(_$GetOfficesImpl) then) =
+      __$$GetOfficesImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$GetOfficesImplCopyWithImpl<$Res>
+    extends _$StaticEventCopyWithImpl<$Res, _$GetOfficesImpl>
+    implements _$$GetOfficesImplCopyWith<$Res> {
+  __$$GetOfficesImplCopyWithImpl(
+      _$GetOfficesImpl _value, $Res Function(_$GetOfficesImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$GetOfficesImpl implements _GetOffices {
+  const _$GetOfficesImpl();
+
+  @override
+  String toString() {
+    return 'StaticEvent.getOffices()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$GetOfficesImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getAttachmentsType,
+    required TResult Function() getOffices,
+    required TResult Function() getCountries,
+    required TResult Function(int countryId) getStates,
+  }) {
+    return getOffices();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getAttachmentsType,
+    TResult? Function()? getOffices,
+    TResult? Function()? getCountries,
+    TResult? Function(int countryId)? getStates,
+  }) {
+    return getOffices?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getAttachmentsType,
+    TResult Function()? getOffices,
+    TResult Function()? getCountries,
+    TResult Function(int countryId)? getStates,
+    required TResult orElse(),
+  }) {
+    if (getOffices != null) {
+      return getOffices();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetAttachmentsType value) getAttachmentsType,
+    required TResult Function(_GetOffices value) getOffices,
+    required TResult Function(_GetCountries value) getCountries,
+    required TResult Function(_GetStates value) getStates,
+  }) {
+    return getOffices(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetAttachmentsType value)? getAttachmentsType,
+    TResult? Function(_GetOffices value)? getOffices,
+    TResult? Function(_GetCountries value)? getCountries,
+    TResult? Function(_GetStates value)? getStates,
+  }) {
+    return getOffices?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetAttachmentsType value)? getAttachmentsType,
+    TResult Function(_GetOffices value)? getOffices,
+    TResult Function(_GetCountries value)? getCountries,
+    TResult Function(_GetStates value)? getStates,
+    required TResult orElse(),
+  }) {
+    if (getOffices != null) {
+      return getOffices(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetOffices implements StaticEvent {
+  const factory _GetOffices() = _$GetOfficesImpl;
 }
 
 /// @nodoc
@@ -227,6 +353,7 @@ class _$GetCountriesImpl implements _GetCountries {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getAttachmentsType,
+    required TResult Function() getOffices,
     required TResult Function() getCountries,
     required TResult Function(int countryId) getStates,
   }) {
@@ -237,6 +364,7 @@ class _$GetCountriesImpl implements _GetCountries {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getAttachmentsType,
+    TResult? Function()? getOffices,
     TResult? Function()? getCountries,
     TResult? Function(int countryId)? getStates,
   }) {
@@ -247,6 +375,7 @@ class _$GetCountriesImpl implements _GetCountries {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getAttachmentsType,
+    TResult Function()? getOffices,
     TResult Function()? getCountries,
     TResult Function(int countryId)? getStates,
     required TResult orElse(),
@@ -261,6 +390,7 @@ class _$GetCountriesImpl implements _GetCountries {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetAttachmentsType value) getAttachmentsType,
+    required TResult Function(_GetOffices value) getOffices,
     required TResult Function(_GetCountries value) getCountries,
     required TResult Function(_GetStates value) getStates,
   }) {
@@ -271,6 +401,7 @@ class _$GetCountriesImpl implements _GetCountries {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetAttachmentsType value)? getAttachmentsType,
+    TResult? Function(_GetOffices value)? getOffices,
     TResult? Function(_GetCountries value)? getCountries,
     TResult? Function(_GetStates value)? getStates,
   }) {
@@ -281,6 +412,7 @@ class _$GetCountriesImpl implements _GetCountries {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetAttachmentsType value)? getAttachmentsType,
+    TResult Function(_GetOffices value)? getOffices,
     TResult Function(_GetCountries value)? getCountries,
     TResult Function(_GetStates value)? getStates,
     required TResult orElse(),
@@ -362,6 +494,7 @@ class _$GetStatesImpl implements _GetStates {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getAttachmentsType,
+    required TResult Function() getOffices,
     required TResult Function() getCountries,
     required TResult Function(int countryId) getStates,
   }) {
@@ -372,6 +505,7 @@ class _$GetStatesImpl implements _GetStates {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getAttachmentsType,
+    TResult? Function()? getOffices,
     TResult? Function()? getCountries,
     TResult? Function(int countryId)? getStates,
   }) {
@@ -382,6 +516,7 @@ class _$GetStatesImpl implements _GetStates {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getAttachmentsType,
+    TResult Function()? getOffices,
     TResult Function()? getCountries,
     TResult Function(int countryId)? getStates,
     required TResult orElse(),
@@ -396,6 +531,7 @@ class _$GetStatesImpl implements _GetStates {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetAttachmentsType value) getAttachmentsType,
+    required TResult Function(_GetOffices value) getOffices,
     required TResult Function(_GetCountries value) getCountries,
     required TResult Function(_GetStates value) getStates,
   }) {
@@ -406,6 +542,7 @@ class _$GetStatesImpl implements _GetStates {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetAttachmentsType value)? getAttachmentsType,
+    TResult? Function(_GetOffices value)? getOffices,
     TResult? Function(_GetCountries value)? getCountries,
     TResult? Function(_GetStates value)? getStates,
   }) {
@@ -416,6 +553,7 @@ class _$GetStatesImpl implements _GetStates {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetAttachmentsType value)? getAttachmentsType,
+    TResult Function(_GetOffices value)? getOffices,
     TResult Function(_GetCountries value)? getCountries,
     TResult Function(_GetStates value)? getStates,
     required TResult orElse(),
@@ -442,8 +580,11 @@ mixin _$StaticState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<StaticModel> attachmentsType,
-            List<StaticModel> countries, List<StaticModel> states)
+    required TResult Function(
+            List<StaticModel> attachmentsType,
+            List<StaticModel> countries,
+            List<StaticModel> states,
+            List<StaticModel> offices)
         loaded,
     required TResult Function(String message) error,
   }) =>
@@ -452,8 +593,11 @@ mixin _$StaticState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<StaticModel> attachmentsType,
-            List<StaticModel> countries, List<StaticModel> states)?
+    TResult? Function(
+            List<StaticModel> attachmentsType,
+            List<StaticModel> countries,
+            List<StaticModel> states,
+            List<StaticModel> offices)?
         loaded,
     TResult? Function(String message)? error,
   }) =>
@@ -462,8 +606,11 @@ mixin _$StaticState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<StaticModel> attachmentsType,
-            List<StaticModel> countries, List<StaticModel> states)?
+    TResult Function(
+            List<StaticModel> attachmentsType,
+            List<StaticModel> countries,
+            List<StaticModel> states,
+            List<StaticModel> offices)?
         loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
@@ -554,8 +701,11 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<StaticModel> attachmentsType,
-            List<StaticModel> countries, List<StaticModel> states)
+    required TResult Function(
+            List<StaticModel> attachmentsType,
+            List<StaticModel> countries,
+            List<StaticModel> states,
+            List<StaticModel> offices)
         loaded,
     required TResult Function(String message) error,
   }) {
@@ -567,8 +717,11 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<StaticModel> attachmentsType,
-            List<StaticModel> countries, List<StaticModel> states)?
+    TResult? Function(
+            List<StaticModel> attachmentsType,
+            List<StaticModel> countries,
+            List<StaticModel> states,
+            List<StaticModel> offices)?
         loaded,
     TResult? Function(String message)? error,
   }) {
@@ -580,8 +733,11 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<StaticModel> attachmentsType,
-            List<StaticModel> countries, List<StaticModel> states)?
+    TResult Function(
+            List<StaticModel> attachmentsType,
+            List<StaticModel> countries,
+            List<StaticModel> states,
+            List<StaticModel> offices)?
         loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
@@ -674,8 +830,11 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<StaticModel> attachmentsType,
-            List<StaticModel> countries, List<StaticModel> states)
+    required TResult Function(
+            List<StaticModel> attachmentsType,
+            List<StaticModel> countries,
+            List<StaticModel> states,
+            List<StaticModel> offices)
         loaded,
     required TResult Function(String message) error,
   }) {
@@ -687,8 +846,11 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<StaticModel> attachmentsType,
-            List<StaticModel> countries, List<StaticModel> states)?
+    TResult? Function(
+            List<StaticModel> attachmentsType,
+            List<StaticModel> countries,
+            List<StaticModel> states,
+            List<StaticModel> offices)?
         loaded,
     TResult? Function(String message)? error,
   }) {
@@ -700,8 +862,11 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<StaticModel> attachmentsType,
-            List<StaticModel> countries, List<StaticModel> states)?
+    TResult Function(
+            List<StaticModel> attachmentsType,
+            List<StaticModel> countries,
+            List<StaticModel> states,
+            List<StaticModel> offices)?
         loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
@@ -763,7 +928,8 @@ abstract class _$$LoadedImplCopyWith<$Res> {
   $Res call(
       {List<StaticModel> attachmentsType,
       List<StaticModel> countries,
-      List<StaticModel> states});
+      List<StaticModel> states,
+      List<StaticModel> offices});
 }
 
 /// @nodoc
@@ -780,6 +946,7 @@ class __$$LoadedImplCopyWithImpl<$Res>
     Object? attachmentsType = null,
     Object? countries = null,
     Object? states = null,
+    Object? offices = null,
   }) {
     return _then(_$LoadedImpl(
       attachmentsType: null == attachmentsType
@@ -794,6 +961,10 @@ class __$$LoadedImplCopyWithImpl<$Res>
           ? _value._states
           : states // ignore: cast_nullable_to_non_nullable
               as List<StaticModel>,
+      offices: null == offices
+          ? _value._offices
+          : offices // ignore: cast_nullable_to_non_nullable
+              as List<StaticModel>,
     ));
   }
 }
@@ -804,10 +975,12 @@ class _$LoadedImpl implements _Loaded {
   const _$LoadedImpl(
       {final List<StaticModel> attachmentsType = const [],
       final List<StaticModel> countries = const [],
-      final List<StaticModel> states = const []})
+      final List<StaticModel> states = const [],
+      final List<StaticModel> offices = const []})
       : _attachmentsType = attachmentsType,
         _countries = countries,
-        _states = states;
+        _states = states,
+        _offices = offices;
 
   final List<StaticModel> _attachmentsType;
   @override
@@ -836,9 +1009,18 @@ class _$LoadedImpl implements _Loaded {
     return EqualUnmodifiableListView(_states);
   }
 
+  final List<StaticModel> _offices;
+  @override
+  @JsonKey()
+  List<StaticModel> get offices {
+    if (_offices is EqualUnmodifiableListView) return _offices;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_offices);
+  }
+
   @override
   String toString() {
-    return 'StaticState.loaded(attachmentsType: $attachmentsType, countries: $countries, states: $states)';
+    return 'StaticState.loaded(attachmentsType: $attachmentsType, countries: $countries, states: $states, offices: $offices)';
   }
 
   @override
@@ -850,7 +1032,8 @@ class _$LoadedImpl implements _Loaded {
                 .equals(other._attachmentsType, _attachmentsType) &&
             const DeepCollectionEquality()
                 .equals(other._countries, _countries) &&
-            const DeepCollectionEquality().equals(other._states, _states));
+            const DeepCollectionEquality().equals(other._states, _states) &&
+            const DeepCollectionEquality().equals(other._offices, _offices));
   }
 
   @override
@@ -858,7 +1041,8 @@ class _$LoadedImpl implements _Loaded {
       runtimeType,
       const DeepCollectionEquality().hash(_attachmentsType),
       const DeepCollectionEquality().hash(_countries),
-      const DeepCollectionEquality().hash(_states));
+      const DeepCollectionEquality().hash(_states),
+      const DeepCollectionEquality().hash(_offices));
 
   @JsonKey(ignore: true)
   @override
@@ -871,12 +1055,15 @@ class _$LoadedImpl implements _Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<StaticModel> attachmentsType,
-            List<StaticModel> countries, List<StaticModel> states)
+    required TResult Function(
+            List<StaticModel> attachmentsType,
+            List<StaticModel> countries,
+            List<StaticModel> states,
+            List<StaticModel> offices)
         loaded,
     required TResult Function(String message) error,
   }) {
-    return loaded(attachmentsType, countries, states);
+    return loaded(attachmentsType, countries, states, offices);
   }
 
   @override
@@ -884,12 +1071,15 @@ class _$LoadedImpl implements _Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<StaticModel> attachmentsType,
-            List<StaticModel> countries, List<StaticModel> states)?
+    TResult? Function(
+            List<StaticModel> attachmentsType,
+            List<StaticModel> countries,
+            List<StaticModel> states,
+            List<StaticModel> offices)?
         loaded,
     TResult? Function(String message)? error,
   }) {
-    return loaded?.call(attachmentsType, countries, states);
+    return loaded?.call(attachmentsType, countries, states, offices);
   }
 
   @override
@@ -897,14 +1087,17 @@ class _$LoadedImpl implements _Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<StaticModel> attachmentsType,
-            List<StaticModel> countries, List<StaticModel> states)?
+    TResult Function(
+            List<StaticModel> attachmentsType,
+            List<StaticModel> countries,
+            List<StaticModel> states,
+            List<StaticModel> offices)?
         loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(attachmentsType, countries, states);
+      return loaded(attachmentsType, countries, states, offices);
     }
     return orElse();
   }
@@ -951,11 +1144,13 @@ abstract class _Loaded implements StaticState {
   const factory _Loaded(
       {final List<StaticModel> attachmentsType,
       final List<StaticModel> countries,
-      final List<StaticModel> states}) = _$LoadedImpl;
+      final List<StaticModel> states,
+      final List<StaticModel> offices}) = _$LoadedImpl;
 
   List<StaticModel> get attachmentsType;
   List<StaticModel> get countries;
   List<StaticModel> get states;
+  List<StaticModel> get offices;
   @JsonKey(ignore: true)
   _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1027,8 +1222,11 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<StaticModel> attachmentsType,
-            List<StaticModel> countries, List<StaticModel> states)
+    required TResult Function(
+            List<StaticModel> attachmentsType,
+            List<StaticModel> countries,
+            List<StaticModel> states,
+            List<StaticModel> offices)
         loaded,
     required TResult Function(String message) error,
   }) {
@@ -1040,8 +1238,11 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<StaticModel> attachmentsType,
-            List<StaticModel> countries, List<StaticModel> states)?
+    TResult? Function(
+            List<StaticModel> attachmentsType,
+            List<StaticModel> countries,
+            List<StaticModel> states,
+            List<StaticModel> offices)?
         loaded,
     TResult? Function(String message)? error,
   }) {
@@ -1053,8 +1254,11 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<StaticModel> attachmentsType,
-            List<StaticModel> countries, List<StaticModel> states)?
+    TResult Function(
+            List<StaticModel> attachmentsType,
+            List<StaticModel> countries,
+            List<StaticModel> states,
+            List<StaticModel> offices)?
         loaded,
     TResult Function(String message)? error,
     required TResult orElse(),

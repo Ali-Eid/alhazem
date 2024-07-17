@@ -23,6 +23,7 @@ abstract class ContactRepository {
   //Static
   Future<Result<ResponseModel<List<StaticModel>>, FailureModel>>
       getTypeAttachments();
+  Future<Result<ResponseModel<List<StaticModel>>, FailureModel>> getOffices();
   Future<Result<ResponseModel<List<StaticModel>>, FailureModel>> getCountries();
   Future<Result<ResponseModel<List<StaticModel>>, FailureModel>> getStates(
       {required int countryId});

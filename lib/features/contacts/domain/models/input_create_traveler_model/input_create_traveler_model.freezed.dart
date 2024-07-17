@@ -32,12 +32,13 @@ mixin _$InputCreateTravelerModel {
   @JsonKey(name: "country_id")
   int get countryId => throw _privateConstructorUsedError;
   @JsonKey(name: "office_id")
-  int get officeId => throw _privateConstructorUsedError;
+  int? get officeId => throw _privateConstructorUsedError;
   bool get vip => throw _privateConstructorUsedError;
-  EntityType get type => throw _privateConstructorUsedError;
+  String get type => throw _privateConstructorUsedError;
   String get city => throw _privateConstructorUsedError;
   String get street => throw _privateConstructorUsedError;
-  String get street2 => throw _privateConstructorUsedError; //passport
+  String get street2 => throw _privateConstructorUsedError;
+  String? get reference => throw _privateConstructorUsedError; //passport
   @JsonKey(name: "passport_name")
   String get passportName => throw _privateConstructorUsedError;
   @JsonKey(name: "e_passport_name")
@@ -63,9 +64,9 @@ mixin _$InputCreateTravelerModel {
   @JsonKey(name: "e_passport_place_of_birthday")
   String get ePassportPlaceOfBirthday => throw _privateConstructorUsedError;
   @JsonKey(name: "passport_gender")
-  GenderType get passportGender => throw _privateConstructorUsedError;
+  String get passportGender => throw _privateConstructorUsedError;
   @JsonKey(name: "e_passport_gender")
-  GenderType get ePassportGender => throw _privateConstructorUsedError;
+  String get ePassportGender => throw _privateConstructorUsedError;
   @JsonKey(name: "passport_number_of_passport")
   String get passportNumberOfPassport => throw _privateConstructorUsedError;
   @JsonKey(name: "e_passport_number_of_passport")
@@ -105,7 +106,7 @@ mixin _$InputCreateTravelerModel {
   @JsonKey(name: "identity_surname")
   String get identitySurname => throw _privateConstructorUsedError;
   @JsonKey(name: "identity_gender")
-  GenderType get identityGender => throw _privateConstructorUsedError;
+  String get identityGender => throw _privateConstructorUsedError;
   List<AttachmentsCreateTravelerModel> get attachments =>
       throw _privateConstructorUsedError;
 
@@ -127,12 +128,13 @@ abstract class $InputCreateTravelerModelCopyWith<$Res> {
       @JsonKey(name: "whatsapp_number") String whatsAppNumber,
       @JsonKey(name: "state_id") int stateId,
       @JsonKey(name: "country_id") int countryId,
-      @JsonKey(name: "office_id") int officeId,
+      @JsonKey(name: "office_id") int? officeId,
       bool vip,
-      EntityType type,
+      String type,
       String city,
       String street,
       String street2,
+      String? reference,
       @JsonKey(name: "passport_name") String passportName,
       @JsonKey(name: "e_passport_name") String ePassportName,
       @JsonKey(name: "passport_surname") String passportSurname,
@@ -148,8 +150,8 @@ abstract class $InputCreateTravelerModelCopyWith<$Res> {
       String passportPlaceOfBirthday,
       @JsonKey(name: "e_passport_place_of_birthday")
       String ePassportPlaceOfBirthday,
-      @JsonKey(name: "passport_gender") GenderType passportGender,
-      @JsonKey(name: "e_passport_gender") GenderType ePassportGender,
+      @JsonKey(name: "passport_gender") String passportGender,
+      @JsonKey(name: "e_passport_gender") String ePassportGender,
       @JsonKey(name: "passport_number_of_passport")
       String passportNumberOfPassport,
       @JsonKey(name: "e_passport_number_of_passport")
@@ -174,7 +176,7 @@ abstract class $InputCreateTravelerModelCopyWith<$Res> {
       String identityPlaceOfBirthday,
       @JsonKey(name: "identity_national_number") String identityNationalNumber,
       @JsonKey(name: "identity_surname") String identitySurname,
-      @JsonKey(name: "identity_gender") GenderType identityGender,
+      @JsonKey(name: "identity_gender") String identityGender,
       List<AttachmentsCreateTravelerModel> attachments});
 }
 
@@ -197,12 +199,13 @@ class _$InputCreateTravelerModelCopyWithImpl<$Res,
     Object? whatsAppNumber = null,
     Object? stateId = null,
     Object? countryId = null,
-    Object? officeId = null,
+    Object? officeId = freezed,
     Object? vip = null,
     Object? type = null,
     Object? city = null,
     Object? street = null,
     Object? street2 = null,
+    Object? reference = freezed,
     Object? passportName = null,
     Object? ePassportName = null,
     Object? passportSurname = null,
@@ -260,10 +263,10 @@ class _$InputCreateTravelerModelCopyWithImpl<$Res,
           ? _value.countryId
           : countryId // ignore: cast_nullable_to_non_nullable
               as int,
-      officeId: null == officeId
+      officeId: freezed == officeId
           ? _value.officeId
           : officeId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       vip: null == vip
           ? _value.vip
           : vip // ignore: cast_nullable_to_non_nullable
@@ -271,7 +274,7 @@ class _$InputCreateTravelerModelCopyWithImpl<$Res,
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as EntityType,
+              as String,
       city: null == city
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
@@ -284,6 +287,10 @@ class _$InputCreateTravelerModelCopyWithImpl<$Res,
           ? _value.street2
           : street2 // ignore: cast_nullable_to_non_nullable
               as String,
+      reference: freezed == reference
+          ? _value.reference
+          : reference // ignore: cast_nullable_to_non_nullable
+              as String?,
       passportName: null == passportName
           ? _value.passportName
           : passportName // ignore: cast_nullable_to_non_nullable
@@ -335,11 +342,11 @@ class _$InputCreateTravelerModelCopyWithImpl<$Res,
       passportGender: null == passportGender
           ? _value.passportGender
           : passportGender // ignore: cast_nullable_to_non_nullable
-              as GenderType,
+              as String,
       ePassportGender: null == ePassportGender
           ? _value.ePassportGender
           : ePassportGender // ignore: cast_nullable_to_non_nullable
-              as GenderType,
+              as String,
       passportNumberOfPassport: null == passportNumberOfPassport
           ? _value.passportNumberOfPassport
           : passportNumberOfPassport // ignore: cast_nullable_to_non_nullable
@@ -419,7 +426,7 @@ class _$InputCreateTravelerModelCopyWithImpl<$Res,
       identityGender: null == identityGender
           ? _value.identityGender
           : identityGender // ignore: cast_nullable_to_non_nullable
-              as GenderType,
+              as String,
       attachments: null == attachments
           ? _value.attachments
           : attachments // ignore: cast_nullable_to_non_nullable
@@ -443,12 +450,13 @@ abstract class _$$InputCreateTravelerModelImplCopyWith<$Res>
       @JsonKey(name: "whatsapp_number") String whatsAppNumber,
       @JsonKey(name: "state_id") int stateId,
       @JsonKey(name: "country_id") int countryId,
-      @JsonKey(name: "office_id") int officeId,
+      @JsonKey(name: "office_id") int? officeId,
       bool vip,
-      EntityType type,
+      String type,
       String city,
       String street,
       String street2,
+      String? reference,
       @JsonKey(name: "passport_name") String passportName,
       @JsonKey(name: "e_passport_name") String ePassportName,
       @JsonKey(name: "passport_surname") String passportSurname,
@@ -464,8 +472,8 @@ abstract class _$$InputCreateTravelerModelImplCopyWith<$Res>
       String passportPlaceOfBirthday,
       @JsonKey(name: "e_passport_place_of_birthday")
       String ePassportPlaceOfBirthday,
-      @JsonKey(name: "passport_gender") GenderType passportGender,
-      @JsonKey(name: "e_passport_gender") GenderType ePassportGender,
+      @JsonKey(name: "passport_gender") String passportGender,
+      @JsonKey(name: "e_passport_gender") String ePassportGender,
       @JsonKey(name: "passport_number_of_passport")
       String passportNumberOfPassport,
       @JsonKey(name: "e_passport_number_of_passport")
@@ -490,7 +498,7 @@ abstract class _$$InputCreateTravelerModelImplCopyWith<$Res>
       String identityPlaceOfBirthday,
       @JsonKey(name: "identity_national_number") String identityNationalNumber,
       @JsonKey(name: "identity_surname") String identitySurname,
-      @JsonKey(name: "identity_gender") GenderType identityGender,
+      @JsonKey(name: "identity_gender") String identityGender,
       List<AttachmentsCreateTravelerModel> attachments});
 }
 
@@ -512,12 +520,13 @@ class __$$InputCreateTravelerModelImplCopyWithImpl<$Res>
     Object? whatsAppNumber = null,
     Object? stateId = null,
     Object? countryId = null,
-    Object? officeId = null,
+    Object? officeId = freezed,
     Object? vip = null,
     Object? type = null,
     Object? city = null,
     Object? street = null,
     Object? street2 = null,
+    Object? reference = freezed,
     Object? passportName = null,
     Object? ePassportName = null,
     Object? passportSurname = null,
@@ -575,10 +584,10 @@ class __$$InputCreateTravelerModelImplCopyWithImpl<$Res>
           ? _value.countryId
           : countryId // ignore: cast_nullable_to_non_nullable
               as int,
-      officeId: null == officeId
+      officeId: freezed == officeId
           ? _value.officeId
           : officeId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       vip: null == vip
           ? _value.vip
           : vip // ignore: cast_nullable_to_non_nullable
@@ -586,7 +595,7 @@ class __$$InputCreateTravelerModelImplCopyWithImpl<$Res>
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as EntityType,
+              as String,
       city: null == city
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
@@ -599,6 +608,10 @@ class __$$InputCreateTravelerModelImplCopyWithImpl<$Res>
           ? _value.street2
           : street2 // ignore: cast_nullable_to_non_nullable
               as String,
+      reference: freezed == reference
+          ? _value.reference
+          : reference // ignore: cast_nullable_to_non_nullable
+              as String?,
       passportName: null == passportName
           ? _value.passportName
           : passportName // ignore: cast_nullable_to_non_nullable
@@ -650,11 +663,11 @@ class __$$InputCreateTravelerModelImplCopyWithImpl<$Res>
       passportGender: null == passportGender
           ? _value.passportGender
           : passportGender // ignore: cast_nullable_to_non_nullable
-              as GenderType,
+              as String,
       ePassportGender: null == ePassportGender
           ? _value.ePassportGender
           : ePassportGender // ignore: cast_nullable_to_non_nullable
-              as GenderType,
+              as String,
       passportNumberOfPassport: null == passportNumberOfPassport
           ? _value.passportNumberOfPassport
           : passportNumberOfPassport // ignore: cast_nullable_to_non_nullable
@@ -734,7 +747,7 @@ class __$$InputCreateTravelerModelImplCopyWithImpl<$Res>
       identityGender: null == identityGender
           ? _value.identityGender
           : identityGender // ignore: cast_nullable_to_non_nullable
-              as GenderType,
+              as String,
       attachments: null == attachments
           ? _value._attachments
           : attachments // ignore: cast_nullable_to_non_nullable
@@ -752,12 +765,13 @@ class _$InputCreateTravelerModelImpl implements _InputCreateTravelerModel {
       @JsonKey(name: "whatsapp_number") this.whatsAppNumber = "",
       @JsonKey(name: "state_id") this.stateId = 0,
       @JsonKey(name: "country_id") this.countryId = 0,
-      @JsonKey(name: "office_id") this.officeId = 0,
+      @JsonKey(name: "office_id") this.officeId,
       this.vip = false,
-      this.type = EntityType.person,
+      this.type = "",
       this.city = "",
       this.street = "",
       this.street2 = "",
+      this.reference,
       @JsonKey(name: "passport_name") this.passportName = "",
       @JsonKey(name: "e_passport_name") this.ePassportName = "",
       @JsonKey(name: "passport_surname") this.passportSurname = "",
@@ -774,9 +788,8 @@ class _$InputCreateTravelerModelImpl implements _InputCreateTravelerModel {
       this.passportPlaceOfBirthday = "",
       @JsonKey(name: "e_passport_place_of_birthday")
       this.ePassportPlaceOfBirthday = "",
-      @JsonKey(name: "passport_gender") this.passportGender = GenderType.male,
-      @JsonKey(name: "e_passport_gender")
-      this.ePassportGender = GenderType.male,
+      @JsonKey(name: "passport_gender") this.passportGender = "",
+      @JsonKey(name: "e_passport_gender") this.ePassportGender = "",
       @JsonKey(name: "passport_number_of_passport")
       this.passportNumberOfPassport = "",
       @JsonKey(name: "e_passport_number_of_passport")
@@ -806,7 +819,7 @@ class _$InputCreateTravelerModelImpl implements _InputCreateTravelerModel {
       @JsonKey(name: "identity_national_number")
       this.identityNationalNumber = "",
       @JsonKey(name: "identity_surname") this.identitySurname = "",
-      @JsonKey(name: "identity_gender") this.identityGender = GenderType.male,
+      @JsonKey(name: "identity_gender") this.identityGender = "",
       final List<AttachmentsCreateTravelerModel> attachments = const []})
       : _attachments = attachments;
 
@@ -831,13 +844,13 @@ class _$InputCreateTravelerModelImpl implements _InputCreateTravelerModel {
   final int countryId;
   @override
   @JsonKey(name: "office_id")
-  final int officeId;
+  final int? officeId;
   @override
   @JsonKey()
   final bool vip;
   @override
   @JsonKey()
-  final EntityType type;
+  final String type;
   @override
   @JsonKey()
   final String city;
@@ -847,6 +860,8 @@ class _$InputCreateTravelerModelImpl implements _InputCreateTravelerModel {
   @override
   @JsonKey()
   final String street2;
+  @override
+  final String? reference;
 //passport
   @override
   @JsonKey(name: "passport_name")
@@ -886,10 +901,10 @@ class _$InputCreateTravelerModelImpl implements _InputCreateTravelerModel {
   final String ePassportPlaceOfBirthday;
   @override
   @JsonKey(name: "passport_gender")
-  final GenderType passportGender;
+  final String passportGender;
   @override
   @JsonKey(name: "e_passport_gender")
-  final GenderType ePassportGender;
+  final String ePassportGender;
   @override
   @JsonKey(name: "passport_number_of_passport")
   final String passportNumberOfPassport;
@@ -950,7 +965,7 @@ class _$InputCreateTravelerModelImpl implements _InputCreateTravelerModel {
   final String identitySurname;
   @override
   @JsonKey(name: "identity_gender")
-  final GenderType identityGender;
+  final String identityGender;
   final List<AttachmentsCreateTravelerModel> _attachments;
   @override
   @JsonKey()
@@ -962,7 +977,7 @@ class _$InputCreateTravelerModelImpl implements _InputCreateTravelerModel {
 
   @override
   String toString() {
-    return 'InputCreateTravelerModel(name: $name, phoneNumber: $phoneNumber, whatsAppNumber: $whatsAppNumber, stateId: $stateId, countryId: $countryId, officeId: $officeId, vip: $vip, type: $type, city: $city, street: $street, street2: $street2, passportName: $passportName, ePassportName: $ePassportName, passportSurname: $passportSurname, ePassportSurname: $ePassportSurname, passportMotherName: $passportMotherName, ePassportMotherName: $ePassportMotherName, passportFatherName: $passportFatherName, ePassportFatherName: $ePassportFatherName, passportDateOfBirthday: $passportDateOfBirthday, ePassportDateOfBirthday: $ePassportDateOfBirthday, passportPlaceOfBirthday: $passportPlaceOfBirthday, ePassportPlaceOfBirthday: $ePassportPlaceOfBirthday, passportGender: $passportGender, ePassportGender: $ePassportGender, passportNumberOfPassport: $passportNumberOfPassport, ePassportNumberOfPassport: $ePassportNumberOfPassport, passportReleaseDate: $passportReleaseDate, ePassportReleaseDate: $ePassportReleaseDate, passportPlaceOfIssue: $passportPlaceOfIssue, ePassportPlaceOfIssue: $ePassportPlaceOfIssue, passportExpirationDate: $passportExpirationDate, ePassportExpirationDate: $ePassportExpirationDate, passportNationalNumber: $passportNationalNumber, ePassportNationalNumber: $ePassportNationalNumber, passportJob: $passportJob, ePassportJob: $ePassportJob, passportFile: $passportFile, identityFather: $identityFather, identityMother: $identityMother, identityDateOfBirthday: $identityDateOfBirthday, identityPlaceOfBirthday: $identityPlaceOfBirthday, identityNationalNumber: $identityNationalNumber, identitySurname: $identitySurname, identityGender: $identityGender, attachments: $attachments)';
+    return 'InputCreateTravelerModel(name: $name, phoneNumber: $phoneNumber, whatsAppNumber: $whatsAppNumber, stateId: $stateId, countryId: $countryId, officeId: $officeId, vip: $vip, type: $type, city: $city, street: $street, street2: $street2, reference: $reference, passportName: $passportName, ePassportName: $ePassportName, passportSurname: $passportSurname, ePassportSurname: $ePassportSurname, passportMotherName: $passportMotherName, ePassportMotherName: $ePassportMotherName, passportFatherName: $passportFatherName, ePassportFatherName: $ePassportFatherName, passportDateOfBirthday: $passportDateOfBirthday, ePassportDateOfBirthday: $ePassportDateOfBirthday, passportPlaceOfBirthday: $passportPlaceOfBirthday, ePassportPlaceOfBirthday: $ePassportPlaceOfBirthday, passportGender: $passportGender, ePassportGender: $ePassportGender, passportNumberOfPassport: $passportNumberOfPassport, ePassportNumberOfPassport: $ePassportNumberOfPassport, passportReleaseDate: $passportReleaseDate, ePassportReleaseDate: $ePassportReleaseDate, passportPlaceOfIssue: $passportPlaceOfIssue, ePassportPlaceOfIssue: $ePassportPlaceOfIssue, passportExpirationDate: $passportExpirationDate, ePassportExpirationDate: $ePassportExpirationDate, passportNationalNumber: $passportNationalNumber, ePassportNationalNumber: $ePassportNationalNumber, passportJob: $passportJob, ePassportJob: $ePassportJob, passportFile: $passportFile, identityFather: $identityFather, identityMother: $identityMother, identityDateOfBirthday: $identityDateOfBirthday, identityPlaceOfBirthday: $identityPlaceOfBirthday, identityNationalNumber: $identityNationalNumber, identitySurname: $identitySurname, identityGender: $identityGender, attachments: $attachments)';
   }
 
   @override
@@ -985,6 +1000,8 @@ class _$InputCreateTravelerModelImpl implements _InputCreateTravelerModel {
             (identical(other.city, city) || other.city == city) &&
             (identical(other.street, street) || other.street == street) &&
             (identical(other.street2, street2) || other.street2 == street2) &&
+            (identical(other.reference, reference) ||
+                other.reference == reference) &&
             (identical(other.passportName, passportName) ||
                 other.passportName == passportName) &&
             (identical(other.ePassportName, ePassportName) ||
@@ -1063,6 +1080,7 @@ class _$InputCreateTravelerModelImpl implements _InputCreateTravelerModel {
         city,
         street,
         street2,
+        reference,
         passportName,
         ePassportName,
         passportSurname,
@@ -1122,12 +1140,13 @@ abstract class _InputCreateTravelerModel implements InputCreateTravelerModel {
       @JsonKey(name: "whatsapp_number") final String whatsAppNumber,
       @JsonKey(name: "state_id") final int stateId,
       @JsonKey(name: "country_id") final int countryId,
-      @JsonKey(name: "office_id") final int officeId,
+      @JsonKey(name: "office_id") final int? officeId,
       final bool vip,
-      final EntityType type,
+      final String type,
       final String city,
       final String street,
       final String street2,
+      final String? reference,
       @JsonKey(name: "passport_name") final String passportName,
       @JsonKey(name: "e_passport_name") final String ePassportName,
       @JsonKey(name: "passport_surname") final String passportSurname,
@@ -1144,8 +1163,8 @@ abstract class _InputCreateTravelerModel implements InputCreateTravelerModel {
       final String passportPlaceOfBirthday,
       @JsonKey(name: "e_passport_place_of_birthday")
       final String ePassportPlaceOfBirthday,
-      @JsonKey(name: "passport_gender") final GenderType passportGender,
-      @JsonKey(name: "e_passport_gender") final GenderType ePassportGender,
+      @JsonKey(name: "passport_gender") final String passportGender,
+      @JsonKey(name: "e_passport_gender") final String ePassportGender,
       @JsonKey(name: "passport_number_of_passport")
       final String passportNumberOfPassport,
       @JsonKey(name: "e_passport_number_of_passport")
@@ -1177,7 +1196,7 @@ abstract class _InputCreateTravelerModel implements InputCreateTravelerModel {
       @JsonKey(name: "identity_national_number")
       final String identityNationalNumber,
       @JsonKey(name: "identity_surname") final String identitySurname,
-      @JsonKey(name: "identity_gender") final GenderType identityGender,
+      @JsonKey(name: "identity_gender") final String identityGender,
       final List<AttachmentsCreateTravelerModel>
           attachments}) = _$InputCreateTravelerModelImpl;
 
@@ -1200,17 +1219,19 @@ abstract class _InputCreateTravelerModel implements InputCreateTravelerModel {
   int get countryId;
   @override
   @JsonKey(name: "office_id")
-  int get officeId;
+  int? get officeId;
   @override
   bool get vip;
   @override
-  EntityType get type;
+  String get type;
   @override
   String get city;
   @override
   String get street;
   @override
   String get street2;
+  @override
+  String? get reference;
   @override //passport
   @JsonKey(name: "passport_name")
   String get passportName;
@@ -1249,10 +1270,10 @@ abstract class _InputCreateTravelerModel implements InputCreateTravelerModel {
   String get ePassportPlaceOfBirthday;
   @override
   @JsonKey(name: "passport_gender")
-  GenderType get passportGender;
+  String get passportGender;
   @override
   @JsonKey(name: "e_passport_gender")
-  GenderType get ePassportGender;
+  String get ePassportGender;
   @override
   @JsonKey(name: "passport_number_of_passport")
   String get passportNumberOfPassport;
@@ -1312,7 +1333,7 @@ abstract class _InputCreateTravelerModel implements InputCreateTravelerModel {
   String get identitySurname;
   @override
   @JsonKey(name: "identity_gender")
-  GenderType get identityGender;
+  String get identityGender;
   @override
   List<AttachmentsCreateTravelerModel> get attachments;
   @override

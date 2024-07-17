@@ -14,13 +14,13 @@ _$InputCreateTravelerModelImpl _$$InputCreateTravelerModelImplFromJson(
       whatsAppNumber: json['whatsapp_number'] as String? ?? "",
       stateId: (json['state_id'] as num?)?.toInt() ?? 0,
       countryId: (json['country_id'] as num?)?.toInt() ?? 0,
-      officeId: (json['office_id'] as num?)?.toInt() ?? 0,
+      officeId: (json['office_id'] as num?)?.toInt(),
       vip: json['vip'] as bool? ?? false,
-      type: $enumDecodeNullable(_$EntityTypeEnumMap, json['type']) ??
-          EntityType.person,
+      type: json['type'] as String? ?? "",
       city: json['city'] as String? ?? "",
       street: json['street'] as String? ?? "",
       street2: json['street2'] as String? ?? "",
+      reference: json['reference'] as String?,
       passportName: json['passport_name'] as String? ?? "",
       ePassportName: json['e_passport_name'] as String? ?? "",
       passportSurname: json['passport_surname'] as String? ?? "",
@@ -37,12 +37,8 @@ _$InputCreateTravelerModelImpl _$$InputCreateTravelerModelImplFromJson(
           json['passport_place_of_birthday'] as String? ?? "",
       ePassportPlaceOfBirthday:
           json['e_passport_place_of_birthday'] as String? ?? "",
-      passportGender:
-          $enumDecodeNullable(_$GenderTypeEnumMap, json['passport_gender']) ??
-              GenderType.male,
-      ePassportGender:
-          $enumDecodeNullable(_$GenderTypeEnumMap, json['e_passport_gender']) ??
-              GenderType.male,
+      passportGender: json['passport_gender'] as String? ?? "",
+      ePassportGender: json['e_passport_gender'] as String? ?? "",
       passportNumberOfPassport:
           json['passport_number_of_passport'] as String? ?? "",
       ePassportNumberOfPassport:
@@ -68,9 +64,7 @@ _$InputCreateTravelerModelImpl _$$InputCreateTravelerModelImplFromJson(
           json['identity_place_of_birthday'] as String? ?? "",
       identityNationalNumber: json['identity_national_number'] as String? ?? "",
       identitySurname: json['identity_surname'] as String? ?? "",
-      identityGender:
-          $enumDecodeNullable(_$GenderTypeEnumMap, json['identity_gender']) ??
-              GenderType.male,
+      identityGender: json['identity_gender'] as String? ?? "",
       attachments: (json['attachments'] as List<dynamic>?)
               ?.map((e) => AttachmentsCreateTravelerModel.fromJson(
                   e as Map<String, dynamic>))
@@ -88,10 +82,11 @@ Map<String, dynamic> _$$InputCreateTravelerModelImplToJson(
       'country_id': instance.countryId,
       'office_id': instance.officeId,
       'vip': instance.vip,
-      'type': _$EntityTypeEnumMap[instance.type]!,
+      'type': instance.type,
       'city': instance.city,
       'street': instance.street,
       'street2': instance.street2,
+      'reference': instance.reference,
       'passport_name': instance.passportName,
       'e_passport_name': instance.ePassportName,
       'passport_surname': instance.passportSurname,
@@ -104,8 +99,8 @@ Map<String, dynamic> _$$InputCreateTravelerModelImplToJson(
       'e_passport_date_of_birthday': instance.ePassportDateOfBirthday,
       'passport_place_of_birthday': instance.passportPlaceOfBirthday,
       'e_passport_place_of_birthday': instance.ePassportPlaceOfBirthday,
-      'passport_gender': _$GenderTypeEnumMap[instance.passportGender]!,
-      'e_passport_gender': _$GenderTypeEnumMap[instance.ePassportGender]!,
+      'passport_gender': instance.passportGender,
+      'e_passport_gender': instance.ePassportGender,
       'passport_number_of_passport': instance.passportNumberOfPassport,
       'e_passport_number_of_passport': instance.ePassportNumberOfPassport,
       'passport_release_date': instance.passportReleaseDate,
@@ -125,19 +120,9 @@ Map<String, dynamic> _$$InputCreateTravelerModelImplToJson(
       'identity_place_of_birthday': instance.identityPlaceOfBirthday,
       'identity_national_number': instance.identityNationalNumber,
       'identity_surname': instance.identitySurname,
-      'identity_gender': _$GenderTypeEnumMap[instance.identityGender]!,
+      'identity_gender': instance.identityGender,
       'attachments': instance.attachments,
     };
-
-const _$EntityTypeEnumMap = {
-  EntityType.company: 'company',
-  EntityType.person: 'person',
-};
-
-const _$GenderTypeEnumMap = {
-  GenderType.male: 'male',
-  GenderType.female: 'female',
-};
 
 _$AttachmentsCreateTravelerModelImpl
     _$$AttachmentsCreateTravelerModelImplFromJson(Map<String, dynamic> json) =>

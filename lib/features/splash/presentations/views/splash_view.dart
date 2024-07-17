@@ -4,6 +4,7 @@ import 'package:alhazem/core/routers/routes_manager.dart';
 import 'package:alhazem/features/splash/presentations/blocs/app_bloc/app_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/app/depndency_injection.dart';
@@ -54,15 +55,10 @@ class _SplashViewState extends State<SplashView> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
-                height: AppSizeH.s400,
-                width: AppSizeH.s400,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: DecorationImage(
-                      image: AssetImage(ImageAssets.logo), fit: BoxFit.fill),
-                ),
-              ),
+              SvgPicture.asset(ImageAssets.logo,
+                  height: AppSizeH.s400,
+                  width: AppSizeH.s400,
+                  fit: BoxFit.fill),
               SizedBox(height: AppSizeH.s10),
               Text(
                 "Al-Hazem",

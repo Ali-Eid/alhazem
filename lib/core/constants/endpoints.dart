@@ -36,6 +36,7 @@ class Endpoints {
 
   //statis
   static const String TYPE_ATTACHMENTS = "/type_of_attachment";
+  static const String OFFICE = "/office";
   static const String COUNTRIES = "/countries";
   static const String STATES = "/states";
 }

@@ -17,12 +17,13 @@ abstract class InputCreateTravelerModel with _$InputCreateTravelerModel {
     @Default("") @JsonKey(name: "whatsapp_number") String whatsAppNumber,
     @Default(0) @JsonKey(name: "state_id") int stateId,
     @Default(0) @JsonKey(name: "country_id") int countryId,
-    @Default(0) @JsonKey(name: "office_id") int officeId,
+    @JsonKey(name: "office_id") int? officeId,
     @Default(false) bool vip,
-    @Default(EntityType.person) EntityType type,
+    @Default("") String type,
     @Default("") String city,
     @Default("") String street,
     @Default("") String street2,
+    String? reference,
     //passport
     @Default("") @JsonKey(name: "passport_name") String passportName,
     @Default("") @JsonKey(name: "e_passport_name") String ePassportName,
@@ -52,12 +53,8 @@ abstract class InputCreateTravelerModel with _$InputCreateTravelerModel {
     @Default("")
     @JsonKey(name: "e_passport_place_of_birthday")
     String ePassportPlaceOfBirthday,
-    @Default(GenderType.male)
-    @JsonKey(name: "passport_gender")
-    GenderType passportGender,
-    @Default(GenderType.male)
-    @JsonKey(name: "e_passport_gender")
-    GenderType ePassportGender,
+    @Default("") @JsonKey(name: "passport_gender") String passportGender,
+    @Default("") @JsonKey(name: "e_passport_gender") String ePassportGender,
     @Default("")
     @JsonKey(name: "passport_number_of_passport")
     String passportNumberOfPassport,
@@ -105,9 +102,7 @@ abstract class InputCreateTravelerModel with _$InputCreateTravelerModel {
     @JsonKey(name: "identity_national_number")
     String identityNationalNumber,
     @Default("") @JsonKey(name: "identity_surname") String identitySurname,
-    @Default(GenderType.male)
-    @JsonKey(name: "identity_gender")
-    GenderType identityGender,
+    @Default("") @JsonKey(name: "identity_gender") String identityGender,
     @Default([]) List<AttachmentsCreateTravelerModel> attachments,
   }) = _InputCreateTravelerModel;
   factory InputCreateTravelerModel.fromJson(Map<String, dynamic> json) =>
