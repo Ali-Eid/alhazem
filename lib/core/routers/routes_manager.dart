@@ -1,12 +1,14 @@
 import 'package:alhazem/features/contacts/presentation/views/contacts_view.dart';
 import 'package:alhazem/features/contacts/presentation/views/create_contract_view.dart';
 import 'package:alhazem/features/main/presentation/views/main_view.dart';
+import 'package:alhazem/features/orders/presentation/blocs/input_payment_cubit/input_payment_cubit.dart';
 import 'package:alhazem/features/orders/presentation/views/order_details_view.dart';
 import 'package:alhazem/features/orders/presentation/views/orders_view.dart';
 import 'package:alhazem/features/services/presentation/views/service_details_view.dart';
 import 'package:alhazem/features/services/presentation/views/service_view.dart';
 import 'package:alhazem/features/settings/presentation/views/settings_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../features/auth/presentation/views/login_view.dart';
@@ -169,8 +171,12 @@ class AppRouter {
                     pageBuilder: (context, state) {
                       return NoTransitionPage(
                         key: state.pageKey,
-                        child: OrderDetailsView(
-                          orderId: int.parse(state.pathParameters["id"] ?? "0"),
+                        child: BlocProvider.value(
+                          value: state.extra as InputPaymentCubit,
+                          child: OrderDetailsView(
+                            orderId:
+                                int.parse(state.pathParameters["id"] ?? "0"),
+                          ),
                         ),
                       );
                     },

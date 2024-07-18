@@ -55,9 +55,11 @@ class _OrderItemWidgetState extends State<OrderItemWidget> {
           children: [
             InkWell(
               onTap: () {
-                context.goNamed(RoutesNames.orderDetailsRoute, pathParameters: {
-                  "id": widget.model.id.toString(),
-                });
+                context.goNamed(RoutesNames.orderDetailsRoute,
+                    pathParameters: {
+                      "id": widget.model.id.toString(),
+                    },
+                    extra: inputPaymentCubit);
               },
               child: Container(
                 // padding: EdgeInsets.all(AppSizeW.s8),

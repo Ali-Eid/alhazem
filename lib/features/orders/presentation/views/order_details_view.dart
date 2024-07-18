@@ -25,13 +25,10 @@ class OrderDetailsView extends StatefulWidget {
 
 class _OrderDetailsViewState extends State<OrderDetailsView> {
   late OrdersBloc orderBloc;
-  late InputPaymentCubit inputPaymentCubit;
   @override
   void initState() {
     orderBloc = instance<OrdersBloc>()
       ..add(OrdersEvent.getOrderDetails(orderId: widget.orderId));
-
-    inputPaymentCubit = InputPaymentCubit(0);
     super.initState();
   }
 
@@ -41,7 +38,7 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
       listener: (context, OrdersState state) {
         state.mapOrNull(
           loadedOrderDetails: (value) {
-            inputPaymentCubit.setTotal(
+            context.read<InputPaymentCubit>().setTotal(
                 total: value.orderDetails.data.first.orderItems.first.total,
                 paid: value.orderDetails.data.first.orderItems.first.totalPaid,
                 remaining: value
@@ -57,7 +54,7 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
           );
         }, loadedOrderDetails: (value) {
           return BlocBuilder(
-            bloc: inputPaymentCubit,
+            bloc: context.read<InputPaymentCubit>(),
             builder: (context, state) {
               return Scaffold(
                 appBar: AppBar(
@@ -77,7 +74,7 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                                     width: AppSizeW.s312,
                                     height: AppSizeH.s425,
                                     child: BlocProvider.value(
-                                      value: inputPaymentCubit,
+                                      value: context.read<InputPaymentCubit>(),
                                       child: CreatePaymentWidget(
                                         isRoot: false,
                                         orderId: widget.orderId,
@@ -102,7 +99,7 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                                   filterQuality: FilterQuality.high,
                                   height: AppSizeH.s35,
                                 ),
-                                SizedBox(width: AppSizeW.s4),
+                                SizedBox(width: AppSizeW.s12),
                                 const Text("دفع")
                               ],
                             ),
@@ -157,7 +154,7 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                               OrderDetailsWidget(
                                 name: "المبلغ الاجمالي",
                                 value:
-                                    "${inputPaymentCubit.total * value.orderDetails.data.first.orderItems.length}",
+                                    "${context.read<InputPaymentCubit>().total * value.orderDetails.data.first.orderItems.length}",
                               ),
                               Divider(
                                 endIndent: AppSizeW.s40,
@@ -165,7 +162,8 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                               ),
                               OrderDetailsWidget(
                                 name: "المبلغ المقبوض",
-                                value: "${inputPaymentCubit.totalPaid}",
+                                value:
+                                    "${context.read<InputPaymentCubit>().totalPaid}",
                               ),
                               Divider(
                                 endIndent: AppSizeW.s40,
@@ -173,7 +171,8 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                               ),
                               OrderDetailsWidget(
                                 name: "المبلغ المتبقي",
-                                value: "${inputPaymentCubit.remainingTotal}",
+                                value:
+                                    "${context.read<InputPaymentCubit>().remainingTotal}",
                               ),
                             ],
                           ),
