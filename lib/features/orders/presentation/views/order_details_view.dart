@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/app/depndency_injection.dart';
+import '../../../../core/bases/enums/order_status.dart';
 import '../../../../core/constants/assets_manager.dart';
 import '../../../../core/constants/color_manager.dart';
 import '../../../../core/constants/values_manager.dart';
@@ -61,50 +62,57 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                   centerTitle: true,
                   title: Text(value.orderDetails.data.first.name),
                   actions: [
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: AppSizeW.s12),
-                      child: ElevatedButton(
-                          onPressed: () {
-                            showDialog(
-                              context: context,
-                              builder: (_) {
-                                return AlertDialogWidget(
-                                  title: "اضافة دفعة",
-                                  content: SizedBox(
-                                    width: AppSizeW.s312,
-                                    height: AppSizeH.s425,
-                                    child: BlocProvider.value(
-                                      value: context.read<InputPaymentCubit>(),
-                                      child: CreatePaymentWidget(
-                                        isRoot: false,
-                                        orderId: widget.orderId,
-                                      ),
-                                    ),
-                                  ),
-                                );
-                              },
-                            );
-                          },
-                          child: Container(
-                            alignment: Alignment.center,
-                            width: AppSizeW.s200,
-                            height: AppSizeH.s35,
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Image(
-                                  image: AssetImage(ImageAssets.payment),
-                                  color: ColorManager.white,
-                                  fit: BoxFit.fill,
-                                  filterQuality: FilterQuality.high,
+                    value.orderDetails.data.first.state ==
+                                OrderStatus.sale.name &&
+                            context.read<InputPaymentCubit>().total >
+                                context.read<InputPaymentCubit>().totalPaid
+                        ? Padding(
+                            padding:
+                                EdgeInsets.symmetric(horizontal: AppSizeW.s12),
+                            child: ElevatedButton(
+                                onPressed: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (_) {
+                                      return AlertDialogWidget(
+                                        title: "اضافة دفعة",
+                                        content: SizedBox(
+                                          width: AppSizeW.s312,
+                                          height: AppSizeH.s425,
+                                          child: BlocProvider.value(
+                                            value: context
+                                                .read<InputPaymentCubit>(),
+                                            child: CreatePaymentWidget(
+                                              isRoot: false,
+                                              orderId: widget.orderId,
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  );
+                                },
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  width: AppSizeW.s200,
                                   height: AppSizeH.s35,
-                                ),
-                                SizedBox(width: AppSizeW.s12),
-                                const Text("دفع")
-                              ],
-                            ),
-                          )),
-                    ),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Image(
+                                        image: AssetImage(ImageAssets.payment),
+                                        color: ColorManager.white,
+                                        fit: BoxFit.fill,
+                                        filterQuality: FilterQuality.high,
+                                        height: AppSizeH.s35,
+                                      ),
+                                      SizedBox(width: AppSizeW.s12),
+                                      const Text("دفع")
+                                    ],
+                                  ),
+                                )),
+                          )
+                        : const SizedBox(),
                   ],
                 ),
                 body: SingleChildScrollView(
