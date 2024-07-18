@@ -5,14 +5,10 @@ const String JSONS_PATH = 'assets/jsons/';
 class ImageAssets {
   static String authBackground = '${IMAGE_PATH}background.jpg';
   static String logo = '${IMAGE_PATH}logo.svg';
-  // static String logo = '${IMAGE_PATH}logo.jpg';
   static String profile = '${IMAGE_PATH}profile_pic.png';
-  //orders status
-  static String orderWaiting = '${IMAGE_PATH}order_waiting.png';
-  static String orderSuccess = '${IMAGE_PATH}order_success.png';
-  static String orderCanceled = '${IMAGE_PATH}order_canceld.png';
-  static String traveler = '${IMAGE_PATH}traveler.png';
   static String office = '${IMAGE_PATH}office.png';
+  static String plane = '${IMAGE_PATH}plane.png';
+  static String payment = '${IMAGE_PATH}payment.png';
 }
 
 class IconAssets {

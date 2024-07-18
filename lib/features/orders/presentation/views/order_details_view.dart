@@ -3,9 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/app/depndency_injection.dart';
+import '../../../../core/constants/assets_manager.dart';
 import '../../../../core/constants/color_manager.dart';
 import '../../../../core/constants/values_manager.dart';
+import '../../../../core/widgets/alert_dialog_widget.dart';
 import '../../domain/models/order_details_model/order_details_model.dart';
+import '../blocs/input_payment_cubit/input_payment_cubit.dart';
+import '../blocs/payment_bloc/payment_bloc.dart';
+import '../widgets/order_item_widget.dart';
 import '../widgets/return_reason_order_details_widget.dart';
 import '../widgets/travelers_order_details_widget.dart';
 import '../widgets/variants_order_details_widget.dart';
@@ -20,106 +25,190 @@ class OrderDetailsView extends StatefulWidget {
 
 class _OrderDetailsViewState extends State<OrderDetailsView> {
   late OrdersBloc orderBloc;
+  late InputPaymentCubit inputPaymentCubit;
   @override
   void initState() {
     orderBloc = instance<OrdersBloc>()
       ..add(OrdersEvent.getOrderDetails(orderId: widget.orderId));
+
+    inputPaymentCubit = InputPaymentCubit(0);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: BlocBuilder(
-        bloc: orderBloc,
-        builder: (context, OrdersState state) {
-          return state.maybeMap(loading: (value) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }, loadedOrderDetails: (value) {
-            return SingleChildScrollView(
-              child: Padding(
-                padding: EdgeInsets.all(AppSizeW.s15),
-                child: Column(
-                  children: [
-                    Container(
-                      padding: EdgeInsets.all(AppSizeW.s15),
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(AppSizeR.s15),
-                          boxShadow: [
-                            BoxShadow(
-                                color: ColorManager.shadow,
-                                blurRadius: AppSizeR.s10)
-                          ]),
-                      child: Column(
-                        children: [
-                          OrderDetailsWidget(
-                            name: "رقم الطلب",
-                            value: value.orderDetails.data.first.name,
-                          ),
-                          Divider(
-                            endIndent: AppSizeW.s40,
-                            indent: AppSizeW.s40,
-                          ),
-                          OrderDetailsWidget(
-                            name: "نوع الرحلة",
-                            value: value
-                                .orderDetails.data.first.orderItems.first.name,
-                          ),
-                          Divider(
-                            endIndent: AppSizeW.s40,
-                            indent: AppSizeW.s40,
-                          ),
-                          OrderDetailsWidget(
-                            name: "الوجهة",
-                            value: value.orderDetails.data.first.orderItems
-                                .first.country,
-                          ),
-                          Divider(
-                            endIndent: AppSizeW.s40,
-                            indent: AppSizeW.s40,
-                          ),
-                          OrderDetailsWidget(
-                            name: "السعر",
-                            value:
-                                "${value.orderDetails.data.first.orderItems.first.priceUnit * value.orderDetails.data.first.orderItems.length}",
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: AppSizeH.s10),
-                    TravelersOrderDetailsWidget(
-                      title: "معلومات المسافرين",
-                      model: value.orderDetails.data.first.orderItems,
-                    ),
-                    SizedBox(height: AppSizeH.s10),
-                    VariantsOrderDetailsWidget(
-                      title: "الخدمات الأضافية",
-                      model: value
-                          .orderDetails.data.first.orderItems.first.variants,
-                    ),
-                    SizedBox(height: AppSizeH.s10),
-                    Visibility(
-                      visible: value
-                          .orderDetails.data.first.returnReasons.isNotEmpty,
-                      child: ReturnReasonOrderDetailsWidget(
-                        title: "اسباب إعادة الطلب",
-                        model: value.orderDetails.data.first.returnReasons,
-                      ),
+    return BlocConsumer(
+      listener: (context, OrdersState state) {
+        state.mapOrNull(
+          loadedOrderDetails: (value) {
+            inputPaymentCubit.setTotal(
+                total: value.orderDetails.data.first.orderItems.first.total,
+                paid: value.orderDetails.data.first.orderItems.first.totalPaid,
+                remaining: value
+                    .orderDetails.data.first.orderItems.first.remainedTotal);
+          },
+        );
+      },
+      bloc: orderBloc,
+      builder: (context, OrdersState state) {
+        return state.maybeMap(loading: (value) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }, loadedOrderDetails: (value) {
+          return BlocBuilder(
+            bloc: inputPaymentCubit,
+            builder: (context, state) {
+              return Scaffold(
+                appBar: AppBar(
+                  centerTitle: true,
+                  title: Text(value.orderDetails.data.first.name),
+                  actions: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: AppSizeW.s12),
+                      child: ElevatedButton(
+                          onPressed: () {
+                            showDialog(
+                              context: context,
+                              builder: (_) {
+                                return AlertDialogWidget(
+                                  title: "اضافة دفعة",
+                                  content: SizedBox(
+                                    width: AppSizeW.s312,
+                                    height: AppSizeH.s425,
+                                    child: BlocProvider.value(
+                                      value: inputPaymentCubit,
+                                      child: CreatePaymentWidget(
+                                        isRoot: false,
+                                        orderId: widget.orderId,
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                            );
+                          },
+                          child: Container(
+                            alignment: Alignment.center,
+                            width: AppSizeW.s200,
+                            height: AppSizeH.s35,
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Image(
+                                  image: AssetImage(ImageAssets.payment),
+                                  color: ColorManager.white,
+                                  fit: BoxFit.fill,
+                                  filterQuality: FilterQuality.high,
+                                  height: AppSizeH.s35,
+                                ),
+                                SizedBox(width: AppSizeW.s4),
+                                const Text("دفع")
+                              ],
+                            ),
+                          )),
                     ),
                   ],
                 ),
-              ),
-            );
-          }, orElse: () {
-            return const Text("error");
-          });
-        },
-      ),
+                body: SingleChildScrollView(
+                  child: Padding(
+                    padding: EdgeInsets.all(AppSizeW.s15),
+                    child: Column(
+                      children: [
+                        Container(
+                          padding: EdgeInsets.all(AppSizeW.s15),
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(AppSizeR.s15),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: ColorManager.shadow,
+                                    blurRadius: AppSizeR.s10)
+                              ]),
+                          child: Column(
+                            children: [
+                              OrderDetailsWidget(
+                                name: "رقم الطلب",
+                                value: value.orderDetails.data.first.name,
+                              ),
+                              Divider(
+                                endIndent: AppSizeW.s40,
+                                indent: AppSizeW.s40,
+                              ),
+                              OrderDetailsWidget(
+                                name: "نوع الرحلة",
+                                value: value.orderDetails.data.first.orderItems
+                                    .first.name,
+                              ),
+                              Divider(
+                                endIndent: AppSizeW.s40,
+                                indent: AppSizeW.s40,
+                              ),
+                              OrderDetailsWidget(
+                                name: "الوجهة",
+                                value: value.orderDetails.data.first.orderItems
+                                    .first.country,
+                              ),
+                              Divider(
+                                endIndent: AppSizeW.s40,
+                                indent: AppSizeW.s40,
+                              ),
+                              OrderDetailsWidget(
+                                name: "المبلغ الاجمالي",
+                                value:
+                                    "${inputPaymentCubit.total * value.orderDetails.data.first.orderItems.length}",
+                              ),
+                              Divider(
+                                endIndent: AppSizeW.s40,
+                                indent: AppSizeW.s40,
+                              ),
+                              OrderDetailsWidget(
+                                name: "المبلغ المقبوض",
+                                value: "${inputPaymentCubit.totalPaid}",
+                              ),
+                              Divider(
+                                endIndent: AppSizeW.s40,
+                                indent: AppSizeW.s40,
+                              ),
+                              OrderDetailsWidget(
+                                name: "المبلغ المتبقي",
+                                value: "${inputPaymentCubit.remainingTotal}",
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: AppSizeH.s10),
+                        TravelersOrderDetailsWidget(
+                          title: "معلومات المسافرين",
+                          model: value.orderDetails.data.first.orderItems,
+                        ),
+                        SizedBox(height: AppSizeH.s10),
+                        VariantsOrderDetailsWidget(
+                          title: "الخدمات الأضافية",
+                          model: value.orderDetails.data.first.orderItems.first
+                              .variants,
+                        ),
+                        SizedBox(height: AppSizeH.s10),
+                        Visibility(
+                          visible: value
+                              .orderDetails.data.first.returnReasons.isNotEmpty,
+                          child: ReturnReasonOrderDetailsWidget(
+                            title: "اسباب إعادة الطلب",
+                            model: value.orderDetails.data.first.returnReasons,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            },
+          );
+        }, orElse: () {
+          return const Text("error");
+        });
+      },
     );
   }
 }

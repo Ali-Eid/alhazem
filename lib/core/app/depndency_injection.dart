@@ -34,6 +34,7 @@ import '../../features/home/domain/repositories/post_repository.dart';
 import '../../features/home/domain/usecases/post_usecase.dart';
 import '../../features/orders/data/datasource/order_api.dart';
 import '../../features/orders/presentation/blocs/currencies_bloc/currencies_bloc.dart';
+import '../../features/orders/presentation/blocs/payment_bloc/payment_bloc.dart';
 import '../../features/services/domain/repository/service_repository.dart';
 import '../../features/services/domain/usecases/check_price_usecase.dart';
 import '../../features/services/presentation/blocs/check_price_bloc/check_price_bloc.dart';
@@ -221,6 +222,10 @@ Future<void> InitOrder() async {
         getOrderDetailsUsecase: instance<GetOrderDetailsUsecase>()),
   );
 
+  instance.registerFactory(
+    () => PaymentBloc(createPaymentUsecase: instance<CreatePaymentUsecase>()),
+  );
+
   //repository
   instance.registerLazySingleton<OrderRepository>(() => OrderRepositoryImpl(
       ordersServiceClient: instance<OrdersServiceClient>(),
@@ -248,6 +253,11 @@ Future<void> InitOrder() async {
   if (!GetIt.I.isRegistered<GetOrderDetailsUsecase>()) {
     instance.registerLazySingleton(
         () => GetOrderDetailsUsecase(repository: instance<OrderRepository>()));
+  }
+
+  if (!GetIt.I.isRegistered<CreatePaymentUsecase>()) {
+    instance.registerLazySingleton(
+        () => CreatePaymentUsecase(repository: instance<OrderRepository>()));
   }
 }
 

@@ -272,25 +272,6 @@ class _ButtonCreateDialogWidgetState extends State<ButtonCreateDialogWidget> {
         return Row(
           children: [
             Expanded(
-              child: ElevatedButton(
-                onPressed: () {
-                  context.read<InputValueCreateOrderCubit>().previousIndex(
-                      context.read<InputValueCreateOrderCubit>().currentIndex);
-                },
-                style: ButtonStyle(
-                    backgroundColor:
-                        WidgetStateProperty.all(ColorManager.white),
-                    shape: WidgetStateProperty.all(RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(AppSizeR.s7),
-                        side: BorderSide(color: ColorManager.primary)))),
-                child: Text(
-                  "رجوع",
-                  style: Theme.of(context).textTheme.titleSmall,
-                ),
-              ),
-            ),
-            SizedBox(width: AppSizeW.s12),
-            Expanded(
               flex: 2,
               child: BlocBuilder(
                 bloc: context.read<CreateOrderBloc>(),
@@ -321,6 +302,32 @@ class _ButtonCreateDialogWidgetState extends State<ButtonCreateDialogWidget> {
                     },
                   );
                 },
+              ),
+            ),
+            SizedBox(width: AppSizeW.s12),
+            Expanded(
+              child: ElevatedButton(
+                onPressed: () {
+                  context.read<InputValueCreateOrderCubit>().currentIndex == 0
+                      ? Navigator.of(context).pop()
+                      : context
+                          .read<InputValueCreateOrderCubit>()
+                          .previousIndex(context
+                              .read<InputValueCreateOrderCubit>()
+                              .currentIndex);
+                },
+                style: ButtonStyle(
+                    backgroundColor:
+                        WidgetStateProperty.all(ColorManager.white),
+                    shape: WidgetStateProperty.all(RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(AppSizeR.s7),
+                        side: BorderSide(color: ColorManager.primary)))),
+                child: Text(
+                  context.read<InputValueCreateOrderCubit>().currentIndex == 0
+                      ? "الغاء"
+                      : "رجوع",
+                  style: Theme.of(context).textTheme.titleSmall,
+                ),
               ),
             ),
           ],

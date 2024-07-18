@@ -37,8 +37,8 @@ class RoutesPaths {
   static const String servicesRoute = 'services/:typeId/:typeName';
   static const String servicesDetailsRoute = 'services-details/:serviceId';
   static const String contactsRoute = '/contacts';
-  static const String createContactRoute = 'create-contact';
-  static const String createOfficeRoute = 'create-office';
+  static const String createContactRoute = '/create-contact';
+  static const String createOfficeRoute = '/create-office';
 
   static const String ordersRoute = '/orders';
   static const String orderDetailsRoute = 'order-details/:id';
@@ -128,33 +128,31 @@ class AppRouter {
                   ),
                 ]),
             GoRoute(
-                name: RoutesNames.contactsRoute,
-                path: RoutesPaths.contactsRoute,
-                pageBuilder: (context, state) {
-                  return NoTransitionPage(
-                    key: state.pageKey,
-                    child: const ContactsView(),
-                  );
-                },
-                routes: [
-                  GoRoute(
-                    name: RoutesNames.createContactRoute,
-                    path: RoutesPaths.createContactRoute,
-                    pageBuilder: (context, state) {
-                      return NoTransitionPage(
-                          key: state.pageKey,
-                          child: const CreateContractView());
-                    },
-                  ),
-                  GoRoute(
-                    name: RoutesNames.createOfficeRoute,
-                    path: RoutesPaths.createOfficeRoute,
-                    pageBuilder: (context, state) {
-                      return NoTransitionPage(
-                          key: state.pageKey, child: const CreateOfficeView());
-                    },
-                  ),
-                ]),
+              name: RoutesNames.contactsRoute,
+              path: RoutesPaths.contactsRoute,
+              pageBuilder: (context, state) {
+                return NoTransitionPage(
+                  key: state.pageKey,
+                  child: const ContactsView(),
+                );
+              },
+            ),
+            GoRoute(
+              name: RoutesNames.createContactRoute,
+              path: RoutesPaths.createContactRoute,
+              pageBuilder: (context, state) {
+                return NoTransitionPage(
+                    key: state.pageKey, child: const CreateContractView());
+              },
+            ),
+            GoRoute(
+              name: RoutesNames.createOfficeRoute,
+              path: RoutesPaths.createOfficeRoute,
+              pageBuilder: (context, state) {
+                return NoTransitionPage(
+                    key: state.pageKey, child: const CreateOfficeView());
+              },
+            ),
             GoRoute(
                 name: RoutesNames.ordersRoute,
                 path: RoutesPaths.ordersRoute,

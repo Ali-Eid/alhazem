@@ -23,7 +23,7 @@ class _ContactsViewState extends State<ContactsView> {
             context.goNamed(RoutesNames.createContactRoute);
           },
           title: "انشاء مسافر",
-          img: ImageAssets.traveler,
+          img: ImageAssets.plane,
         ),
         SizedBox(width: AppSizeW.s50),
         TypeContactCreateWidget(

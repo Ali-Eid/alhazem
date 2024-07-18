@@ -14,6 +14,9 @@ abstract class OrderModel with _$OrderModel {
     @Default("") String date,
     @Default("") @JsonKey(name: "partner_number") String partnerNumber,
     @Default("") @JsonKey(name: "partner_name") String partnerName,
+    @Default(0) @JsonKey(name: "paid_total") num totalPaid,
+    @Default(0) num total,
+    @Default(0) @JsonKey(name: "remained_total") num remainedTotal,
   }) = _OrderModel;
   factory OrderModel.fromJson(Map<String, dynamic> json) =>
       _$OrderModelFromJson(json);

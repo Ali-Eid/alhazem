@@ -14,7 +14,9 @@ class ColorManager {
   static Color black = Hex16Color.fromHex("#000000");
   static Color shipGrey = Hex16Color.fromHex("#424242");
   static Color smokeyGrey = Hex16Color.fromHex("#757575");
-  static Color shadow = Hex16Color.fromHex("#18638E");
+  static Color shadow = primary.withOpacity(.3);
+  // static Color shadow = Hex16Color.fromHex("#18638E");
+
   static Color lightGrey = Hex16Color.fromHex("#d3d3d3 ");
 }
 

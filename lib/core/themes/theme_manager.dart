@@ -13,7 +13,9 @@ ThemeData lightTheme() {
     scaffoldBackgroundColor: ColorManager.background,
     // primaryColor: ColorManager.primary,
     colorSchemeSeed: ColorManager.primary,
-
+    appBarTheme: AppBarTheme(
+        backgroundColor: ColorManager.background,
+        surfaceTintColor: Colors.transparent),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
         backgroundColor: WidgetStateProperty.resolveWith<Color>(

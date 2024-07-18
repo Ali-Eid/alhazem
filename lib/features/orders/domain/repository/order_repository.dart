@@ -3,6 +3,8 @@ import 'package:alhazem/core/bases/models/order_type_model/order_type_model.dart
 import 'package:alhazem/core/bases/models/response_model/response_model.dart';
 import 'package:alhazem/core/bases/models/static_models/static_model.dart';
 import 'package:alhazem/features/orders/domain/models/create_order_model/create_order_model.dart';
+import 'package:alhazem/features/orders/domain/models/create_payment_model/create_payment_model.dart';
+import 'package:alhazem/features/orders/domain/models/create_payment_model/input_create_payment_model/input_create_payment_model.dart';
 import 'package:alhazem/features/orders/domain/models/order_details_model/order_details_model.dart';
 import 'package:multiple_result/multiple_result.dart';
 
@@ -23,4 +25,7 @@ abstract class OrderRepository {
 
   Future<Result<ResponseModel<List<OrderDetailsModel>>, FailureModel>>
       getOrderDetails({required int orderId});
+
+  Future<Result<ResponseModel<CreatePaymentModel>, FailureModel>> createPayment(
+      {required InputCreatePaymentModel input});
 }

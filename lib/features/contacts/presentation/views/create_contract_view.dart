@@ -21,6 +21,7 @@ import 'package:toastification/toastification.dart';
 import '../../../../core/app/depndency_injection.dart';
 import '../../../../core/bases/enums/gender_type.dart';
 import '../../../../core/constants/values_manager.dart';
+import '../../../../core/routers/routes_manager.dart';
 import '../blocs/input_value_create_traveler_cubit/input_value_create_cubit.dart';
 import '../widgets/drop_down_widget.dart';
 import '../widgets/input_field_widget.dart';
@@ -45,12 +46,12 @@ class _CreateContractViewState extends State<CreateContractView> {
   void initState() {
     travelerBloc = instance<TravelerBloc>();
     inputValueCubit = InputValueCreateCubit(0);
+    context.read<StaticBloc>().add(const StaticEvent.getOffices());
+
     if (context.read<StaticBloc>().countries.isEmpty) {
       context.read<StaticBloc>().add(const StaticEvent.getCountries());
     }
-    if (context.read<StaticBloc>().offices.isEmpty) {
-      context.read<StaticBloc>().add(const StaticEvent.getOffices());
-    }
+
     if (context.read<StaticBloc>().attachmentsTypes.isEmpty) {
       context.read<StaticBloc>().add(const StaticEvent.getAttachmentsType());
     }
@@ -77,7 +78,8 @@ class _CreateContractViewState extends State<CreateContractView> {
                 },
                 loaded: (value) {
                   showToast(context: context, message: value.contact.message);
-                  context.pop();
+                  // context.pop();
+                  context.pushReplacementNamed(RoutesNames.createContactRoute);
                 },
               );
             },

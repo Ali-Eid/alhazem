@@ -9,6 +9,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/constants/color_manager.dart';
+import '../../../../../core/widgets/drop_down_static_widget.dart';
 
 class PaymentWidget extends StatefulWidget {
   const PaymentWidget({super.key});
@@ -74,7 +75,7 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                                   .read<CurrenciesBloc>()
                                   .currencySelected,
                               values: context.read<CurrenciesBloc>().currencies,
-                              hintText: "select currency");
+                              hintText: "اختار العملة");
                         },
                       ),
                     ),
@@ -158,65 +159,6 @@ class _PaymentWidgetState extends State<PaymentWidget> {
           ),
         );
       },
-    );
-  }
-}
-
-class DropDownStaticWidget extends StatefulWidget {
-  final List<StaticModel> values;
-  final String hintText;
-  final StaticModel? selectedValue;
-  final void Function(StaticModel?)? onChanged;
-  const DropDownStaticWidget(
-      {super.key,
-      required this.values,
-      required this.hintText,
-      this.onChanged,
-      this.selectedValue});
-
-  @override
-  State<DropDownStaticWidget> createState() => _DropDownStaticWidgetState();
-}
-
-class _DropDownStaticWidgetState extends State<DropDownStaticWidget> {
-  @override
-  Widget build(BuildContext context) {
-    return DropdownButtonHideUnderline(
-      child: DropdownButton2<StaticModel>(
-        isExpanded: true,
-        // isDense: true,
-        hint: Text(
-          widget.hintText,
-          style: Theme.of(context).textTheme.bodySmall,
-        ),
-        items: widget.values
-            .map((item) => DropdownMenuItem<StaticModel>(
-                  value: item,
-                  child: Text(
-                    item.name,
-                    style: Theme.of(context).textTheme.displaySmall,
-                  ),
-                ))
-            .toList(),
-        value: widget.selectedValue,
-        onChanged: widget.onChanged,
-        buttonStyleData: ButtonStyleData(
-          decoration: BoxDecoration(
-              color: ColorManager.white,
-              borderRadius: BorderRadius.circular(AppSizeR.s12)),
-          padding: EdgeInsets.symmetric(horizontal: AppSizeW.s16),
-          height: AppSizeH.s40,
-          width: AppSizeW.s140,
-        ),
-        dropdownStyleData: DropdownStyleData(
-            decoration: BoxDecoration(
-          color: ColorManager.white,
-          borderRadius: BorderRadius.circular(AppSizeR.s12),
-        )),
-        menuItemStyleData: MenuItemStyleData(
-          height: AppSizeH.s50,
-        ),
-      ),
     );
   }
 }

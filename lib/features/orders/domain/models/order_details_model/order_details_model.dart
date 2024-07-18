@@ -30,6 +30,9 @@ abstract class OrderLineModel with _$OrderLineModel {
     @Default(0) @JsonKey(name: "price_unit") num priceUnit,
     @Default(CustomerModel()) @JsonKey(name: "customer") CustomerModel customer,
     @Default("") String country,
+    @Default(0) @JsonKey(name: "paid_total") num totalPaid,
+    @Default(0) num total,
+    @Default(0) @JsonKey(name: "remained_total") num remainedTotal,
     @Default([]) @JsonKey(name: "variant_ids") List<OrderVariantModel> variants,
   }) = _OrderLineModel;
   factory OrderLineModel.fromJson(Map<String, dynamic> json) =>

@@ -20,6 +20,9 @@ class Endpoints {
   static const String ORDER_DETAILS = "/order/{id}";
   static const String TYPES_ORDERS = "$ORDERS/types";
 
+//Payment
+  static const String CREATE_PAYMENT = "/create/payment";
+
   //CRM
   static const String CRM = "/crm";
   static const String CREATE_LEAD = "$CRM/lead";

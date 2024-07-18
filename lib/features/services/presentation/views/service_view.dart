@@ -1,3 +1,4 @@
+import 'package:alhazem/core/constants/color_manager.dart';
 import 'package:alhazem/core/constants/values_manager.dart';
 import 'package:alhazem/features/services/presentation/blocs/service_bloc/service_bloc.dart';
 import 'package:flutter/material.dart';
@@ -112,8 +113,10 @@ class _ServicesViewState extends State<ServicesView> {
                       pageTotal: serviceBloc.totalPages ?? 10,
                       pageInit:
                           selectedPageNumber, // picked number when init page
-                      colorPrimary: Colors.black,
-                      colorSub: Colors.white,
+                      colorPrimary: ColorManager.primary,
+                      colorSub: ColorManager.white,
+                      buttonElevation: AppSizeR.s3,
+                      fontSize: AppSizeSp.s14,
                     )
                   : const SizedBox();
             },

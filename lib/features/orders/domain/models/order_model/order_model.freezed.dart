@@ -28,6 +28,11 @@ mixin _$OrderModel {
   String get partnerNumber => throw _privateConstructorUsedError;
   @JsonKey(name: "partner_name")
   String get partnerName => throw _privateConstructorUsedError;
+  @JsonKey(name: "paid_total")
+  num get totalPaid => throw _privateConstructorUsedError;
+  num get total => throw _privateConstructorUsedError;
+  @JsonKey(name: "remained_total")
+  num get remainedTotal => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -47,7 +52,10 @@ abstract class $OrderModelCopyWith<$Res> {
       String state,
       String date,
       @JsonKey(name: "partner_number") String partnerNumber,
-      @JsonKey(name: "partner_name") String partnerName});
+      @JsonKey(name: "partner_name") String partnerName,
+      @JsonKey(name: "paid_total") num totalPaid,
+      num total,
+      @JsonKey(name: "remained_total") num remainedTotal});
 }
 
 /// @nodoc
@@ -69,6 +77,9 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
     Object? date = null,
     Object? partnerNumber = null,
     Object? partnerName = null,
+    Object? totalPaid = null,
+    Object? total = null,
+    Object? remainedTotal = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -95,6 +106,18 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
           ? _value.partnerName
           : partnerName // ignore: cast_nullable_to_non_nullable
               as String,
+      totalPaid: null == totalPaid
+          ? _value.totalPaid
+          : totalPaid // ignore: cast_nullable_to_non_nullable
+              as num,
+      total: null == total
+          ? _value.total
+          : total // ignore: cast_nullable_to_non_nullable
+              as num,
+      remainedTotal: null == remainedTotal
+          ? _value.remainedTotal
+          : remainedTotal // ignore: cast_nullable_to_non_nullable
+              as num,
     ) as $Val);
   }
 }
@@ -113,7 +136,10 @@ abstract class _$$OrderModelImplCopyWith<$Res>
       String state,
       String date,
       @JsonKey(name: "partner_number") String partnerNumber,
-      @JsonKey(name: "partner_name") String partnerName});
+      @JsonKey(name: "partner_name") String partnerName,
+      @JsonKey(name: "paid_total") num totalPaid,
+      num total,
+      @JsonKey(name: "remained_total") num remainedTotal});
 }
 
 /// @nodoc
@@ -133,6 +159,9 @@ class __$$OrderModelImplCopyWithImpl<$Res>
     Object? date = null,
     Object? partnerNumber = null,
     Object? partnerName = null,
+    Object? totalPaid = null,
+    Object? total = null,
+    Object? remainedTotal = null,
   }) {
     return _then(_$OrderModelImpl(
       id: null == id
@@ -159,6 +188,18 @@ class __$$OrderModelImplCopyWithImpl<$Res>
           ? _value.partnerName
           : partnerName // ignore: cast_nullable_to_non_nullable
               as String,
+      totalPaid: null == totalPaid
+          ? _value.totalPaid
+          : totalPaid // ignore: cast_nullable_to_non_nullable
+              as num,
+      total: null == total
+          ? _value.total
+          : total // ignore: cast_nullable_to_non_nullable
+              as num,
+      remainedTotal: null == remainedTotal
+          ? _value.remainedTotal
+          : remainedTotal // ignore: cast_nullable_to_non_nullable
+              as num,
     ));
   }
 }
@@ -172,7 +213,10 @@ class _$OrderModelImpl implements _OrderModel {
       this.state = "",
       this.date = "",
       @JsonKey(name: "partner_number") this.partnerNumber = "",
-      @JsonKey(name: "partner_name") this.partnerName = ""});
+      @JsonKey(name: "partner_name") this.partnerName = "",
+      @JsonKey(name: "paid_total") this.totalPaid = 0,
+      this.total = 0,
+      @JsonKey(name: "remained_total") this.remainedTotal = 0});
 
   factory _$OrderModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$OrderModelImplFromJson(json);
@@ -195,10 +239,19 @@ class _$OrderModelImpl implements _OrderModel {
   @override
   @JsonKey(name: "partner_name")
   final String partnerName;
+  @override
+  @JsonKey(name: "paid_total")
+  final num totalPaid;
+  @override
+  @JsonKey()
+  final num total;
+  @override
+  @JsonKey(name: "remained_total")
+  final num remainedTotal;
 
   @override
   String toString() {
-    return 'OrderModel(id: $id, name: $name, state: $state, date: $date, partnerNumber: $partnerNumber, partnerName: $partnerName)';
+    return 'OrderModel(id: $id, name: $name, state: $state, date: $date, partnerNumber: $partnerNumber, partnerName: $partnerName, totalPaid: $totalPaid, total: $total, remainedTotal: $remainedTotal)';
   }
 
   @override
@@ -213,13 +266,18 @@ class _$OrderModelImpl implements _OrderModel {
             (identical(other.partnerNumber, partnerNumber) ||
                 other.partnerNumber == partnerNumber) &&
             (identical(other.partnerName, partnerName) ||
-                other.partnerName == partnerName));
+                other.partnerName == partnerName) &&
+            (identical(other.totalPaid, totalPaid) ||
+                other.totalPaid == totalPaid) &&
+            (identical(other.total, total) || other.total == total) &&
+            (identical(other.remainedTotal, remainedTotal) ||
+                other.remainedTotal == remainedTotal));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, name, state, date, partnerNumber, partnerName);
+  int get hashCode => Object.hash(runtimeType, id, name, state, date,
+      partnerNumber, partnerName, totalPaid, total, remainedTotal);
 
   @JsonKey(ignore: true)
   @override
@@ -242,7 +300,10 @@ abstract class _OrderModel implements OrderModel {
           final String state,
           final String date,
           @JsonKey(name: "partner_number") final String partnerNumber,
-          @JsonKey(name: "partner_name") final String partnerName}) =
+          @JsonKey(name: "partner_name") final String partnerName,
+          @JsonKey(name: "paid_total") final num totalPaid,
+          final num total,
+          @JsonKey(name: "remained_total") final num remainedTotal}) =
       _$OrderModelImpl;
 
   factory _OrderModel.fromJson(Map<String, dynamic> json) =
@@ -262,6 +323,14 @@ abstract class _OrderModel implements OrderModel {
   @override
   @JsonKey(name: "partner_name")
   String get partnerName;
+  @override
+  @JsonKey(name: "paid_total")
+  num get totalPaid;
+  @override
+  num get total;
+  @override
+  @JsonKey(name: "remained_total")
+  num get remainedTotal;
   @override
   @JsonKey(ignore: true)
   _$$OrderModelImplCopyWith<_$OrderModelImpl> get copyWith =>

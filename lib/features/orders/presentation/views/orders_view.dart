@@ -1,6 +1,7 @@
 import 'package:alhazem/core/constants/assets_manager.dart';
 import 'package:alhazem/core/constants/color_manager.dart';
 import 'package:alhazem/core/routers/routes_manager.dart';
+import 'package:alhazem/core/utils/extensions/extensions.dart';
 import 'package:alhazem/features/orders/presentation/blocs/currencies_bloc/currencies_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,6 +11,7 @@ import 'package:number_pagination/number_pagination.dart';
 import '../../../../core/app/depndency_injection.dart';
 import '../../../../core/constants/values_manager.dart';
 import '../blocs/orders_bloc/orders_bloc.dart';
+import '../widgets/order_item_widget.dart';
 
 class OrdersView extends StatefulWidget {
   const OrdersView({super.key});
@@ -49,7 +51,8 @@ class _OrdersViewState extends State<OrdersView> {
                     child: ElevatedButton(
                         onPressed: () {
                           ordersBloc.add(OrdersEvent.getOrders(
-                              type: e.key.toLowerCase(), page: 1));
+                              type: e.key.toLowerCase(),
+                              page: selectedPageNumber));
                         },
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all(
@@ -98,99 +101,12 @@ class _OrdersViewState extends State<OrdersView> {
                           itemCount: value.orders.data.length,
                           gridDelegate:
                               const SliverGridDelegateWithFixedCrossAxisCount(
-                                  childAspectRatio: 3 / 2, crossAxisCount: 4),
+                                  crossAxisCount: 4),
                           itemBuilder: (context, index) {
                             return Padding(
                               padding: EdgeInsets.all(AppSizeW.s8),
-                              child: InkWell(
-                                onTap: () {
-                                  context.goNamed(RoutesNames.orderDetailsRoute,
-                                      pathParameters: {
-                                        "id": value.orders.data[index].id
-                                            .toString()
-                                      });
-                                },
-                                child: Container(
-                                  // padding: EdgeInsets.all(AppSizeW.s8),
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    boxShadow: [
-                                      BoxShadow(
-                                          blurRadius: AppSizeR.s3,
-                                          spreadRadius: AppSizeR.s3,
-                                          color: Colors.grey.withOpacity(.3))
-                                    ],
-                                    borderRadius:
-                                        BorderRadius.circular(AppSizeR.s15),
-                                  ),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      SizedBox(
-                                        height: AppSizeH.s30,
-                                        child: Row(
-                                          children: [
-                                            Expanded(
-                                              child: Container(
-                                                alignment: Alignment.center,
-                                                decoration: BoxDecoration(
-                                                    color: ColorManager
-                                                        .primaryDark,
-                                                    borderRadius:
-                                                        BorderRadiusDirectional.only(
-                                                            topStart:
-                                                                Radius.circular(
-                                                                    AppSizeR
-                                                                        .s15),
-                                                            topEnd:
-                                                                Radius.circular(
-                                                                    AppSizeR
-                                                                        .s15))),
-                                                padding:
-                                                    EdgeInsets.all(AppSizeW.s2),
-                                                child: Text(
-                                                  value
-                                                      .orders.data[index].state,
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .displayMedium,
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.all(AppSizeW.s12),
-                                        child: Column(
-                                          children: [
-                                            TitleValueItemOrder(
-                                                title: "الرقم",
-                                                value: value
-                                                    .orders.data[index].name),
-                                            SizedBox(height: AppSizeH.s15),
-                                            TitleValueItemOrder(
-                                                title: "تاريخ الطلب",
-                                                value: value
-                                                    .orders.data[index].date),
-                                            SizedBox(height: AppSizeH.s15),
-                                            TitleValueItemOrder(
-                                                title: "الزبون",
-                                                value: value.orders.data[index]
-                                                    .partnerName),
-                                            SizedBox(height: AppSizeH.s15),
-                                            TitleValueItemOrder(
-                                                title: "رقم الهاتف",
-                                                value: value.orders.data[index]
-                                                    .partnerNumber),
-                                            SizedBox(height: AppSizeH.s15),
-                                          ],
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
+                              child: OrderItemWidget(
+                                model: value.orders.data[index],
                               ),
                             );
                           },
@@ -238,45 +154,15 @@ class _OrdersViewState extends State<OrdersView> {
                         pageTotal: ordersBloc.totalPages ?? 10,
                         pageInit:
                             selectedPageNumber, // picked number when init page
-                        colorPrimary: Colors.black,
-                        colorSub: Colors.white,
+                        colorPrimary: ColorManager.primary,
+                        colorSub: ColorManager.white,
+                        buttonElevation: AppSizeR.s3,
+                        fontSize: AppSizeSp.s14,
                       )
                     : const SizedBox();
               },
             );
           },
-        ),
-      ],
-    );
-  }
-}
-
-class TitleValueItemOrder extends StatelessWidget {
-  final String title;
-  final String value;
-  const TitleValueItemOrder({
-    super.key,
-    required this.title,
-    required this.value,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Text(
-          '$title:',
-          style: Theme.of(context)
-              .textTheme
-              .titleMedium!
-              .copyWith(color: ColorManager.shipGrey),
-        ),
-        SizedBox(width: AppSizeW.s5),
-        Expanded(
-          child: Text(
-            value,
-            style: Theme.of(context).textTheme.headlineLarge,
-          ),
         ),
       ],
     );

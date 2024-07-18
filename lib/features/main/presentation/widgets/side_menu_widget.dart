@@ -23,11 +23,7 @@ class SideMenuWidget extends StatelessWidget {
                 children: [
                   DrawerHeader(
                     padding: EdgeInsets.zero,
-                    child:
-                        // Image.asset(
-                        //   ImageAssets.logo,
-                        // )
-                        SvgPicture.asset(
+                    child: SvgPicture.asset(
                       ImageAssets.logo,
                       fit: BoxFit.fill,
                     ),
@@ -39,12 +35,57 @@ class SideMenuWidget extends StatelessWidget {
                       context.goNamed(RoutesNames.typeServicesRoute);
                     },
                   ),
-                  DrawerListTile(
+                  DrawereExpandableListTile(
                     title: "الزبائن",
                     svgSrc: IconAssets.contactIcon,
-                    press: () {
-                      context.goNamed(RoutesNames.contactsRoute);
-                    },
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          context.goNamed(RoutesNames.createContactRoute);
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              vertical: AppSizeH.s15, horizontal: AppSizeW.s35),
+                          child: Row(
+                            children: [
+                              Image.asset(ImageAssets.plane,
+                                  height: AppSizeH.s22),
+                              SizedBox(width: AppSizeW.s4),
+                              Text(
+                                "انشاء مسافر",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: AppSizeSp.s16),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          context.goNamed(RoutesNames.createOfficeRoute);
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              vertical: AppSizeH.s15, horizontal: AppSizeW.s35),
+                          child: Row(
+                            children: [
+                              Image.asset(
+                                ImageAssets.office,
+                                height: AppSizeH.s22,
+                              ),
+                              SizedBox(width: AppSizeW.s4),
+                              Text(
+                                "انشاء مكتب",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: AppSizeSp.s16),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                   DrawerListTile(
                     title: "الطلبات",
@@ -102,25 +143,107 @@ class DrawerListTile extends StatelessWidget {
     required this.title,
     required this.svgSrc,
     required this.press,
+    this.isSvg = true,
   });
 
   final String title, svgSrc;
   final VoidCallback press;
+  final bool isSvg;
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
+    return InkWell(
       onTap: press,
-      horizontalTitleGap: 0.0,
-      leading: SvgPicture.asset(
-        svgSrc,
-        colorFilter: const ColorFilter.mode(Colors.black, BlendMode.srcIn),
-        height: AppSizeH.s22,
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+            horizontal: AppSizeW.s15, vertical: AppSizeH.s20),
+        child: Row(
+          children: [
+            isSvg
+                ? SvgPicture.asset(
+                    svgSrc,
+                    colorFilter:
+                        const ColorFilter.mode(Colors.black, BlendMode.srcIn),
+                    height: AppSizeH.s22,
+                  )
+                : Image.asset(
+                    svgSrc,
+                    height: AppSizeH.s22,
+                  ),
+            SizedBox(width: AppSizeW.s4),
+            Text(
+              title,
+              style: TextStyle(color: Colors.black, fontSize: AppSizeSp.s16),
+            ),
+          ],
+        ),
       ),
-      title: Text(
-        title,
-        style: TextStyle(color: Colors.black, fontSize: AppSizeSp.s16),
-      ),
+    );
+  }
+}
+
+class DrawereExpandableListTile extends StatefulWidget {
+  final String title, svgSrc;
+  final List<Widget> children;
+  const DrawereExpandableListTile({
+    super.key,
+    required this.title,
+    required this.svgSrc,
+    required this.children,
+  });
+
+  @override
+  State<DrawereExpandableListTile> createState() =>
+      _DrawereExpandableListTileState();
+}
+
+class _DrawereExpandableListTileState extends State<DrawereExpandableListTile> {
+  bool isExpanded = false;
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        InkWell(
+          onTap: () {
+            setState(() {
+              isExpanded = !isExpanded;
+            });
+          },
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+                horizontal: AppSizeW.s15, vertical: AppSizeH.s20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    SvgPicture.asset(
+                      widget.svgSrc,
+                      colorFilter:
+                          const ColorFilter.mode(Colors.black, BlendMode.srcIn),
+                      height: AppSizeH.s22,
+                    ),
+                    SizedBox(width: AppSizeW.s4),
+                    Text(
+                      widget.title,
+                      style: TextStyle(
+                          color: Colors.black, fontSize: AppSizeSp.s16),
+                    ),
+                  ],
+                ),
+                Icon(isExpanded
+                    ? Icons.arrow_drop_up_outlined
+                    : Icons.arrow_drop_down_outlined)
+              ],
+            ),
+          ),
+        ),
+        isExpanded
+            ? Column(
+                children: widget.children,
+              )
+            : const SizedBox()
+      ],
     );
   }
 }

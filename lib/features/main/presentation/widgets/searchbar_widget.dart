@@ -1,3 +1,4 @@
+import 'package:alhazem/core/constants/color_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -45,15 +46,12 @@ class SearchBarWidget extends StatelessWidget {
                       boxShadow: [
                         BoxShadow(
                             blurRadius: AppSizeR.s3,
-                            color: Colors.black.withOpacity(0.2),
+                            color: ColorManager.shadow,
                             spreadRadius: AppSizeR.s3)
                       ],
                       shape: BoxShape.circle),
-                  child: Icon(
-                    Icons.person,
-                    size: AppSizeSp.s30,
-                    color: Colors.grey.withOpacity(.8),
-                  ),
+                  child: Icon(Icons.person,
+                      size: AppSizeSp.s30, color: ColorManager.smokeyGrey),
                 ),
               ),
               SizedBox(width: AppSizeW.s10),
@@ -114,7 +112,7 @@ class _SearchItemsWidgetState extends State<SearchItemsWidget> {
                   borderRadius: BorderRadius.circular(AppSizeR.s8),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.grey.withOpacity(0.2),
+                      color: ColorManager.shadow,
                       spreadRadius: AppSizeR.s3,
                       blurRadius: AppSizeR.s3,
                     ),
@@ -186,24 +184,30 @@ class _SearchItemsWidgetState extends State<SearchItemsWidget> {
               ),
         Container(
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: ColorManager.white,
             borderRadius: BorderRadius.circular(AppSizeR.s8),
             boxShadow: [
               BoxShadow(
-                color: Colors.grey.withOpacity(0.2),
-                spreadRadius: AppSizeR.s3,
-                blurRadius: AppSizeR.s3,
+                color: ColorManager.shadow,
+                spreadRadius: AppSizeR.s1,
+                blurRadius: AppSizeR.s5,
               ),
             ],
           ),
-          child: TextField(
+          child: TextFormField(
             controller: searchController,
+            style: Theme.of(context).textTheme.bodyMedium,
             decoration: InputDecoration(
               hintText: 'البحث...',
-              hintStyle: const TextStyle(color: Colors.grey),
               border: InputBorder.none,
-              prefixIcon: const Icon(Icons.search, color: Colors.grey),
-              contentPadding: EdgeInsets.symmetric(vertical: AppSizeH.s10),
+              focusedBorder: InputBorder.none,
+              contentPadding: EdgeInsets.zero,
+              icon: Padding(
+                padding: EdgeInsetsDirectional.only(start: AppSizeW.s15),
+                child: Icon(Icons.search, color: ColorManager.smokeyGrey),
+              ),
+              // prefixIcon: ,
+              // contentPadding: EdgeInsets.symmetric(vertical: AppSizeH.s10),
             ),
           ),
         ),

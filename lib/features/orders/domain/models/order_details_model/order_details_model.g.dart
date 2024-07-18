@@ -47,6 +47,9 @@ _$OrderLineModelImpl _$$OrderLineModelImplFromJson(Map<String, dynamic> json) =>
           ? const CustomerModel()
           : CustomerModel.fromJson(json['customer'] as Map<String, dynamic>),
       country: json['country'] as String? ?? "",
+      totalPaid: json['paid_total'] as num? ?? 0,
+      total: json['total'] as num? ?? 0,
+      remainedTotal: json['remained_total'] as num? ?? 0,
       variants: (json['variant_ids'] as List<dynamic>?)
               ?.map(
                   (e) => OrderVariantModel.fromJson(e as Map<String, dynamic>))
@@ -61,6 +64,9 @@ Map<String, dynamic> _$$OrderLineModelImplToJson(
       'price_unit': instance.priceUnit,
       'customer': instance.customer,
       'country': instance.country,
+      'paid_total': instance.totalPaid,
+      'total': instance.total,
+      'remained_total': instance.remainedTotal,
       'variant_ids': instance.variants,
     };
 

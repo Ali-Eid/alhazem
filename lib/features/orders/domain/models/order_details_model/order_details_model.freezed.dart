@@ -353,6 +353,11 @@ mixin _$OrderLineModel {
   @JsonKey(name: "customer")
   CustomerModel get customer => throw _privateConstructorUsedError;
   String get country => throw _privateConstructorUsedError;
+  @JsonKey(name: "paid_total")
+  num get totalPaid => throw _privateConstructorUsedError;
+  num get total => throw _privateConstructorUsedError;
+  @JsonKey(name: "remained_total")
+  num get remainedTotal => throw _privateConstructorUsedError;
   @JsonKey(name: "variant_ids")
   List<OrderVariantModel> get variants => throw _privateConstructorUsedError;
 
@@ -373,6 +378,9 @@ abstract class $OrderLineModelCopyWith<$Res> {
       @JsonKey(name: "price_unit") num priceUnit,
       @JsonKey(name: "customer") CustomerModel customer,
       String country,
+      @JsonKey(name: "paid_total") num totalPaid,
+      num total,
+      @JsonKey(name: "remained_total") num remainedTotal,
       @JsonKey(name: "variant_ids") List<OrderVariantModel> variants});
 
   $CustomerModelCopyWith<$Res> get customer;
@@ -395,6 +403,9 @@ class _$OrderLineModelCopyWithImpl<$Res, $Val extends OrderLineModel>
     Object? priceUnit = null,
     Object? customer = null,
     Object? country = null,
+    Object? totalPaid = null,
+    Object? total = null,
+    Object? remainedTotal = null,
     Object? variants = null,
   }) {
     return _then(_value.copyWith(
@@ -414,6 +425,18 @@ class _$OrderLineModelCopyWithImpl<$Res, $Val extends OrderLineModel>
           ? _value.country
           : country // ignore: cast_nullable_to_non_nullable
               as String,
+      totalPaid: null == totalPaid
+          ? _value.totalPaid
+          : totalPaid // ignore: cast_nullable_to_non_nullable
+              as num,
+      total: null == total
+          ? _value.total
+          : total // ignore: cast_nullable_to_non_nullable
+              as num,
+      remainedTotal: null == remainedTotal
+          ? _value.remainedTotal
+          : remainedTotal // ignore: cast_nullable_to_non_nullable
+              as num,
       variants: null == variants
           ? _value.variants
           : variants // ignore: cast_nullable_to_non_nullable
@@ -443,6 +466,9 @@ abstract class _$$OrderLineModelImplCopyWith<$Res>
       @JsonKey(name: "price_unit") num priceUnit,
       @JsonKey(name: "customer") CustomerModel customer,
       String country,
+      @JsonKey(name: "paid_total") num totalPaid,
+      num total,
+      @JsonKey(name: "remained_total") num remainedTotal,
       @JsonKey(name: "variant_ids") List<OrderVariantModel> variants});
 
   @override
@@ -464,6 +490,9 @@ class __$$OrderLineModelImplCopyWithImpl<$Res>
     Object? priceUnit = null,
     Object? customer = null,
     Object? country = null,
+    Object? totalPaid = null,
+    Object? total = null,
+    Object? remainedTotal = null,
     Object? variants = null,
   }) {
     return _then(_$OrderLineModelImpl(
@@ -483,6 +512,18 @@ class __$$OrderLineModelImplCopyWithImpl<$Res>
           ? _value.country
           : country // ignore: cast_nullable_to_non_nullable
               as String,
+      totalPaid: null == totalPaid
+          ? _value.totalPaid
+          : totalPaid // ignore: cast_nullable_to_non_nullable
+              as num,
+      total: null == total
+          ? _value.total
+          : total // ignore: cast_nullable_to_non_nullable
+              as num,
+      remainedTotal: null == remainedTotal
+          ? _value.remainedTotal
+          : remainedTotal // ignore: cast_nullable_to_non_nullable
+              as num,
       variants: null == variants
           ? _value._variants
           : variants // ignore: cast_nullable_to_non_nullable
@@ -499,6 +540,9 @@ class _$OrderLineModelImpl implements _OrderLineModel {
       @JsonKey(name: "price_unit") this.priceUnit = 0,
       @JsonKey(name: "customer") this.customer = const CustomerModel(),
       this.country = "",
+      @JsonKey(name: "paid_total") this.totalPaid = 0,
+      this.total = 0,
+      @JsonKey(name: "remained_total") this.remainedTotal = 0,
       @JsonKey(name: "variant_ids")
       final List<OrderVariantModel> variants = const []})
       : _variants = variants;
@@ -518,6 +562,15 @@ class _$OrderLineModelImpl implements _OrderLineModel {
   @override
   @JsonKey()
   final String country;
+  @override
+  @JsonKey(name: "paid_total")
+  final num totalPaid;
+  @override
+  @JsonKey()
+  final num total;
+  @override
+  @JsonKey(name: "remained_total")
+  final num remainedTotal;
   final List<OrderVariantModel> _variants;
   @override
   @JsonKey(name: "variant_ids")
@@ -529,7 +582,7 @@ class _$OrderLineModelImpl implements _OrderLineModel {
 
   @override
   String toString() {
-    return 'OrderLineModel(name: $name, priceUnit: $priceUnit, customer: $customer, country: $country, variants: $variants)';
+    return 'OrderLineModel(name: $name, priceUnit: $priceUnit, customer: $customer, country: $country, totalPaid: $totalPaid, total: $total, remainedTotal: $remainedTotal, variants: $variants)';
   }
 
   @override
@@ -543,13 +596,26 @@ class _$OrderLineModelImpl implements _OrderLineModel {
             (identical(other.customer, customer) ||
                 other.customer == customer) &&
             (identical(other.country, country) || other.country == country) &&
+            (identical(other.totalPaid, totalPaid) ||
+                other.totalPaid == totalPaid) &&
+            (identical(other.total, total) || other.total == total) &&
+            (identical(other.remainedTotal, remainedTotal) ||
+                other.remainedTotal == remainedTotal) &&
             const DeepCollectionEquality().equals(other._variants, _variants));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, priceUnit, customer,
-      country, const DeepCollectionEquality().hash(_variants));
+  int get hashCode => Object.hash(
+      runtimeType,
+      name,
+      priceUnit,
+      customer,
+      country,
+      totalPaid,
+      total,
+      remainedTotal,
+      const DeepCollectionEquality().hash(_variants));
 
   @JsonKey(ignore: true)
   @override
@@ -572,6 +638,9 @@ abstract class _OrderLineModel implements OrderLineModel {
       @JsonKey(name: "price_unit") final num priceUnit,
       @JsonKey(name: "customer") final CustomerModel customer,
       final String country,
+      @JsonKey(name: "paid_total") final num totalPaid,
+      final num total,
+      @JsonKey(name: "remained_total") final num remainedTotal,
       @JsonKey(name: "variant_ids")
       final List<OrderVariantModel> variants}) = _$OrderLineModelImpl;
 
@@ -588,6 +657,14 @@ abstract class _OrderLineModel implements OrderLineModel {
   CustomerModel get customer;
   @override
   String get country;
+  @override
+  @JsonKey(name: "paid_total")
+  num get totalPaid;
+  @override
+  num get total;
+  @override
+  @JsonKey(name: "remained_total")
+  num get remainedTotal;
   @override
   @JsonKey(name: "variant_ids")
   List<OrderVariantModel> get variants;

@@ -3,6 +3,8 @@ import 'package:alhazem/core/bases/models/order_type_model/order_type_model.dart
 import 'package:alhazem/core/bases/models/response_model/response_model.dart';
 import 'package:alhazem/core/bases/usecases/base_usecase.dart';
 import 'package:alhazem/features/orders/domain/models/create_order_model/create_order_model.dart';
+import 'package:alhazem/features/orders/domain/models/create_payment_model/create_payment_model.dart';
+import 'package:alhazem/features/orders/domain/models/create_payment_model/input_create_payment_model/input_create_payment_model.dart';
 import 'package:alhazem/features/orders/domain/models/input_models/input_create_model/input_create_order_model.dart';
 import 'package:alhazem/features/orders/domain/repository/order_repository.dart';
 import 'package:multiple_result/src/result.dart';
@@ -73,5 +75,20 @@ class GetOrderDetailsUsecase
   Future<Result<ResponseModel<List<OrderDetailsModel>>, FailureModel>> execute(
       int input) async {
     return await repository.getOrderDetails(orderId: input);
+  }
+}
+
+class CreatePaymentUsecase
+    implements
+        BaseUseCase<InputCreatePaymentModel,
+            ResponseModel<CreatePaymentModel>> {
+  final OrderRepository repository;
+
+  CreatePaymentUsecase({required this.repository});
+
+  @override
+  Future<Result<ResponseModel<CreatePaymentModel>, FailureModel>> execute(
+      InputCreatePaymentModel input) async {
+    return await repository.createPayment(input: input);
   }
 }

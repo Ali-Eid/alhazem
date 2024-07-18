@@ -1,6 +1,8 @@
 import 'package:alhazem/core/bases/models/order_type_model/order_type_model.dart';
 import 'package:alhazem/core/bases/models/static_models/static_model.dart';
 import 'package:alhazem/features/orders/domain/models/create_order_model/create_order_model.dart';
+import 'package:alhazem/features/orders/domain/models/create_payment_model/create_payment_model.dart';
+import 'package:alhazem/features/orders/domain/models/create_payment_model/input_create_payment_model/input_create_payment_model.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/http.dart';
 import 'package:retrofit/retrofit.dart';
@@ -33,4 +35,9 @@ abstract class OrdersServiceClient {
   @GET(Endpoints.ORDER_DETAILS)
   Future<HttpResponse<ResponseModel<List<OrderDetailsModel>>>> getOrderDetails(
       {@Path("id") required int orderId});
+
+  //Payment
+  @POST(Endpoints.CREATE_PAYMENT)
+  Future<HttpResponse<ResponseModel<CreatePaymentModel>>> createPayment(
+      {@Body() required InputCreatePaymentModel input});
 }

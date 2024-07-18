@@ -14,6 +14,9 @@ _$OrderModelImpl _$$OrderModelImplFromJson(Map<String, dynamic> json) =>
       date: json['date'] as String? ?? "",
       partnerNumber: json['partner_number'] as String? ?? "",
       partnerName: json['partner_name'] as String? ?? "",
+      totalPaid: json['paid_total'] as num? ?? 0,
+      total: json['total'] as num? ?? 0,
+      remainedTotal: json['remained_total'] as num? ?? 0,
     );
 
 Map<String, dynamic> _$$OrderModelImplToJson(_$OrderModelImpl instance) =>
@@ -24,4 +27,7 @@ Map<String, dynamic> _$$OrderModelImplToJson(_$OrderModelImpl instance) =>
       'date': instance.date,
       'partner_number': instance.partnerNumber,
       'partner_name': instance.partnerName,
+      'paid_total': instance.totalPaid,
+      'total': instance.total,
+      'remained_total': instance.remainedTotal,
     };

@@ -18,6 +18,7 @@ class AlertDialogWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      backgroundColor: ColorManager.background,
       title: Text(
         title,
         style: Theme.of(context).textTheme.titleMedium,
