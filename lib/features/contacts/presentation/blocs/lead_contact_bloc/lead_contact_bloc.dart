@@ -32,10 +32,12 @@ class LeadContactBloc extends Bloc<LeadContactEvent, LeadContactState> {
         logoutLead: (value) async {
           emit(const LeadContactState.loading());
           leadId = null;
-          emit(LeadContactState.loaded(
-              success: ResponseModel(
-                  data: CreateLeadModel(),
-                  message: "Delete lead successfully")));
+          emit(const LeadContactState.deletedLead());
+          // emit(LeadContactState.loaded(
+          //     success: ResponseModel(
+          //         data: CreateLeadModel(),
+          //         message: "Delete lead successfully"))
+          //         );
         },
       );
     });

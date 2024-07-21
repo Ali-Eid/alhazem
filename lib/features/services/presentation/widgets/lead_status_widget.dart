@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:toastification/toastification.dart';
 
 import '../../../../core/constants/values_manager.dart';
 import '../../../../core/widgets/alert_dialog_widget.dart';
@@ -20,7 +21,13 @@ class LeadStatusWidget extends StatelessWidget {
         state.mapOrNull(
           loaded: (value) {
             showToast(context: context, message: value.success.message);
-            Navigator.of(context).pop();
+            context.pop();
+          },
+          error: (value) {
+            showToast(
+                context: context,
+                message: value.message,
+                type: ToastificationType.error);
           },
         );
       },

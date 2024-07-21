@@ -12,10 +12,10 @@ part 'currencies_bloc.freezed.dart';
 class CurrenciesBloc extends Bloc<CurrenciesEvent, CurrenciesState> {
   final GetCurrenciesUsecase getCurrenciesUsecase;
   final GetTypeOrdersUsecase getTypeOrdersUsecase;
-  List<StaticModel> currencies = [];
-  List<OrderTypeModel> orderTypes = [];
+  Set<StaticModel> currencies = {};
+  Set<TypeModel> orderTypes = {};
   StaticModel? currencySelected;
-  OrderTypeModel? orderTypeSelected;
+  TypeModel? orderTypeSelected;
   CurrenciesBloc(
       {required this.getCurrenciesUsecase, required this.getTypeOrdersUsecase})
       : super(const CurrenciesState.loading()) {

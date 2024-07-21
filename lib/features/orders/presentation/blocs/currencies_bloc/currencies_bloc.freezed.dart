@@ -285,7 +285,7 @@ mixin _$CurrenciesState {
     required TResult Function() loading,
     required TResult Function(ResponseModel<List<StaticModel>> currencies)
         loadedCurrencies,
-    required TResult Function(ResponseModel<List<OrderTypeModel>> types)
+    required TResult Function(ResponseModel<List<TypeModel>> types)
         loadedOrderTypes,
     required TResult Function(String message) error,
   }) =>
@@ -295,8 +295,7 @@ mixin _$CurrenciesState {
     TResult? Function()? loading,
     TResult? Function(ResponseModel<List<StaticModel>> currencies)?
         loadedCurrencies,
-    TResult? Function(ResponseModel<List<OrderTypeModel>> types)?
-        loadedOrderTypes,
+    TResult? Function(ResponseModel<List<TypeModel>> types)? loadedOrderTypes,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -305,8 +304,7 @@ mixin _$CurrenciesState {
     TResult Function()? loading,
     TResult Function(ResponseModel<List<StaticModel>> currencies)?
         loadedCurrencies,
-    TResult Function(ResponseModel<List<OrderTypeModel>> types)?
-        loadedOrderTypes,
+    TResult Function(ResponseModel<List<TypeModel>> types)? loadedOrderTypes,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -397,7 +395,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function() loading,
     required TResult Function(ResponseModel<List<StaticModel>> currencies)
         loadedCurrencies,
-    required TResult Function(ResponseModel<List<OrderTypeModel>> types)
+    required TResult Function(ResponseModel<List<TypeModel>> types)
         loadedOrderTypes,
     required TResult Function(String message) error,
   }) {
@@ -410,8 +408,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function()? loading,
     TResult? Function(ResponseModel<List<StaticModel>> currencies)?
         loadedCurrencies,
-    TResult? Function(ResponseModel<List<OrderTypeModel>> types)?
-        loadedOrderTypes,
+    TResult? Function(ResponseModel<List<TypeModel>> types)? loadedOrderTypes,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -423,8 +420,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function()? loading,
     TResult Function(ResponseModel<List<StaticModel>> currencies)?
         loadedCurrencies,
-    TResult Function(ResponseModel<List<OrderTypeModel>> types)?
-        loadedOrderTypes,
+    TResult Function(ResponseModel<List<TypeModel>> types)? loadedOrderTypes,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -556,7 +552,7 @@ class _$LoadedCurrenciesImpl implements _LoadedCurrencies {
     required TResult Function() loading,
     required TResult Function(ResponseModel<List<StaticModel>> currencies)
         loadedCurrencies,
-    required TResult Function(ResponseModel<List<OrderTypeModel>> types)
+    required TResult Function(ResponseModel<List<TypeModel>> types)
         loadedOrderTypes,
     required TResult Function(String message) error,
   }) {
@@ -569,8 +565,7 @@ class _$LoadedCurrenciesImpl implements _LoadedCurrencies {
     TResult? Function()? loading,
     TResult? Function(ResponseModel<List<StaticModel>> currencies)?
         loadedCurrencies,
-    TResult? Function(ResponseModel<List<OrderTypeModel>> types)?
-        loadedOrderTypes,
+    TResult? Function(ResponseModel<List<TypeModel>> types)? loadedOrderTypes,
     TResult? Function(String message)? error,
   }) {
     return loadedCurrencies?.call(currencies);
@@ -582,8 +577,7 @@ class _$LoadedCurrenciesImpl implements _LoadedCurrencies {
     TResult Function()? loading,
     TResult Function(ResponseModel<List<StaticModel>> currencies)?
         loadedCurrencies,
-    TResult Function(ResponseModel<List<OrderTypeModel>> types)?
-        loadedOrderTypes,
+    TResult Function(ResponseModel<List<TypeModel>> types)? loadedOrderTypes,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -648,9 +642,9 @@ abstract class _$$LoadedOrderTypesImplCopyWith<$Res> {
           $Res Function(_$LoadedOrderTypesImpl) then) =
       __$$LoadedOrderTypesImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({ResponseModel<List<OrderTypeModel>> types});
+  $Res call({ResponseModel<List<TypeModel>> types});
 
-  $ResponseModelCopyWith<List<OrderTypeModel>, $Res> get types;
+  $ResponseModelCopyWith<List<TypeModel>, $Res> get types;
 }
 
 /// @nodoc
@@ -670,15 +664,14 @@ class __$$LoadedOrderTypesImplCopyWithImpl<$Res>
       types: null == types
           ? _value.types
           : types // ignore: cast_nullable_to_non_nullable
-              as ResponseModel<List<OrderTypeModel>>,
+              as ResponseModel<List<TypeModel>>,
     ));
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $ResponseModelCopyWith<List<OrderTypeModel>, $Res> get types {
-    return $ResponseModelCopyWith<List<OrderTypeModel>, $Res>(_value.types,
-        (value) {
+  $ResponseModelCopyWith<List<TypeModel>, $Res> get types {
+    return $ResponseModelCopyWith<List<TypeModel>, $Res>(_value.types, (value) {
       return _then(_value.copyWith(types: value));
     });
   }
@@ -690,7 +683,7 @@ class _$LoadedOrderTypesImpl implements _LoadedOrderTypes {
   const _$LoadedOrderTypesImpl({required this.types});
 
   @override
-  final ResponseModel<List<OrderTypeModel>> types;
+  final ResponseModel<List<TypeModel>> types;
 
   @override
   String toString() {
@@ -721,7 +714,7 @@ class _$LoadedOrderTypesImpl implements _LoadedOrderTypes {
     required TResult Function() loading,
     required TResult Function(ResponseModel<List<StaticModel>> currencies)
         loadedCurrencies,
-    required TResult Function(ResponseModel<List<OrderTypeModel>> types)
+    required TResult Function(ResponseModel<List<TypeModel>> types)
         loadedOrderTypes,
     required TResult Function(String message) error,
   }) {
@@ -734,8 +727,7 @@ class _$LoadedOrderTypesImpl implements _LoadedOrderTypes {
     TResult? Function()? loading,
     TResult? Function(ResponseModel<List<StaticModel>> currencies)?
         loadedCurrencies,
-    TResult? Function(ResponseModel<List<OrderTypeModel>> types)?
-        loadedOrderTypes,
+    TResult? Function(ResponseModel<List<TypeModel>> types)? loadedOrderTypes,
     TResult? Function(String message)? error,
   }) {
     return loadedOrderTypes?.call(types);
@@ -747,8 +739,7 @@ class _$LoadedOrderTypesImpl implements _LoadedOrderTypes {
     TResult Function()? loading,
     TResult Function(ResponseModel<List<StaticModel>> currencies)?
         loadedCurrencies,
-    TResult Function(ResponseModel<List<OrderTypeModel>> types)?
-        loadedOrderTypes,
+    TResult Function(ResponseModel<List<TypeModel>> types)? loadedOrderTypes,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -798,10 +789,10 @@ class _$LoadedOrderTypesImpl implements _LoadedOrderTypes {
 
 abstract class _LoadedOrderTypes implements CurrenciesState {
   const factory _LoadedOrderTypes(
-          {required final ResponseModel<List<OrderTypeModel>> types}) =
+          {required final ResponseModel<List<TypeModel>> types}) =
       _$LoadedOrderTypesImpl;
 
-  ResponseModel<List<OrderTypeModel>> get types;
+  ResponseModel<List<TypeModel>> get types;
   @JsonKey(ignore: true)
   _$$LoadedOrderTypesImplCopyWith<_$LoadedOrderTypesImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -874,7 +865,7 @@ class _$ErrorImpl implements _Error {
     required TResult Function() loading,
     required TResult Function(ResponseModel<List<StaticModel>> currencies)
         loadedCurrencies,
-    required TResult Function(ResponseModel<List<OrderTypeModel>> types)
+    required TResult Function(ResponseModel<List<TypeModel>> types)
         loadedOrderTypes,
     required TResult Function(String message) error,
   }) {
@@ -887,8 +878,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function()? loading,
     TResult? Function(ResponseModel<List<StaticModel>> currencies)?
         loadedCurrencies,
-    TResult? Function(ResponseModel<List<OrderTypeModel>> types)?
-        loadedOrderTypes,
+    TResult? Function(ResponseModel<List<TypeModel>> types)? loadedOrderTypes,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -900,8 +890,7 @@ class _$ErrorImpl implements _Error {
     TResult Function()? loading,
     TResult Function(ResponseModel<List<StaticModel>> currencies)?
         loadedCurrencies,
-    TResult Function(ResponseModel<List<OrderTypeModel>> types)?
-        loadedOrderTypes,
+    TResult Function(ResponseModel<List<TypeModel>> types)? loadedOrderTypes,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {

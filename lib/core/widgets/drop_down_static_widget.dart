@@ -6,7 +6,7 @@ import '../constants/color_manager.dart';
 import '../constants/values_manager.dart';
 
 class DropDownStaticWidget extends StatefulWidget {
-  final List<StaticModel> values;
+  final Set<StaticModel> values;
   final String hintText;
   final StaticModel? selectedValue;
   final void Function(StaticModel?)? onChanged;

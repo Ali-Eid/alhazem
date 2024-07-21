@@ -1,5 +1,6 @@
 import 'package:alhazem/core/themes/theme_manager.dart';
 import 'package:alhazem/features/main/presentation/blocs/search_bloc/search_bloc.dart';
+import 'package:alhazem/features/main/presentation/blocs/type_search_bloc/type_search_bloc.dart';
 import 'package:alhazem/features/orders/presentation/blocs/currencies_bloc/currencies_bloc.dart';
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -53,6 +54,11 @@ class _MyAppState extends State<MyApp> {
           create: (context) => instance<CurrenciesBloc>()
             ..add(const CurrenciesEvent.getCurrencies())
             ..add(const CurrenciesEvent.getOrderTypes()),
+          lazy: false,
+        ),
+        BlocProvider(
+          create: (context) => instance<TypeSearchBloc>()
+            ..add(const TypeSearchEvent.getTypesSearch()),
           lazy: false,
         ),
       ],

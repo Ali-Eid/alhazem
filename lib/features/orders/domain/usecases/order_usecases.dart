@@ -54,13 +54,12 @@ class GetOrdersUsecase
 }
 
 class GetTypeOrdersUsecase
-    implements BaseUseCaseEmptyInput<ResponseModel<List<OrderTypeModel>>> {
+    implements BaseUseCaseEmptyInput<ResponseModel<List<TypeModel>>> {
   final OrderRepository repository;
 
   GetTypeOrdersUsecase({required this.repository});
   @override
-  Future<Result<ResponseModel<List<OrderTypeModel>>, FailureModel>>
-      execute() async {
+  Future<Result<ResponseModel<List<TypeModel>>, FailureModel>> execute() async {
     return await repository.getOrderTypes();
   }
 }

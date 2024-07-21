@@ -14,6 +14,7 @@ import 'package:go_router/go_router.dart';
 import '../../features/auth/presentation/views/login_view.dart';
 import '../../features/contacts/presentation/views/create_office_view.dart';
 import '../../features/home/presentation/views/home_view.dart';
+import '../../features/main/presentation/views/general_search_view.dart';
 import '../../features/services/presentation/views/types_services_view.dart';
 import '../../features/splash/presentations/views/splash_view.dart';
 
@@ -29,6 +30,7 @@ class RoutesNames {
   static const String ordersRoute = '/orders';
   static const String orderDetailsRoute = 'order-details';
   static const String settingsRoute = '/settings';
+  static const String searchRoute = '/search';
 }
 
 class RoutesPaths {
@@ -45,6 +47,7 @@ class RoutesPaths {
   static const String ordersRoute = '/orders';
   static const String orderDetailsRoute = 'order-details/:id';
   static const String settingsRoute = '/settings';
+  static const String searchRoute = '/search/:key/:value';
 }
 
 class NavigationKeys {
@@ -189,6 +192,19 @@ class AppRouter {
                 return NoTransitionPage(
                   key: state.pageKey,
                   child: const SettingsView(),
+                );
+              },
+            ),
+            GoRoute(
+              name: RoutesNames.searchRoute,
+              path: RoutesPaths.searchRoute,
+              pageBuilder: (context, state) {
+                return NoTransitionPage(
+                  key: state.pageKey,
+                  child: GeneralSearchView(
+                    filter: state.pathParameters["key"] ?? "",
+                    value: state.pathParameters["value"] ?? "",
+                  ),
                 );
               },
             )

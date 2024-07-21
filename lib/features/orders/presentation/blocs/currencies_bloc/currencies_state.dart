@@ -7,6 +7,6 @@ class CurrenciesState with _$CurrenciesState {
           {required ResponseModel<List<StaticModel>> currencies}) =
       _LoadedCurrencies;
   const factory CurrenciesState.loadedOrderTypes(
-      {required ResponseModel<List<OrderTypeModel>> types}) = _LoadedOrderTypes;
+      {required ResponseModel<List<TypeModel>> types}) = _LoadedOrderTypes;
   const factory CurrenciesState.error({required String message}) = _Error;
 }

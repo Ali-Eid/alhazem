@@ -10,13 +10,15 @@ import 'core/localization/language_manager.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await ScreenUtil.ensureScreenSize();
+
   await EasyLocalization.ensureInitialized();
   await FastCachedImageConfig.init(clearCacheAfter: const Duration(days: 1));
-  await ScreenUtil.ensureScreenSize();
   EasyLocalization.logger.enableBuildModes = [];
   await initAppModule();
   await initContact();
   await InitOrder();
+  await initAuth();
   Bloc.observer = MyBlocObserver();
   runApp(EasyLocalization(
       supportedLocales: supportedLocales,

@@ -43,10 +43,7 @@ class _ServiceItemWidgetState extends State<ServiceItemWidget> {
             Expanded(
               child: Text(
                 widget.model.name,
-                style: TextStyle(
-                  fontSize: AppSizeSp.s16,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: Theme.of(context).textTheme.headlineLarge,
               ),
             ),
             SizedBox(height: AppSizeH.s8),
@@ -54,7 +51,10 @@ class _ServiceItemWidgetState extends State<ServiceItemWidget> {
               children: [
                 Icon(Icons.money, size: AppSizeSp.s16),
                 SizedBox(width: AppSizeW.s4),
-                Text("${widget.model.price} ${widget.model.currency}"),
+                Text(
+                  "${widget.model.price} ${widget.model.currency}",
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
               ],
             ),
             SizedBox(height: AppSizeH.s8),
@@ -62,7 +62,11 @@ class _ServiceItemWidgetState extends State<ServiceItemWidget> {
               children: [
                 Icon(Icons.place, size: AppSizeSp.s16),
                 SizedBox(width: AppSizeW.s4),
-                Text(widget.model.country),
+                Expanded(
+                    child: Text(
+                  widget.model.country,
+                  style: Theme.of(context).textTheme.labelMedium,
+                )),
               ],
             ),
             SizedBox(height: AppSizeH.s8),
@@ -70,7 +74,10 @@ class _ServiceItemWidgetState extends State<ServiceItemWidget> {
               children: [
                 Icon(Icons.description, size: AppSizeSp.s16),
                 SizedBox(width: AppSizeW.s4),
-                Text(widget.model.type),
+                Text(
+                  widget.model.type,
+                  style: Theme.of(context).textTheme.labelMedium,
+                ),
               ],
             ),
           ],

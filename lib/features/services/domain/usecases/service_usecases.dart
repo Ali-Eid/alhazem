@@ -39,14 +39,15 @@ class GetTypeServicesUsecase
 
 class GetServicesDetailsUsecase
     implements
-        BaseUseCase<({int serviceId}),
+        BaseUseCase<({int serviceId, int leadId}),
             ResponseModel<List<ServiceDetailsModel>>> {
   final ServiceRepository repository;
 
   GetServicesDetailsUsecase({required this.repository});
   @override
   Future<Result<ResponseModel<List<ServiceDetailsModel>>, FailureModel>>
-      execute(({int serviceId}) input) async {
-    return await repository.getServiceDetails(serviceId: input.serviceId);
+      execute(({int serviceId, int leadId}) input) async {
+    return await repository.getServiceDetails(
+        serviceId: input.serviceId, leadId: input.leadId);
   }
 }

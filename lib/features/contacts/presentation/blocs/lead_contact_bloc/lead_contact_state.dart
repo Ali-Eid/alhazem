@@ -6,5 +6,6 @@ class LeadContactState with _$LeadContactState {
   const factory LeadContactState.loading() = _Loading;
   const factory LeadContactState.loaded(
       {required ResponseModel<CreateLeadModel> success}) = _Loaded;
+  const factory LeadContactState.deletedLead() = _DeletedLead;
   const factory LeadContactState.error({required String message}) = _Error;
 }

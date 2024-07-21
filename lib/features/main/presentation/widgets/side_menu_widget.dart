@@ -2,6 +2,7 @@ import 'package:alhazem/core/app/depndency_injection.dart';
 import 'package:alhazem/core/constants/assets_manager.dart';
 import 'package:alhazem/core/constants/values_manager.dart';
 import 'package:alhazem/core/routers/routes_manager.dart';
+import 'package:alhazem/features/contacts/presentation/blocs/lead_contact_bloc/lead_contact_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -94,13 +95,13 @@ class SideMenuWidget extends StatelessWidget {
                       context.goNamed(RoutesNames.ordersRoute);
                     },
                   ),
-                  DrawerListTile(
-                    title: "الاعدادات",
-                    svgSrc: IconAssets.settingIcon,
-                    press: () {
-                      context.goNamed(RoutesNames.settingsRoute);
-                    },
-                  ),
+                  // DrawerListTile(
+                  //   title: "الاعدادات",
+                  //   svgSrc: IconAssets.settingIcon,
+                  //   press: () {
+                  //     context.goNamed(RoutesNames.settingsRoute);
+                  //   },
+                  // ),
                 ],
               ),
             ),
@@ -109,6 +110,9 @@ class SideMenuWidget extends StatelessWidget {
                 state.mapOrNull(
                   auth: (value) {
                     initAuth();
+                    context
+                        .read<LeadContactBloc>()
+                        .add(const LeadContactEvent.logoutLead());
                     context.goNamed(RoutesNames.loginRoute);
                   },
                 );

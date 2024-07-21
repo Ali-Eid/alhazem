@@ -3,6 +3,10 @@ import 'package:alhazem/features/auth/data/repositories/auth_repository_implemen
 import 'package:alhazem/features/auth/domain/repositories/auth_repository.dart';
 import 'package:alhazem/features/auth/presentation/blocs/auth_bloc/auth_bloc.dart';
 import 'package:alhazem/features/contacts/data/repository/contact_repository_impl.dart';
+import 'package:alhazem/features/main/data/datasource/main_api.dart';
+import 'package:alhazem/features/main/data/repository/main_repository_impl.dart';
+import 'package:alhazem/features/main/domain/repository/main_repository.dart';
+import 'package:alhazem/features/main/presentation/blocs/general_search_bloc/general_search_bloc.dart';
 import 'package:alhazem/features/main/presentation/blocs/search_bloc/search_bloc.dart';
 import 'package:alhazem/features/orders/data/repository/order_repository.dart';
 import 'package:alhazem/features/orders/domain/repository/order_repository.dart';
@@ -32,6 +36,8 @@ import '../../features/home/data/datasource/remote_data_source/home_api.dart';
 import '../../features/home/data/repository/post_repository_impl.dart';
 import '../../features/home/domain/repositories/post_repository.dart';
 import '../../features/home/domain/usecases/post_usecase.dart';
+import '../../features/main/domain/usecases/general_search_usecases.dart';
+import '../../features/main/presentation/blocs/type_search_bloc/type_search_bloc.dart';
 import '../../features/orders/data/datasource/order_api.dart';
 import '../../features/orders/presentation/blocs/currencies_bloc/currencies_bloc.dart';
 import '../../features/orders/presentation/blocs/payment_bloc/payment_bloc.dart';
@@ -63,56 +69,114 @@ Future<void> initAppModule() async {
   instance.registerLazySingleton(() => ServicesServiceClient(dio));
   instance.registerLazySingleton(() => OrdersServiceClient(dio));
   instance.registerLazySingleton(() => ContactsServiceClient(dio));
+  instance.registerLazySingleton(() => MainServiceClient(dio));
 
   //Bloc's
-  instance.registerFactory(
-      () => AppBloc(appPreferences: instance<AppPreferences>()));
 
-  instance.registerFactory(
-    () => InputValueCreateOrderCubit(0),
-  );
+  if (!GetIt.I.isRegistered<AppBloc>()) {
+    instance.registerFactory(
+        () => AppBloc(appPreferences: instance<AppPreferences>()));
+  }
+  if (!GetIt.I.isRegistered<InputValueCreateOrderCubit>()) {
+    instance.registerFactory(
+      () => InputValueCreateOrderCubit(0),
+    );
+  }
+
+  instance.registerFactory(() => GeneralSearchBloc(
+      searchContactUsecase: instance<GeneralSearchContactUsecase>(),
+      searchOrdersUsecase: instance<GeneralSearchOrdersUsecase>(),
+      searchServicesUsecase: instance<GeneralSearchServicesUsecase>()));
+  if (!GetIt.I.isRegistered<GeneralSearchBloc>()) {
+    instance.registerFactory(() => GeneralSearchBloc(
+        searchContactUsecase: instance<GeneralSearchContactUsecase>(),
+        searchOrdersUsecase: instance<GeneralSearchOrdersUsecase>(),
+        searchServicesUsecase: instance<GeneralSearchServicesUsecase>()));
+  }
+  if (!GetIt.I.isRegistered<TypeSearchBloc>()) {
+    instance.registerFactory(() => TypeSearchBloc(
+        getTypesSearchUsecase: instance<GetTypesSearchUsecase>()));
+  }
+//repository
+
+  if (!GetIt.I.isRegistered<MainRepository>()) {
+    instance.registerLazySingleton<MainRepository>(() => MainRepositoryImpl(
+        mainServiceClient: instance<MainServiceClient>(),
+        networkInfo: instance<NetworkInfo>()));
+  }
+//Usecases
+  if (!GetIt.I.isRegistered<GeneralSearchContactUsecase>()) {
+    instance.registerLazySingleton(() =>
+        GeneralSearchContactUsecase(repository: instance<MainRepository>()));
+  }
+  if (!GetIt.I.isRegistered<GeneralSearchOrdersUsecase>()) {
+    instance.registerLazySingleton(() =>
+        GeneralSearchOrdersUsecase(repository: instance<MainRepository>()));
+  }
+  if (!GetIt.I.isRegistered<GeneralSearchServicesUsecase>()) {
+    instance.registerLazySingleton(() =>
+        GeneralSearchServicesUsecase(repository: instance<MainRepository>()));
+  }
+  if (!GetIt.I.isRegistered<GetTypesSearchUsecase>()) {
+    instance.registerLazySingleton(
+        () => GetTypesSearchUsecase(repository: instance<MainRepository>()));
+  }
 }
 
 //Auth Init
 Future<void> initAuth() async {
   //blocs
-  instance.registerFactory(
-    () => AuthBloc(
-        loginUseCase: instance<LoginUseCase>(),
-        appPreferences: instance<AppPreferences>()),
-  );
 
+  if (!GetIt.I.isRegistered<AuthBloc>()) {
+    instance.registerFactory(
+      () => AuthBloc(
+          loginUseCase: instance<LoginUseCase>(),
+          appPreferences: instance<AppPreferences>()),
+    );
+  }
   //repositories
-  instance.registerLazySingleton<AuthRepository>(() => AuthRepositoryImp(
-      authServiceClient: instance<AuthServiceClient>(),
-      networkInfo: instance<NetworkInfo>()));
 
+  if (!GetIt.I.isRegistered<AuthRepository>()) {
+    instance.registerLazySingleton<AuthRepository>(() => AuthRepositoryImp(
+        authServiceClient: instance<AuthServiceClient>(),
+        networkInfo: instance<NetworkInfo>()));
+  }
   //usecases
-  instance.registerLazySingleton(
-      () => LoginUseCase(repository: instance<AuthRepository>()));
+
+  if (!GetIt.I.isRegistered<LoginUseCase>()) {
+    instance.registerLazySingleton(
+        () => LoginUseCase(repository: instance<AuthRepository>()));
+  }
 }
 
 //Services Init
 
 Future<void> initServices() async {
   //blocs
-  instance.registerFactory(
-    () => ServiceBloc(
-      getServicesUsecase: instance<GetServicesUsecase>(),
-      getTypeServicesUsecase: instance<GetTypeServicesUsecase>(),
-      getServicesDetailsUsecase: instance<GetServicesDetailsUsecase>(),
-    ),
-  );
 
-  instance.registerFactory(
-    () => CheckPriceBloc(checkPriceUsecase: instance<CheckPriceUsecase>()),
-  );
+  if (!GetIt.I.isRegistered<ServiceBloc>()) {
+    instance.registerFactory(
+      () => ServiceBloc(
+        getServicesUsecase: instance<GetServicesUsecase>(),
+        getTypeServicesUsecase: instance<GetTypeServicesUsecase>(),
+        getServicesDetailsUsecase: instance<GetServicesDetailsUsecase>(),
+      ),
+    );
+  }
+  if (!GetIt.I.isRegistered<CheckPriceBloc>()) {
+    instance.registerFactory(
+      () => CheckPriceBloc(checkPriceUsecase: instance<CheckPriceUsecase>()),
+    );
+  }
 
   //repositories
-  instance.registerLazySingleton<ServiceRepository>(() => ServiceRepositoryImpl(
-      servicesServiceClient: instance<ServicesServiceClient>(),
-      networkInfo: instance<NetworkInfo>()));
 
+  if (!GetIt.I.isRegistered<ServiceRepository>()) {
+    instance.registerLazySingleton<ServiceRepository>(() =>
+        ServiceRepositoryImpl(
+            servicesServiceClient: instance<ServicesServiceClient>(),
+            networkInfo: instance<NetworkInfo>()));
+  }
   //usecases
   if (!GetIt.I.isRegistered<GetServicesUsecase>()) {
     instance.registerLazySingleton(
@@ -207,30 +271,40 @@ Future<void> initContact() async {
 
 Future<void> InitOrder() async {
   //Blocs
-  instance.registerFactory(
-    () => CreateOrderBloc(createOrderUsecase: instance<CreateOrderUsecase>()),
-  );
-  instance.registerFactory(
-    () => CurrenciesBloc(
-        getCurrenciesUsecase: instance<GetCurrenciesUsecase>(),
-        getTypeOrdersUsecase: instance<GetTypeOrdersUsecase>()),
-  );
 
-  instance.registerFactory(
-    () => OrdersBloc(
-        getOrdersUsecase: instance<GetOrdersUsecase>(),
-        getOrderDetailsUsecase: instance<GetOrderDetailsUsecase>()),
-  );
+  if (!GetIt.I.isRegistered<CreateOrderBloc>()) {
+    instance.registerFactory(
+      () => CreateOrderBloc(createOrderUsecase: instance<CreateOrderUsecase>()),
+    );
+  }
 
-  instance.registerFactory(
-    () => PaymentBloc(createPaymentUsecase: instance<CreatePaymentUsecase>()),
-  );
+  if (!GetIt.I.isRegistered<CurrenciesBloc>()) {
+    instance.registerFactory(
+      () => CurrenciesBloc(
+          getCurrenciesUsecase: instance<GetCurrenciesUsecase>(),
+          getTypeOrdersUsecase: instance<GetTypeOrdersUsecase>()),
+    );
+  }
+  if (!GetIt.I.isRegistered<OrdersBloc>()) {
+    instance.registerFactory(
+      () => OrdersBloc(
+          getOrdersUsecase: instance<GetOrdersUsecase>(),
+          getOrderDetailsUsecase: instance<GetOrderDetailsUsecase>()),
+    );
+  }
+  if (!GetIt.I.isRegistered<PaymentBloc>()) {
+    instance.registerFactory(
+      () => PaymentBloc(createPaymentUsecase: instance<CreatePaymentUsecase>()),
+    );
+  }
 
   //repository
-  instance.registerLazySingleton<OrderRepository>(() => OrderRepositoryImpl(
-      ordersServiceClient: instance<OrdersServiceClient>(),
-      networkInfo: instance<NetworkInfo>()));
 
+  if (!GetIt.I.isRegistered<OrderRepository>()) {
+    instance.registerLazySingleton<OrderRepository>(() => OrderRepositoryImpl(
+        ordersServiceClient: instance<OrdersServiceClient>(),
+        networkInfo: instance<NetworkInfo>()));
+  }
   //usecases
   if (!GetIt.I.isRegistered<CreateOrderUsecase>()) {
     instance.registerLazySingleton(
@@ -259,17 +333,4 @@ Future<void> InitOrder() async {
     instance.registerLazySingleton(
         () => CreatePaymentUsecase(repository: instance<OrderRepository>()));
   }
-}
-
-Future<void> initPosts() async {
-  //blocs
-
-  //repositories
-  instance.registerLazySingleton<PostRepository>(() => PostRepositoryImpl(
-      homeServiceClient: instance<HomeServiceClient>(),
-      networkInfo: instance<NetworkInfo>()));
-
-  //usecases
-  instance.registerLazySingleton(
-      () => PostUsecase(postRepository: instance<PostRepository>()));
 }

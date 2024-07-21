@@ -1,6 +1,7 @@
 import 'package:alhazem/core/constants/color_manager.dart';
 import 'package:alhazem/core/constants/values_manager.dart';
 import 'package:alhazem/core/widgets/toast.dart';
+import 'package:alhazem/features/contacts/presentation/blocs/lead_contact_bloc/lead_contact_bloc.dart';
 import 'package:alhazem/features/orders/domain/models/input_models/input_create_model/input_create_order_model.dart';
 import 'package:alhazem/features/orders/presentation/blocs/create_order_bloc/create_order_bloc.dart';
 import 'package:alhazem/features/services/domain/models/service_details_model.dart/service_details_model.dart';
@@ -38,7 +39,9 @@ class _ServiceDetailsViewState extends State<ServiceDetailsView> {
   void initState() {
     checkPriceBloc = instance<CheckPriceBloc>();
     serviceBloc = instance<ServiceBloc>()
-      ..add(ServiceEvent.getServiceDetails(serviceId: widget.serviceId));
+      ..add(ServiceEvent.getServiceDetails(
+          serviceId: widget.serviceId,
+          leadId: context.read<LeadContactBloc>().leadId ?? 0));
     createOrderBloc = instance<CreateOrderBloc>();
     super.initState();
   }
@@ -68,8 +71,7 @@ class _ServiceDetailsViewState extends State<ServiceDetailsView> {
               builder: (context, ServiceState state) {
                 return state.maybeMap(
                   loadedServiceDetails: (value) {
-                    return BlocConsumer(
-                        listener: (context, CreateOrderState state) {},
+                    return BlocBuilder(
                         bloc: createOrderBloc,
                         builder: (context, CreateOrderState stateOrder) {
                           return stateOrder.maybeMap(
@@ -285,7 +287,10 @@ class _ServiceDetailsViewState extends State<ServiceDetailsView> {
                       IconButton(
                           onPressed: () {
                             serviceBloc.add(ServiceEvent.getServiceDetails(
-                                serviceId: widget.serviceId));
+                                serviceId: widget.serviceId,
+                                leadId:
+                                    context.read<LeadContactBloc>().leadId ??
+                                        0));
                           },
                           icon: const Icon(Icons.refresh))
                     ],

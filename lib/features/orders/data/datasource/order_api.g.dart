@@ -89,36 +89,34 @@ class _OrdersServiceClient implements OrdersServiceClient {
   }
 
   @override
-  Future<HttpResponse<ResponseModel<List<OrderTypeModel>>>>
-      getTypesOrder() async {
+  Future<HttpResponse<ResponseModel<List<TypeModel>>>> getTypesOrder() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<ResponseModel<List<OrderTypeModel>>>>(
-            Options(
+        _setStreamType<HttpResponse<ResponseModel<List<TypeModel>>>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-                .compose(
-                  _dio.options,
-                  '/orders/types',
-                  queryParameters: queryParameters,
-                  data: _data,
-                )
-                .copyWith(
-                    baseUrl: _combineBaseUrls(
-                  _dio.options.baseUrl,
-                  baseUrl,
-                ))));
-    final value = ResponseModel<List<OrderTypeModel>>.fromJson(
+            .compose(
+              _dio.options,
+              '/orders/types',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = ResponseModel<List<TypeModel>>.fromJson(
       _result.data!,
       (json) => json is List<dynamic>
           ? json
-              .map<OrderTypeModel>(
-                  (i) => OrderTypeModel.fromJson(i as Map<String, dynamic>))
+              .map<TypeModel>(
+                  (i) => TypeModel.fromJson(i as Map<String, dynamic>))
               .toList()
           : List.empty(),
     );

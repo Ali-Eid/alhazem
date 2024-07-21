@@ -25,7 +25,7 @@ abstract class OrdersServiceClient {
   Future<HttpResponse<ResponseModel<List<StaticModel>>>> getCurrencies();
 
   @GET(Endpoints.TYPES_ORDERS)
-  Future<HttpResponse<ResponseModel<List<OrderTypeModel>>>> getTypesOrder();
+  Future<HttpResponse<ResponseModel<List<TypeModel>>>> getTypesOrder();
 
   @GET(Endpoints.ORDERS)
   Future<HttpResponse<ResponsePaginationModel<List<OrderModel>>>> getOrders({

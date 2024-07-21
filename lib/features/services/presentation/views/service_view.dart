@@ -59,7 +59,7 @@ class _ServicesViewState extends State<ServicesView> {
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisSpacing: AppSizeW.s13,
                             mainAxisSpacing: AppSizeH.s15,
-                            crossAxisCount: 6),
+                            crossAxisCount: 5),
                         itemCount: value.services.data.length,
                         itemBuilder: (context, index) {
                           return ServiceItemWidget(

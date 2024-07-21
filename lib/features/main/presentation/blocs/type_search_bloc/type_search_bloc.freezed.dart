@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'lead_contact_bloc.dart';
+part of 'type_search_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,58 +15,52 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$LeadContactEvent {
+mixin _$TypeSearchEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(InputLeadModel input) createLead,
-    required TResult Function() logoutLead,
+    required TResult Function() getTypesSearch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(InputLeadModel input)? createLead,
-    TResult? Function()? logoutLead,
+    TResult? Function()? getTypesSearch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(InputLeadModel input)? createLead,
-    TResult Function()? logoutLead,
+    TResult Function()? getTypesSearch,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_CreateLead value) createLead,
-    required TResult Function(_LogoutLead value) logoutLead,
+    required TResult Function(_GetTypesSearch value) getTypesSearch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_CreateLead value)? createLead,
-    TResult? Function(_LogoutLead value)? logoutLead,
+    TResult? Function(_GetTypesSearch value)? getTypesSearch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_CreateLead value)? createLead,
-    TResult Function(_LogoutLead value)? logoutLead,
+    TResult Function(_GetTypesSearch value)? getTypesSearch,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $LeadContactEventCopyWith<$Res> {
-  factory $LeadContactEventCopyWith(
-          LeadContactEvent value, $Res Function(LeadContactEvent) then) =
-      _$LeadContactEventCopyWithImpl<$Res, LeadContactEvent>;
+abstract class $TypeSearchEventCopyWith<$Res> {
+  factory $TypeSearchEventCopyWith(
+          TypeSearchEvent value, $Res Function(TypeSearchEvent) then) =
+      _$TypeSearchEventCopyWithImpl<$Res, TypeSearchEvent>;
 }
 
 /// @nodoc
-class _$LeadContactEventCopyWithImpl<$Res, $Val extends LeadContactEvent>
-    implements $LeadContactEventCopyWith<$Res> {
-  _$LeadContactEventCopyWithImpl(this._value, this._then);
+class _$TypeSearchEventCopyWithImpl<$Res, $Val extends TypeSearchEvent>
+    implements $TypeSearchEventCopyWith<$Res> {
+  _$TypeSearchEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -75,179 +69,35 @@ class _$LeadContactEventCopyWithImpl<$Res, $Val extends LeadContactEvent>
 }
 
 /// @nodoc
-abstract class _$$CreateLeadImplCopyWith<$Res> {
-  factory _$$CreateLeadImplCopyWith(
-          _$CreateLeadImpl value, $Res Function(_$CreateLeadImpl) then) =
-      __$$CreateLeadImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({InputLeadModel input});
-
-  $InputLeadModelCopyWith<$Res> get input;
+abstract class _$$GetTypesSearchImplCopyWith<$Res> {
+  factory _$$GetTypesSearchImplCopyWith(_$GetTypesSearchImpl value,
+          $Res Function(_$GetTypesSearchImpl) then) =
+      __$$GetTypesSearchImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$CreateLeadImplCopyWithImpl<$Res>
-    extends _$LeadContactEventCopyWithImpl<$Res, _$CreateLeadImpl>
-    implements _$$CreateLeadImplCopyWith<$Res> {
-  __$$CreateLeadImplCopyWithImpl(
-      _$CreateLeadImpl _value, $Res Function(_$CreateLeadImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? input = null,
-  }) {
-    return _then(_$CreateLeadImpl(
-      input: null == input
-          ? _value.input
-          : input // ignore: cast_nullable_to_non_nullable
-              as InputLeadModel,
-    ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $InputLeadModelCopyWith<$Res> get input {
-    return $InputLeadModelCopyWith<$Res>(_value.input, (value) {
-      return _then(_value.copyWith(input: value));
-    });
-  }
-}
-
-/// @nodoc
-
-class _$CreateLeadImpl implements _CreateLead {
-  const _$CreateLeadImpl({required this.input});
-
-  @override
-  final InputLeadModel input;
-
-  @override
-  String toString() {
-    return 'LeadContactEvent.createLead(input: $input)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$CreateLeadImpl &&
-            (identical(other.input, input) || other.input == input));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, input);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$CreateLeadImplCopyWith<_$CreateLeadImpl> get copyWith =>
-      __$$CreateLeadImplCopyWithImpl<_$CreateLeadImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(InputLeadModel input) createLead,
-    required TResult Function() logoutLead,
-  }) {
-    return createLead(input);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(InputLeadModel input)? createLead,
-    TResult? Function()? logoutLead,
-  }) {
-    return createLead?.call(input);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(InputLeadModel input)? createLead,
-    TResult Function()? logoutLead,
-    required TResult orElse(),
-  }) {
-    if (createLead != null) {
-      return createLead(input);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_CreateLead value) createLead,
-    required TResult Function(_LogoutLead value) logoutLead,
-  }) {
-    return createLead(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_CreateLead value)? createLead,
-    TResult? Function(_LogoutLead value)? logoutLead,
-  }) {
-    return createLead?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_CreateLead value)? createLead,
-    TResult Function(_LogoutLead value)? logoutLead,
-    required TResult orElse(),
-  }) {
-    if (createLead != null) {
-      return createLead(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _CreateLead implements LeadContactEvent {
-  const factory _CreateLead({required final InputLeadModel input}) =
-      _$CreateLeadImpl;
-
-  InputLeadModel get input;
-  @JsonKey(ignore: true)
-  _$$CreateLeadImplCopyWith<_$CreateLeadImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$LogoutLeadImplCopyWith<$Res> {
-  factory _$$LogoutLeadImplCopyWith(
-          _$LogoutLeadImpl value, $Res Function(_$LogoutLeadImpl) then) =
-      __$$LogoutLeadImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$LogoutLeadImplCopyWithImpl<$Res>
-    extends _$LeadContactEventCopyWithImpl<$Res, _$LogoutLeadImpl>
-    implements _$$LogoutLeadImplCopyWith<$Res> {
-  __$$LogoutLeadImplCopyWithImpl(
-      _$LogoutLeadImpl _value, $Res Function(_$LogoutLeadImpl) _then)
+class __$$GetTypesSearchImplCopyWithImpl<$Res>
+    extends _$TypeSearchEventCopyWithImpl<$Res, _$GetTypesSearchImpl>
+    implements _$$GetTypesSearchImplCopyWith<$Res> {
+  __$$GetTypesSearchImplCopyWithImpl(
+      _$GetTypesSearchImpl _value, $Res Function(_$GetTypesSearchImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$LogoutLeadImpl implements _LogoutLead {
-  const _$LogoutLeadImpl();
+class _$GetTypesSearchImpl implements _GetTypesSearch {
+  const _$GetTypesSearchImpl();
 
   @override
   String toString() {
-    return 'LeadContactEvent.logoutLead()';
+    return 'TypeSearchEvent.getTypesSearch()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LogoutLeadImpl);
+        (other.runtimeType == runtimeType && other is _$GetTypesSearchImpl);
   }
 
   @override
@@ -256,30 +106,27 @@ class _$LogoutLeadImpl implements _LogoutLead {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(InputLeadModel input) createLead,
-    required TResult Function() logoutLead,
+    required TResult Function() getTypesSearch,
   }) {
-    return logoutLead();
+    return getTypesSearch();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(InputLeadModel input)? createLead,
-    TResult? Function()? logoutLead,
+    TResult? Function()? getTypesSearch,
   }) {
-    return logoutLead?.call();
+    return getTypesSearch?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(InputLeadModel input)? createLead,
-    TResult Function()? logoutLead,
+    TResult Function()? getTypesSearch,
     required TResult orElse(),
   }) {
-    if (logoutLead != null) {
-      return logoutLead();
+    if (getTypesSearch != null) {
+      return getTypesSearch();
     }
     return orElse();
   }
@@ -287,47 +134,43 @@ class _$LogoutLeadImpl implements _LogoutLead {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_CreateLead value) createLead,
-    required TResult Function(_LogoutLead value) logoutLead,
+    required TResult Function(_GetTypesSearch value) getTypesSearch,
   }) {
-    return logoutLead(this);
+    return getTypesSearch(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_CreateLead value)? createLead,
-    TResult? Function(_LogoutLead value)? logoutLead,
+    TResult? Function(_GetTypesSearch value)? getTypesSearch,
   }) {
-    return logoutLead?.call(this);
+    return getTypesSearch?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_CreateLead value)? createLead,
-    TResult Function(_LogoutLead value)? logoutLead,
+    TResult Function(_GetTypesSearch value)? getTypesSearch,
     required TResult orElse(),
   }) {
-    if (logoutLead != null) {
-      return logoutLead(this);
+    if (getTypesSearch != null) {
+      return getTypesSearch(this);
     }
     return orElse();
   }
 }
 
-abstract class _LogoutLead implements LeadContactEvent {
-  const factory _LogoutLead() = _$LogoutLeadImpl;
+abstract class _GetTypesSearch implements TypeSearchEvent {
+  const factory _GetTypesSearch() = _$GetTypesSearchImpl;
 }
 
 /// @nodoc
-mixin _$LeadContactState {
+mixin _$TypeSearchState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(ResponseModel<CreateLeadModel> success) loaded,
-    required TResult Function() deletedLead,
+    required TResult Function(ResponseModel<List<TypeModel>> types) loaded,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -335,8 +178,7 @@ mixin _$LeadContactState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(ResponseModel<CreateLeadModel> success)? loaded,
-    TResult? Function()? deletedLead,
+    TResult? Function(ResponseModel<List<TypeModel>> types)? loaded,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -344,8 +186,7 @@ mixin _$LeadContactState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(ResponseModel<CreateLeadModel> success)? loaded,
-    TResult Function()? deletedLead,
+    TResult Function(ResponseModel<List<TypeModel>> types)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -355,7 +196,6 @@ mixin _$LeadContactState {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
-    required TResult Function(_DeletedLead value) deletedLead,
     required TResult Function(_Error value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -364,7 +204,6 @@ mixin _$LeadContactState {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_DeletedLead value)? deletedLead,
     TResult? Function(_Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -373,7 +212,6 @@ mixin _$LeadContactState {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
-    TResult Function(_DeletedLead value)? deletedLead,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) =>
@@ -381,16 +219,16 @@ mixin _$LeadContactState {
 }
 
 /// @nodoc
-abstract class $LeadContactStateCopyWith<$Res> {
-  factory $LeadContactStateCopyWith(
-          LeadContactState value, $Res Function(LeadContactState) then) =
-      _$LeadContactStateCopyWithImpl<$Res, LeadContactState>;
+abstract class $TypeSearchStateCopyWith<$Res> {
+  factory $TypeSearchStateCopyWith(
+          TypeSearchState value, $Res Function(TypeSearchState) then) =
+      _$TypeSearchStateCopyWithImpl<$Res, TypeSearchState>;
 }
 
 /// @nodoc
-class _$LeadContactStateCopyWithImpl<$Res, $Val extends LeadContactState>
-    implements $LeadContactStateCopyWith<$Res> {
-  _$LeadContactStateCopyWithImpl(this._value, this._then);
+class _$TypeSearchStateCopyWithImpl<$Res, $Val extends TypeSearchState>
+    implements $TypeSearchStateCopyWith<$Res> {
+  _$TypeSearchStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -407,7 +245,7 @@ abstract class _$$InitialImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$InitialImplCopyWithImpl<$Res>
-    extends _$LeadContactStateCopyWithImpl<$Res, _$InitialImpl>
+    extends _$TypeSearchStateCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
@@ -421,7 +259,7 @@ class _$InitialImpl implements _Initial {
 
   @override
   String toString() {
-    return 'LeadContactState.initial()';
+    return 'TypeSearchState.initial()';
   }
 
   @override
@@ -438,8 +276,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(ResponseModel<CreateLeadModel> success) loaded,
-    required TResult Function() deletedLead,
+    required TResult Function(ResponseModel<List<TypeModel>> types) loaded,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -450,8 +287,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(ResponseModel<CreateLeadModel> success)? loaded,
-    TResult? Function()? deletedLead,
+    TResult? Function(ResponseModel<List<TypeModel>> types)? loaded,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -462,8 +298,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(ResponseModel<CreateLeadModel> success)? loaded,
-    TResult Function()? deletedLead,
+    TResult Function(ResponseModel<List<TypeModel>> types)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -479,7 +314,6 @@ class _$InitialImpl implements _Initial {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
-    required TResult Function(_DeletedLead value) deletedLead,
     required TResult Function(_Error value) error,
   }) {
     return initial(this);
@@ -491,7 +325,6 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_DeletedLead value)? deletedLead,
     TResult? Function(_Error value)? error,
   }) {
     return initial?.call(this);
@@ -503,7 +336,6 @@ class _$InitialImpl implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
-    TResult Function(_DeletedLead value)? deletedLead,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -514,7 +346,7 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements LeadContactState {
+abstract class _Initial implements TypeSearchState {
   const factory _Initial() = _$InitialImpl;
 }
 
@@ -527,7 +359,7 @@ abstract class _$$LoadingImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$LeadContactStateCopyWithImpl<$Res, _$LoadingImpl>
+    extends _$TypeSearchStateCopyWithImpl<$Res, _$LoadingImpl>
     implements _$$LoadingImplCopyWith<$Res> {
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
@@ -541,7 +373,7 @@ class _$LoadingImpl implements _Loading {
 
   @override
   String toString() {
-    return 'LeadContactState.loading()';
+    return 'TypeSearchState.loading()';
   }
 
   @override
@@ -558,8 +390,7 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(ResponseModel<CreateLeadModel> success) loaded,
-    required TResult Function() deletedLead,
+    required TResult Function(ResponseModel<List<TypeModel>> types) loaded,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -570,8 +401,7 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(ResponseModel<CreateLeadModel> success)? loaded,
-    TResult? Function()? deletedLead,
+    TResult? Function(ResponseModel<List<TypeModel>> types)? loaded,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -582,8 +412,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(ResponseModel<CreateLeadModel> success)? loaded,
-    TResult Function()? deletedLead,
+    TResult Function(ResponseModel<List<TypeModel>> types)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -599,7 +428,6 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
-    required TResult Function(_DeletedLead value) deletedLead,
     required TResult Function(_Error value) error,
   }) {
     return loading(this);
@@ -611,7 +439,6 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_DeletedLead value)? deletedLead,
     TResult? Function(_Error value)? error,
   }) {
     return loading?.call(this);
@@ -623,7 +450,6 @@ class _$LoadingImpl implements _Loading {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
-    TResult Function(_DeletedLead value)? deletedLead,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -634,7 +460,7 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements LeadContactState {
+abstract class _Loading implements TypeSearchState {
   const factory _Loading() = _$LoadingImpl;
 }
 
@@ -644,14 +470,14 @@ abstract class _$$LoadedImplCopyWith<$Res> {
           _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
       __$$LoadedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({ResponseModel<CreateLeadModel> success});
+  $Res call({ResponseModel<List<TypeModel>> types});
 
-  $ResponseModelCopyWith<CreateLeadModel, $Res> get success;
+  $ResponseModelCopyWith<List<TypeModel>, $Res> get types;
 }
 
 /// @nodoc
 class __$$LoadedImplCopyWithImpl<$Res>
-    extends _$LeadContactStateCopyWithImpl<$Res, _$LoadedImpl>
+    extends _$TypeSearchStateCopyWithImpl<$Res, _$LoadedImpl>
     implements _$$LoadedImplCopyWith<$Res> {
   __$$LoadedImplCopyWithImpl(
       _$LoadedImpl _value, $Res Function(_$LoadedImpl) _then)
@@ -660,22 +486,21 @@ class __$$LoadedImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? success = null,
+    Object? types = null,
   }) {
     return _then(_$LoadedImpl(
-      success: null == success
-          ? _value.success
-          : success // ignore: cast_nullable_to_non_nullable
-              as ResponseModel<CreateLeadModel>,
+      types: null == types
+          ? _value.types
+          : types // ignore: cast_nullable_to_non_nullable
+              as ResponseModel<List<TypeModel>>,
     ));
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $ResponseModelCopyWith<CreateLeadModel, $Res> get success {
-    return $ResponseModelCopyWith<CreateLeadModel, $Res>(_value.success,
-        (value) {
-      return _then(_value.copyWith(success: value));
+  $ResponseModelCopyWith<List<TypeModel>, $Res> get types {
+    return $ResponseModelCopyWith<List<TypeModel>, $Res>(_value.types, (value) {
+      return _then(_value.copyWith(types: value));
     });
   }
 }
@@ -683,14 +508,14 @@ class __$$LoadedImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$LoadedImpl implements _Loaded {
-  const _$LoadedImpl({required this.success});
+  const _$LoadedImpl({required this.types});
 
   @override
-  final ResponseModel<CreateLeadModel> success;
+  final ResponseModel<List<TypeModel>> types;
 
   @override
   String toString() {
-    return 'LeadContactState.loaded(success: $success)';
+    return 'TypeSearchState.loaded(types: $types)';
   }
 
   @override
@@ -698,11 +523,11 @@ class _$LoadedImpl implements _Loaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoadedImpl &&
-            (identical(other.success, success) || other.success == success));
+            (identical(other.types, types) || other.types == types));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, success);
+  int get hashCode => Object.hash(runtimeType, types);
 
   @JsonKey(ignore: true)
   @override
@@ -715,11 +540,10 @@ class _$LoadedImpl implements _Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(ResponseModel<CreateLeadModel> success) loaded,
-    required TResult Function() deletedLead,
+    required TResult Function(ResponseModel<List<TypeModel>> types) loaded,
     required TResult Function(String message) error,
   }) {
-    return loaded(success);
+    return loaded(types);
   }
 
   @override
@@ -727,11 +551,10 @@ class _$LoadedImpl implements _Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(ResponseModel<CreateLeadModel> success)? loaded,
-    TResult? Function()? deletedLead,
+    TResult? Function(ResponseModel<List<TypeModel>> types)? loaded,
     TResult? Function(String message)? error,
   }) {
-    return loaded?.call(success);
+    return loaded?.call(types);
   }
 
   @override
@@ -739,13 +562,12 @@ class _$LoadedImpl implements _Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(ResponseModel<CreateLeadModel> success)? loaded,
-    TResult Function()? deletedLead,
+    TResult Function(ResponseModel<List<TypeModel>> types)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(success);
+      return loaded(types);
     }
     return orElse();
   }
@@ -756,7 +578,6 @@ class _$LoadedImpl implements _Loaded {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
-    required TResult Function(_DeletedLead value) deletedLead,
     required TResult Function(_Error value) error,
   }) {
     return loaded(this);
@@ -768,7 +589,6 @@ class _$LoadedImpl implements _Loaded {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_DeletedLead value)? deletedLead,
     TResult? Function(_Error value)? error,
   }) {
     return loaded?.call(this);
@@ -780,7 +600,6 @@ class _$LoadedImpl implements _Loaded {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
-    TResult Function(_DeletedLead value)? deletedLead,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -791,134 +610,14 @@ class _$LoadedImpl implements _Loaded {
   }
 }
 
-abstract class _Loaded implements LeadContactState {
-  const factory _Loaded(
-      {required final ResponseModel<CreateLeadModel> success}) = _$LoadedImpl;
+abstract class _Loaded implements TypeSearchState {
+  const factory _Loaded({required final ResponseModel<List<TypeModel>> types}) =
+      _$LoadedImpl;
 
-  ResponseModel<CreateLeadModel> get success;
+  ResponseModel<List<TypeModel>> get types;
   @JsonKey(ignore: true)
   _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$DeletedLeadImplCopyWith<$Res> {
-  factory _$$DeletedLeadImplCopyWith(
-          _$DeletedLeadImpl value, $Res Function(_$DeletedLeadImpl) then) =
-      __$$DeletedLeadImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$DeletedLeadImplCopyWithImpl<$Res>
-    extends _$LeadContactStateCopyWithImpl<$Res, _$DeletedLeadImpl>
-    implements _$$DeletedLeadImplCopyWith<$Res> {
-  __$$DeletedLeadImplCopyWithImpl(
-      _$DeletedLeadImpl _value, $Res Function(_$DeletedLeadImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$DeletedLeadImpl implements _DeletedLead {
-  const _$DeletedLeadImpl();
-
-  @override
-  String toString() {
-    return 'LeadContactState.deletedLead()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$DeletedLeadImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(ResponseModel<CreateLeadModel> success) loaded,
-    required TResult Function() deletedLead,
-    required TResult Function(String message) error,
-  }) {
-    return deletedLead();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(ResponseModel<CreateLeadModel> success)? loaded,
-    TResult? Function()? deletedLead,
-    TResult? Function(String message)? error,
-  }) {
-    return deletedLead?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(ResponseModel<CreateLeadModel> success)? loaded,
-    TResult Function()? deletedLead,
-    TResult Function(String message)? error,
-    required TResult orElse(),
-  }) {
-    if (deletedLead != null) {
-      return deletedLead();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_DeletedLead value) deletedLead,
-    required TResult Function(_Error value) error,
-  }) {
-    return deletedLead(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_DeletedLead value)? deletedLead,
-    TResult? Function(_Error value)? error,
-  }) {
-    return deletedLead?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_DeletedLead value)? deletedLead,
-    TResult Function(_Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (deletedLead != null) {
-      return deletedLead(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _DeletedLead implements LeadContactState {
-  const factory _DeletedLead() = _$DeletedLeadImpl;
 }
 
 /// @nodoc
@@ -932,7 +631,7 @@ abstract class _$$ErrorImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$ErrorImplCopyWithImpl<$Res>
-    extends _$LeadContactStateCopyWithImpl<$Res, _$ErrorImpl>
+    extends _$TypeSearchStateCopyWithImpl<$Res, _$ErrorImpl>
     implements _$$ErrorImplCopyWith<$Res> {
   __$$ErrorImplCopyWithImpl(
       _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
@@ -962,7 +661,7 @@ class _$ErrorImpl implements _Error {
 
   @override
   String toString() {
-    return 'LeadContactState.error(message: $message)';
+    return 'TypeSearchState.error(message: $message)';
   }
 
   @override
@@ -987,8 +686,7 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(ResponseModel<CreateLeadModel> success) loaded,
-    required TResult Function() deletedLead,
+    required TResult Function(ResponseModel<List<TypeModel>> types) loaded,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -999,8 +697,7 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(ResponseModel<CreateLeadModel> success)? loaded,
-    TResult? Function()? deletedLead,
+    TResult? Function(ResponseModel<List<TypeModel>> types)? loaded,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -1011,8 +708,7 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(ResponseModel<CreateLeadModel> success)? loaded,
-    TResult Function()? deletedLead,
+    TResult Function(ResponseModel<List<TypeModel>> types)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -1028,7 +724,6 @@ class _$ErrorImpl implements _Error {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
-    required TResult Function(_DeletedLead value) deletedLead,
     required TResult Function(_Error value) error,
   }) {
     return error(this);
@@ -1040,7 +735,6 @@ class _$ErrorImpl implements _Error {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_DeletedLead value)? deletedLead,
     TResult? Function(_Error value)? error,
   }) {
     return error?.call(this);
@@ -1052,7 +746,6 @@ class _$ErrorImpl implements _Error {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
-    TResult Function(_DeletedLead value)? deletedLead,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -1063,7 +756,7 @@ class _$ErrorImpl implements _Error {
   }
 }
 
-abstract class _Error implements LeadContactState {
+abstract class _Error implements TypeSearchState {
   const factory _Error({required final String message}) = _$ErrorImpl;
 
   String get message;

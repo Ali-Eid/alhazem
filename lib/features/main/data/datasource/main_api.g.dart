@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'service_api.dart';
+part of 'main_api.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -8,8 +8,8 @@ part of 'service_api.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
-class _ServicesServiceClient implements ServicesServiceClient {
-  _ServicesServiceClient(
+class _MainServiceClient implements MainServiceClient {
+  _MainServiceClient(
     this._dio, {
     this.baseUrl,
   }) {
@@ -21,14 +21,106 @@ class _ServicesServiceClient implements ServicesServiceClient {
   String? baseUrl;
 
   @override
-  Future<HttpResponse<ResponsePaginationModel<List<ServiceModel>>>>
-      getServices({
-    required int type,
+  Future<HttpResponse<ResponsePaginationModel<List<ContactModel>>>>
+      searchContacts({
+    required String type,
+    required String name,
     required int page,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
-      r'type': type,
+      r'key': type,
+      r'name': name,
+      r'page': page,
+    };
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<
+        HttpResponse<ResponsePaginationModel<List<ContactModel>>>>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/search',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        ))));
+    final value = ResponsePaginationModel<List<ContactModel>>.fromJson(
+      _result.data!,
+      (json) => json is List<dynamic>
+          ? json
+              .map<ContactModel>(
+                  (i) => ContactModel.fromJson(i as Map<String, dynamic>))
+              .toList()
+          : List.empty(),
+    );
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
+  @override
+  Future<HttpResponse<ResponsePaginationModel<List<OrderModel>>>> searchOrders({
+    required String type,
+    required String name,
+    required int page,
+  }) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'key': type,
+      r'name': name,
+      r'page': page,
+    };
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponsePaginationModel<List<OrderModel>>>>(
+            Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+                .compose(
+                  _dio.options,
+                  '/search',
+                  queryParameters: queryParameters,
+                  data: _data,
+                )
+                .copyWith(
+                    baseUrl: _combineBaseUrls(
+                  _dio.options.baseUrl,
+                  baseUrl,
+                ))));
+    final value = ResponsePaginationModel<List<OrderModel>>.fromJson(
+      _result.data!,
+      (json) => json is List<dynamic>
+          ? json
+              .map<OrderModel>(
+                  (i) => OrderModel.fromJson(i as Map<String, dynamic>))
+              .toList()
+          : List.empty(),
+    );
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
+  @override
+  Future<HttpResponse<ResponsePaginationModel<List<ServiceModel>>>>
+      searchServices({
+    required String type,
+    required String name,
+    required int page,
+  }) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'key': type,
+      r'name': name,
       r'page': page,
     };
     final _headers = <String, dynamic>{};
@@ -41,7 +133,7 @@ class _ServicesServiceClient implements ServicesServiceClient {
     )
         .compose(
           _dio.options,
-          '/services',
+          '/search',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -64,105 +156,20 @@ class _ServicesServiceClient implements ServicesServiceClient {
   }
 
   @override
-  Future<HttpResponse<ResponseModel<List<TypeServiceModel>>>>
-      getTypeServices() async {
+  Future<HttpResponse<ResponseModel<List<TypeModel>>>> typesSearch() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<ResponseModel<List<TypeServiceModel>>>>(
-            Options(
+        _setStreamType<HttpResponse<ResponseModel<List<TypeModel>>>>(Options(
       method: 'GET',
-      headers: _headers,
-      extra: _extra,
-    )
-                .compose(
-                  _dio.options,
-                  '/get_categories',
-                  queryParameters: queryParameters,
-                  data: _data,
-                )
-                .copyWith(
-                    baseUrl: _combineBaseUrls(
-                  _dio.options.baseUrl,
-                  baseUrl,
-                ))));
-    final value = ResponseModel<List<TypeServiceModel>>.fromJson(
-      _result.data!,
-      (json) => json is List<dynamic>
-          ? json
-              .map<TypeServiceModel>(
-                  (i) => TypeServiceModel.fromJson(i as Map<String, dynamic>))
-              .toList()
-          : List.empty(),
-    );
-    final httpResponse = HttpResponse(value, _result);
-    return httpResponse;
-  }
-
-  @override
-  Future<HttpResponse<ResponseModel<List<ServiceDetailsModel>>>>
-      getServiceDetails({
-    required int serviceId,
-    required int leadId,
-  }) async {
-    final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'lead_id': leadId};
-    final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<ResponseModel<List<ServiceDetailsModel>>>>(
-            Options(
-      method: 'GET',
-      headers: _headers,
-      extra: _extra,
-    )
-                .compose(
-                  _dio.options,
-                  '/services/${serviceId}',
-                  queryParameters: queryParameters,
-                  data: _data,
-                )
-                .copyWith(
-                    baseUrl: _combineBaseUrls(
-                  _dio.options.baseUrl,
-                  baseUrl,
-                ))));
-    final value = ResponseModel<List<ServiceDetailsModel>>.fromJson(
-      _result.data!,
-      (json) => json is List<dynamic>
-          ? json
-              .map<ServiceDetailsModel>((i) =>
-                  ServiceDetailsModel.fromJson(i as Map<String, dynamic>))
-              .toList()
-          : List.empty(),
-    );
-    final httpResponse = HttpResponse(value, _result);
-    return httpResponse;
-  }
-
-  @override
-  Future<HttpResponse<ResponseModel<CheckPriceModel>>> checkPrice({
-    required int serviceId,
-    required List<int> variantIds,
-  }) async {
-    final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    final _data = {
-      'service_id': serviceId,
-      'variant_ids': variantIds,
-    };
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<ResponseModel<CheckPriceModel>>>(Options(
-      method: 'POST',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              '/check_price',
+              '/types',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -171,9 +178,14 @@ class _ServicesServiceClient implements ServicesServiceClient {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = ResponseModel<CheckPriceModel>.fromJson(
+    final value = ResponseModel<List<TypeModel>>.fromJson(
       _result.data!,
-      (json) => CheckPriceModel.fromJson(json as Map<String, dynamic>),
+      (json) => json is List<dynamic>
+          ? json
+              .map<TypeModel>(
+                  (i) => TypeModel.fromJson(i as Map<String, dynamic>))
+              .toList()
+          : List.empty(),
     );
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;

@@ -4,10 +4,10 @@ import 'package:alhazem/core/routers/routes_manager.dart';
 import 'package:alhazem/core/widgets/toast.dart';
 import 'package:alhazem/features/auth/domain/models/inputs_model/input_model.dart';
 import 'package:alhazem/features/auth/presentation/blocs/auth_bloc/auth_bloc.dart';
-import 'package:alhazem/features/auth/presentation/widgets/auth_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:toastification/toastification.dart';
 
@@ -59,8 +59,10 @@ class _LoginViewState extends State<LoginView> {
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: AppSizeW.s60),
                     child: LoginFieldWidget(
+                      keyboardType: TextInputType.emailAddress,
+                      obscureText: false,
                       controller: emailController,
-                      hintText: "اسم المستخدم...",
+                      labelText: "اسم المستخدم",
                       prefixIcon: const Icon(Icons.email),
                       validator: (value) {
                         return (value != null && value.isEmpty)
@@ -73,10 +75,11 @@ class _LoginViewState extends State<LoginView> {
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: AppSizeW.s60),
                     child: LoginFieldWidget(
+                      keyboardType: TextInputType.text,
+                      obscureText: true,
                       controller: passwordController,
                       prefixIcon: const Icon(Icons.lock),
-                      hintText: "كلمة المرور...",
-                      obscureText: true,
+                      labelText: "كلمة المرور",
                       validator: (value) {
                         return (value != null && value.isEmpty)
                             ? 'الرجاء ادخال كلمة المرور'
@@ -115,21 +118,20 @@ class _LoginViewState extends State<LoginView> {
                             );
                           },
                           orElse: () {
-                            return AuthButtonWidget(
-                              title: "تسجيل الدخول",
-                              onPressed: () {
-                                if (_formKey.currentState!.validate()) {
-                                  authBloc.add(
-                                    AuthEvent.login(
-                                      input: LoginInputModel(
-                                          email: emailController.text,
-                                          password: passwordController.text),
-                                    ),
-                                  );
-                                  // context.goNamed(RoutesNames.servicesRoute);
-                                }
-                              },
-                            );
+                            return ElevatedButton(
+                                onPressed: () {
+                                  if (_formKey.currentState!.validate()) {
+                                    authBloc.add(
+                                      AuthEvent.login(
+                                        input: LoginInputModel(
+                                            email: emailController.text,
+                                            password: passwordController.text),
+                                      ),
+                                    );
+                                    // context.goNamed(RoutesNames.servicesRoute);
+                                  }
+                                },
+                                child: const Text("تسجيل الدخول"));
                           },
                         );
                       },
@@ -139,15 +141,10 @@ class _LoginViewState extends State<LoginView> {
               ),
             ),
             Expanded(
-              child: Container(
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage(
-                          ImageAssets.authBackground,
-                        ),
-                        fit: BoxFit.cover)),
-              ),
-            ),
+                child: SvgPicture.asset(
+              ImageAssets.logo,
+              fit: BoxFit.cover,
+            )),
           ],
         ),
       ),

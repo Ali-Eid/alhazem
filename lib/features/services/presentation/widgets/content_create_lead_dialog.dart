@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/constants/values_manager.dart';
 import '../../../contacts/domain/models/input_lead_model/input_lead_model.dart';
 import '../../../contacts/presentation/blocs/lead_contact_bloc/lead_contact_bloc.dart';
+import '../../../contacts/presentation/widgets/input_field_widget.dart';
 
 class ContentCreateLeadDialog extends StatefulWidget {
   const ContentCreateLeadDialog({
@@ -26,30 +28,26 @@ class _ContentCreateLeadDialogState extends State<ContentCreateLeadDialog> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          TextFormField(
-            controller: nameController,
-            autovalidateMode: AutovalidateMode.onUserInteraction,
-            decoration: const InputDecoration(labelText: 'الاسم'),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'الرجاء ادخال الأسم';
-              }
-              return null;
-            },
-          ),
+          InputFieldWidget(
+              validator: (value) {
+                if (value != null && value.isEmpty) {
+                  return "الأسم لا يمكن ان يكون فارغ";
+                }
+                return null;
+              },
+              labelText: "الأسم",
+              controller: nameController),
           SizedBox(height: AppSizeH.s15),
-          TextFormField(
-            controller: phoneController,
-            autovalidateMode: AutovalidateMode.onUserInteraction,
-            decoration: const InputDecoration(labelText: 'رقم الهاتف'),
-            keyboardType: TextInputType.phone,
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'الرجاء ادخال رقم الهاتف';
-              }
-              return null;
-            },
-          ),
+          InputFieldWidget(
+              validator: (value) {
+                if (value != null && value.isEmpty) {
+                  return "رقم الهاتف لا يمكن ان يكون فارغ";
+                }
+                return null;
+              },
+              labelText: "رقم الهاتف",
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+              controller: phoneController),
           SizedBox(height: AppSizeH.s15),
           BlocBuilder(
             bloc: context.read<LeadContactBloc>(),

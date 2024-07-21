@@ -6,14 +6,13 @@ part of 'order_type_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$OrderTypeModelImpl _$$OrderTypeModelImplFromJson(Map<String, dynamic> json) =>
-    _$OrderTypeModelImpl(
+_$TypeModelImpl _$$TypeModelImplFromJson(Map<String, dynamic> json) =>
+    _$TypeModelImpl(
       key: json['key'] as String? ?? "",
       value: json['value'] as String? ?? "",
     );
 
-Map<String, dynamic> _$$OrderTypeModelImplToJson(
-        _$OrderTypeModelImpl instance) =>
+Map<String, dynamic> _$$TypeModelImplToJson(_$TypeModelImpl instance) =>
     <String, dynamic>{
       'key': instance.key,
       'value': instance.value,

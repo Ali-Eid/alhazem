@@ -14,34 +14,33 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-OrderTypeModel _$OrderTypeModelFromJson(Map<String, dynamic> json) {
-  return _OrderTypeModel.fromJson(json);
+TypeModel _$TypeModelFromJson(Map<String, dynamic> json) {
+  return _TypeModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$OrderTypeModel {
+mixin _$TypeModel {
   String get key => throw _privateConstructorUsedError;
   String get value => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $OrderTypeModelCopyWith<OrderTypeModel> get copyWith =>
+  $TypeModelCopyWith<TypeModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $OrderTypeModelCopyWith<$Res> {
-  factory $OrderTypeModelCopyWith(
-          OrderTypeModel value, $Res Function(OrderTypeModel) then) =
-      _$OrderTypeModelCopyWithImpl<$Res, OrderTypeModel>;
+abstract class $TypeModelCopyWith<$Res> {
+  factory $TypeModelCopyWith(TypeModel value, $Res Function(TypeModel) then) =
+      _$TypeModelCopyWithImpl<$Res, TypeModel>;
   @useResult
   $Res call({String key, String value});
 }
 
 /// @nodoc
-class _$OrderTypeModelCopyWithImpl<$Res, $Val extends OrderTypeModel>
-    implements $OrderTypeModelCopyWith<$Res> {
-  _$OrderTypeModelCopyWithImpl(this._value, this._then);
+class _$TypeModelCopyWithImpl<$Res, $Val extends TypeModel>
+    implements $TypeModelCopyWith<$Res> {
+  _$TypeModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -68,22 +67,22 @@ class _$OrderTypeModelCopyWithImpl<$Res, $Val extends OrderTypeModel>
 }
 
 /// @nodoc
-abstract class _$$OrderTypeModelImplCopyWith<$Res>
-    implements $OrderTypeModelCopyWith<$Res> {
-  factory _$$OrderTypeModelImplCopyWith(_$OrderTypeModelImpl value,
-          $Res Function(_$OrderTypeModelImpl) then) =
-      __$$OrderTypeModelImplCopyWithImpl<$Res>;
+abstract class _$$TypeModelImplCopyWith<$Res>
+    implements $TypeModelCopyWith<$Res> {
+  factory _$$TypeModelImplCopyWith(
+          _$TypeModelImpl value, $Res Function(_$TypeModelImpl) then) =
+      __$$TypeModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String key, String value});
 }
 
 /// @nodoc
-class __$$OrderTypeModelImplCopyWithImpl<$Res>
-    extends _$OrderTypeModelCopyWithImpl<$Res, _$OrderTypeModelImpl>
-    implements _$$OrderTypeModelImplCopyWith<$Res> {
-  __$$OrderTypeModelImplCopyWithImpl(
-      _$OrderTypeModelImpl _value, $Res Function(_$OrderTypeModelImpl) _then)
+class __$$TypeModelImplCopyWithImpl<$Res>
+    extends _$TypeModelCopyWithImpl<$Res, _$TypeModelImpl>
+    implements _$$TypeModelImplCopyWith<$Res> {
+  __$$TypeModelImplCopyWithImpl(
+      _$TypeModelImpl _value, $Res Function(_$TypeModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -92,7 +91,7 @@ class __$$OrderTypeModelImplCopyWithImpl<$Res>
     Object? key = null,
     Object? value = null,
   }) {
-    return _then(_$OrderTypeModelImpl(
+    return _then(_$TypeModelImpl(
       key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
@@ -107,11 +106,11 @@ class __$$OrderTypeModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$OrderTypeModelImpl implements _OrderTypeModel {
-  _$OrderTypeModelImpl({this.key = "", this.value = ""});
+class _$TypeModelImpl implements _TypeModel {
+  _$TypeModelImpl({this.key = "", this.value = ""});
 
-  factory _$OrderTypeModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$OrderTypeModelImplFromJson(json);
+  factory _$TypeModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TypeModelImplFromJson(json);
 
   @override
   @JsonKey()
@@ -122,14 +121,14 @@ class _$OrderTypeModelImpl implements _OrderTypeModel {
 
   @override
   String toString() {
-    return 'OrderTypeModel(key: $key, value: $value)';
+    return 'TypeModel(key: $key, value: $value)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$OrderTypeModelImpl &&
+            other is _$TypeModelImpl &&
             (identical(other.key, key) || other.key == key) &&
             (identical(other.value, value) || other.value == value));
   }
@@ -141,24 +140,22 @@ class _$OrderTypeModelImpl implements _OrderTypeModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$OrderTypeModelImplCopyWith<_$OrderTypeModelImpl> get copyWith =>
-      __$$OrderTypeModelImplCopyWithImpl<_$OrderTypeModelImpl>(
-          this, _$identity);
+  _$$TypeModelImplCopyWith<_$TypeModelImpl> get copyWith =>
+      __$$TypeModelImplCopyWithImpl<_$TypeModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$OrderTypeModelImplToJson(
+    return _$$TypeModelImplToJson(
       this,
     );
   }
 }
 
-abstract class _OrderTypeModel implements OrderTypeModel {
-  factory _OrderTypeModel({final String key, final String value}) =
-      _$OrderTypeModelImpl;
+abstract class _TypeModel implements TypeModel {
+  factory _TypeModel({final String key, final String value}) = _$TypeModelImpl;
 
-  factory _OrderTypeModel.fromJson(Map<String, dynamic> json) =
-      _$OrderTypeModelImpl.fromJson;
+  factory _TypeModel.fromJson(Map<String, dynamic> json) =
+      _$TypeModelImpl.fromJson;
 
   @override
   String get key;
@@ -166,6 +163,6 @@ abstract class _OrderTypeModel implements OrderTypeModel {
   String get value;
   @override
   @JsonKey(ignore: true)
-  _$$OrderTypeModelImplCopyWith<_$OrderTypeModelImpl> get copyWith =>
+  _$$TypeModelImplCopyWith<_$TypeModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

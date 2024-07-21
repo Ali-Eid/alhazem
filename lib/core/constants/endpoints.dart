@@ -32,6 +32,7 @@ class Endpoints {
   static const String CONTACTS = "/contacts";
 
   //Search
+  static const String TYPES_SEARCH = "/types";
   static const String SEARCH = "/search";
 
   //Currencies

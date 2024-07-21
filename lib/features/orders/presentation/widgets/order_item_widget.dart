@@ -158,58 +158,59 @@ class _OrderItemWidgetState extends State<OrderItemWidget> {
                 ),
               ),
             ),
-            widget.model.state == OrderStatus.sale.name &&
-                    inputPaymentCubit.total > inputPaymentCubit.totalPaid
-                ? Padding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: AppSizeW.s6, vertical: AppSizeH.s10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Tooltip(
-                          message: "اضافة دفعة",
-                          child: InkWell(
-                            onTap: () {
-                              showDialog(
-                                context: context,
-                                builder: (_) {
-                                  return AlertDialogWidget(
-                                    title: "اضافة دفعة",
-                                    content: SizedBox(
-                                      width: AppSizeW.s312,
-                                      height: AppSizeH.s425,
-                                      child: BlocProvider.value(
-                                        value: inputPaymentCubit,
-                                        child: CreatePaymentWidget(
-                                          isRoot: true,
-                                          orderId: widget.model.id,
+            widget.model.state == OrderStatus.sale.name
+                ? inputPaymentCubit.total > inputPaymentCubit.totalPaid
+                    ? Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: AppSizeW.s6, vertical: AppSizeH.s10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Tooltip(
+                              message: "اضافة دفعة",
+                              child: InkWell(
+                                onTap: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (_) {
+                                      return AlertDialogWidget(
+                                        title: "اضافة دفعة",
+                                        content: SizedBox(
+                                          width: AppSizeW.s312,
+                                          height: AppSizeH.s425,
+                                          child: BlocProvider.value(
+                                            value: inputPaymentCubit,
+                                            child: CreatePaymentWidget(
+                                              isRoot: true,
+                                              orderId: widget.model.id,
+                                            ),
+                                          ),
                                         ),
-                                      ),
-                                    ),
+                                      );
+                                    },
                                   );
                                 },
-                              );
-                            },
-                            child: Container(
-                              height: AppSizeW.s35,
-                              width: AppSizeW.s35,
-                              padding: EdgeInsets.all(AppSizeW.s6),
-                              decoration: BoxDecoration(
-                                color: ColorManager.primary,
-                                shape: BoxShape.circle,
+                                child: Container(
+                                  height: AppSizeW.s35,
+                                  width: AppSizeW.s35,
+                                  padding: EdgeInsets.all(AppSizeW.s6),
+                                  decoration: BoxDecoration(
+                                    color: ColorManager.primary,
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: Image(
+                                    image: AssetImage(ImageAssets.payment),
+                                    color: ColorManager.white,
+                                    fit: BoxFit.fill,
+                                    filterQuality: FilterQuality.high,
+                                  ),
+                                ),
                               ),
-                              child: Image(
-                                image: AssetImage(ImageAssets.payment),
-                                color: ColorManager.white,
-                                fit: BoxFit.fill,
-                                filterQuality: FilterQuality.high,
-                              ),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  )
+                            )
+                          ],
+                        ),
+                      )
+                    : const SizedBox()
                 : const SizedBox()
           ],
         );
@@ -313,7 +314,7 @@ class _CreatePaymentWidgetState extends State<CreatePaymentWidget> {
                       bloc: context.read<InputPaymentCubit>(),
                       builder: (context, state) {
                         return Text(
-                          "${context.read<InputPaymentCubit>().totalPaid}",
+                          "${context.read<InputPaymentCubit>().remainingTotal}",
                           style: Theme.of(context).textTheme.displaySmall,
                         );
                       },
@@ -373,7 +374,7 @@ class _CreatePaymentWidgetState extends State<CreatePaymentWidget> {
                       bloc: context.read<InputPaymentCubit>(),
                       builder: (context, state) {
                         return Text(
-                          "${context.read<InputPaymentCubit>().remainingTotal}",
+                          "${context.read<InputPaymentCubit>().totalPaid}",
                           style: Theme.of(context).textTheme.headlineSmall,
                         );
                       },

@@ -26,11 +26,21 @@ class _OrdersViewState extends State<OrdersView> {
 
   @override
   void initState() {
-    ordersBloc = instance<OrdersBloc>()
-      ..add(OrdersEvent.getOrders(
-          type:
-              context.read<CurrenciesBloc>().orderTypes.first.key.toLowerCase(),
-          page: selectedPageNumber));
+    if (context.read<CurrenciesBloc>().orderTypes.isEmpty) {
+      context.read<CurrenciesBloc>().add(const CurrenciesEvent.getOrderTypes());
+      ordersBloc = instance<OrdersBloc>();
+    } else {
+      ordersBloc = instance<OrdersBloc>()
+        ..add(OrdersEvent.getOrders(
+            type: context
+                .read<CurrenciesBloc>()
+                .orderTypes
+                .first
+                .key
+                .toLowerCase(),
+            page: selectedPageNumber));
+    }
+
     super.initState();
   }
 

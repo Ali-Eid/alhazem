@@ -49,7 +49,12 @@ class _TypesServicesViewState extends State<TypesServicesView> {
             return Column(
               children: [
                 ///section for add lead before explore the services
-                const LeadStatusWidget(),
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    LeadStatusWidget(),
+                  ],
+                ),
                 Expanded(
                   child: GridView.builder(
                     shrinkWrap: true,

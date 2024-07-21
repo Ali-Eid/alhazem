@@ -55,7 +55,7 @@ class ServiceBloc extends Bloc<ServiceEvent, ServiceState> {
         getServiceDetails: (value) async {
           emit(const ServiceState.loading());
           final failureOrSuccess = await getServicesDetailsUsecase
-              .execute((serviceId: value.serviceId));
+              .execute((serviceId: value.serviceId, leadId: value.leadId));
           failureOrSuccess.when(
             (success) {
               emit(ServiceState.loadedServiceDetails(services: success));

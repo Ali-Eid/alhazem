@@ -17,8 +17,7 @@ abstract class OrderRepository {
 
   Future<Result<ResponseModel<List<StaticModel>>, FailureModel>>
       getCurrencies();
-  Future<Result<ResponseModel<List<OrderTypeModel>>, FailureModel>>
-      getOrderTypes();
+  Future<Result<ResponseModel<List<TypeModel>>, FailureModel>> getOrderTypes();
 
   Future<Result<ResponsePaginationModel<List<OrderModel>>, FailureModel>>
       getOrders({required String type, required int page});

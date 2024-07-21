@@ -28,7 +28,10 @@ abstract class ServicesServiceClient {
 
   @GET(Endpoints.SERVICES_DETAILS)
   Future<HttpResponse<ResponseModel<List<ServiceDetailsModel>>>>
-      getServiceDetails({@Path("id") required int serviceId});
+      getServiceDetails({
+    @Path("id") required int serviceId,
+    @Query("lead_id") required int leadId,
+  });
 
   @POST(Endpoints.CHECK_PRICE)
   Future<HttpResponse<ResponseModel<CheckPriceModel>>> checkPrice({

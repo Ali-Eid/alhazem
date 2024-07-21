@@ -1,64 +1,45 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+import '../../../../core/constants/values_manager.dart';
 
 class LoginFieldWidget extends StatelessWidget {
   final TextEditingController controller;
   final TextInputType keyboardType;
   final FormFieldValidator<String>? validator;
   final bool obscureText;
-  final Widget? prefixIcon;
   final String? hintText;
-  final String? errorText;
+  final String? labelText;
+  final List<TextInputFormatter>? inputFormatters;
+  final Widget? prefixIcon;
 
   const LoginFieldWidget({
     super.key,
     required this.controller,
-    this.keyboardType = TextInputType.text,
+    required this.keyboardType,
     this.validator,
-    this.obscureText = false,
-    this.prefixIcon,
+    required this.obscureText,
     this.hintText,
-    this.errorText,
+    this.labelText,
+    this.inputFormatters,
+    this.prefixIcon,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      style: Theme.of(context).textTheme.bodyMedium,
+      inputFormatters: inputFormatters,
       controller: controller,
       keyboardType: keyboardType,
       validator: validator,
       obscureText: obscureText,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: InputDecoration(
-          prefixIcon: prefixIcon,
-          enabledBorder: const OutlineInputBorder(
-            borderSide: BorderSide(
-              color: Color.fromRGBO(74, 77, 84, 0.2),
-            ),
-          ),
-          focusedBorder: OutlineInputBorder(
-            //gapPadding: 16,
-            borderSide: BorderSide(
-              color: Theme.of(context).primaryColor,
-            ),
-          ),
-          errorStyle: const TextStyle(height: 0, color: Colors.black),
-          errorBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: Theme.of(context).colorScheme.error,
-            ),
-          ),
-          focusedErrorBorder: OutlineInputBorder(
-            //gapPaddings: 16,
-            borderSide: BorderSide(
-              color: Theme.of(context).colorScheme.error,
-            ),
-          ),
-          hintText: hintText,
-          hintStyle: Theme.of(context)
-              .textTheme
-              .bodyLarge!
-              .copyWith(color: Colors.grey),
-          errorText: errorText),
+        prefixIcon: prefixIcon,
+        labelText: labelText,
+        // hintText: hintText, // Set hint text
+      ),
     );
   }
 }

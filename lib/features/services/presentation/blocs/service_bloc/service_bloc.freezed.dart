@@ -20,21 +20,21 @@ mixin _$ServiceEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() getTypeServices,
     required TResult Function(int serviceTypeId, int page) getServices,
-    required TResult Function(int serviceId) getServiceDetails,
+    required TResult Function(int serviceId, int leadId) getServiceDetails,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getTypeServices,
     TResult? Function(int serviceTypeId, int page)? getServices,
-    TResult? Function(int serviceId)? getServiceDetails,
+    TResult? Function(int serviceId, int leadId)? getServiceDetails,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getTypeServices,
     TResult Function(int serviceTypeId, int page)? getServices,
-    TResult Function(int serviceId)? getServiceDetails,
+    TResult Function(int serviceId, int leadId)? getServiceDetails,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -120,7 +120,7 @@ class _$GetTypeServicesImpl implements _GetTypeServices {
   TResult when<TResult extends Object?>({
     required TResult Function() getTypeServices,
     required TResult Function(int serviceTypeId, int page) getServices,
-    required TResult Function(int serviceId) getServiceDetails,
+    required TResult Function(int serviceId, int leadId) getServiceDetails,
   }) {
     return getTypeServices();
   }
@@ -130,7 +130,7 @@ class _$GetTypeServicesImpl implements _GetTypeServices {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getTypeServices,
     TResult? Function(int serviceTypeId, int page)? getServices,
-    TResult? Function(int serviceId)? getServiceDetails,
+    TResult? Function(int serviceId, int leadId)? getServiceDetails,
   }) {
     return getTypeServices?.call();
   }
@@ -140,7 +140,7 @@ class _$GetTypeServicesImpl implements _GetTypeServices {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getTypeServices,
     TResult Function(int serviceTypeId, int page)? getServices,
-    TResult Function(int serviceId)? getServiceDetails,
+    TResult Function(int serviceId, int leadId)? getServiceDetails,
     required TResult orElse(),
   }) {
     if (getTypeServices != null) {
@@ -263,7 +263,7 @@ class _$GetServicesImpl implements _GetServices {
   TResult when<TResult extends Object?>({
     required TResult Function() getTypeServices,
     required TResult Function(int serviceTypeId, int page) getServices,
-    required TResult Function(int serviceId) getServiceDetails,
+    required TResult Function(int serviceId, int leadId) getServiceDetails,
   }) {
     return getServices(serviceTypeId, page);
   }
@@ -273,7 +273,7 @@ class _$GetServicesImpl implements _GetServices {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getTypeServices,
     TResult? Function(int serviceTypeId, int page)? getServices,
-    TResult? Function(int serviceId)? getServiceDetails,
+    TResult? Function(int serviceId, int leadId)? getServiceDetails,
   }) {
     return getServices?.call(serviceTypeId, page);
   }
@@ -283,7 +283,7 @@ class _$GetServicesImpl implements _GetServices {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getTypeServices,
     TResult Function(int serviceTypeId, int page)? getServices,
-    TResult Function(int serviceId)? getServiceDetails,
+    TResult Function(int serviceId, int leadId)? getServiceDetails,
     required TResult orElse(),
   }) {
     if (getServices != null) {
@@ -345,7 +345,7 @@ abstract class _$$GetServiceDetailsImplCopyWith<$Res> {
           $Res Function(_$GetServiceDetailsImpl) then) =
       __$$GetServiceDetailsImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({int serviceId});
+  $Res call({int serviceId, int leadId});
 }
 
 /// @nodoc
@@ -360,11 +360,16 @@ class __$$GetServiceDetailsImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? serviceId = null,
+    Object? leadId = null,
   }) {
     return _then(_$GetServiceDetailsImpl(
       serviceId: null == serviceId
           ? _value.serviceId
           : serviceId // ignore: cast_nullable_to_non_nullable
+              as int,
+      leadId: null == leadId
+          ? _value.leadId
+          : leadId // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -373,14 +378,17 @@ class __$$GetServiceDetailsImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$GetServiceDetailsImpl implements _GetServiceDetails {
-  const _$GetServiceDetailsImpl({required this.serviceId});
+  const _$GetServiceDetailsImpl(
+      {required this.serviceId, required this.leadId});
 
   @override
   final int serviceId;
+  @override
+  final int leadId;
 
   @override
   String toString() {
-    return 'ServiceEvent.getServiceDetails(serviceId: $serviceId)';
+    return 'ServiceEvent.getServiceDetails(serviceId: $serviceId, leadId: $leadId)';
   }
 
   @override
@@ -389,11 +397,12 @@ class _$GetServiceDetailsImpl implements _GetServiceDetails {
         (other.runtimeType == runtimeType &&
             other is _$GetServiceDetailsImpl &&
             (identical(other.serviceId, serviceId) ||
-                other.serviceId == serviceId));
+                other.serviceId == serviceId) &&
+            (identical(other.leadId, leadId) || other.leadId == leadId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, serviceId);
+  int get hashCode => Object.hash(runtimeType, serviceId, leadId);
 
   @JsonKey(ignore: true)
   @override
@@ -407,9 +416,9 @@ class _$GetServiceDetailsImpl implements _GetServiceDetails {
   TResult when<TResult extends Object?>({
     required TResult Function() getTypeServices,
     required TResult Function(int serviceTypeId, int page) getServices,
-    required TResult Function(int serviceId) getServiceDetails,
+    required TResult Function(int serviceId, int leadId) getServiceDetails,
   }) {
-    return getServiceDetails(serviceId);
+    return getServiceDetails(serviceId, leadId);
   }
 
   @override
@@ -417,9 +426,9 @@ class _$GetServiceDetailsImpl implements _GetServiceDetails {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getTypeServices,
     TResult? Function(int serviceTypeId, int page)? getServices,
-    TResult? Function(int serviceId)? getServiceDetails,
+    TResult? Function(int serviceId, int leadId)? getServiceDetails,
   }) {
-    return getServiceDetails?.call(serviceId);
+    return getServiceDetails?.call(serviceId, leadId);
   }
 
   @override
@@ -427,11 +436,11 @@ class _$GetServiceDetailsImpl implements _GetServiceDetails {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getTypeServices,
     TResult Function(int serviceTypeId, int page)? getServices,
-    TResult Function(int serviceId)? getServiceDetails,
+    TResult Function(int serviceId, int leadId)? getServiceDetails,
     required TResult orElse(),
   }) {
     if (getServiceDetails != null) {
-      return getServiceDetails(serviceId);
+      return getServiceDetails(serviceId, leadId);
     }
     return orElse();
   }
@@ -472,10 +481,12 @@ class _$GetServiceDetailsImpl implements _GetServiceDetails {
 }
 
 abstract class _GetServiceDetails implements ServiceEvent {
-  const factory _GetServiceDetails({required final int serviceId}) =
-      _$GetServiceDetailsImpl;
+  const factory _GetServiceDetails(
+      {required final int serviceId,
+      required final int leadId}) = _$GetServiceDetailsImpl;
 
   int get serviceId;
+  int get leadId;
   @JsonKey(ignore: true)
   _$$GetServiceDetailsImplCopyWith<_$GetServiceDetailsImpl> get copyWith =>
       throw _privateConstructorUsedError;

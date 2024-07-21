@@ -14,7 +14,7 @@ abstract class ServiceRepository {
   Future<Result<ResponsePaginationModel<List<ServiceModel>>, FailureModel>>
       getServices({required int serviceTypeId, required int page});
   Future<Result<ResponseModel<List<ServiceDetailsModel>>, FailureModel>>
-      getServiceDetails({required int serviceId});
+      getServiceDetails({required int serviceId, required int leadId});
 
   Future<Result<ResponseModel<CheckPriceModel>, FailureModel>> checkPrice(
       {required int serviceId, required List<int> variantIds});

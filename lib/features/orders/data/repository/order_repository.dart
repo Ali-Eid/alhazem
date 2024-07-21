@@ -81,7 +81,7 @@ class OrderRepositoryImpl implements OrderRepository {
   }
 
   @override
-  Future<Result<ResponseModel<List<OrderTypeModel>>, FailureModel>>
+  Future<Result<ResponseModel<List<TypeModel>>, FailureModel>>
       getOrderTypes() async {
     if (await networkInfo.isConnected) {
       try {
