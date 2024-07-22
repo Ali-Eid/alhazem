@@ -28,7 +28,15 @@ class _OrdersViewState extends State<OrdersView> {
   void initState() {
     if (context.read<CurrenciesBloc>().orderTypes.isEmpty) {
       context.read<CurrenciesBloc>().add(const CurrenciesEvent.getOrderTypes());
-      ordersBloc = instance<OrdersBloc>();
+      ordersBloc = instance<OrdersBloc>()
+        ..add(OrdersEvent.getOrders(
+            type: context
+                .read<CurrenciesBloc>()
+                .orderTypes
+                .first
+                .key
+                .toLowerCase(),
+            page: selectedPageNumber));
     } else {
       ordersBloc = instance<OrdersBloc>()
         ..add(OrdersEvent.getOrders(

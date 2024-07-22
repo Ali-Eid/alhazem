@@ -10,6 +10,7 @@ import 'package:alhazem/features/orders/domain/repository/order_repository.dart'
 import 'package:multiple_result/src/result.dart';
 
 import '../../../../core/bases/models/static_models/static_model.dart';
+import '../models/input_models/input_confirm_waiting_model/input_confirm_waiting_model.dart';
 import '../models/order_details_model/order_details_model.dart';
 import '../models/order_model/order_model.dart';
 
@@ -89,5 +90,19 @@ class CreatePaymentUsecase
   Future<Result<ResponseModel<CreatePaymentModel>, FailureModel>> execute(
       InputCreatePaymentModel input) async {
     return await repository.createPayment(input: input);
+  }
+}
+
+class ConfirmWaitingOrderUsecase
+    implements
+        BaseUseCase<InputConfirmWaitingModel, ResponseModel<CreateOrderModel>> {
+  final OrderRepository repository;
+
+  ConfirmWaitingOrderUsecase({required this.repository});
+
+  @override
+  Future<Result<ResponseModel<CreateOrderModel>, FailureModel>> execute(
+      InputConfirmWaitingModel input) async {
+    return await repository.confirmWaiting(input: input);
   }
 }

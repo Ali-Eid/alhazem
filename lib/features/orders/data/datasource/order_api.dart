@@ -8,6 +8,7 @@ import 'package:retrofit/http.dart';
 import 'package:retrofit/retrofit.dart';
 import '../../../../core/bases/models/response_model/response_model.dart';
 import '../../../../core/constants/endpoints.dart';
+import '../../domain/models/input_models/input_confirm_waiting_model/input_confirm_waiting_model.dart';
 import '../../domain/models/input_models/input_create_model/input_create_order_model.dart';
 import '../../domain/models/order_details_model/order_details_model.dart';
 import '../../domain/models/order_model/order_model.dart';
@@ -40,4 +41,9 @@ abstract class OrdersServiceClient {
   @POST(Endpoints.CREATE_PAYMENT)
   Future<HttpResponse<ResponseModel<CreatePaymentModel>>> createPayment(
       {@Body() required InputCreatePaymentModel input});
+
+  //confirm order
+  @POST(Endpoints.CONFIRM_ORDER)
+  Future<HttpResponse<ResponseModel<CreateOrderModel>>> confirmWaitingOrder(
+      {@Body() required InputConfirmWaitingModel input});
 }

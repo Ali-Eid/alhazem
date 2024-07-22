@@ -17,22 +17,25 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$SearchEvent {
   String get name => throw _privateConstructorUsedError;
+  bool get isTraveler => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String name, int page) searchContract,
-    required TResult Function(String name) searchContractPagination,
+    required TResult Function(String name, int page, bool isTraveler)
+        searchContract,
+    required TResult Function(String name, bool isTraveler)
+        searchContractPagination,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String name, int page)? searchContract,
-    TResult? Function(String name)? searchContractPagination,
+    TResult? Function(String name, int page, bool isTraveler)? searchContract,
+    TResult? Function(String name, bool isTraveler)? searchContractPagination,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String name, int page)? searchContract,
-    TResult Function(String name)? searchContractPagination,
+    TResult Function(String name, int page, bool isTraveler)? searchContract,
+    TResult Function(String name, bool isTraveler)? searchContractPagination,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -69,7 +72,7 @@ abstract class $SearchEventCopyWith<$Res> {
           SearchEvent value, $Res Function(SearchEvent) then) =
       _$SearchEventCopyWithImpl<$Res, SearchEvent>;
   @useResult
-  $Res call({String name});
+  $Res call({String name, bool isTraveler});
 }
 
 /// @nodoc
@@ -86,12 +89,17 @@ class _$SearchEventCopyWithImpl<$Res, $Val extends SearchEvent>
   @override
   $Res call({
     Object? name = null,
+    Object? isTraveler = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      isTraveler: null == isTraveler
+          ? _value.isTraveler
+          : isTraveler // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -104,7 +112,7 @@ abstract class _$$SearchContractImplCopyWith<$Res>
       __$$SearchContractImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, int page});
+  $Res call({String name, int page, bool isTraveler});
 }
 
 /// @nodoc
@@ -120,6 +128,7 @@ class __$$SearchContractImplCopyWithImpl<$Res>
   $Res call({
     Object? name = null,
     Object? page = null,
+    Object? isTraveler = null,
   }) {
     return _then(_$SearchContractImpl(
       name: null == name
@@ -130,6 +139,10 @@ class __$$SearchContractImplCopyWithImpl<$Res>
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
               as int,
+      isTraveler: null == isTraveler
+          ? _value.isTraveler
+          : isTraveler // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -137,16 +150,19 @@ class __$$SearchContractImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SearchContractImpl implements _SearchContract {
-  const _$SearchContractImpl({required this.name, required this.page});
+  const _$SearchContractImpl(
+      {required this.name, required this.page, required this.isTraveler});
 
   @override
   final String name;
   @override
   final int page;
+  @override
+  final bool isTraveler;
 
   @override
   String toString() {
-    return 'SearchEvent.searchContract(name: $name, page: $page)';
+    return 'SearchEvent.searchContract(name: $name, page: $page, isTraveler: $isTraveler)';
   }
 
   @override
@@ -155,11 +171,13 @@ class _$SearchContractImpl implements _SearchContract {
         (other.runtimeType == runtimeType &&
             other is _$SearchContractImpl &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.page, page) || other.page == page));
+            (identical(other.page, page) || other.page == page) &&
+            (identical(other.isTraveler, isTraveler) ||
+                other.isTraveler == isTraveler));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, name, page);
+  int get hashCode => Object.hash(runtimeType, name, page, isTraveler);
 
   @JsonKey(ignore: true)
   @override
@@ -171,30 +189,32 @@ class _$SearchContractImpl implements _SearchContract {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String name, int page) searchContract,
-    required TResult Function(String name) searchContractPagination,
+    required TResult Function(String name, int page, bool isTraveler)
+        searchContract,
+    required TResult Function(String name, bool isTraveler)
+        searchContractPagination,
   }) {
-    return searchContract(name, page);
+    return searchContract(name, page, isTraveler);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String name, int page)? searchContract,
-    TResult? Function(String name)? searchContractPagination,
+    TResult? Function(String name, int page, bool isTraveler)? searchContract,
+    TResult? Function(String name, bool isTraveler)? searchContractPagination,
   }) {
-    return searchContract?.call(name, page);
+    return searchContract?.call(name, page, isTraveler);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String name, int page)? searchContract,
-    TResult Function(String name)? searchContractPagination,
+    TResult Function(String name, int page, bool isTraveler)? searchContract,
+    TResult Function(String name, bool isTraveler)? searchContractPagination,
     required TResult orElse(),
   }) {
     if (searchContract != null) {
-      return searchContract(name, page);
+      return searchContract(name, page, isTraveler);
     }
     return orElse();
   }
@@ -236,11 +256,14 @@ class _$SearchContractImpl implements _SearchContract {
 abstract class _SearchContract implements SearchEvent {
   const factory _SearchContract(
       {required final String name,
-      required final int page}) = _$SearchContractImpl;
+      required final int page,
+      required final bool isTraveler}) = _$SearchContractImpl;
 
   @override
   String get name;
   int get page;
+  @override
+  bool get isTraveler;
   @override
   @JsonKey(ignore: true)
   _$$SearchContractImplCopyWith<_$SearchContractImpl> get copyWith =>
@@ -256,7 +279,7 @@ abstract class _$$SearchContractPaginationImplCopyWith<$Res>
       __$$SearchContractPaginationImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name});
+  $Res call({String name, bool isTraveler});
 }
 
 /// @nodoc
@@ -272,12 +295,17 @@ class __$$SearchContractPaginationImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? name = null,
+    Object? isTraveler = null,
   }) {
     return _then(_$SearchContractPaginationImpl(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      isTraveler: null == isTraveler
+          ? _value.isTraveler
+          : isTraveler // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -285,14 +313,17 @@ class __$$SearchContractPaginationImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SearchContractPaginationImpl implements _SearchContractPagination {
-  const _$SearchContractPaginationImpl({required this.name});
+  const _$SearchContractPaginationImpl(
+      {required this.name, required this.isTraveler});
 
   @override
   final String name;
+  @override
+  final bool isTraveler;
 
   @override
   String toString() {
-    return 'SearchEvent.searchContractPagination(name: $name)';
+    return 'SearchEvent.searchContractPagination(name: $name, isTraveler: $isTraveler)';
   }
 
   @override
@@ -300,11 +331,13 @@ class _$SearchContractPaginationImpl implements _SearchContractPagination {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SearchContractPaginationImpl &&
-            (identical(other.name, name) || other.name == name));
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.isTraveler, isTraveler) ||
+                other.isTraveler == isTraveler));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, name);
+  int get hashCode => Object.hash(runtimeType, name, isTraveler);
 
   @JsonKey(ignore: true)
   @override
@@ -316,30 +349,32 @@ class _$SearchContractPaginationImpl implements _SearchContractPagination {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String name, int page) searchContract,
-    required TResult Function(String name) searchContractPagination,
+    required TResult Function(String name, int page, bool isTraveler)
+        searchContract,
+    required TResult Function(String name, bool isTraveler)
+        searchContractPagination,
   }) {
-    return searchContractPagination(name);
+    return searchContractPagination(name, isTraveler);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String name, int page)? searchContract,
-    TResult? Function(String name)? searchContractPagination,
+    TResult? Function(String name, int page, bool isTraveler)? searchContract,
+    TResult? Function(String name, bool isTraveler)? searchContractPagination,
   }) {
-    return searchContractPagination?.call(name);
+    return searchContractPagination?.call(name, isTraveler);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String name, int page)? searchContract,
-    TResult Function(String name)? searchContractPagination,
+    TResult Function(String name, int page, bool isTraveler)? searchContract,
+    TResult Function(String name, bool isTraveler)? searchContractPagination,
     required TResult orElse(),
   }) {
     if (searchContractPagination != null) {
-      return searchContractPagination(name);
+      return searchContractPagination(name, isTraveler);
     }
     return orElse();
   }
@@ -379,11 +414,14 @@ class _$SearchContractPaginationImpl implements _SearchContractPagination {
 }
 
 abstract class _SearchContractPagination implements SearchEvent {
-  const factory _SearchContractPagination({required final String name}) =
-      _$SearchContractPaginationImpl;
+  const factory _SearchContractPagination(
+      {required final String name,
+      required final bool isTraveler}) = _$SearchContractPaginationImpl;
 
   @override
   String get name;
+  @override
+  bool get isTraveler;
   @override
   @JsonKey(ignore: true)
   _$$SearchContractPaginationImplCopyWith<_$SearchContractPaginationImpl>

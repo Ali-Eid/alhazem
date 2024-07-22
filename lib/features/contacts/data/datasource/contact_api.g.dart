@@ -133,12 +133,14 @@ class _ContactsServiceClient implements ContactsServiceClient {
       searchContact({
     KeysFilterType type = KeysFilterType.contact,
     required String name,
+    required bool isTraveler,
     required int page,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'key': type.name,
       r'name': name,
+      r'is_traveler': isTraveler,
       r'page': page,
     };
     final _headers = <String, dynamic>{};
@@ -314,6 +316,38 @@ class _ContactsServiceClient implements ContactsServiceClient {
                   (i) => StaticModel.fromJson(i as Map<String, dynamic>))
               .toList()
           : List.empty(),
+    );
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
+  @override
+  Future<HttpResponse<ResponseModel<dynamic>>> updateAttachmentsContact(
+      {required InputUpdateAttachmentsModel input}) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = input;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseModel<dynamic>>>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/attachment/update',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = ResponseModel<dynamic>.fromJson(
+      _result.data!,
+      (json) => json as dynamic,
     );
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;

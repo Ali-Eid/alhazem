@@ -94,7 +94,7 @@ class _TravellersItemsWidgetState extends State<TravellersItemsWidget> {
                         ],
                         borderRadius: BorderRadius.circular(AppSizeR.s15),
                       ),
-                      child: const Text("no record "),
+                      child: const Text("لا يوجد معلومات"),
                     ),
                   )
                 : const SizedBox();
@@ -117,6 +117,7 @@ class _SelectTravelerWidgetState extends State<SelectTravelerWidget> {
     _debounce = Timer(const Duration(milliseconds: 500), () async {
       context.read<InputValueCreateOrderCubit>().setShowTraveler(true);
       context.read<SearchBloc>().add(SearchEvent.searchContract(
+          isTraveler: true,
           name: context
               .read<InputValueCreateOrderCubit>()
               .travelerController

@@ -111,6 +111,7 @@ class _SelectPartnerWidgetState extends State<SelectPartnerWidget> {
     _debounce = Timer(const Duration(milliseconds: 500), () async {
       context.read<InputValueCreateOrderCubit>().setShowPartner(true);
       context.read<SearchBloc>().add(SearchEvent.searchContract(
+          isTraveler: false,
           name:
               context.read<InputValueCreateOrderCubit>().partnerController.text,
           page: 1));

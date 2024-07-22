@@ -19,6 +19,7 @@ class Endpoints {
   static const String ORDERS = "/orders";
   static const String ORDER_DETAILS = "/order/{id}";
   static const String TYPES_ORDERS = "$ORDERS/types";
+  static const String CONFIRM_ORDER = "/order/confirm";
 
 //Payment
   static const String CREATE_PAYMENT = "/create/payment";
@@ -30,6 +31,7 @@ class Endpoints {
 
   //Contacts
   static const String CONTACTS = "/contacts";
+  static const String UPDATE_ATTACHMENTS = "/attachment/update";
 
   //Search
   static const String TYPES_SEARCH = "/types";

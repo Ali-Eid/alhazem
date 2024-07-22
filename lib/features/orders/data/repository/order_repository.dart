@@ -6,6 +6,7 @@ import 'package:alhazem/features/orders/data/datasource/order_api.dart';
 import 'package:alhazem/features/orders/domain/models/create_order_model/create_order_model.dart';
 import 'package:alhazem/features/orders/domain/models/create_payment_model/create_payment_model.dart';
 import 'package:alhazem/features/orders/domain/models/create_payment_model/input_create_payment_model/input_create_payment_model.dart';
+import 'package:alhazem/features/orders/domain/models/input_models/input_confirm_waiting_model/input_confirm_waiting_model.dart';
 import 'package:alhazem/features/orders/domain/models/input_models/input_create_model/input_create_order_model.dart';
 import 'package:alhazem/features/orders/domain/models/order_details_model/order_details_model.dart';
 import 'package:alhazem/features/orders/domain/repository/order_repository.dart';
@@ -125,6 +126,26 @@ class OrderRepositoryImpl implements OrderRepository {
     if (await networkInfo.isConnected) {
       try {
         final response = await ordersServiceClient.createPayment(input: input);
+        if (response.response.statusCode == 200) {
+          return Success(response.data);
+        } else {
+          return Error(FailureModel.fromJson(response.response.data));
+        }
+      } on DioException catch (e) {
+        return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
+      }
+    } else {
+      return Error(FailureModel(message: "noInternetError"));
+    }
+  }
+
+  @override
+  Future<Result<ResponseModel<CreateOrderModel>, FailureModel>> confirmWaiting(
+      {required InputConfirmWaitingModel input}) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final response =
+            await ordersServiceClient.confirmWaitingOrder(input: input);
         if (response.response.statusCode == 200) {
           return Success(response.data);
         } else {

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:alhazem/core/constants/color_manager.dart';
+import 'package:alhazem/core/widgets/alert_dialog_widget.dart';
 import 'package:alhazem/core/widgets/toast.dart';
 import 'package:alhazem/features/contacts/domain/models/contact_model/contact_model.dart';
 import 'package:alhazem/features/contacts/presentation/blocs/contact_bloc/contact_bloc.dart';
@@ -19,6 +20,7 @@ import '../../../contacts/presentation/widgets/drop_down_widget.dart';
 import '../../../orders/domain/models/input_models/input_create_model/input_create_order_model.dart';
 import '../../../orders/presentation/blocs/create_order_bloc/create_order_bloc.dart';
 import '../blocs/check_price_bloc/check_price_bloc.dart';
+import 'create_order_widget/missed_attachments_widget.dart';
 import 'create_order_widget/partner_widget.dart';
 import 'create_order_widget/traveler_widget.dart';
 
@@ -35,131 +37,168 @@ class _CreateOrderDialogWidgetState extends State<CreateOrderDialogWidget> {
   List<Widget> contents = [
     const SelectPartnerWidget(),
     const SelectTravelerWidget(),
-    const PaymentWidget()
+    const PaymentWidget(),
   ];
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        BlocBuilder(
-          bloc: context.read<InputValueCreateOrderCubit>(),
-          builder: (context, state) {
-            return Expanded(
-                child: Column(
-              children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: AppSizeW.s6,
-                  ),
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Icon(
-                              Icons.person,
+    return BlocListener(
+      bloc: context.read<CreateOrderBloc>(),
+      listener: (context, CreateOrderState state) {
+        state.mapOrNull(
+          success: (value) {
+            if (value.success.data.attachments.isNotEmpty) {
+              context
+                  .read<InputValueCreateOrderCubit>()
+                  .setOrderId(value.success.data.id);
+              showDialog(
+                context: context,
+                builder: (_) => AlertDialogWidget(
+                    title: "Missed attachments",
+                    content: SizedBox(
+                      // height: AppSizeH.s354,
+                      width: AppSizeW.s400,
+                      child: BlocProvider.value(
+                        value: context.read<InputValueCreateOrderCubit>(),
+                        child: MissedAttachmentsWidget(
+                          attachments: value.success.data.attachments,
+                        ),
+                      ),
+                    )),
+              );
+            }
+          },
+        );
+      },
+      child: Column(
+        children: [
+          BlocBuilder(
+            bloc: context.read<InputValueCreateOrderCubit>(),
+            builder: (context, state) {
+              return Expanded(
+                  child: Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: AppSizeW.s6,
+                    ),
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Icon(
+                                Icons.person,
+                                color: context
+                                            .read<InputValueCreateOrderCubit>()
+                                            .currentIndex >=
+                                        0
+                                    ? ColorManager.primaryDark
+                                    : ColorManager.shipGrey,
+                              ),
+                              Text(
+                                "الزبون",
+                                style: context
+                                            .read<InputValueCreateOrderCubit>()
+                                            .currentIndex >=
+                                        0
+                                    ? Theme.of(context).textTheme.headlineSmall
+                                    : Theme.of(context)
+                                        .textTheme
+                                        .headlineMedium,
+                              )
+                            ],
+                          ),
+                          Expanded(
+                              child: Padding(
+                            padding:
+                                EdgeInsets.symmetric(horizontal: AppSizeW.s15),
+                            child: Divider(
                               color: context
                                           .read<InputValueCreateOrderCubit>()
-                                          .currentIndex >=
+                                          .currentIndex >
                                       0
                                   ? ColorManager.primaryDark
                                   : ColorManager.shipGrey,
                             ),
-                            Text(
-                              "الزبون",
-                              style: context
-                                          .read<InputValueCreateOrderCubit>()
-                                          .currentIndex >=
-                                      0
-                                  ? Theme.of(context).textTheme.headlineSmall
-                                  : Theme.of(context).textTheme.headlineMedium,
-                            )
-                          ],
-                        ),
-                        Expanded(
-                            child: Padding(
-                          padding:
-                              EdgeInsets.symmetric(horizontal: AppSizeW.s15),
-                          child: Divider(
-                            color: context
-                                        .read<InputValueCreateOrderCubit>()
-                                        .currentIndex >
-                                    0
-                                ? ColorManager.primaryDark
-                                : ColorManager.shipGrey,
-                          ),
-                        )),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.airplanemode_active_outlined,
-                                color: context
+                          )),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(Icons.airplanemode_active_outlined,
+                                  color: context
+                                              .read<
+                                                  InputValueCreateOrderCubit>()
+                                              .currentIndex >=
+                                          1
+                                      ? ColorManager.primaryDark
+                                      : ColorManager.shipGrey),
+                              Text(
+                                "المسافرين",
+                                style: context
                                             .read<InputValueCreateOrderCubit>()
                                             .currentIndex >=
                                         1
+                                    ? Theme.of(context).textTheme.headlineSmall
+                                    : Theme.of(context)
+                                        .textTheme
+                                        .headlineMedium,
+                              )
+                            ],
+                          ),
+                          Expanded(
+                              child: Padding(
+                            padding:
+                                EdgeInsets.symmetric(horizontal: AppSizeW.s15),
+                            child: Divider(
+                                color: context
+                                            .read<InputValueCreateOrderCubit>()
+                                            .currentIndex >
+                                        1
                                     ? ColorManager.primaryDark
                                     : ColorManager.shipGrey),
-                            Text(
-                              "المسافرين",
-                              style: context
-                                          .read<InputValueCreateOrderCubit>()
-                                          .currentIndex >=
-                                      1
-                                  ? Theme.of(context).textTheme.headlineSmall
-                                  : Theme.of(context).textTheme.headlineMedium,
-                            )
-                          ],
-                        ),
-                        Expanded(
-                            child: Padding(
-                          padding:
-                              EdgeInsets.symmetric(horizontal: AppSizeW.s15),
-                          child: Divider(
-                              color: context
-                                          .read<InputValueCreateOrderCubit>()
-                                          .currentIndex >
-                                      1
-                                  ? ColorManager.primaryDark
-                                  : ColorManager.shipGrey),
-                        )),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Icon(Icons.monetization_on_outlined,
-                                color: context
+                          )),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Icon(Icons.monetization_on_outlined,
+                                  color: context
+                                              .read<
+                                                  InputValueCreateOrderCubit>()
+                                              .currentIndex ==
+                                          2
+                                      ? ColorManager.primaryDark
+                                      : ColorManager.shipGrey),
+                              Text(
+                                "الدفع",
+                                style: context
                                             .read<InputValueCreateOrderCubit>()
                                             .currentIndex ==
                                         2
-                                    ? ColorManager.primaryDark
-                                    : ColorManager.shipGrey),
-                            Text(
-                              "الدفع",
-                              style: context
-                                          .read<InputValueCreateOrderCubit>()
-                                          .currentIndex ==
-                                      2
-                                  ? Theme.of(context).textTheme.headlineSmall
-                                  : Theme.of(context).textTheme.headlineMedium,
-                            )
-                          ],
-                        ),
-                      ]),
-                ),
-                Expanded(
-                    child: contents[context
-                        .read<InputValueCreateOrderCubit>()
-                        .currentIndex]),
-              ],
-            ));
-          },
-        ),
-        SizedBox(height: AppSizeH.s20),
-        ButtonCreateDialogWidget(
-          serviceId: widget.serviceId,
-        ),
-      ],
+                                    ? Theme.of(context).textTheme.headlineSmall
+                                    : Theme.of(context)
+                                        .textTheme
+                                        .headlineMedium,
+                              )
+                            ],
+                          ),
+                        ]),
+                  ),
+                  Expanded(
+                      child: contents[context
+                          .read<InputValueCreateOrderCubit>()
+                          .currentIndex]),
+                ],
+              ));
+            },
+          ),
+          SizedBox(height: AppSizeH.s20),
+          ButtonCreateDialogWidget(
+            serviceId: widget.serviceId,
+          ),
+        ],
+      ),
     );
   }
 }

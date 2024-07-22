@@ -20,8 +20,8 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
           pageNum = 1;
           contacts.clear();
           emit(const SearchState.laoding());
-          final failureOrContracts = await searchContactsUsecase
-              .execute((name: value.name, page: pageNum));
+          final failureOrContracts = await searchContactsUsecase.execute(
+              (name: value.name, isTraveler: value.isTraveler, page: pageNum));
           failureOrContracts.when(
             (success) {
               hasReach = pageNum == success.meta.totalPages;
@@ -37,8 +37,11 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
             ? (value) {}
             : (value) async {
                 pageNum += 1;
-                final failureOrContracts = await searchContactsUsecase
-                    .execute((name: value.name, page: pageNum));
+                final failureOrContracts = await searchContactsUsecase.execute((
+                  name: value.name,
+                  isTraveler: value.isTraveler,
+                  page: pageNum
+                ));
                 failureOrContracts.when(
                   (success) {
                     hasReach = pageNum == success.meta.totalPages;

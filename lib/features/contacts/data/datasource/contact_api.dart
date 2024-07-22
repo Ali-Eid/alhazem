@@ -13,6 +13,7 @@ import '../../../../core/bases/models/response_model/response_model.dart';
 import '../../../../core/constants/endpoints.dart';
 import '../../../services/domain/models/check_price_model/check_price_model.dart';
 import '../../domain/models/crate_lead_model/create_lead_model.dart';
+import '../../domain/models/missed_attachments_model/input_model/input_missed_attachment_model.dart';
 
 part 'contact_api.g.dart';
 
@@ -40,6 +41,7 @@ abstract class ContactsServiceClient {
       searchContact({
     @Query("key") KeysFilterType type = KeysFilterType.contact,
     @Query("name") required String name,
+    @Query("is_traveler") required bool isTraveler,
     @Query("page") required int page,
   });
 
@@ -54,4 +56,9 @@ abstract class ContactsServiceClient {
   Future<HttpResponse<ResponseModel<List<StaticModel>>>> getStates({
     @Query("country_id") required int countryId,
   });
+
+  //update attachments
+  @POST(Endpoints.UPDATE_ATTACHMENTS)
+  Future<HttpResponse<ResponseModel>> updateAttachmentsContact(
+      {@Body() required InputUpdateAttachmentsModel input});
 }
