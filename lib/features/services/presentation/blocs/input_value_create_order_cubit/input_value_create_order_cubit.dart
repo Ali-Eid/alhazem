@@ -17,6 +17,12 @@ class InputValueCreateOrderCubit extends Cubit<int> {
 
   InputCreateOrderModel model = InputCreateOrderModel();
 
+  int serviceId = 0;
+  void setServiceId(int id) {
+    serviceId = id;
+    emit(id.hashCode);
+  }
+
 //-----Tabs------
   int currentIndex = 0;
   void nextIndex(int index) {

@@ -17,7 +17,8 @@ class ColorManager {
   static Color shadow = primary.withOpacity(.3);
   // static Color shadow = Hex16Color.fromHex("#18638E");
 
-  static Color lightGrey = Hex16Color.fromHex("#d3d3d3 ");
+  static Color lightGrey = Hex16Color.fromHex("#d3d3d3");
+  static Color warning = Hex16Color.fromHex("#FF8F00");
 }
 
 extension Hex16Color on Color {

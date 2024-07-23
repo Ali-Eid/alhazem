@@ -166,6 +166,26 @@ class _CreateOfficeViewState extends State<CreateOfficeView> {
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .titleMedium),
+                                          Row(
+                                            children: [
+                                              Text(
+                                                "VIP",
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .titleMedium,
+                                              ),
+                                              Checkbox(
+                                                value: inputValueCubit.isVip,
+                                                onChanged: (value) {
+                                                  inputValueCubit.setVip(value);
+                                                },
+                                                side: BorderSide(
+                                                    width: AppSizeW.s1_5,
+                                                    color:
+                                                        ColorManager.primary),
+                                              )
+                                            ],
+                                          )
                                         ],
                                       ),
                                       SizedBox(height: AppSizeH.s15),

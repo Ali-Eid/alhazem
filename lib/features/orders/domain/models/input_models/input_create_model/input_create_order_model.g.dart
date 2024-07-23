@@ -23,6 +23,11 @@ _$InputCreateOrderModelImpl _$$InputCreateOrderModelImplFromJson(
       price: (json['price'] as num?)?.toDouble() ?? 0,
       currency: (json['currency'] as num?)?.toInt() ?? 0,
       totalPaid: (json['total_paid'] as num?)?.toDouble() ?? 0,
+      input: (json['input'] as List<dynamic>?)
+              ?.map((e) => InputMissedAttachmentModel.fromJson(
+                  e as Map<String, dynamic>))
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$$InputCreateOrderModelImplToJson(
@@ -35,6 +40,7 @@ Map<String, dynamic> _$$InputCreateOrderModelImplToJson(
       'price': instance.price,
       'currency': instance.currency,
       'total_paid': instance.totalPaid,
+      'input': instance.input,
     };
 
 _$TravelerInputOrderModelImpl _$$TravelerInputOrderModelImplFromJson(

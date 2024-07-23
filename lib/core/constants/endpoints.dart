@@ -13,6 +13,7 @@ class Endpoints {
   static const String SERVICES_DETAILS = "/services/{id}";
   static const String GET_SERVICE_TYPE = "/get_categories";
   static const String CHECK_PRICE = "/check_price";
+  static const String CHECK_ATTACHMENTS = "/get/attachment";
 
   //Orders
   static const String CREATE_ORDER = "/order/create";

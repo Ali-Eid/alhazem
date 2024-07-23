@@ -24,6 +24,11 @@ _$OrderDetailsModelImpl _$$OrderDetailsModelImplFromJson(
                   (e) => ReturnReasonModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
+      attachmentsMissed: (json['attachments'] as List<dynamic>?)
+              ?.map((e) =>
+                  AttachmentsMissedModel.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$$OrderDetailsModelImplToJson(
@@ -37,6 +42,7 @@ Map<String, dynamic> _$$OrderDetailsModelImplToJson(
       'partner_name': instance.partnerName,
       'order_line': instance.orderItems,
       'return_reason': instance.returnReasons,
+      'attachments': instance.attachmentsMissed,
     };
 
 _$OrderLineModelImpl _$$OrderLineModelImplFromJson(Map<String, dynamic> json) =>

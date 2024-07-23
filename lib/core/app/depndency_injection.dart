@@ -44,6 +44,7 @@ import '../../features/orders/presentation/blocs/currencies_bloc/currencies_bloc
 import '../../features/orders/presentation/blocs/payment_bloc/payment_bloc.dart';
 import '../../features/services/domain/repository/service_repository.dart';
 import '../../features/services/domain/usecases/check_price_usecase.dart';
+import '../../features/services/presentation/blocs/check_attachments_bloc/check_attachments_bloc.dart';
 import '../../features/services/presentation/blocs/check_price_bloc/check_price_bloc.dart';
 import '../../features/services/presentation/blocs/update_attachments_bloc/update_attachments_bloc.dart';
 import '../cache/app_preferences.dart';
@@ -176,6 +177,12 @@ Future<void> initServices() async {
           updateAttachmentsUsecase: instance<UpdateAttachmentsUsecase>()),
     );
   }
+  if (!GetIt.I.isRegistered<CheckAttachmentsBloc>()) {
+    instance.registerFactory(
+      () => CheckAttachmentsBloc(
+          checkAttachmentsUsecase: instance<CheckAttachmentsUsecase>()),
+    );
+  }
 
   //repositories
 
@@ -201,6 +208,11 @@ Future<void> initServices() async {
   if (!GetIt.I.isRegistered<CheckPriceUsecase>()) {
     instance.registerLazySingleton(
         () => CheckPriceUsecase(repository: instance<ServiceRepository>()));
+  }
+
+  if (!GetIt.I.isRegistered<CheckAttachmentsUsecase>()) {
+    instance.registerLazySingleton(() =>
+        CheckAttachmentsUsecase(repository: instance<ServiceRepository>()));
   }
 }
 

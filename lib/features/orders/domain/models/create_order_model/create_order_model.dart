@@ -17,7 +17,7 @@ abstract class CreateOrderModel with _$CreateOrderModel {
 
 @freezed
 abstract class AttachmentsMissedModel with _$AttachmentsMissedModel {
-  factory AttachmentsMissedModel(
+  const factory AttachmentsMissedModel(
       {@Default(0) @JsonKey(name: "traveler_id") int travelerId,
       @Default("") @JsonKey(name: "traveler_name") String travelerName,
       @Default([])

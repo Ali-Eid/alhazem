@@ -2,6 +2,7 @@ import 'package:alhazem/core/bases/models/failure_model/failure_model.dart';
 import 'package:alhazem/core/bases/models/response_model/response_model.dart';
 import 'package:alhazem/core/bases/models/static_models/static_model.dart';
 import 'package:alhazem/features/services/data/datasource/service_api.dart';
+import 'package:alhazem/features/services/domain/models/attachments_required_model/attachments_required_model.dart';
 import 'package:alhazem/features/services/domain/models/check_price_model/check_price_model.dart';
 import 'package:alhazem/features/services/domain/models/service_details_model.dart/service_details_model.dart';
 import 'package:alhazem/features/services/domain/models/service_model/service_model.dart';
@@ -84,6 +85,27 @@ class ServiceRepositoryImpl implements ServiceRepository {
       try {
         final response = await servicesServiceClient.checkPrice(
             serviceId: serviceId, variantIds: variantIds);
+        if (response.response.statusCode == 200) {
+          return Success(response.data);
+        } else {
+          return Error(FailureModel.fromJson(response.response.data));
+        }
+      } on DioException catch (e) {
+        return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
+      }
+    } else {
+      return Error(FailureModel(message: "noInternetError"));
+    }
+  }
+
+  @override
+  Future<Result<ResponseModel<List<AttachmentsRequiredModel>>, FailureModel>>
+      checkAttachments(
+          {required int serviceId, required List<int> travelerIds}) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final response = await servicesServiceClient.checkAttachments(
+            serviceId: serviceId, travelerIds: travelerIds);
         if (response.response.statusCode == 200) {
           return Success(response.data);
         } else {

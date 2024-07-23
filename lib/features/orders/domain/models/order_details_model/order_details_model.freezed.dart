@@ -33,6 +33,9 @@ mixin _$OrderDetailsModel {
   @JsonKey(name: "return_reason")
   List<ReturnReasonModel> get returnReasons =>
       throw _privateConstructorUsedError;
+  @JsonKey(name: "attachments")
+  List<AttachmentsMissedModel> get attachmentsMissed =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -54,7 +57,9 @@ abstract class $OrderDetailsModelCopyWith<$Res> {
       @JsonKey(name: "partner_number") String partnerNumber,
       @JsonKey(name: "partner_name") String partnerName,
       @JsonKey(name: "order_line") List<OrderLineModel> orderItems,
-      @JsonKey(name: "return_reason") List<ReturnReasonModel> returnReasons});
+      @JsonKey(name: "return_reason") List<ReturnReasonModel> returnReasons,
+      @JsonKey(name: "attachments")
+      List<AttachmentsMissedModel> attachmentsMissed});
 }
 
 /// @nodoc
@@ -78,6 +83,7 @@ class _$OrderDetailsModelCopyWithImpl<$Res, $Val extends OrderDetailsModel>
     Object? partnerName = null,
     Object? orderItems = null,
     Object? returnReasons = null,
+    Object? attachmentsMissed = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -112,6 +118,10 @@ class _$OrderDetailsModelCopyWithImpl<$Res, $Val extends OrderDetailsModel>
           ? _value.returnReasons
           : returnReasons // ignore: cast_nullable_to_non_nullable
               as List<ReturnReasonModel>,
+      attachmentsMissed: null == attachmentsMissed
+          ? _value.attachmentsMissed
+          : attachmentsMissed // ignore: cast_nullable_to_non_nullable
+              as List<AttachmentsMissedModel>,
     ) as $Val);
   }
 }
@@ -132,7 +142,9 @@ abstract class _$$OrderDetailsModelImplCopyWith<$Res>
       @JsonKey(name: "partner_number") String partnerNumber,
       @JsonKey(name: "partner_name") String partnerName,
       @JsonKey(name: "order_line") List<OrderLineModel> orderItems,
-      @JsonKey(name: "return_reason") List<ReturnReasonModel> returnReasons});
+      @JsonKey(name: "return_reason") List<ReturnReasonModel> returnReasons,
+      @JsonKey(name: "attachments")
+      List<AttachmentsMissedModel> attachmentsMissed});
 }
 
 /// @nodoc
@@ -154,6 +166,7 @@ class __$$OrderDetailsModelImplCopyWithImpl<$Res>
     Object? partnerName = null,
     Object? orderItems = null,
     Object? returnReasons = null,
+    Object? attachmentsMissed = null,
   }) {
     return _then(_$OrderDetailsModelImpl(
       id: null == id
@@ -188,6 +201,10 @@ class __$$OrderDetailsModelImplCopyWithImpl<$Res>
           ? _value._returnReasons
           : returnReasons // ignore: cast_nullable_to_non_nullable
               as List<ReturnReasonModel>,
+      attachmentsMissed: null == attachmentsMissed
+          ? _value._attachmentsMissed
+          : attachmentsMissed // ignore: cast_nullable_to_non_nullable
+              as List<AttachmentsMissedModel>,
     ));
   }
 }
@@ -205,9 +222,12 @@ class _$OrderDetailsModelImpl implements _OrderDetailsModel {
       @JsonKey(name: "order_line")
       final List<OrderLineModel> orderItems = const [],
       @JsonKey(name: "return_reason")
-      final List<ReturnReasonModel> returnReasons = const []})
+      final List<ReturnReasonModel> returnReasons = const [],
+      @JsonKey(name: "attachments")
+      final List<AttachmentsMissedModel> attachmentsMissed = const []})
       : _orderItems = orderItems,
-        _returnReasons = returnReasons;
+        _returnReasons = returnReasons,
+        _attachmentsMissed = attachmentsMissed;
 
   factory _$OrderDetailsModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$OrderDetailsModelImplFromJson(json);
@@ -248,9 +268,19 @@ class _$OrderDetailsModelImpl implements _OrderDetailsModel {
     return EqualUnmodifiableListView(_returnReasons);
   }
 
+  final List<AttachmentsMissedModel> _attachmentsMissed;
+  @override
+  @JsonKey(name: "attachments")
+  List<AttachmentsMissedModel> get attachmentsMissed {
+    if (_attachmentsMissed is EqualUnmodifiableListView)
+      return _attachmentsMissed;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_attachmentsMissed);
+  }
+
   @override
   String toString() {
-    return 'OrderDetailsModel(id: $id, name: $name, state: $state, date: $date, partnerNumber: $partnerNumber, partnerName: $partnerName, orderItems: $orderItems, returnReasons: $returnReasons)';
+    return 'OrderDetailsModel(id: $id, name: $name, state: $state, date: $date, partnerNumber: $partnerNumber, partnerName: $partnerName, orderItems: $orderItems, returnReasons: $returnReasons, attachmentsMissed: $attachmentsMissed)';
   }
 
   @override
@@ -269,7 +299,9 @@ class _$OrderDetailsModelImpl implements _OrderDetailsModel {
             const DeepCollectionEquality()
                 .equals(other._orderItems, _orderItems) &&
             const DeepCollectionEquality()
-                .equals(other._returnReasons, _returnReasons));
+                .equals(other._returnReasons, _returnReasons) &&
+            const DeepCollectionEquality()
+                .equals(other._attachmentsMissed, _attachmentsMissed));
   }
 
   @JsonKey(ignore: true)
@@ -283,7 +315,8 @@ class _$OrderDetailsModelImpl implements _OrderDetailsModel {
       partnerNumber,
       partnerName,
       const DeepCollectionEquality().hash(_orderItems),
-      const DeepCollectionEquality().hash(_returnReasons));
+      const DeepCollectionEquality().hash(_returnReasons),
+      const DeepCollectionEquality().hash(_attachmentsMissed));
 
   @JsonKey(ignore: true)
   @override
@@ -302,15 +335,18 @@ class _$OrderDetailsModelImpl implements _OrderDetailsModel {
 
 abstract class _OrderDetailsModel implements OrderDetailsModel {
   factory _OrderDetailsModel(
-      {final int id,
-      final String name,
-      final String state,
-      final String date,
-      @JsonKey(name: "partner_number") final String partnerNumber,
-      @JsonKey(name: "partner_name") final String partnerName,
-      @JsonKey(name: "order_line") final List<OrderLineModel> orderItems,
-      @JsonKey(name: "return_reason")
-      final List<ReturnReasonModel> returnReasons}) = _$OrderDetailsModelImpl;
+          {final int id,
+          final String name,
+          final String state,
+          final String date,
+          @JsonKey(name: "partner_number") final String partnerNumber,
+          @JsonKey(name: "partner_name") final String partnerName,
+          @JsonKey(name: "order_line") final List<OrderLineModel> orderItems,
+          @JsonKey(name: "return_reason")
+          final List<ReturnReasonModel> returnReasons,
+          @JsonKey(name: "attachments")
+          final List<AttachmentsMissedModel> attachmentsMissed}) =
+      _$OrderDetailsModelImpl;
 
   factory _OrderDetailsModel.fromJson(Map<String, dynamic> json) =
       _$OrderDetailsModelImpl.fromJson;
@@ -335,6 +371,9 @@ abstract class _OrderDetailsModel implements OrderDetailsModel {
   @override
   @JsonKey(name: "return_reason")
   List<ReturnReasonModel> get returnReasons;
+  @override
+  @JsonKey(name: "attachments")
+  List<AttachmentsMissedModel> get attachmentsMissed;
   @override
   @JsonKey(ignore: true)
   _$$OrderDetailsModelImplCopyWith<_$OrderDetailsModelImpl> get copyWith =>

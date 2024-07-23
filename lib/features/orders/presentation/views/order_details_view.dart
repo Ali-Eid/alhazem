@@ -8,6 +8,8 @@ import '../../../../core/constants/assets_manager.dart';
 import '../../../../core/constants/color_manager.dart';
 import '../../../../core/constants/values_manager.dart';
 import '../../../../core/widgets/alert_dialog_widget.dart';
+import '../../../services/presentation/blocs/input_value_create_order_cubit/input_value_create_order_cubit.dart';
+import '../../../services/presentation/widgets/create_order_widget/missed_attachments_widget.dart';
 import '../../domain/models/order_details_model/order_details_model.dart';
 import '../blocs/input_payment_cubit/input_payment_cubit.dart';
 import '../blocs/payment_bloc/payment_bloc.dart';
@@ -62,10 +64,8 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                   centerTitle: true,
                   title: Text(value.orderDetails.data.first.name),
                   actions: [
-                    value.orderDetails.data.first.state ==
-                                OrderStatus.sale.name &&
-                            context.read<InputPaymentCubit>().total >
-                                context.read<InputPaymentCubit>().totalPaid
+                    context.read<InputPaymentCubit>().total >
+                            context.read<InputPaymentCubit>().totalPaid
                         ? Padding(
                             padding:
                                 EdgeInsets.symmetric(horizontal: AppSizeW.s12),
@@ -115,98 +115,172 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                         : const SizedBox(),
                   ],
                 ),
-                body: SingleChildScrollView(
-                  child: Padding(
-                    padding: EdgeInsets.all(AppSizeW.s15),
-                    child: Column(
-                      children: [
-                        Container(
-                          padding: EdgeInsets.all(AppSizeW.s15),
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(AppSizeR.s15),
-                              boxShadow: [
-                                BoxShadow(
-                                    color: ColorManager.shadow,
-                                    blurRadius: AppSizeR.s10)
-                              ]),
-                          child: Column(
-                            children: [
-                              OrderDetailsWidget(
-                                name: "رقم الطلب",
-                                value: value.orderDetails.data.first.name,
-                              ),
-                              Divider(
-                                endIndent: AppSizeW.s40,
-                                indent: AppSizeW.s40,
-                              ),
-                              OrderDetailsWidget(
-                                name: "نوع الرحلة",
-                                value: value.orderDetails.data.first.orderItems
-                                    .first.name,
-                              ),
-                              Divider(
-                                endIndent: AppSizeW.s40,
-                                indent: AppSizeW.s40,
-                              ),
-                              OrderDetailsWidget(
-                                name: "الوجهة",
-                                value: value.orderDetails.data.first.orderItems
-                                    .first.country,
-                              ),
-                              Divider(
-                                endIndent: AppSizeW.s40,
-                                indent: AppSizeW.s40,
-                              ),
-                              OrderDetailsWidget(
-                                name: "المبلغ الاجمالي",
-                                value:
-                                    "${context.read<InputPaymentCubit>().total * value.orderDetails.data.first.orderItems.length}",
-                              ),
-                              Divider(
-                                endIndent: AppSizeW.s40,
-                                indent: AppSizeW.s40,
-                              ),
-                              OrderDetailsWidget(
-                                name: "المبلغ المقبوض",
-                                value:
-                                    "${context.read<InputPaymentCubit>().totalPaid}",
-                              ),
-                              Divider(
-                                endIndent: AppSizeW.s40,
-                                indent: AppSizeW.s40,
-                              ),
-                              OrderDetailsWidget(
-                                name: "المبلغ المتبقي",
-                                value:
-                                    "${context.read<InputPaymentCubit>().remainingTotal}",
-                              ),
-                            ],
+                body: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: AppSizeW.s15),
+                  child: Column(
+                    children: [
+                      Visibility(
+                        visible: value.orderDetails.data.first.state ==
+                                OrderStatus.waiting.name &&
+                            value.orderDetails.data.first.attachmentsMissed.any(
+                              (element) => element.attachment.isNotEmpty,
+                            ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            ElevatedButton(
+                                style: ButtonStyle(
+                                  backgroundColor: WidgetStateProperty.all(
+                                    ColorManager.warning,
+                                  ),
+                                ),
+                                onPressed: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return AlertDialogWidget(
+                                        title: "استكمال الأوراق",
+                                        content: SizedBox(
+                                          width:
+                                              MediaQuery.sizeOf(context).width *
+                                                  0.5,
+                                          // height: AppSizeH.s425,
+                                          child: BlocProvider(
+                                            create: (context) => instance<
+                                                InputValueCreateOrderCubit>(),
+                                            child: MissedAttachmentsWidget(
+                                                orderId: widget.orderId,
+                                                attachments: value
+                                                    .orderDetails
+                                                    .data
+                                                    .first
+                                                    .attachmentsMissed),
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  );
+                                },
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  width: AppSizeW.s200,
+                                  height: AppSizeH.s35,
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      const Icon(Icons.warning),
+                                      SizedBox(width: AppSizeW.s12),
+                                      const Text("استكمال الأوراق")
+                                    ],
+                                  ),
+                                )),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: AppSizeH.s10),
+                      Expanded(
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(AppSizeR.s6),
+                          child: SingleChildScrollView(
+                            child: Column(
+                              children: [
+                                SizedBox(height: AppSizeH.s15),
+                                Container(
+                                  padding: EdgeInsets.all(AppSizeW.s15),
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius:
+                                          BorderRadius.circular(AppSizeR.s15),
+                                      boxShadow: [
+                                        BoxShadow(
+                                            color: ColorManager.shadow,
+                                            blurRadius: AppSizeR.s10)
+                                      ]),
+                                  child: Column(
+                                    children: [
+                                      OrderDetailsWidget(
+                                        name: "رقم الطلب",
+                                        value:
+                                            value.orderDetails.data.first.name,
+                                      ),
+                                      Divider(
+                                        endIndent: AppSizeW.s40,
+                                        indent: AppSizeW.s40,
+                                      ),
+                                      OrderDetailsWidget(
+                                        name: "نوع الرحلة",
+                                        value: value.orderDetails.data.first
+                                            .orderItems.first.name,
+                                      ),
+                                      Divider(
+                                        endIndent: AppSizeW.s40,
+                                        indent: AppSizeW.s40,
+                                      ),
+                                      OrderDetailsWidget(
+                                        name: "الوجهة",
+                                        value: value.orderDetails.data.first
+                                            .orderItems.first.country,
+                                      ),
+                                      Divider(
+                                        endIndent: AppSizeW.s40,
+                                        indent: AppSizeW.s40,
+                                      ),
+                                      OrderDetailsWidget(
+                                        name: "المبلغ الاجمالي",
+                                        value:
+                                            "${context.read<InputPaymentCubit>().total * value.orderDetails.data.first.orderItems.length}",
+                                      ),
+                                      Divider(
+                                        endIndent: AppSizeW.s40,
+                                        indent: AppSizeW.s40,
+                                      ),
+                                      OrderDetailsWidget(
+                                        name: "المبلغ المقبوض",
+                                        value:
+                                            "${context.read<InputPaymentCubit>().totalPaid}",
+                                      ),
+                                      Divider(
+                                        endIndent: AppSizeW.s40,
+                                        indent: AppSizeW.s40,
+                                      ),
+                                      OrderDetailsWidget(
+                                        name: "المبلغ المتبقي",
+                                        value:
+                                            "${context.read<InputPaymentCubit>().remainingTotal}",
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(height: AppSizeH.s10),
+                                TravelersOrderDetailsWidget(
+                                  title: "معلومات المسافرين",
+                                  model:
+                                      value.orderDetails.data.first.orderItems,
+                                ),
+                                SizedBox(height: AppSizeH.s10),
+                                VariantsOrderDetailsWidget(
+                                  title: "الخدمات الأضافية",
+                                  model: value.orderDetails.data.first
+                                      .orderItems.first.variants,
+                                ),
+                                SizedBox(height: AppSizeH.s10),
+                                Visibility(
+                                  visible: value.orderDetails.data.first
+                                      .returnReasons.isNotEmpty,
+                                  child: ReturnReasonOrderDetailsWidget(
+                                    title: "اسباب إالغاء الطلب",
+                                    model: value
+                                        .orderDetails.data.first.returnReasons,
+                                  ),
+                                ),
+                                SizedBox(height: AppSizeH.s10),
+                              ],
+                            ),
                           ),
                         ),
-                        SizedBox(height: AppSizeH.s10),
-                        TravelersOrderDetailsWidget(
-                          title: "معلومات المسافرين",
-                          model: value.orderDetails.data.first.orderItems,
-                        ),
-                        SizedBox(height: AppSizeH.s10),
-                        VariantsOrderDetailsWidget(
-                          title: "الخدمات الأضافية",
-                          model: value.orderDetails.data.first.orderItems.first
-                              .variants,
-                        ),
-                        SizedBox(height: AppSizeH.s10),
-                        Visibility(
-                          visible: value
-                              .orderDetails.data.first.returnReasons.isNotEmpty,
-                          child: ReturnReasonOrderDetailsWidget(
-                            title: "اسباب إعادة الطلب",
-                            model: value.orderDetails.data.first.returnReasons,
-                          ),
-                        ),
-                      ],
-                    ),
+                      )
+                    ],
                   ),
                 ),
               );

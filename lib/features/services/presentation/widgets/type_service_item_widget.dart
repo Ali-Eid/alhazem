@@ -1,7 +1,10 @@
+import 'package:alhazem/core/constants/assets_manager.dart';
+import 'package:alhazem/core/constants/color_manager.dart';
 import 'package:alhazem/features/contacts/presentation/blocs/lead_contact_bloc/lead_contact_bloc.dart';
 import 'package:fast_cached_network_image/fast_cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:toastification/toastification.dart';
 import '../../../../core/constants/values_manager.dart';
@@ -53,17 +56,39 @@ class TypeServiceItemWidget extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  // Expanded(
+                  //     flex: 3,
+                  //     child: Container(
+                  //       width: double.infinity,
+                  //       decoration: BoxDecoration(
+                  //           image: DecorationImage(
+                  //             image: FastCachedImageProvider(model.image),
+                  //             fit: BoxFit.fill,
+                  //           ),
+                  //           borderRadius: BorderRadius.circular(AppSizeR.s10)),
+                  //     )),
                   Expanded(
-                      flex: 3,
-                      child: Container(
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: FastCachedImageProvider(model.image),
-                              fit: BoxFit.fill,
-                            ),
-                            borderRadius: BorderRadius.circular(AppSizeR.s10)),
-                      )),
+                    flex: 3,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(AppSizeR.s10)),
+                      child: FastCachedImage(
+                        url: model.image,
+                        fit: BoxFit.cover,
+                        fadeInDuration: const Duration(seconds: 1),
+                        errorBuilder: (context, exception, stacktrace) {
+                          return SvgPicture.asset(ImageAssets.logo,
+                              colorFilter: ColorFilter.mode(
+                                  Colors.grey.shade500, BlendMode.srcIn));
+                        },
+                        loadingBuilder: (context, progress) {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        },
+                      ),
+                    ),
+                  ),
                   SizedBox(height: AppSizeH.s5),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -6,6 +6,7 @@ import 'package:alhazem/features/services/domain/models/service_model/service_mo
 import 'package:multiple_result/multiple_result.dart';
 
 import '../../../../core/bases/models/response_model/response_model.dart';
+import '../models/attachments_required_model/attachments_required_model.dart';
 import '../models/type_service_model/type_service_model.dart';
 
 abstract class ServiceRepository {
@@ -18,4 +19,9 @@ abstract class ServiceRepository {
 
   Future<Result<ResponseModel<CheckPriceModel>, FailureModel>> checkPrice(
       {required int serviceId, required List<int> variantIds});
+
+  //check attachments
+  Future<Result<ResponseModel<List<AttachmentsRequiredModel>>, FailureModel>>
+      checkAttachments(
+          {required int serviceId, required List<int> travelerIds});
 }

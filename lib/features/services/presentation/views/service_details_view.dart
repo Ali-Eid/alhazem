@@ -93,13 +93,12 @@ class _ServiceDetailsViewState extends State<ServiceDetailsView> {
                                             ],
                                             child: AlertDialogWidget(
                                               title: "انشاء الطلب",
-                                              // insetPadding:
-                                              //     EdgeInsets.symmetric(
-                                              //   vertical: AppSizeH.s150,
-                                              // ),
                                               content: SizedBox(
-                                                width: AppSizeW.s424,
-                                                height: AppSizeH.s425,
+                                                width:
+                                                    MediaQuery.sizeOf(context)
+                                                            .width *
+                                                        0.5,
+                                                // height: AppSizeH.s425,
                                                 child: BlocProvider(
                                                   create: (context) => instance<
                                                       InputValueCreateOrderCubit>(),

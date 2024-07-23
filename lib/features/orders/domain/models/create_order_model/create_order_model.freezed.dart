@@ -347,7 +347,7 @@ class __$$AttachmentsMissedModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$AttachmentsMissedModelImpl implements _AttachmentsMissedModel {
-  _$AttachmentsMissedModelImpl(
+  const _$AttachmentsMissedModelImpl(
       {@JsonKey(name: "traveler_id") this.travelerId = 0,
       @JsonKey(name: "traveler_name") this.travelerName = "",
       @JsonKey(name: "attachments")
@@ -411,7 +411,7 @@ class _$AttachmentsMissedModelImpl implements _AttachmentsMissedModel {
 }
 
 abstract class _AttachmentsMissedModel implements AttachmentsMissedModel {
-  factory _AttachmentsMissedModel(
+  const factory _AttachmentsMissedModel(
       {@JsonKey(name: "traveler_id") final int travelerId,
       @JsonKey(name: "traveler_name") final String travelerName,
       @JsonKey(name: "attachments")

@@ -1,40 +1,39 @@
 import 'dart:convert';
-import 'dart:io';
 
-import 'package:alhazem/core/bases/enums/entity_type.dart';
-import 'package:alhazem/core/bases/models/static_models/static_model.dart';
-import 'package:alhazem/core/constants/color_manager.dart';
-import 'package:alhazem/core/utils/extensions/extensions.dart';
-import 'package:alhazem/core/widgets/alert_dialog_widget.dart';
-import 'package:alhazem/core/widgets/toast.dart';
-import 'package:alhazem/features/contacts/domain/models/input_create_traveler_model/input_create_traveler_model.dart';
-import 'package:alhazem/features/contacts/presentation/blocs/static_bloc/static_bloc.dart';
-import 'package:alhazem/features/contacts/presentation/blocs/traveler_bloc/traveler_bloc.dart';
-import 'package:alhazem/features/contacts/presentation/widgets/check_box_widget.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 // import 'package:image_picker/image_picker.dart';
 import 'package:toastification/toastification.dart';
-import '../../../../core/app/depndency_injection.dart';
-import '../../../../core/bases/enums/gender_type.dart';
-import '../../../../core/constants/values_manager.dart';
-import '../../../../core/routers/routes_manager.dart';
-import '../blocs/input_value_create_traveler_cubit/input_value_create_cubit.dart';
-import '../widgets/drop_down_widget.dart';
-import '../widgets/input_field_widget.dart';
 
-class CreateContractView extends StatefulWidget {
-  const CreateContractView({super.key});
+import '../../../../../core/app/depndency_injection.dart';
+import '../../../../../core/bases/enums/entity_type.dart';
+import '../../../../../core/bases/enums/gender_type.dart';
+import '../../../../../core/bases/models/static_models/static_model.dart';
+import '../../../../../core/constants/color_manager.dart';
+import '../../../../../core/constants/values_manager.dart';
+import '../../../../../core/routers/routes_manager.dart';
+import '../../../../../core/widgets/alert_dialog_widget.dart';
+import '../../../../../core/widgets/toast.dart';
+import '../../../../contacts/domain/models/input_create_traveler_model/input_create_traveler_model.dart';
+import '../../../../contacts/presentation/blocs/input_value_create_traveler_cubit/input_value_create_cubit.dart';
+import '../../../../contacts/presentation/blocs/static_bloc/static_bloc.dart';
+import '../../../../contacts/presentation/blocs/traveler_bloc/traveler_bloc.dart';
+import '../../../../contacts/presentation/views/create_contract_view.dart';
+import '../../../../contacts/presentation/widgets/drop_down_widget.dart';
+import '../../../../contacts/presentation/widgets/input_field_widget.dart';
+import '../../blocs/input_value_create_order_cubit/input_value_create_order_cubit.dart';
+
+class CreateTravelerWidget extends StatefulWidget {
+  const CreateTravelerWidget({super.key});
 
   @override
-  State<CreateContractView> createState() => _CreateContractViewState();
+  State<CreateTravelerWidget> createState() => _CreateTravelerWidgetState();
 }
 
-class _CreateContractViewState extends State<CreateContractView> {
+class _CreateTravelerWidgetState extends State<CreateTravelerWidget> {
   late TravelerBloc travelerBloc;
   late InputValueCreateCubit inputValueCubit;
   bool isExpandedPassportInfo = true;
@@ -79,8 +78,11 @@ class _CreateContractViewState extends State<CreateContractView> {
                 },
                 loaded: (value) {
                   showToast(context: context, message: value.contact.message);
-                  // context.pop();
-                  context.pushReplacementNamed(RoutesNames.createContactRoute);
+                  context
+                      .read<InputValueCreateOrderCubit>()
+                      .addTravelersId(value.contact.data);
+
+                  Navigator.of(context).pop();
                 },
               );
             },
@@ -1523,149 +1525,6 @@ class _CreateContractViewState extends State<CreateContractView> {
               ),
             ),
           ),
-        );
-      },
-    );
-  }
-}
-
-class ChooseAttachmentsTypeWidget extends StatefulWidget {
-  const ChooseAttachmentsTypeWidget({
-    super.key,
-  });
-
-  @override
-  State<ChooseAttachmentsTypeWidget> createState() =>
-      _ChooseAttachmentsTypeWidgetState();
-}
-
-class _ChooseAttachmentsTypeWidgetState
-    extends State<ChooseAttachmentsTypeWidget> {
-  @override
-  void initState() {
-    context.read<InputValueCreateCubit>().setAttachmentsTypeTemp();
-
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder(
-      bloc: context.read<StaticBloc>(),
-      builder: (context, StaticState state) {
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            BlocBuilder(
-              bloc: context.read<InputValueCreateCubit>(),
-              builder: (context, state) {
-                return Expanded(
-                  child: Container(
-                    width: double.infinity,
-                    padding: EdgeInsets.symmetric(
-                        horizontal: AppSizeW.s15, vertical: AppSizeH.s25),
-                    decoration: BoxDecoration(
-                      color: ColorManager.white,
-                      boxShadow: [
-                        BoxShadow(
-                            color: ColorManager.shadow, blurRadius: AppSizeR.s2)
-                      ],
-                      borderRadius: BorderRadius.circular(AppSizeR.s12),
-                    ),
-                    child: SingleChildScrollView(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children:
-                            context.read<StaticBloc>().attachmentsTypes.map(
-                          (e) {
-                            return InkWell(
-                              onTap: context
-                                      .read<InputValueCreateCubit>()
-                                      .attachmentsTypesTemp
-                                      .contains(e)
-                                  ? () {
-                                      context
-                                          .read<InputValueCreateCubit>()
-                                          .removeAttachmentType(e);
-                                    }
-                                  : () {
-                                      context
-                                          .read<InputValueCreateCubit>()
-                                          .addAttachmentType(e);
-                                    },
-                              child: Row(
-                                children: [
-                                  Container(
-                                    alignment: Alignment.center,
-                                    width: AppSizeW.s15,
-                                    height: AppSizeW.s15,
-                                    decoration: BoxDecoration(
-                                        border: Border.all(
-                                            width: 0.5,
-                                            color: ColorManager.black),
-                                        borderRadius:
-                                            BorderRadius.circular(AppSizeR.s3)),
-                                    child: context
-                                            .read<InputValueCreateCubit>()
-                                            .attachmentsTypesTemp
-                                            .contains(e)
-                                        ? Icon(
-                                            Icons.check,
-                                            color: ColorManager.secondary,
-                                            size: AppSizeSp.s12,
-                                          )
-                                        : const SizedBox(),
-                                  ),
-                                  SizedBox(width: AppSizeW.s12),
-                                  Text(e.name),
-                                ],
-                              ),
-                            );
-                          },
-                        ).toList(),
-                      ),
-                    ),
-                  ),
-                );
-              },
-            ),
-            SizedBox(height: AppSizeH.s15),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Expanded(
-                  flex: 2,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      context
-                          .read<InputValueCreateCubit>()
-                          .setAttachmentsType();
-                      Navigator.of(context).pop();
-                    },
-                    child: const Text("إضافة"),
-                  ),
-                ),
-                SizedBox(width: AppSizeW.s8),
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    style: ButtonStyle(
-                        backgroundColor:
-                            WidgetStateProperty.all(ColorManager.white),
-                        shape: WidgetStateProperty.all(RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(AppSizeR.s7),
-                            side: BorderSide(color: ColorManager.primary)))),
-                    child: Text(
-                      "رجوع",
-                      style: Theme.of(context).textTheme.titleSmall,
-                    ),
-                  ),
-                ),
-              ],
-            )
-          ],
         );
       },
     );

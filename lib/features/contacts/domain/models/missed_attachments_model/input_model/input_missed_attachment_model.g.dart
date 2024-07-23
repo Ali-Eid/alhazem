@@ -9,6 +9,7 @@ part of 'input_missed_attachment_model.dart';
 _$InputUpdateAttachmentsModelImpl _$$InputUpdateAttachmentsModelImplFromJson(
         Map<String, dynamic> json) =>
     _$InputUpdateAttachmentsModelImpl(
+      orderId: (json['order_id'] as num?)?.toInt() ?? 0,
       input: (json['input'] as List<dynamic>?)
               ?.map((e) => InputMissedAttachmentModel.fromJson(
                   e as Map<String, dynamic>))
@@ -19,6 +20,7 @@ _$InputUpdateAttachmentsModelImpl _$$InputUpdateAttachmentsModelImplFromJson(
 Map<String, dynamic> _$$InputUpdateAttachmentsModelImplToJson(
         _$InputUpdateAttachmentsModelImpl instance) =>
     <String, dynamic>{
+      'order_id': instance.orderId,
       'input': instance.input,
     };
 

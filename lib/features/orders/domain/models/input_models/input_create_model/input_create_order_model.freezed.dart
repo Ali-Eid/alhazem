@@ -33,6 +33,8 @@ mixin _$InputCreateOrderModel {
   int get currency => throw _privateConstructorUsedError;
   @JsonKey(name: "total_paid")
   double get totalPaid => throw _privateConstructorUsedError;
+  List<InputMissedAttachmentModel> get input =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -53,7 +55,8 @@ abstract class $InputCreateOrderModelCopyWith<$Res> {
       @JsonKey(name: "variant_ids") List<int> variantIds,
       double price,
       int currency,
-      @JsonKey(name: "total_paid") double totalPaid});
+      @JsonKey(name: "total_paid") double totalPaid,
+      List<InputMissedAttachmentModel> input});
 }
 
 /// @nodoc
@@ -77,6 +80,7 @@ class _$InputCreateOrderModelCopyWithImpl<$Res,
     Object? price = null,
     Object? currency = null,
     Object? totalPaid = null,
+    Object? input = null,
   }) {
     return _then(_value.copyWith(
       partnerId: null == partnerId
@@ -107,6 +111,10 @@ class _$InputCreateOrderModelCopyWithImpl<$Res,
           ? _value.totalPaid
           : totalPaid // ignore: cast_nullable_to_non_nullable
               as double,
+      input: null == input
+          ? _value.input
+          : input // ignore: cast_nullable_to_non_nullable
+              as List<InputMissedAttachmentModel>,
     ) as $Val);
   }
 }
@@ -127,7 +135,8 @@ abstract class _$$InputCreateOrderModelImplCopyWith<$Res>
       @JsonKey(name: "variant_ids") List<int> variantIds,
       double price,
       int currency,
-      @JsonKey(name: "total_paid") double totalPaid});
+      @JsonKey(name: "total_paid") double totalPaid,
+      List<InputMissedAttachmentModel> input});
 }
 
 /// @nodoc
@@ -149,6 +158,7 @@ class __$$InputCreateOrderModelImplCopyWithImpl<$Res>
     Object? price = null,
     Object? currency = null,
     Object? totalPaid = null,
+    Object? input = null,
   }) {
     return _then(_$InputCreateOrderModelImpl(
       partnerId: null == partnerId
@@ -179,6 +189,10 @@ class __$$InputCreateOrderModelImplCopyWithImpl<$Res>
           ? _value.totalPaid
           : totalPaid // ignore: cast_nullable_to_non_nullable
               as double,
+      input: null == input
+          ? _value._input
+          : input // ignore: cast_nullable_to_non_nullable
+              as List<InputMissedAttachmentModel>,
     ));
   }
 }
@@ -193,9 +207,11 @@ class _$InputCreateOrderModelImpl implements _InputCreateOrderModel {
       @JsonKey(name: "variant_ids") final List<int> variantIds = const [],
       this.price = 0,
       this.currency = 0,
-      @JsonKey(name: "total_paid") this.totalPaid = 0})
+      @JsonKey(name: "total_paid") this.totalPaid = 0,
+      final List<InputMissedAttachmentModel> input = const []})
       : _travelers = travelers,
-        _variantIds = variantIds;
+        _variantIds = variantIds,
+        _input = input;
 
   factory _$InputCreateOrderModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$InputCreateOrderModelImplFromJson(json);
@@ -233,10 +249,18 @@ class _$InputCreateOrderModelImpl implements _InputCreateOrderModel {
   @override
   @JsonKey(name: "total_paid")
   final double totalPaid;
+  final List<InputMissedAttachmentModel> _input;
+  @override
+  @JsonKey()
+  List<InputMissedAttachmentModel> get input {
+    if (_input is EqualUnmodifiableListView) return _input;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_input);
+  }
 
   @override
   String toString() {
-    return 'InputCreateOrderModel(partnerId: $partnerId, travelers: $travelers, serviceId: $serviceId, variantIds: $variantIds, price: $price, currency: $currency, totalPaid: $totalPaid)';
+    return 'InputCreateOrderModel(partnerId: $partnerId, travelers: $travelers, serviceId: $serviceId, variantIds: $variantIds, price: $price, currency: $currency, totalPaid: $totalPaid, input: $input)';
   }
 
   @override
@@ -256,7 +280,8 @@ class _$InputCreateOrderModelImpl implements _InputCreateOrderModel {
             (identical(other.currency, currency) ||
                 other.currency == currency) &&
             (identical(other.totalPaid, totalPaid) ||
-                other.totalPaid == totalPaid));
+                other.totalPaid == totalPaid) &&
+            const DeepCollectionEquality().equals(other._input, _input));
   }
 
   @JsonKey(ignore: true)
@@ -269,7 +294,8 @@ class _$InputCreateOrderModelImpl implements _InputCreateOrderModel {
       const DeepCollectionEquality().hash(_variantIds),
       price,
       currency,
-      totalPaid);
+      totalPaid,
+      const DeepCollectionEquality().hash(_input));
 
   @JsonKey(ignore: true)
   @override
@@ -294,7 +320,8 @@ abstract class _InputCreateOrderModel implements InputCreateOrderModel {
           @JsonKey(name: "variant_ids") final List<int> variantIds,
           final double price,
           final int currency,
-          @JsonKey(name: "total_paid") final double totalPaid}) =
+          @JsonKey(name: "total_paid") final double totalPaid,
+          final List<InputMissedAttachmentModel> input}) =
       _$InputCreateOrderModelImpl;
 
   factory _InputCreateOrderModel.fromJson(Map<String, dynamic> json) =
@@ -318,6 +345,8 @@ abstract class _InputCreateOrderModel implements InputCreateOrderModel {
   @override
   @JsonKey(name: "total_paid")
   double get totalPaid;
+  @override
+  List<InputMissedAttachmentModel> get input;
   @override
   @JsonKey(ignore: true)
   _$$InputCreateOrderModelImplCopyWith<_$InputCreateOrderModelImpl>

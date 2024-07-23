@@ -7,6 +7,7 @@ import 'package:alhazem/features/services/domain/models/service_model/service_mo
 import 'package:alhazem/features/services/domain/repository/service_repository.dart';
 import 'package:multiple_result/src/result.dart';
 
+import '../models/attachments_required_model/attachments_required_model.dart';
 import '../models/type_service_model/type_service_model.dart';
 
 class GetServicesUsecase
@@ -49,5 +50,21 @@ class GetServicesDetailsUsecase
       execute(({int serviceId, int leadId}) input) async {
     return await repository.getServiceDetails(
         serviceId: input.serviceId, leadId: input.leadId);
+  }
+}
+
+class CheckAttachmentsUsecase
+    implements
+        BaseUseCase<({int serviceId, List<int> travelerIds}),
+            ResponseModel<List<AttachmentsRequiredModel>>> {
+  final ServiceRepository repository;
+
+  CheckAttachmentsUsecase({required this.repository});
+
+  @override
+  Future<Result<ResponseModel<List<AttachmentsRequiredModel>>, FailureModel>>
+      execute(({int serviceId, List<int> travelerIds}) input) async {
+    return await repository.checkAttachments(
+        serviceId: input.serviceId, travelerIds: input.travelerIds);
   }
 }

@@ -21,6 +21,8 @@ InputUpdateAttachmentsModel _$InputUpdateAttachmentsModelFromJson(
 
 /// @nodoc
 mixin _$InputUpdateAttachmentsModel {
+  @JsonKey(name: "order_id")
+  int get orderId => throw _privateConstructorUsedError;
   @JsonKey(name: "input")
   List<InputMissedAttachmentModel> get input =>
       throw _privateConstructorUsedError;
@@ -39,7 +41,9 @@ abstract class $InputUpdateAttachmentsModelCopyWith<$Res> {
       _$InputUpdateAttachmentsModelCopyWithImpl<$Res,
           InputUpdateAttachmentsModel>;
   @useResult
-  $Res call({@JsonKey(name: "input") List<InputMissedAttachmentModel> input});
+  $Res call(
+      {@JsonKey(name: "order_id") int orderId,
+      @JsonKey(name: "input") List<InputMissedAttachmentModel> input});
 }
 
 /// @nodoc
@@ -56,9 +60,14 @@ class _$InputUpdateAttachmentsModelCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? orderId = null,
     Object? input = null,
   }) {
     return _then(_value.copyWith(
+      orderId: null == orderId
+          ? _value.orderId
+          : orderId // ignore: cast_nullable_to_non_nullable
+              as int,
       input: null == input
           ? _value.input
           : input // ignore: cast_nullable_to_non_nullable
@@ -76,7 +85,9 @@ abstract class _$$InputUpdateAttachmentsModelImplCopyWith<$Res>
       __$$InputUpdateAttachmentsModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({@JsonKey(name: "input") List<InputMissedAttachmentModel> input});
+  $Res call(
+      {@JsonKey(name: "order_id") int orderId,
+      @JsonKey(name: "input") List<InputMissedAttachmentModel> input});
 }
 
 /// @nodoc
@@ -92,9 +103,14 @@ class __$$InputUpdateAttachmentsModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? orderId = null,
     Object? input = null,
   }) {
     return _then(_$InputUpdateAttachmentsModelImpl(
+      orderId: null == orderId
+          ? _value.orderId
+          : orderId // ignore: cast_nullable_to_non_nullable
+              as int,
       input: null == input
           ? _value._input
           : input // ignore: cast_nullable_to_non_nullable
@@ -107,8 +123,9 @@ class __$$InputUpdateAttachmentsModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$InputUpdateAttachmentsModelImpl
     implements _InputUpdateAttachmentsModel {
-  _$InputUpdateAttachmentsModelImpl(
-      {@JsonKey(name: "input")
+  const _$InputUpdateAttachmentsModelImpl(
+      {@JsonKey(name: "order_id") this.orderId = 0,
+      @JsonKey(name: "input")
       final List<InputMissedAttachmentModel> input = const []})
       : _input = input;
 
@@ -116,6 +133,9 @@ class _$InputUpdateAttachmentsModelImpl
           Map<String, dynamic> json) =>
       _$$InputUpdateAttachmentsModelImplFromJson(json);
 
+  @override
+  @JsonKey(name: "order_id")
+  final int orderId;
   final List<InputMissedAttachmentModel> _input;
   @override
   @JsonKey(name: "input")
@@ -127,7 +147,7 @@ class _$InputUpdateAttachmentsModelImpl
 
   @override
   String toString() {
-    return 'InputUpdateAttachmentsModel(input: $input)';
+    return 'InputUpdateAttachmentsModel(orderId: $orderId, input: $input)';
   }
 
   @override
@@ -135,13 +155,14 @@ class _$InputUpdateAttachmentsModelImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$InputUpdateAttachmentsModelImpl &&
+            (identical(other.orderId, orderId) || other.orderId == orderId) &&
             const DeepCollectionEquality().equals(other._input, _input));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_input));
+  int get hashCode => Object.hash(
+      runtimeType, orderId, const DeepCollectionEquality().hash(_input));
 
   @JsonKey(ignore: true)
   @override
@@ -160,14 +181,18 @@ class _$InputUpdateAttachmentsModelImpl
 
 abstract class _InputUpdateAttachmentsModel
     implements InputUpdateAttachmentsModel {
-  factory _InputUpdateAttachmentsModel(
-          {@JsonKey(name: "input")
+  const factory _InputUpdateAttachmentsModel(
+          {@JsonKey(name: "order_id") final int orderId,
+          @JsonKey(name: "input")
           final List<InputMissedAttachmentModel> input}) =
       _$InputUpdateAttachmentsModelImpl;
 
   factory _InputUpdateAttachmentsModel.fromJson(Map<String, dynamic> json) =
       _$InputUpdateAttachmentsModelImpl.fromJson;
 
+  @override
+  @JsonKey(name: "order_id")
+  int get orderId;
   @override
   @JsonKey(name: "input")
   List<InputMissedAttachmentModel> get input;
@@ -283,7 +308,7 @@ class __$$InputMissedAttachmentModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$InputMissedAttachmentModelImpl implements _InputMissedAttachmentModel {
-  _$InputMissedAttachmentModelImpl(
+  const _$InputMissedAttachmentModelImpl(
       {@JsonKey(name: "traveler_id") this.travelerId = 0,
       final List<AttachmentsCreateTravelerModel> attachments = const []})
       : _attachments = attachments;
@@ -342,7 +367,7 @@ class _$InputMissedAttachmentModelImpl implements _InputMissedAttachmentModel {
 
 abstract class _InputMissedAttachmentModel
     implements InputMissedAttachmentModel {
-  factory _InputMissedAttachmentModel(
+  const factory _InputMissedAttachmentModel(
           {@JsonKey(name: "traveler_id") final int travelerId,
           final List<AttachmentsCreateTravelerModel> attachments}) =
       _$InputMissedAttachmentModelImpl;

@@ -5,6 +5,7 @@ import 'package:alhazem/core/widgets/alert_dialog_widget.dart';
 import 'package:alhazem/core/widgets/toast.dart';
 import 'package:alhazem/features/contacts/domain/models/contact_model/contact_model.dart';
 import 'package:alhazem/features/contacts/presentation/blocs/contact_bloc/contact_bloc.dart';
+import 'package:alhazem/features/contacts/presentation/blocs/lead_contact_bloc/lead_contact_bloc.dart';
 import 'package:alhazem/features/main/presentation/blocs/search_bloc/search_bloc.dart';
 import 'package:alhazem/features/orders/presentation/blocs/currencies_bloc/currencies_bloc.dart';
 import 'package:alhazem/features/services/presentation/blocs/input_value_create_order_cubit/input_value_create_order_cubit.dart';
@@ -16,10 +17,12 @@ import 'package:toastification/toastification.dart';
 
 import '../../../../core/app/depndency_injection.dart';
 import '../../../../core/constants/values_manager.dart';
+import '../../../contacts/domain/models/missed_attachments_model/input_model/input_missed_attachment_model.dart';
 import '../../../contacts/presentation/widgets/drop_down_widget.dart';
 import '../../../orders/domain/models/input_models/input_create_model/input_create_order_model.dart';
 import '../../../orders/presentation/blocs/create_order_bloc/create_order_bloc.dart';
 import '../blocs/check_price_bloc/check_price_bloc.dart';
+import 'create_order_widget/attachments_required_widget.dart';
 import 'create_order_widget/missed_attachments_widget.dart';
 import 'create_order_widget/partner_widget.dart';
 import 'create_order_widget/traveler_widget.dart';
@@ -35,10 +38,17 @@ class CreateOrderDialogWidget extends StatefulWidget {
 
 class _CreateOrderDialogWidgetState extends State<CreateOrderDialogWidget> {
   List<Widget> contents = [
-    const SelectPartnerWidget(),
+    // const SelectPartnerWidget(),
     const SelectTravelerWidget(),
+    const AttachmentsRequiredWidget(),
     const PaymentWidget(),
   ];
+
+  @override
+  void initState() {
+    context.read<InputValueCreateOrderCubit>().setServiceId(widget.serviceId);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,26 +57,7 @@ class _CreateOrderDialogWidgetState extends State<CreateOrderDialogWidget> {
       listener: (context, CreateOrderState state) {
         state.mapOrNull(
           success: (value) {
-            if (value.success.data.attachments.isNotEmpty) {
-              context
-                  .read<InputValueCreateOrderCubit>()
-                  .setOrderId(value.success.data.id);
-              showDialog(
-                context: context,
-                builder: (_) => AlertDialogWidget(
-                    title: "Missed attachments",
-                    content: SizedBox(
-                      // height: AppSizeH.s354,
-                      width: AppSizeW.s400,
-                      child: BlocProvider.value(
-                        value: context.read<InputValueCreateOrderCubit>(),
-                        child: MissedAttachmentsWidget(
-                          attachments: value.success.data.attachments,
-                        ),
-                      ),
-                    )),
-              );
-            }
+            Navigator.of(context).pop();
           },
         );
       },
@@ -98,7 +89,7 @@ class _CreateOrderDialogWidgetState extends State<CreateOrderDialogWidget> {
                                     : ColorManager.shipGrey,
                               ),
                               Text(
-                                "الزبون",
+                                "المسافرين",
                                 style: context
                                             .read<InputValueCreateOrderCubit>()
                                             .currentIndex >=
@@ -126,7 +117,7 @@ class _CreateOrderDialogWidgetState extends State<CreateOrderDialogWidget> {
                           Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Icon(Icons.airplanemode_active_outlined,
+                              Icon(Icons.attach_file_outlined,
                                   color: context
                                               .read<
                                                   InputValueCreateOrderCubit>()
@@ -135,7 +126,7 @@ class _CreateOrderDialogWidgetState extends State<CreateOrderDialogWidget> {
                                       ? ColorManager.primaryDark
                                       : ColorManager.shipGrey),
                               Text(
-                                "المسافرين",
+                                "المرفقات المطلوبة",
                                 style: context
                                             .read<InputValueCreateOrderCubit>()
                                             .currentIndex >=
@@ -219,17 +210,6 @@ class _ButtonCreateDialogWidgetState extends State<ButtonCreateDialogWidget> {
   void onPressed(int currentIndex) {
     switch (currentIndex) {
       case 0:
-        if (context.read<InputValueCreateOrderCubit>().partnerContact != null) {
-          context.read<InputValueCreateOrderCubit>().nextIndex(
-              context.read<InputValueCreateOrderCubit>().currentIndex);
-        } else {
-          showToast(
-              context: context,
-              message: "Please select a partner",
-              type: ToastificationType.warning);
-        }
-        break;
-      case 1:
         if (context
             .read<InputValueCreateOrderCubit>()
             .travelersContact
@@ -242,6 +222,12 @@ class _ButtonCreateDialogWidgetState extends State<ButtonCreateDialogWidget> {
               message: "Please select travelers",
               type: ToastificationType.warning);
         }
+        break;
+      case 1:
+        context
+            .read<InputValueCreateOrderCubit>()
+            .nextIndex(context.read<InputValueCreateOrderCubit>().currentIndex);
+
         break;
       case 2:
         if (!context.read<InputValueCreateOrderCubit>().notPaid &&
@@ -258,11 +244,10 @@ class _ButtonCreateDialogWidgetState extends State<ButtonCreateDialogWidget> {
           context.read<CreateOrderBloc>().add(
                 CreateOrderEvent.createOrder(
                   input: InputCreateOrderModel(
-                      partnerId: context
-                              .read<InputValueCreateOrderCubit>()
-                              .partnerContact
-                              ?.id ??
-                          0,
+                      input: context
+                          .read<InputValueCreateOrderCubit>()
+                          .updateAttachmentsUpload,
+                      partnerId: context.read<LeadContactBloc>().leadId ?? 0,
                       currency:
                           context.read<CurrenciesBloc>().currencySelected?.id ??
                               0,

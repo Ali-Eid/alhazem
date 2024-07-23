@@ -1,14 +1,17 @@
 import 'dart:async';
 
+import 'package:alhazem/features/contacts/presentation/views/create_contract_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/constants/color_manager.dart';
 import '../../../../../core/constants/values_manager.dart';
+import '../../../../../core/widgets/alert_dialog_widget.dart';
 import '../../../../main/presentation/blocs/search_bloc/search_bloc.dart';
 import '../../../../orders/domain/models/input_models/input_create_model/input_create_order_model.dart';
 import '../../blocs/input_value_create_order_cubit/input_value_create_order_cubit.dart';
 import '../create_order_dialog_widget.dart';
+import '../create_traveler_widget/create_traveler_widget.dart';
 
 class TravellersItemsWidget extends StatefulWidget {
   const TravellersItemsWidget({super.key});
@@ -128,154 +131,188 @@ class _SelectTravelerWidgetState extends State<SelectTravelerWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.symmetric(
-                  horizontal: AppSizeW.s6, vertical: AppSizeH.s15),
-              child: SizedBox(
-                child: TextFormField(
-                  style: Theme.of(context).textTheme.bodyMedium,
-                  decoration:
-                      const InputDecoration(hintText: "اضافة مسافرين..."),
-                  onChanged: _onSearchTravellersChanged,
-                  controller: context
-                      .read<InputValueCreateOrderCubit>()
-                      .travelerController,
+    return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          showDialog(
+            context: context,
+            builder: (_) {
+              return BlocProvider.value(
+                value: context.read<InputValueCreateOrderCubit>(),
+                child: AlertDialogWidget(
+                  title: "انشاء مسافر",
+                  // insetPadding:
+                  //     EdgeInsets.symmetric(
+                  //   vertical: AppSizeH.s150,
+                  // ),
+                  content: SizedBox(
+                    width: MediaQuery.sizeOf(context).width,
+                    // height: AppSizeH.s425,
+                    child: const CreateTravelerWidget(),
+                  ),
+                ),
+              );
+            },
+          );
+        },
+        tooltip: "اضافة مسافر",
+        backgroundColor: ColorManager.primary,
+        child: Icon(
+          Icons.add,
+          color: ColorManager.white,
+        ),
+      ),
+      body: Stack(
+        children: [
+          Column(
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: AppSizeW.s6, vertical: AppSizeH.s15),
+                child: SizedBox(
+                  child: TextFormField(
+                    style: Theme.of(context).textTheme.bodyMedium,
+                    decoration:
+                        const InputDecoration(hintText: "اختيار مسافرين..."),
+                    onChanged: _onSearchTravellersChanged,
+                    controller: context
+                        .read<InputValueCreateOrderCubit>()
+                        .travelerController,
+                  ),
                 ),
               ),
-            ),
-            SizedBox(height: AppSizeH.s12),
-            BlocBuilder(
-              bloc: context.read<InputValueCreateOrderCubit>(),
-              builder: (context, state) {
-                return Visibility(
-                  visible: context
-                      .read<InputValueCreateOrderCubit>()
-                      .travelersContact
-                      .isNotEmpty,
-                  child: Expanded(
-                    child: Container(
-                        padding: EdgeInsets.all(AppSizeW.s8),
-                        decoration: BoxDecoration(
-                            color: ColorManager.white,
-                            borderRadius: BorderRadius.circular(AppSizeR.s12),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: ColorManager.smokeyGrey,
-                                  blurRadius: AppSizeR.s3,
-                                  spreadRadius: AppSizeR.s1)
-                            ]),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "المسافرين",
-                              style: Theme.of(context).textTheme.displaySmall,
-                            ),
-                            const Divider(),
-                            Expanded(
-                                child: SingleChildScrollView(
-                              child: Column(
-                                  children: context
-                                      .read<InputValueCreateOrderCubit>()
-                                      .travelersContact
-                                      .map(
-                                (traveler) {
-                                  return Padding(
-                                    padding: EdgeInsets.symmetric(
-                                        vertical: AppSizeW.s2),
-                                    child: InkWell(
-                                      onTap: () {
-                                        context
-                                            .read<InputValueCreateOrderCubit>()
-                                            .removeTravelers(traveler);
-                                      },
-                                      child: Row(
-                                        children: [
-                                          Container(
-                                            alignment: Alignment.center,
-                                            width: AppSizeW.s15,
-                                            height: AppSizeW.s15,
-                                            decoration: BoxDecoration(
-                                                border: Border.all(
-                                                    width: 0.5,
-                                                    color: ColorManager.black),
-                                                borderRadius:
-                                                    BorderRadius.circular(
-                                                        AppSizeR.s3)),
-                                            child: context
-                                                    .read<
-                                                        InputValueCreateOrderCubit>()
-                                                    .travelers
-                                                    .contains(
-                                                        TravelerInputOrderModel(
-                                                            travelId:
-                                                                traveler.id))
-                                                ? Icon(
-                                                    Icons.check,
-                                                    color:
-                                                        ColorManager.secondary,
-                                                    size: AppSizeSp.s12,
-                                                  )
-                                                : const SizedBox(),
-                                          ),
-                                          SizedBox(width: AppSizeW.s10),
-                                          Text(
-                                            "${traveler.name} (#${traveler.id})",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .labelLarge,
-                                          ),
-                                        ],
+              SizedBox(height: AppSizeH.s12),
+              BlocBuilder(
+                bloc: context.read<InputValueCreateOrderCubit>(),
+                builder: (context, state) {
+                  return Visibility(
+                    visible: context
+                        .read<InputValueCreateOrderCubit>()
+                        .travelersContact
+                        .isNotEmpty,
+                    child: Expanded(
+                      child: Container(
+                          padding: EdgeInsets.all(AppSizeW.s8),
+                          decoration: BoxDecoration(
+                              color: ColorManager.white,
+                              borderRadius: BorderRadius.circular(AppSizeR.s12),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: ColorManager.smokeyGrey,
+                                    blurRadius: AppSizeR.s3,
+                                    spreadRadius: AppSizeR.s1)
+                              ]),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "المسافرين",
+                                style: Theme.of(context).textTheme.displaySmall,
+                              ),
+                              const Divider(),
+                              Expanded(
+                                  child: SingleChildScrollView(
+                                child: Column(
+                                    children: context
+                                        .read<InputValueCreateOrderCubit>()
+                                        .travelersContact
+                                        .map(
+                                  (traveler) {
+                                    return Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: AppSizeW.s2),
+                                      child: InkWell(
+                                        onTap: () {
+                                          context
+                                              .read<
+                                                  InputValueCreateOrderCubit>()
+                                              .removeTravelers(traveler);
+                                        },
+                                        child: Row(
+                                          children: [
+                                            Container(
+                                              alignment: Alignment.center,
+                                              width: AppSizeW.s15,
+                                              height: AppSizeW.s15,
+                                              decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                      width: 0.5,
+                                                      color:
+                                                          ColorManager.black),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          AppSizeR.s3)),
+                                              child: context
+                                                      .read<
+                                                          InputValueCreateOrderCubit>()
+                                                      .travelers
+                                                      .contains(
+                                                          TravelerInputOrderModel(
+                                                              travelId:
+                                                                  traveler.id))
+                                                  ? Icon(
+                                                      Icons.check,
+                                                      color: ColorManager
+                                                          .secondary,
+                                                      size: AppSizeSp.s12,
+                                                    )
+                                                  : const SizedBox(),
+                                            ),
+                                            SizedBox(width: AppSizeW.s10),
+                                            Text(
+                                              "${traveler.name} (#${traveler.id})",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .labelLarge,
+                                            ),
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                  );
-                                },
-                              ).toList()),
-                            )),
-                          ],
-                        )),
-                  ),
-                );
-              },
-            )
-          ],
-        ),
-        BlocBuilder(
-          bloc: context.read<SearchBloc>(),
-          builder: (context, SearchState state) {
-            return state.maybeMap(
-              laoding: (value) {
-                return Padding(
-                  padding: EdgeInsets.only(top: AppSizeH.s65),
-                  child: Container(
-                    height: AppSizeH.s103,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: ColorManager.white,
-                      boxShadow: [
-                        BoxShadow(
-                            blurRadius: AppSizeR.s15,
-                            color: ColorManager.shadow)
-                      ],
-                      borderRadius: BorderRadius.circular(AppSizeR.s15),
+                                    );
+                                  },
+                                ).toList()),
+                              )),
+                            ],
+                          )),
                     ),
-                    child: const Center(
-                      child: CircularProgressIndicator(),
+                  );
+                },
+              )
+            ],
+          ),
+          BlocBuilder(
+            bloc: context.read<SearchBloc>(),
+            builder: (context, SearchState state) {
+              return state.maybeMap(
+                laoding: (value) {
+                  return Padding(
+                    padding: EdgeInsets.only(top: AppSizeH.s65),
+                    child: Container(
+                      height: AppSizeH.s103,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: ColorManager.white,
+                        boxShadow: [
+                          BoxShadow(
+                              blurRadius: AppSizeR.s15,
+                              color: ColorManager.shadow)
+                        ],
+                        borderRadius: BorderRadius.circular(AppSizeR.s15),
+                      ),
+                      child: const Center(
+                        child: CircularProgressIndicator(),
+                      ),
                     ),
-                  ),
-                );
-              },
-              orElse: () {
-                return const TravellersItemsWidget();
-              },
-            );
-          },
-        ),
-      ],
+                  );
+                },
+                orElse: () {
+                  return const TravellersItemsWidget();
+                },
+              );
+            },
+          ),
+        ],
+      ),
     );
   }
 }

@@ -2,6 +2,9 @@
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../../../services/domain/models/attachments_required_model/attachments_required_model.dart';
+import '../create_order_model/create_order_model.dart';
+
 part 'order_details_model.freezed.dart';
 part 'order_details_model.g.dart';
 
@@ -18,6 +21,9 @@ abstract class OrderDetailsModel with _$OrderDetailsModel {
     @Default([])
     @JsonKey(name: "return_reason")
     List<ReturnReasonModel> returnReasons,
+    @Default([])
+    @JsonKey(name: "attachments")
+    List<AttachmentsMissedModel> attachmentsMissed,
   }) = _OrderDetailsModel;
   factory OrderDetailsModel.fromJson(Map<String, dynamic> json) =>
       _$OrderDetailsModelFromJson(json);

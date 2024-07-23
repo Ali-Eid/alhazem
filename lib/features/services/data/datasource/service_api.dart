@@ -8,6 +8,7 @@ import 'package:retrofit/retrofit.dart';
 
 import '../../../../core/bases/models/response_model/response_model.dart';
 import '../../../../core/constants/endpoints.dart';
+import '../../domain/models/attachments_required_model/attachments_required_model.dart';
 import '../../domain/models/type_service_model/type_service_model.dart';
 
 part 'service_api.g.dart';
@@ -37,5 +38,12 @@ abstract class ServicesServiceClient {
   Future<HttpResponse<ResponseModel<CheckPriceModel>>> checkPrice({
     @Field("service_id") required int serviceId,
     @Field("variant_ids") required List<int> variantIds,
+  });
+
+  @POST(Endpoints.CHECK_ATTACHMENTS)
+  Future<HttpResponse<ResponseModel<List<AttachmentsRequiredModel>>>>
+      checkAttachments({
+    @Field("service_id") required int serviceId,
+    @Field("travelers") required List<int> travelerIds,
   });
 }
