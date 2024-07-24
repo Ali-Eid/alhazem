@@ -10,6 +10,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:toastification/toastification.dart';
 import '../../features/contacts/presentation/blocs/lead_contact_bloc/lead_contact_bloc.dart';
 import '../../features/contacts/presentation/blocs/static_bloc/static_bloc.dart';
+import '../../features/orders/presentation/blocs/input_get_orders_cubit/input_get_orders_cubit_cubit.dart';
+import '../../features/orders/presentation/blocs/orders_bloc/orders_bloc.dart';
 import '../../features/splash/presentations/blocs/app_bloc/app_bloc.dart';
 import '../cache/app_preferences.dart';
 import '../routers/routes_manager.dart';
@@ -42,6 +44,12 @@ class _MyAppState extends State<MyApp> {
         ),
         BlocProvider(
           create: (context) => instance<SearchBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => instance<OrdersBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => instance<InputGetOrdersCubitCubit>(),
         ),
         BlocProvider(
           create: (context) => instance<StaticBloc>()

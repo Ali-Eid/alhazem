@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../input_create_traveler_model/input_create_traveler_model.dart';
+import '../../../../../contacts/domain/models/input_create_traveler_model/input_create_traveler_model.dart';
 
 part 'input_missed_attachment_model.freezed.dart';
 part 'input_missed_attachment_model.g.dart';

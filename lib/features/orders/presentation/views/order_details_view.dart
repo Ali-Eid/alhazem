@@ -9,10 +9,11 @@ import '../../../../core/constants/color_manager.dart';
 import '../../../../core/constants/values_manager.dart';
 import '../../../../core/widgets/alert_dialog_widget.dart';
 import '../../../services/presentation/blocs/input_value_create_order_cubit/input_value_create_order_cubit.dart';
-import '../../../services/presentation/widgets/create_order_widget/missed_attachments_widget.dart';
 import '../../domain/models/order_details_model/order_details_model.dart';
+import '../blocs/currencies_bloc/currencies_bloc.dart';
 import '../blocs/input_payment_cubit/input_payment_cubit.dart';
 import '../blocs/payment_bloc/payment_bloc.dart';
+import '../widgets/missed_attachments_widgets/missed_attachments_widget.dart';
 import '../widgets/order_item_widget.dart';
 import '../widgets/return_reason_order_details_widget.dart';
 import '../widgets/travelers_order_details_widget.dart';
@@ -65,7 +66,9 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                   title: Text(value.orderDetails.data.first.name),
                   actions: [
                     context.read<InputPaymentCubit>().total >
-                            context.read<InputPaymentCubit>().totalPaid
+                                context.read<InputPaymentCubit>().totalPaid &&
+                            value.orderDetails.data.first.state !=
+                                OrderStatus.cancel.name
                         ? Padding(
                             padding:
                                 EdgeInsets.symmetric(horizontal: AppSizeW.s12),
@@ -137,7 +140,7 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                                 onPressed: () {
                                   showDialog(
                                     context: context,
-                                    builder: (BuildContext context) {
+                                    builder: (_) {
                                       return AlertDialogWidget(
                                         title: "استكمال الأوراق",
                                         content: SizedBox(
@@ -145,9 +148,16 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                                               MediaQuery.sizeOf(context).width *
                                                   0.5,
                                           // height: AppSizeH.s425,
-                                          child: BlocProvider(
-                                            create: (context) => instance<
-                                                InputValueCreateOrderCubit>(),
+                                          child: MultiBlocProvider(
+                                            providers: [
+                                              BlocProvider.value(
+                                                  value: context.read<
+                                                      InputPaymentCubit>()),
+                                              BlocProvider(
+                                                create: (context) => instance<
+                                                    InputValueCreateOrderCubit>(),
+                                              )
+                                            ],
                                             child: MissedAttachmentsWidget(
                                                 orderId: widget.orderId,
                                                 attachments: value
@@ -229,7 +239,7 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                                       OrderDetailsWidget(
                                         name: "المبلغ الاجمالي",
                                         value:
-                                            "${context.read<InputPaymentCubit>().total * value.orderDetails.data.first.orderItems.length}",
+                                            "${context.read<InputPaymentCubit>().total} ${context.read<CurrenciesBloc>().currencies.first.name}",
                                       ),
                                       Divider(
                                         endIndent: AppSizeW.s40,
@@ -238,7 +248,7 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                                       OrderDetailsWidget(
                                         name: "المبلغ المقبوض",
                                         value:
-                                            "${context.read<InputPaymentCubit>().totalPaid}",
+                                            "${context.read<InputPaymentCubit>().totalPaid} ${context.read<CurrenciesBloc>().currencies.first.name}",
                                       ),
                                       Divider(
                                         endIndent: AppSizeW.s40,
@@ -247,7 +257,7 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                                       OrderDetailsWidget(
                                         name: "المبلغ المتبقي",
                                         value:
-                                            "${context.read<InputPaymentCubit>().remainingTotal}",
+                                            "${context.read<InputPaymentCubit>().remainingTotal} ${context.read<CurrenciesBloc>().currencies.first.name}",
                                       ),
                                     ],
                                   ),

@@ -40,6 +40,11 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                     '${context.read<CheckPriceBloc>().newPrice * context.read<InputValueCreateOrderCubit>().travelersContact.length}',
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
+                  SizedBox(width: AppSizeW.s6),
+                  Text(
+                    context.read<CurrenciesBloc>().currencies.first.name,
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
                 ],
               ),
               SizedBox(height: AppSizeH.s20),

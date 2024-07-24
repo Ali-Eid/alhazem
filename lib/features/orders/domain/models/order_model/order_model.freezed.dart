@@ -30,6 +30,8 @@ mixin _$OrderModel {
   String get partnerName => throw _privateConstructorUsedError;
   @JsonKey(name: "paid_total")
   num get totalPaid => throw _privateConstructorUsedError;
+  @JsonKey(name: "is_office")
+  bool get isOffice => throw _privateConstructorUsedError;
   num get total => throw _privateConstructorUsedError;
   @JsonKey(name: "remained_total")
   num get remainedTotal => throw _privateConstructorUsedError;
@@ -54,6 +56,7 @@ abstract class $OrderModelCopyWith<$Res> {
       @JsonKey(name: "partner_number") String partnerNumber,
       @JsonKey(name: "partner_name") String partnerName,
       @JsonKey(name: "paid_total") num totalPaid,
+      @JsonKey(name: "is_office") bool isOffice,
       num total,
       @JsonKey(name: "remained_total") num remainedTotal});
 }
@@ -78,6 +81,7 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
     Object? partnerNumber = null,
     Object? partnerName = null,
     Object? totalPaid = null,
+    Object? isOffice = null,
     Object? total = null,
     Object? remainedTotal = null,
   }) {
@@ -110,6 +114,10 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
           ? _value.totalPaid
           : totalPaid // ignore: cast_nullable_to_non_nullable
               as num,
+      isOffice: null == isOffice
+          ? _value.isOffice
+          : isOffice // ignore: cast_nullable_to_non_nullable
+              as bool,
       total: null == total
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
@@ -138,6 +146,7 @@ abstract class _$$OrderModelImplCopyWith<$Res>
       @JsonKey(name: "partner_number") String partnerNumber,
       @JsonKey(name: "partner_name") String partnerName,
       @JsonKey(name: "paid_total") num totalPaid,
+      @JsonKey(name: "is_office") bool isOffice,
       num total,
       @JsonKey(name: "remained_total") num remainedTotal});
 }
@@ -160,6 +169,7 @@ class __$$OrderModelImplCopyWithImpl<$Res>
     Object? partnerNumber = null,
     Object? partnerName = null,
     Object? totalPaid = null,
+    Object? isOffice = null,
     Object? total = null,
     Object? remainedTotal = null,
   }) {
@@ -192,6 +202,10 @@ class __$$OrderModelImplCopyWithImpl<$Res>
           ? _value.totalPaid
           : totalPaid // ignore: cast_nullable_to_non_nullable
               as num,
+      isOffice: null == isOffice
+          ? _value.isOffice
+          : isOffice // ignore: cast_nullable_to_non_nullable
+              as bool,
       total: null == total
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
@@ -215,6 +229,7 @@ class _$OrderModelImpl implements _OrderModel {
       @JsonKey(name: "partner_number") this.partnerNumber = "",
       @JsonKey(name: "partner_name") this.partnerName = "",
       @JsonKey(name: "paid_total") this.totalPaid = 0,
+      @JsonKey(name: "is_office") this.isOffice = false,
       this.total = 0,
       @JsonKey(name: "remained_total") this.remainedTotal = 0});
 
@@ -243,6 +258,9 @@ class _$OrderModelImpl implements _OrderModel {
   @JsonKey(name: "paid_total")
   final num totalPaid;
   @override
+  @JsonKey(name: "is_office")
+  final bool isOffice;
+  @override
   @JsonKey()
   final num total;
   @override
@@ -251,7 +269,7 @@ class _$OrderModelImpl implements _OrderModel {
 
   @override
   String toString() {
-    return 'OrderModel(id: $id, name: $name, state: $state, date: $date, partnerNumber: $partnerNumber, partnerName: $partnerName, totalPaid: $totalPaid, total: $total, remainedTotal: $remainedTotal)';
+    return 'OrderModel(id: $id, name: $name, state: $state, date: $date, partnerNumber: $partnerNumber, partnerName: $partnerName, totalPaid: $totalPaid, isOffice: $isOffice, total: $total, remainedTotal: $remainedTotal)';
   }
 
   @override
@@ -269,6 +287,8 @@ class _$OrderModelImpl implements _OrderModel {
                 other.partnerName == partnerName) &&
             (identical(other.totalPaid, totalPaid) ||
                 other.totalPaid == totalPaid) &&
+            (identical(other.isOffice, isOffice) ||
+                other.isOffice == isOffice) &&
             (identical(other.total, total) || other.total == total) &&
             (identical(other.remainedTotal, remainedTotal) ||
                 other.remainedTotal == remainedTotal));
@@ -277,7 +297,7 @@ class _$OrderModelImpl implements _OrderModel {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, name, state, date,
-      partnerNumber, partnerName, totalPaid, total, remainedTotal);
+      partnerNumber, partnerName, totalPaid, isOffice, total, remainedTotal);
 
   @JsonKey(ignore: true)
   @override
@@ -302,6 +322,7 @@ abstract class _OrderModel implements OrderModel {
           @JsonKey(name: "partner_number") final String partnerNumber,
           @JsonKey(name: "partner_name") final String partnerName,
           @JsonKey(name: "paid_total") final num totalPaid,
+          @JsonKey(name: "is_office") final bool isOffice,
           final num total,
           @JsonKey(name: "remained_total") final num remainedTotal}) =
       _$OrderModelImpl;
@@ -326,6 +347,9 @@ abstract class _OrderModel implements OrderModel {
   @override
   @JsonKey(name: "paid_total")
   num get totalPaid;
+  @override
+  @JsonKey(name: "is_office")
+  bool get isOffice;
   @override
   num get total;
   @override

@@ -1,6 +1,8 @@
 import 'package:alhazem/core/routers/routes_manager.dart';
+import 'package:alhazem/features/orders/presentation/blocs/currencies_bloc/currencies_bloc.dart';
 import 'package:alhazem/features/services/domain/models/service_model/service_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
@@ -48,12 +50,20 @@ class _ServiceItemWidgetState extends State<ServiceItemWidget> {
             ),
             SizedBox(height: AppSizeH.s8),
             Row(
+              // crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Icon(Icons.money, size: AppSizeSp.s16),
                 SizedBox(width: AppSizeW.s4),
-                Text(
-                  "${widget.model.price} ${widget.model.currency}",
-                  style: Theme.of(context).textTheme.titleMedium,
+                Expanded(
+                  child: BlocBuilder(
+                    bloc: context.read<CurrenciesBloc>(),
+                    builder: (context, state) {
+                      return Text(
+                        "${widget.model.price} ${context.read<CurrenciesBloc>().currencies.first.name}",
+                        style: Theme.of(context).textTheme.titleMedium,
+                      );
+                    },
+                  ),
                 ),
               ],
             ),

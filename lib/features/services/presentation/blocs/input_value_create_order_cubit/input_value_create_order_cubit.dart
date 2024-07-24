@@ -9,8 +9,8 @@ import 'package:image_picker/image_picker.dart';
 
 import '../../../../contacts/domain/models/contact_model/contact_model.dart';
 import '../../../../contacts/domain/models/input_create_traveler_model/input_create_traveler_model.dart';
-import '../../../../contacts/domain/models/missed_attachments_model/input_model/input_missed_attachment_model.dart';
 import '../../../../orders/domain/models/create_order_model/create_order_model.dart';
+import '../../../../orders/domain/models/missed_attachments_model/input_model/input_missed_attachment_model.dart';
 
 class InputValueCreateOrderCubit extends Cubit<int> {
   InputValueCreateOrderCubit(super.initialState);
@@ -121,7 +121,7 @@ class InputValueCreateOrderCubit extends Cubit<int> {
           .firstWhere(
             (element) => element.travelerId == travelerId,
             orElse: () {
-              return InputMissedAttachmentModel();
+              return const InputMissedAttachmentModel();
             },
           )
           .attachments
@@ -159,7 +159,7 @@ class InputValueCreateOrderCubit extends Cubit<int> {
         var travelerList = updateAttachmentsUpload.firstWhere(
           (element) => element.travelerId == travelerId,
           orElse: () {
-            return InputMissedAttachmentModel();
+            return const InputMissedAttachmentModel();
           },
         );
         List<AttachmentsCreateTravelerModel> listTemp = [];

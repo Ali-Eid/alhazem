@@ -13,6 +13,8 @@ part 'lead_contact_bloc.freezed.dart';
 class LeadContactBloc extends Bloc<LeadContactEvent, LeadContactState> {
   final CreateLeadUsecase createLeadUsecase;
   int? leadId;
+  int? partnerId;
+  String? leadName;
   LeadContactBloc({required this.createLeadUsecase}) : super(const _Initial()) {
     on<LeadContactEvent>((event, emit) async {
       await event.map(
@@ -22,6 +24,8 @@ class LeadContactBloc extends Bloc<LeadContactEvent, LeadContactState> {
           failureOrSuccess.when(
             (success) {
               leadId = success.data.leadId;
+              partnerId = success.data.partnerId;
+              leadName = success.data.leadName;
               emit(LeadContactState.loaded(success: success));
             },
             (error) {
@@ -32,12 +36,9 @@ class LeadContactBloc extends Bloc<LeadContactEvent, LeadContactState> {
         logoutLead: (value) async {
           emit(const LeadContactState.loading());
           leadId = null;
+          leadName = null;
+          partnerId = null;
           emit(const LeadContactState.deletedLead());
-          // emit(LeadContactState.loaded(
-          //     success: ResponseModel(
-          //         data: CreateLeadModel(),
-          //         message: "Delete lead successfully"))
-          //         );
         },
       );
     });

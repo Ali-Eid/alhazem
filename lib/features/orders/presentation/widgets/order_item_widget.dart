@@ -104,7 +104,9 @@ class _OrderItemWidgetState extends State<OrderItemWidget> {
                       child: Column(
                         children: [
                           TitleValueItemOrder(
-                              title: "الزبون", value: widget.model.partnerName),
+                              title:
+                                  widget.model.isOffice ? "المكتب" : "المسافر",
+                              value: widget.model.partnerName),
                           SizedBox(height: AppSizeH.s15),
                           TitleValueItemOrder(
                               title: "رقم الهاتف",
@@ -133,7 +135,8 @@ class _OrderItemWidgetState extends State<OrderItemWidget> {
                             titleStyle: Theme.of(context).textTheme.labelMedium,
                             valueStyle:
                                 Theme.of(context).textTheme.displaySmall,
-                            value: inputPaymentCubit.total.toString(),
+                            value:
+                                '${inputPaymentCubit.total} ${context.read<CurrenciesBloc>().currencies.first.name}',
                           ),
                           SizedBox(height: AppSizeH.s10),
                           TitleValueItemOrder(
@@ -141,7 +144,8 @@ class _OrderItemWidgetState extends State<OrderItemWidget> {
                             titleStyle: Theme.of(context).textTheme.labelMedium,
                             valueStyle:
                                 Theme.of(context).textTheme.displaySmall,
-                            value: inputPaymentCubit.totalPaid.toString(),
+                            value:
+                                '${inputPaymentCubit.totalPaid} ${context.read<CurrenciesBloc>().currencies.first.name}',
                           ),
                           SizedBox(height: AppSizeH.s10),
                           TitleValueItemOrder(
@@ -149,7 +153,8 @@ class _OrderItemWidgetState extends State<OrderItemWidget> {
                             titleStyle: Theme.of(context).textTheme.labelMedium,
                             valueStyle:
                                 Theme.of(context).textTheme.displaySmall,
-                            value: inputPaymentCubit.remainingTotal.toString(),
+                            value:
+                                '${inputPaymentCubit.remainingTotal} ${context.read<CurrenciesBloc>().currencies.first.name}',
                           ),
                         ],
                       ),
@@ -295,7 +300,7 @@ class _CreatePaymentWidgetState extends State<CreatePaymentWidget> {
                       bloc: context.read<InputPaymentCubit>(),
                       builder: (context, state) {
                         return Text(
-                          "${context.read<InputPaymentCubit>().total}",
+                          "${context.read<InputPaymentCubit>().total} ${context.read<CurrenciesBloc>().currencies.first.name}",
                           style: Theme.of(context).textTheme.displaySmall,
                         );
                       },
@@ -314,7 +319,7 @@ class _CreatePaymentWidgetState extends State<CreatePaymentWidget> {
                       bloc: context.read<InputPaymentCubit>(),
                       builder: (context, state) {
                         return Text(
-                          "${context.read<InputPaymentCubit>().remainingTotal}",
+                          "${context.read<InputPaymentCubit>().remainingTotal} ${context.read<CurrenciesBloc>().currencies.first.name}",
                           style: Theme.of(context).textTheme.displaySmall,
                         );
                       },
@@ -374,7 +379,7 @@ class _CreatePaymentWidgetState extends State<CreatePaymentWidget> {
                       bloc: context.read<InputPaymentCubit>(),
                       builder: (context, state) {
                         return Text(
-                          "${context.read<InputPaymentCubit>().totalPaid}",
+                          "${context.read<InputPaymentCubit>().totalPaid} ${context.read<CurrenciesBloc>().currencies.first.name}",
                           style: Theme.of(context).textTheme.headlineSmall,
                         );
                       },

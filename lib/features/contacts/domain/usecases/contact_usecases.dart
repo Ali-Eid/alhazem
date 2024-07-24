@@ -10,7 +10,6 @@ import 'package:alhazem/features/contacts/domain/repository/contact_repository.d
 import 'package:multiple_result/src/result.dart';
 
 import '../models/crate_lead_model/create_lead_model.dart';
-import '../models/missed_attachments_model/input_model/input_missed_attachment_model.dart';
 
 class CreateLeadUsecase
     implements BaseUseCase<InputLeadModel, ResponseModel<CreateLeadModel>> {
@@ -116,18 +115,5 @@ class GetStatesUsecase
   Future<Result<ResponseModel<List<StaticModel>>, FailureModel>> execute(
       int countryId) async {
     return await repository.getStates(countryId: countryId);
-  }
-}
-
-class UpdateAttachmentsUsecase
-    implements BaseUseCase<InputUpdateAttachmentsModel, ResponseModel> {
-  final ContactRepository repository;
-
-  UpdateAttachmentsUsecase({required this.repository});
-
-  @override
-  Future<Result<ResponseModel, FailureModel>> execute(
-      InputUpdateAttachmentsModel input) async {
-    return await repository.updateAttachmentsContact(input: input);
   }
 }

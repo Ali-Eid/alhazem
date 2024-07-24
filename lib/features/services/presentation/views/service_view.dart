@@ -7,6 +7,7 @@ import 'package:number_pagination/number_pagination.dart';
 
 import '../../../../core/app/depndency_injection.dart';
 import '../widgets/service_item_widget.dart';
+import 'types_services_view.dart';
 
 class ServicesView extends StatefulWidget {
   final int typeServiceId;
@@ -52,22 +53,34 @@ class _ServicesViewState extends State<ServicesView> {
                     );
                   },
                   loadedServices: (value) {
-                    return Column(children: [
-                      Expanded(
-                          child: GridView.builder(
-                        padding: EdgeInsets.all(AppSizeW.s15),
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisSpacing: AppSizeW.s13,
-                            mainAxisSpacing: AppSizeH.s15,
-                            crossAxisCount: 5),
-                        itemCount: value.services.data.length,
-                        itemBuilder: (context, index) {
-                          return ServiceItemWidget(
-                            model: value.services.data[index],
-                          );
-                        },
-                      )),
-                    ]);
+                    return value.services.data.isEmpty
+                        ? Center(
+                            child: EmptyWidget(
+                              title: "لا يوجد خدمات مدخلة",
+                              onPressed: () {
+                                serviceBloc.add(ServiceEvent.getServices(
+                                    serviceTypeId: widget.typeServiceId,
+                                    page: selectedPageNumber));
+                              },
+                            ),
+                          )
+                        : Column(children: [
+                            Expanded(
+                                child: GridView.builder(
+                              padding: EdgeInsets.all(AppSizeW.s15),
+                              gridDelegate:
+                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisSpacing: AppSizeW.s13,
+                                      mainAxisSpacing: AppSizeH.s15,
+                                      crossAxisCount: 5),
+                              itemCount: value.services.data.length,
+                              itemBuilder: (context, index) {
+                                return ServiceItemWidget(
+                                  model: value.services.data[index],
+                                );
+                              },
+                            )),
+                          ]);
                   },
                   error: (value) {
                     return Center(

@@ -8,6 +8,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/constants/color_manager.dart';
+import '../../../../core/widgets/alert_dialog_widget.dart';
 import '../../../splash/presentations/blocs/app_bloc/app_bloc.dart';
 
 class SideMenuWidget extends StatelessWidget {
@@ -128,7 +130,63 @@ class SideMenuWidget extends StatelessWidget {
                       title: "تسجيل الخروج",
                       svgSrc: IconAssets.settingIcon,
                       press: () {
-                        context.read<AppBloc>().add(const AppEvent.logout());
+                        showDialog(
+                          context: context,
+                          builder: (context) => AlertDialogWidget(
+                              title: "تسجيل الخروج",
+                              content: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(
+                                    "هل انت متأكد من تسجيل الخروج ؟",
+                                    style:
+                                        Theme.of(context).textTheme.labelMedium,
+                                  ),
+                                  SizedBox(height: AppSizeH.s15),
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: ElevatedButton(
+                                            onPressed: () {
+                                              context
+                                                  .read<AppBloc>()
+                                                  .add(const AppEvent.logout());
+                                              context.pop();
+                                            },
+                                            child: const Text("نعم")),
+                                      ),
+                                      SizedBox(width: AppSizeW.s6),
+                                      Expanded(
+                                        child: ElevatedButton(
+                                            style: ButtonStyle(
+                                                backgroundColor:
+                                                    WidgetStateProperty.all(
+                                                        ColorManager.white),
+                                                shape: WidgetStateProperty.all(
+                                                    RoundedRectangleBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(
+                                                                    AppSizeR
+                                                                        .s7),
+                                                        side: BorderSide(
+                                                            color: ColorManager
+                                                                .primary)))),
+                                            onPressed: () {
+                                              context.pop();
+                                            },
+                                            child: Text(
+                                              "لا",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .titleSmall,
+                                            )),
+                                      )
+                                    ],
+                                  )
+                                ],
+                              )),
+                        );
                       },
                     );
                   },

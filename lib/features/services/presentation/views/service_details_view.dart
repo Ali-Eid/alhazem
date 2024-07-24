@@ -16,6 +16,7 @@ import 'package:toastification/toastification.dart';
 import '../../../../core/app/depndency_injection.dart';
 import '../../../../core/widgets/alert_dialog_widget.dart';
 import '../../../contacts/presentation/widgets/drop_down_widget.dart';
+import '../../../orders/presentation/blocs/currencies_bloc/currencies_bloc.dart';
 import '../blocs/input_value_create_order_cubit/input_value_create_order_cubit.dart';
 import '../widgets/create_order_dialog_widget.dart';
 import '../widgets/service_details_widget.dart';
@@ -190,7 +191,7 @@ class _ServiceDetailsViewState extends State<ServiceDetailsView> {
                                         loaded: (value) {
                                           return Expanded(
                                             child: Text(
-                                              value.price.toString(),
+                                              "${value.price} ${context.read<CurrenciesBloc>().currencies.first.name}",
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .labelSmall,
@@ -200,7 +201,7 @@ class _ServiceDetailsViewState extends State<ServiceDetailsView> {
                                         orElse: () {
                                           return Expanded(
                                             child: Text(
-                                              checkPriceBloc.price.toString(),
+                                              "${checkPriceBloc.price} ${context.read<CurrenciesBloc>().currencies.first.name}",
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .labelSmall,

@@ -100,9 +100,9 @@ class VariantsServiceWidget extends StatelessWidget {
                                       baselineType: TextBaseline.alphabetic,
                                       child: Text(
                                         variantValue.name,
-                                        style: TextStyle(
-                                            fontSize: AppSizeSp.s14,
-                                            fontWeight: FontWeight.w500),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium,
                                       ),
                                     )
                                   ],

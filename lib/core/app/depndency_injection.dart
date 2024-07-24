@@ -41,12 +41,13 @@ import '../../features/main/presentation/blocs/type_search_bloc/type_search_bloc
 import '../../features/orders/data/datasource/order_api.dart';
 import '../../features/orders/presentation/blocs/confirm_waiting_order_bloc/confirm_waiting_order_bloc.dart';
 import '../../features/orders/presentation/blocs/currencies_bloc/currencies_bloc.dart';
+import '../../features/orders/presentation/blocs/input_get_orders_cubit/input_get_orders_cubit_cubit.dart';
 import '../../features/orders/presentation/blocs/payment_bloc/payment_bloc.dart';
+import '../../features/orders/presentation/blocs/update_attachments_bloc/update_attachments_bloc.dart';
 import '../../features/services/domain/repository/service_repository.dart';
 import '../../features/services/domain/usecases/check_price_usecase.dart';
 import '../../features/services/presentation/blocs/check_attachments_bloc/check_attachments_bloc.dart';
 import '../../features/services/presentation/blocs/check_price_bloc/check_price_bloc.dart';
-import '../../features/services/presentation/blocs/update_attachments_bloc/update_attachments_bloc.dart';
 import '../cache/app_preferences.dart';
 import '../network/dio_factory.dart';
 import '../network/general_dio_interceptor.dart';
@@ -171,12 +172,7 @@ Future<void> initServices() async {
       () => CheckPriceBloc(checkPriceUsecase: instance<CheckPriceUsecase>()),
     );
   }
-  if (!GetIt.I.isRegistered<UpdateAttachmentsBloc>()) {
-    instance.registerFactory(
-      () => UpdateAttachmentsBloc(
-          updateAttachmentsUsecase: instance<UpdateAttachmentsUsecase>()),
-    );
-  }
+
   if (!GetIt.I.isRegistered<CheckAttachmentsBloc>()) {
     instance.registerFactory(
       () => CheckAttachmentsBloc(
@@ -287,10 +283,6 @@ Future<void> initContact() async {
     instance.registerLazySingleton(
         () => GetOfficesUsecase(repository: instance<ContactRepository>()));
   }
-  if (!GetIt.I.isRegistered<UpdateAttachmentsUsecase>()) {
-    instance.registerLazySingleton(() =>
-        UpdateAttachmentsUsecase(repository: instance<ContactRepository>()));
-  }
 }
 
 Future<void> InitOrder() async {
@@ -327,6 +319,20 @@ Future<void> InitOrder() async {
           confirmWaitingOrderUsecase: instance<ConfirmWaitingOrderUsecase>()),
     );
   }
+  if (!GetIt.I.isRegistered<UpdateAttachmentsBloc>()) {
+    instance.registerFactory(
+      () => UpdateAttachmentsBloc(
+          confirmWaitingOrderUsecase: instance<ConfirmWaitingOrderUsecase>(),
+          updateAttachmentsUsecase: instance<UpdateAttachmentsUsecase>()),
+    );
+  }
+
+  if (!GetIt.I.isRegistered<InputGetOrdersCubitCubit>()) {
+    instance.registerFactory(
+      () => InputGetOrdersCubitCubit(0),
+    );
+  }
+
   //repository
 
   if (!GetIt.I.isRegistered<OrderRepository>()) {
@@ -366,5 +372,9 @@ Future<void> InitOrder() async {
   if (!GetIt.I.isRegistered<ConfirmWaitingOrderUsecase>()) {
     instance.registerLazySingleton(() =>
         ConfirmWaitingOrderUsecase(repository: instance<OrderRepository>()));
+  }
+  if (!GetIt.I.isRegistered<UpdateAttachmentsUsecase>()) {
+    instance.registerLazySingleton(() =>
+        UpdateAttachmentsUsecase(repository: instance<OrderRepository>()));
   }
 }

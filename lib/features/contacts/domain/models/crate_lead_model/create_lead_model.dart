@@ -4,9 +4,14 @@ part 'create_lead_model.g.dart';
 
 @freezed
 abstract class CreateLeadModel with _$CreateLeadModel {
-  // ignore: invalid_annotation_target
-  factory CreateLeadModel({@Default(0) @JsonKey(name: "lead_id") int leadId}) =
-      _CreateLeadModel;
+  factory CreateLeadModel({
+    // ignore: invalid_annotation_target
+    @Default(0) @JsonKey(name: "lead_id") int leadId,
+    // ignore: invalid_annotation_target
+    @Default(0) @JsonKey(name: "partner_id") int partnerId,
+    // ignore: invalid_annotation_target
+    @Default("") @JsonKey(name: "lead_name") String leadName,
+  }) = _CreateLeadModel;
   factory CreateLeadModel.fromJson(Map<String, dynamic> json) =>
       _$CreateLeadModelFromJson(json);
 }

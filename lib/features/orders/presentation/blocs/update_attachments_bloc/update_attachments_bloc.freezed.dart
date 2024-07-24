@@ -16,43 +16,45 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$UpdateAttachmentsEvent {
-  InputUpdateAttachmentsModel get input => throw _privateConstructorUsedError;
+  Object get input => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(InputUpdateAttachmentsModel input)
         updateAttachments,
+    required TResult Function(InputConfirmWaitingModel input) confirmWaiting,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(InputUpdateAttachmentsModel input)? updateAttachments,
+    TResult? Function(InputConfirmWaitingModel input)? confirmWaiting,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(InputUpdateAttachmentsModel input)? updateAttachments,
+    TResult Function(InputConfirmWaitingModel input)? confirmWaiting,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateAttachments value) updateAttachments,
+    required TResult Function(_ConfirmWaitingOrder value) confirmWaiting,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_UpdateAttachments value)? updateAttachments,
+    TResult? Function(_ConfirmWaitingOrder value)? confirmWaiting,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateAttachments value)? updateAttachments,
+    TResult Function(_ConfirmWaitingOrder value)? confirmWaiting,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $UpdateAttachmentsEventCopyWith<UpdateAttachmentsEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -61,10 +63,6 @@ abstract class $UpdateAttachmentsEventCopyWith<$Res> {
   factory $UpdateAttachmentsEventCopyWith(UpdateAttachmentsEvent value,
           $Res Function(UpdateAttachmentsEvent) then) =
       _$UpdateAttachmentsEventCopyWithImpl<$Res, UpdateAttachmentsEvent>;
-  @useResult
-  $Res call({InputUpdateAttachmentsModel input});
-
-  $InputUpdateAttachmentsModelCopyWith<$Res> get input;
 }
 
 /// @nodoc
@@ -77,40 +75,16 @@ class _$UpdateAttachmentsEventCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? input = null,
-  }) {
-    return _then(_value.copyWith(
-      input: null == input
-          ? _value.input
-          : input // ignore: cast_nullable_to_non_nullable
-              as InputUpdateAttachmentsModel,
-    ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $InputUpdateAttachmentsModelCopyWith<$Res> get input {
-    return $InputUpdateAttachmentsModelCopyWith<$Res>(_value.input, (value) {
-      return _then(_value.copyWith(input: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
-abstract class _$$UpdateAttachmentsImplCopyWith<$Res>
-    implements $UpdateAttachmentsEventCopyWith<$Res> {
+abstract class _$$UpdateAttachmentsImplCopyWith<$Res> {
   factory _$$UpdateAttachmentsImplCopyWith(_$UpdateAttachmentsImpl value,
           $Res Function(_$UpdateAttachmentsImpl) then) =
       __$$UpdateAttachmentsImplCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({InputUpdateAttachmentsModel input});
 
-  @override
   $InputUpdateAttachmentsModelCopyWith<$Res> get input;
 }
 
@@ -133,6 +107,14 @@ class __$$UpdateAttachmentsImplCopyWithImpl<$Res>
           : input // ignore: cast_nullable_to_non_nullable
               as InputUpdateAttachmentsModel,
     ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $InputUpdateAttachmentsModelCopyWith<$Res> get input {
+    return $InputUpdateAttachmentsModelCopyWith<$Res>(_value.input, (value) {
+      return _then(_value.copyWith(input: value));
+    });
   }
 }
 
@@ -172,6 +154,7 @@ class _$UpdateAttachmentsImpl implements _UpdateAttachments {
   TResult when<TResult extends Object?>({
     required TResult Function(InputUpdateAttachmentsModel input)
         updateAttachments,
+    required TResult Function(InputConfirmWaitingModel input) confirmWaiting,
   }) {
     return updateAttachments(input);
   }
@@ -180,6 +163,7 @@ class _$UpdateAttachmentsImpl implements _UpdateAttachments {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(InputUpdateAttachmentsModel input)? updateAttachments,
+    TResult? Function(InputConfirmWaitingModel input)? confirmWaiting,
   }) {
     return updateAttachments?.call(input);
   }
@@ -188,6 +172,7 @@ class _$UpdateAttachmentsImpl implements _UpdateAttachments {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(InputUpdateAttachmentsModel input)? updateAttachments,
+    TResult Function(InputConfirmWaitingModel input)? confirmWaiting,
     required TResult orElse(),
   }) {
     if (updateAttachments != null) {
@@ -200,6 +185,7 @@ class _$UpdateAttachmentsImpl implements _UpdateAttachments {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateAttachments value) updateAttachments,
+    required TResult Function(_ConfirmWaitingOrder value) confirmWaiting,
   }) {
     return updateAttachments(this);
   }
@@ -208,6 +194,7 @@ class _$UpdateAttachmentsImpl implements _UpdateAttachments {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_UpdateAttachments value)? updateAttachments,
+    TResult? Function(_ConfirmWaitingOrder value)? confirmWaiting,
   }) {
     return updateAttachments?.call(this);
   }
@@ -216,6 +203,7 @@ class _$UpdateAttachmentsImpl implements _UpdateAttachments {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateAttachments value)? updateAttachments,
+    TResult Function(_ConfirmWaitingOrder value)? confirmWaiting,
     required TResult orElse(),
   }) {
     if (updateAttachments != null) {
@@ -232,9 +220,157 @@ abstract class _UpdateAttachments implements UpdateAttachmentsEvent {
 
   @override
   InputUpdateAttachmentsModel get input;
-  @override
   @JsonKey(ignore: true)
   _$$UpdateAttachmentsImplCopyWith<_$UpdateAttachmentsImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ConfirmWaitingOrderImplCopyWith<$Res> {
+  factory _$$ConfirmWaitingOrderImplCopyWith(_$ConfirmWaitingOrderImpl value,
+          $Res Function(_$ConfirmWaitingOrderImpl) then) =
+      __$$ConfirmWaitingOrderImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({InputConfirmWaitingModel input});
+
+  $InputConfirmWaitingModelCopyWith<$Res> get input;
+}
+
+/// @nodoc
+class __$$ConfirmWaitingOrderImplCopyWithImpl<$Res>
+    extends _$UpdateAttachmentsEventCopyWithImpl<$Res,
+        _$ConfirmWaitingOrderImpl>
+    implements _$$ConfirmWaitingOrderImplCopyWith<$Res> {
+  __$$ConfirmWaitingOrderImplCopyWithImpl(_$ConfirmWaitingOrderImpl _value,
+      $Res Function(_$ConfirmWaitingOrderImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? input = null,
+  }) {
+    return _then(_$ConfirmWaitingOrderImpl(
+      input: null == input
+          ? _value.input
+          : input // ignore: cast_nullable_to_non_nullable
+              as InputConfirmWaitingModel,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $InputConfirmWaitingModelCopyWith<$Res> get input {
+    return $InputConfirmWaitingModelCopyWith<$Res>(_value.input, (value) {
+      return _then(_value.copyWith(input: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$ConfirmWaitingOrderImpl implements _ConfirmWaitingOrder {
+  const _$ConfirmWaitingOrderImpl({required this.input});
+
+  @override
+  final InputConfirmWaitingModel input;
+
+  @override
+  String toString() {
+    return 'UpdateAttachmentsEvent.confirmWaiting(input: $input)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ConfirmWaitingOrderImpl &&
+            (identical(other.input, input) || other.input == input));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, input);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ConfirmWaitingOrderImplCopyWith<_$ConfirmWaitingOrderImpl> get copyWith =>
+      __$$ConfirmWaitingOrderImplCopyWithImpl<_$ConfirmWaitingOrderImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(InputUpdateAttachmentsModel input)
+        updateAttachments,
+    required TResult Function(InputConfirmWaitingModel input) confirmWaiting,
+  }) {
+    return confirmWaiting(input);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(InputUpdateAttachmentsModel input)? updateAttachments,
+    TResult? Function(InputConfirmWaitingModel input)? confirmWaiting,
+  }) {
+    return confirmWaiting?.call(input);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(InputUpdateAttachmentsModel input)? updateAttachments,
+    TResult Function(InputConfirmWaitingModel input)? confirmWaiting,
+    required TResult orElse(),
+  }) {
+    if (confirmWaiting != null) {
+      return confirmWaiting(input);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UpdateAttachments value) updateAttachments,
+    required TResult Function(_ConfirmWaitingOrder value) confirmWaiting,
+  }) {
+    return confirmWaiting(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UpdateAttachments value)? updateAttachments,
+    TResult? Function(_ConfirmWaitingOrder value)? confirmWaiting,
+  }) {
+    return confirmWaiting?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UpdateAttachments value)? updateAttachments,
+    TResult Function(_ConfirmWaitingOrder value)? confirmWaiting,
+    required TResult orElse(),
+  }) {
+    if (confirmWaiting != null) {
+      return confirmWaiting(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ConfirmWaitingOrder implements UpdateAttachmentsEvent {
+  const factory _ConfirmWaitingOrder(
+          {required final InputConfirmWaitingModel input}) =
+      _$ConfirmWaitingOrderImpl;
+
+  @override
+  InputConfirmWaitingModel get input;
+  @JsonKey(ignore: true)
+  _$$ConfirmWaitingOrderImplCopyWith<_$ConfirmWaitingOrderImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -245,6 +381,8 @@ mixin _$UpdateAttachmentsState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(ResponseModel<dynamic> success) success,
+    required TResult Function(ResponseModel<CreateOrderModel> confirmed)
+        confirmed,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -253,6 +391,7 @@ mixin _$UpdateAttachmentsState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(ResponseModel<dynamic> success)? success,
+    TResult? Function(ResponseModel<CreateOrderModel> confirmed)? confirmed,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -261,6 +400,7 @@ mixin _$UpdateAttachmentsState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(ResponseModel<dynamic> success)? success,
+    TResult Function(ResponseModel<CreateOrderModel> confirmed)? confirmed,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -270,6 +410,7 @@ mixin _$UpdateAttachmentsState {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_ConfirmedOrder value) confirmed,
     required TResult Function(_Error value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -278,6 +419,7 @@ mixin _$UpdateAttachmentsState {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_ConfirmedOrder value)? confirmed,
     TResult? Function(_Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -286,6 +428,7 @@ mixin _$UpdateAttachmentsState {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_ConfirmedOrder value)? confirmed,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) =>
@@ -352,6 +495,8 @@ class _$InitialImpl implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(ResponseModel<dynamic> success) success,
+    required TResult Function(ResponseModel<CreateOrderModel> confirmed)
+        confirmed,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -363,6 +508,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(ResponseModel<dynamic> success)? success,
+    TResult? Function(ResponseModel<CreateOrderModel> confirmed)? confirmed,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -374,6 +520,7 @@ class _$InitialImpl implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(ResponseModel<dynamic> success)? success,
+    TResult Function(ResponseModel<CreateOrderModel> confirmed)? confirmed,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -389,6 +536,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_ConfirmedOrder value) confirmed,
     required TResult Function(_Error value) error,
   }) {
     return initial(this);
@@ -400,6 +548,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_ConfirmedOrder value)? confirmed,
     TResult? Function(_Error value)? error,
   }) {
     return initial?.call(this);
@@ -411,6 +560,7 @@ class _$InitialImpl implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_ConfirmedOrder value)? confirmed,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -466,6 +616,8 @@ class _$LoadingImpl implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(ResponseModel<dynamic> success) success,
+    required TResult Function(ResponseModel<CreateOrderModel> confirmed)
+        confirmed,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -477,6 +629,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(ResponseModel<dynamic> success)? success,
+    TResult? Function(ResponseModel<CreateOrderModel> confirmed)? confirmed,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -488,6 +641,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(ResponseModel<dynamic> success)? success,
+    TResult Function(ResponseModel<CreateOrderModel> confirmed)? confirmed,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -503,6 +657,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_ConfirmedOrder value) confirmed,
     required TResult Function(_Error value) error,
   }) {
     return loading(this);
@@ -514,6 +669,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_ConfirmedOrder value)? confirmed,
     TResult? Function(_Error value)? error,
   }) {
     return loading?.call(this);
@@ -525,6 +681,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_ConfirmedOrder value)? confirmed,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -616,6 +773,8 @@ class _$SuccessImpl implements _Success {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(ResponseModel<dynamic> success) success,
+    required TResult Function(ResponseModel<CreateOrderModel> confirmed)
+        confirmed,
     required TResult Function(String message) error,
   }) {
     return success(this.success);
@@ -627,6 +786,7 @@ class _$SuccessImpl implements _Success {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(ResponseModel<dynamic> success)? success,
+    TResult? Function(ResponseModel<CreateOrderModel> confirmed)? confirmed,
     TResult? Function(String message)? error,
   }) {
     return success?.call(this.success);
@@ -638,6 +798,7 @@ class _$SuccessImpl implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(ResponseModel<dynamic> success)? success,
+    TResult Function(ResponseModel<CreateOrderModel> confirmed)? confirmed,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -653,6 +814,7 @@ class _$SuccessImpl implements _Success {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_ConfirmedOrder value) confirmed,
     required TResult Function(_Error value) error,
   }) {
     return success(this);
@@ -664,6 +826,7 @@ class _$SuccessImpl implements _Success {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_ConfirmedOrder value)? confirmed,
     TResult? Function(_Error value)? error,
   }) {
     return success?.call(this);
@@ -675,6 +838,7 @@ class _$SuccessImpl implements _Success {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_ConfirmedOrder value)? confirmed,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -692,6 +856,173 @@ abstract class _Success implements UpdateAttachmentsState {
   ResponseModel<dynamic> get success;
   @JsonKey(ignore: true)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ConfirmedOrderImplCopyWith<$Res> {
+  factory _$$ConfirmedOrderImplCopyWith(_$ConfirmedOrderImpl value,
+          $Res Function(_$ConfirmedOrderImpl) then) =
+      __$$ConfirmedOrderImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({ResponseModel<CreateOrderModel> confirmed});
+
+  $ResponseModelCopyWith<CreateOrderModel, $Res> get confirmed;
+}
+
+/// @nodoc
+class __$$ConfirmedOrderImplCopyWithImpl<$Res>
+    extends _$UpdateAttachmentsStateCopyWithImpl<$Res, _$ConfirmedOrderImpl>
+    implements _$$ConfirmedOrderImplCopyWith<$Res> {
+  __$$ConfirmedOrderImplCopyWithImpl(
+      _$ConfirmedOrderImpl _value, $Res Function(_$ConfirmedOrderImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? confirmed = null,
+  }) {
+    return _then(_$ConfirmedOrderImpl(
+      confirmed: null == confirmed
+          ? _value.confirmed
+          : confirmed // ignore: cast_nullable_to_non_nullable
+              as ResponseModel<CreateOrderModel>,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ResponseModelCopyWith<CreateOrderModel, $Res> get confirmed {
+    return $ResponseModelCopyWith<CreateOrderModel, $Res>(_value.confirmed,
+        (value) {
+      return _then(_value.copyWith(confirmed: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$ConfirmedOrderImpl implements _ConfirmedOrder {
+  const _$ConfirmedOrderImpl({required this.confirmed});
+
+  @override
+  final ResponseModel<CreateOrderModel> confirmed;
+
+  @override
+  String toString() {
+    return 'UpdateAttachmentsState.confirmed(confirmed: $confirmed)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ConfirmedOrderImpl &&
+            (identical(other.confirmed, confirmed) ||
+                other.confirmed == confirmed));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, confirmed);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ConfirmedOrderImplCopyWith<_$ConfirmedOrderImpl> get copyWith =>
+      __$$ConfirmedOrderImplCopyWithImpl<_$ConfirmedOrderImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(ResponseModel<dynamic> success) success,
+    required TResult Function(ResponseModel<CreateOrderModel> confirmed)
+        confirmed,
+    required TResult Function(String message) error,
+  }) {
+    return confirmed(this.confirmed);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(ResponseModel<dynamic> success)? success,
+    TResult? Function(ResponseModel<CreateOrderModel> confirmed)? confirmed,
+    TResult? Function(String message)? error,
+  }) {
+    return confirmed?.call(this.confirmed);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(ResponseModel<dynamic> success)? success,
+    TResult Function(ResponseModel<CreateOrderModel> confirmed)? confirmed,
+    TResult Function(String message)? error,
+    required TResult orElse(),
+  }) {
+    if (confirmed != null) {
+      return confirmed(this.confirmed);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_ConfirmedOrder value) confirmed,
+    required TResult Function(_Error value) error,
+  }) {
+    return confirmed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_ConfirmedOrder value)? confirmed,
+    TResult? Function(_Error value)? error,
+  }) {
+    return confirmed?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_ConfirmedOrder value)? confirmed,
+    TResult Function(_Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (confirmed != null) {
+      return confirmed(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ConfirmedOrder implements UpdateAttachmentsState {
+  const factory _ConfirmedOrder(
+          {required final ResponseModel<CreateOrderModel> confirmed}) =
+      _$ConfirmedOrderImpl;
+
+  ResponseModel<CreateOrderModel> get confirmed;
+  @JsonKey(ignore: true)
+  _$$ConfirmedOrderImplCopyWith<_$ConfirmedOrderImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -762,6 +1093,8 @@ class _$ErrorImpl implements _Error {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(ResponseModel<dynamic> success) success,
+    required TResult Function(ResponseModel<CreateOrderModel> confirmed)
+        confirmed,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -773,6 +1106,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(ResponseModel<dynamic> success)? success,
+    TResult? Function(ResponseModel<CreateOrderModel> confirmed)? confirmed,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -784,6 +1118,7 @@ class _$ErrorImpl implements _Error {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(ResponseModel<dynamic> success)? success,
+    TResult Function(ResponseModel<CreateOrderModel> confirmed)? confirmed,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -799,6 +1134,7 @@ class _$ErrorImpl implements _Error {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_ConfirmedOrder value) confirmed,
     required TResult Function(_Error value) error,
   }) {
     return error(this);
@@ -810,6 +1146,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_ConfirmedOrder value)? confirmed,
     TResult? Function(_Error value)? error,
   }) {
     return error?.call(this);
@@ -821,6 +1158,7 @@ class _$ErrorImpl implements _Error {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_ConfirmedOrder value)? confirmed,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {

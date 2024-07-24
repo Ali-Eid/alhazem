@@ -20,8 +20,15 @@ CreateLeadModel _$CreateLeadModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CreateLeadModel {
+// ignore: invalid_annotation_target
   @JsonKey(name: "lead_id")
-  int get leadId => throw _privateConstructorUsedError;
+  int get leadId =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
+  @JsonKey(name: "partner_id")
+  int get partnerId =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
+  @JsonKey(name: "lead_name")
+  String get leadName => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +42,10 @@ abstract class $CreateLeadModelCopyWith<$Res> {
           CreateLeadModel value, $Res Function(CreateLeadModel) then) =
       _$CreateLeadModelCopyWithImpl<$Res, CreateLeadModel>;
   @useResult
-  $Res call({@JsonKey(name: "lead_id") int leadId});
+  $Res call(
+      {@JsonKey(name: "lead_id") int leadId,
+      @JsonKey(name: "partner_id") int partnerId,
+      @JsonKey(name: "lead_name") String leadName});
 }
 
 /// @nodoc
@@ -52,12 +62,22 @@ class _$CreateLeadModelCopyWithImpl<$Res, $Val extends CreateLeadModel>
   @override
   $Res call({
     Object? leadId = null,
+    Object? partnerId = null,
+    Object? leadName = null,
   }) {
     return _then(_value.copyWith(
       leadId: null == leadId
           ? _value.leadId
           : leadId // ignore: cast_nullable_to_non_nullable
               as int,
+      partnerId: null == partnerId
+          ? _value.partnerId
+          : partnerId // ignore: cast_nullable_to_non_nullable
+              as int,
+      leadName: null == leadName
+          ? _value.leadName
+          : leadName // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -70,7 +90,10 @@ abstract class _$$CreateLeadModelImplCopyWith<$Res>
       __$$CreateLeadModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({@JsonKey(name: "lead_id") int leadId});
+  $Res call(
+      {@JsonKey(name: "lead_id") int leadId,
+      @JsonKey(name: "partner_id") int partnerId,
+      @JsonKey(name: "lead_name") String leadName});
 }
 
 /// @nodoc
@@ -85,12 +108,22 @@ class __$$CreateLeadModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? leadId = null,
+    Object? partnerId = null,
+    Object? leadName = null,
   }) {
     return _then(_$CreateLeadModelImpl(
       leadId: null == leadId
           ? _value.leadId
           : leadId // ignore: cast_nullable_to_non_nullable
               as int,
+      partnerId: null == partnerId
+          ? _value.partnerId
+          : partnerId // ignore: cast_nullable_to_non_nullable
+              as int,
+      leadName: null == leadName
+          ? _value.leadName
+          : leadName // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -98,18 +131,30 @@ class __$$CreateLeadModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CreateLeadModelImpl implements _CreateLeadModel {
-  _$CreateLeadModelImpl({@JsonKey(name: "lead_id") this.leadId = 0});
+  _$CreateLeadModelImpl(
+      {@JsonKey(name: "lead_id") this.leadId = 0,
+      @JsonKey(name: "partner_id") this.partnerId = 0,
+      @JsonKey(name: "lead_name") this.leadName = ""});
 
   factory _$CreateLeadModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$CreateLeadModelImplFromJson(json);
 
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: "lead_id")
   final int leadId;
+// ignore: invalid_annotation_target
+  @override
+  @JsonKey(name: "partner_id")
+  final int partnerId;
+// ignore: invalid_annotation_target
+  @override
+  @JsonKey(name: "lead_name")
+  final String leadName;
 
   @override
   String toString() {
-    return 'CreateLeadModel(leadId: $leadId)';
+    return 'CreateLeadModel(leadId: $leadId, partnerId: $partnerId, leadName: $leadName)';
   }
 
   @override
@@ -117,12 +162,16 @@ class _$CreateLeadModelImpl implements _CreateLeadModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CreateLeadModelImpl &&
-            (identical(other.leadId, leadId) || other.leadId == leadId));
+            (identical(other.leadId, leadId) || other.leadId == leadId) &&
+            (identical(other.partnerId, partnerId) ||
+                other.partnerId == partnerId) &&
+            (identical(other.leadName, leadName) ||
+                other.leadName == leadName));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, leadId);
+  int get hashCode => Object.hash(runtimeType, leadId, partnerId, leadName);
 
   @JsonKey(ignore: true)
   @override
@@ -140,15 +189,24 @@ class _$CreateLeadModelImpl implements _CreateLeadModel {
 }
 
 abstract class _CreateLeadModel implements CreateLeadModel {
-  factory _CreateLeadModel({@JsonKey(name: "lead_id") final int leadId}) =
+  factory _CreateLeadModel(
+          {@JsonKey(name: "lead_id") final int leadId,
+          @JsonKey(name: "partner_id") final int partnerId,
+          @JsonKey(name: "lead_name") final String leadName}) =
       _$CreateLeadModelImpl;
 
   factory _CreateLeadModel.fromJson(Map<String, dynamic> json) =
       _$CreateLeadModelImpl.fromJson;
 
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: "lead_id")
   int get leadId;
+  @override // ignore: invalid_annotation_target
+  @JsonKey(name: "partner_id")
+  int get partnerId;
+  @override // ignore: invalid_annotation_target
+  @JsonKey(name: "lead_name")
+  String get leadName;
   @override
   @JsonKey(ignore: true)
   _$$CreateLeadModelImplCopyWith<_$CreateLeadModelImpl> get copyWith =>

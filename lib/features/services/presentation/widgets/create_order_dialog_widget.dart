@@ -17,14 +17,11 @@ import 'package:toastification/toastification.dart';
 
 import '../../../../core/app/depndency_injection.dart';
 import '../../../../core/constants/values_manager.dart';
-import '../../../contacts/domain/models/missed_attachments_model/input_model/input_missed_attachment_model.dart';
 import '../../../contacts/presentation/widgets/drop_down_widget.dart';
 import '../../../orders/domain/models/input_models/input_create_model/input_create_order_model.dart';
 import '../../../orders/presentation/blocs/create_order_bloc/create_order_bloc.dart';
 import '../blocs/check_price_bloc/check_price_bloc.dart';
 import 'create_order_widget/attachments_required_widget.dart';
-import 'create_order_widget/missed_attachments_widget.dart';
-import 'create_order_widget/partner_widget.dart';
 import 'create_order_widget/traveler_widget.dart';
 
 class CreateOrderDialogWidget extends StatefulWidget {
@@ -247,7 +244,7 @@ class _ButtonCreateDialogWidgetState extends State<ButtonCreateDialogWidget> {
                       input: context
                           .read<InputValueCreateOrderCubit>()
                           .updateAttachmentsUpload,
-                      partnerId: context.read<LeadContactBloc>().leadId ?? 0,
+                      partnerId: context.read<LeadContactBloc>().partnerId ?? 0,
                       currency:
                           context.read<CurrenciesBloc>().currencySelected?.id ??
                               0,
@@ -282,7 +279,6 @@ class _ButtonCreateDialogWidgetState extends State<ButtonCreateDialogWidget> {
                 ),
               );
         }
-
         break;
       default:
     }

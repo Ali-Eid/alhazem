@@ -251,9 +251,8 @@ class _SelectTravelerWidgetState extends State<SelectTravelerWidget> {
                                                               travelId:
                                                                   traveler.id))
                                                   ? Icon(
-                                                      Icons.check,
-                                                      color: ColorManager
-                                                          .secondary,
+                                                      Icons.close,
+                                                      color: ColorManager.error,
                                                       size: AppSizeSp.s12,
                                                     )
                                                   : const SizedBox(),

@@ -41,6 +41,7 @@ dependencies:
   flutter_barcode_listener: ^0.1.4
   image_picker: ^1.1.2
   file_picker: ^8.0.6
+  window_manager: ^0.3.9
 
 dev_dependencies:
   flutter_test:
@@ -51,6 +52,12 @@ dev_dependencies:
   freezed: 
   json_serializable: ^6.8.0
   retrofit_generator: ^8.1.0
+  flutter_launcher_icons: ^0.13.1
+flutter_launcher_icons:
+  windows:
+    generate: true
+    image_path: "assets/images/logo.png"
+    icon_size: 48 # min:48, max:256, default: 48
 
 flutter:
   uses-material-design: true
@@ -59,14 +66,20 @@ flutter:
     - assets/images/
     - assets/icons/
     - assets/lang/
-    # - assets/jsons/
+    - assets/fonts/
 
     
-  # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
+  fonts:
+    - family: IBM Plex Sans Arabic
+      fonts:
+        - asset: assets/fonts/IBMPlexSansArabic-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/IBMPlexSansArabic-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/IBMPlexSansArabic-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/IBMPlexSansArabic-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/IBMPlexSansArabic-Light.ttf
+          weight: 300
+

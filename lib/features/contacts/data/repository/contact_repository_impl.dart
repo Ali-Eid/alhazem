@@ -8,7 +8,6 @@ import 'package:alhazem/features/contacts/domain/models/contact_model/contact_mo
 import 'package:alhazem/features/contacts/domain/models/input_create_traveler_model/input_create_traveler_model.dart';
 
 import 'package:alhazem/features/contacts/domain/models/input_lead_model/input_lead_model.dart';
-import 'package:alhazem/features/contacts/domain/models/missed_attachments_model/input_model/input_missed_attachment_model.dart';
 import 'package:dio/dio.dart';
 
 import 'package:multiple_result/src/result.dart';
@@ -169,26 +168,6 @@ class ContactRepositoryImpl implements ContactRepository {
     if (await networkInfo.isConnected) {
       try {
         final response = await contactsServiceClient.getOffices();
-        if (response.response.statusCode == 200) {
-          return Success(response.data);
-        } else {
-          return Error(FailureModel.fromJson(response.response.data));
-        }
-      } on DioException catch (e) {
-        return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
-      }
-    } else {
-      return Error(FailureModel(message: "noInternetError"));
-    }
-  }
-
-  @override
-  Future<Result<ResponseModel, FailureModel>> updateAttachmentsContact(
-      {required InputUpdateAttachmentsModel input}) async {
-    if (await networkInfo.isConnected) {
-      try {
-        final response =
-            await contactsServiceClient.updateAttachmentsContact(input: input);
         if (response.response.statusCode == 200) {
           return Success(response.data);
         } else {

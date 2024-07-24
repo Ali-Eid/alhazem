@@ -202,7 +202,7 @@ class _SearchItemsWidgetState extends State<SearchItemsWidget> {
                 padding: EdgeInsetsDirectional.only(start: AppSizeW.s15),
                 child: Icon(Icons.search, color: ColorManager.smokeyGrey),
               ),
-              suffix: isShow
+              suffix: isShow || searchController.text.isNotEmpty
                   ? InkWell(
                       onTap: () {
                         setState(() {

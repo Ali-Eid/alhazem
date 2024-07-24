@@ -8,9 +8,9 @@ import 'package:alhazem/features/orders/domain/models/create_payment_model/input
 import 'package:alhazem/features/orders/domain/models/input_models/input_create_model/input_create_order_model.dart';
 import 'package:alhazem/features/orders/domain/repository/order_repository.dart';
 import 'package:multiple_result/src/result.dart';
-
 import '../../../../core/bases/models/static_models/static_model.dart';
 import '../models/input_models/input_confirm_waiting_model/input_confirm_waiting_model.dart';
+import '../models/missed_attachments_model/input_model/input_missed_attachment_model.dart';
 import '../models/order_details_model/order_details_model.dart';
 import '../models/order_model/order_model.dart';
 
@@ -104,5 +104,18 @@ class ConfirmWaitingOrderUsecase
   Future<Result<ResponseModel<CreateOrderModel>, FailureModel>> execute(
       InputConfirmWaitingModel input) async {
     return await repository.confirmWaiting(input: input);
+  }
+}
+
+class UpdateAttachmentsUsecase
+    implements BaseUseCase<InputUpdateAttachmentsModel, ResponseModel> {
+  final OrderRepository repository;
+
+  UpdateAttachmentsUsecase({required this.repository});
+
+  @override
+  Future<Result<ResponseModel, FailureModel>> execute(
+      InputUpdateAttachmentsModel input) async {
+    return await repository.updateAttachmentsContact(input: input);
   }
 }

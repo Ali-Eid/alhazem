@@ -7,9 +7,9 @@ import 'package:alhazem/features/orders/domain/models/create_payment_model/creat
 import 'package:alhazem/features/orders/domain/models/create_payment_model/input_create_payment_model/input_create_payment_model.dart';
 import 'package:alhazem/features/orders/domain/models/order_details_model/order_details_model.dart';
 import 'package:multiple_result/multiple_result.dart';
-
 import '../models/input_models/input_confirm_waiting_model/input_confirm_waiting_model.dart';
 import '../models/input_models/input_create_model/input_create_order_model.dart';
+import '../models/missed_attachments_model/input_model/input_missed_attachment_model.dart';
 import '../models/order_model/order_model.dart';
 
 abstract class OrderRepository {
@@ -31,4 +31,8 @@ abstract class OrderRepository {
 
   Future<Result<ResponseModel<CreateOrderModel>, FailureModel>> confirmWaiting(
       {required InputConfirmWaitingModel input});
+
+  //update attachments
+  Future<Result<ResponseModel, FailureModel>> updateAttachmentsContact(
+      {required InputUpdateAttachmentsModel input});
 }

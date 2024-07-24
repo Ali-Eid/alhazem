@@ -26,6 +26,7 @@ class CurrenciesBloc extends Bloc<CurrenciesEvent, CurrenciesState> {
           final failureOrCurrencies = await getCurrenciesUsecase.execute();
           failureOrCurrencies.when(
             (success) {
+              currencies.clear();
               currencies.addAll(success.data);
               currencySelected =
                   currencies.isNotEmpty ? currencies.first : null;
@@ -41,6 +42,7 @@ class CurrenciesBloc extends Bloc<CurrenciesEvent, CurrenciesState> {
           final failureOrCurrencies = await getTypeOrdersUsecase.execute();
           failureOrCurrencies.when(
             (success) {
+              orderTypes.clear();
               orderTypes.addAll(success.data);
               orderTypeSelected =
                   currencies.isNotEmpty ? orderTypes.first : null;

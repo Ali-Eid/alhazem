@@ -9,7 +9,6 @@ import 'package:multiple_result/multiple_result.dart';
 import '../../../../core/bases/enums/entity_type.dart';
 import '../models/crate_lead_model/create_lead_model.dart';
 import '../models/input_lead_model/input_lead_model.dart';
-import '../models/missed_attachments_model/input_model/input_missed_attachment_model.dart';
 
 abstract class ContactRepository {
   Future<Result<ResponsePaginationModel<List<ContactModel>>, FailureModel>>
@@ -29,8 +28,4 @@ abstract class ContactRepository {
   Future<Result<ResponseModel<List<StaticModel>>, FailureModel>> getCountries();
   Future<Result<ResponseModel<List<StaticModel>>, FailureModel>> getStates(
       {required int countryId});
-
-  //update attachments
-  Future<Result<ResponseModel, FailureModel>> updateAttachmentsContact(
-      {required InputUpdateAttachmentsModel input});
 }

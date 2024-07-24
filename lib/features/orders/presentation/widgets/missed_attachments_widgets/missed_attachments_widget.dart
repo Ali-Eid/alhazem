@@ -1,21 +1,27 @@
 import 'dart:convert';
 
+import 'package:alhazem/core/bases/enums/order_status.dart';
+import 'package:alhazem/core/routers/routes_manager.dart';
+import 'package:alhazem/core/widgets/toast.dart';
 import 'package:alhazem/features/orders/domain/models/input_models/input_confirm_waiting_model/input_confirm_waiting_model.dart';
 import 'package:alhazem/features/orders/presentation/blocs/confirm_waiting_order_bloc/confirm_waiting_order_bloc.dart';
+import 'package:alhazem/features/orders/presentation/blocs/orders_bloc/orders_bloc.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../core/app/depndency_injection.dart';
 import '../../../../../core/constants/color_manager.dart';
 import '../../../../../core/constants/values_manager.dart';
 import '../../../../contacts/domain/models/input_create_traveler_model/input_create_traveler_model.dart';
-import '../../../../contacts/domain/models/missed_attachments_model/input_model/input_missed_attachment_model.dart';
 import '../../../../orders/domain/models/create_order_model/create_order_model.dart';
 import '../../../../orders/presentation/blocs/currencies_bloc/currencies_bloc.dart';
-import '../../../domain/models/attachments_required_model/attachments_required_model.dart';
-import '../../blocs/input_value_create_order_cubit/input_value_create_order_cubit.dart';
+import '../../../../services/presentation/blocs/input_value_create_order_cubit/input_value_create_order_cubit.dart';
+import '../../../domain/models/missed_attachments_model/input_model/input_missed_attachment_model.dart';
+import '../../blocs/input_get_orders_cubit/input_get_orders_cubit_cubit.dart';
+import '../../blocs/input_payment_cubit/input_payment_cubit.dart';
 import '../../blocs/update_attachments_bloc/update_attachments_bloc.dart';
 
 class MissedAttachmentsWidget extends StatefulWidget {
@@ -32,12 +38,12 @@ class MissedAttachmentsWidget extends StatefulWidget {
 class _MissedAttachmentsWidgetState extends State<MissedAttachmentsWidget> {
   // final ImagePicker picker = ImagePicker();
   late UpdateAttachmentsBloc updateAttachmentsBloc;
-  late ConfirmWaitingOrderBloc confirmOrderBloc;
+  // late ConfirmWaitingOrderBloc confirmOrderBloc;
 
   @override
   void initState() {
     updateAttachmentsBloc = instance<UpdateAttachmentsBloc>();
-    confirmOrderBloc = instance<ConfirmWaitingOrderBloc>();
+    // confirmOrderBloc = instance<ConfirmWaitingOrderBloc>();
     super.initState();
   }
 
@@ -336,10 +342,32 @@ class _MissedAttachmentsWidgetState extends State<MissedAttachmentsWidget> {
                       child: BlocConsumer(
                         listener: (context, UpdateAttachmentsState state) {
                           state.mapOrNull(
-                            success: (value) {
+                            confirmed: (value) {
+                              showToast(
+                                  context: context,
+                                  message: value.confirmed.message);
                               Navigator.of(context).pop();
-                              confirmOrderBloc
-                                  .add(ConfirmWaitingOrderEvent.confirmWaiting(
+                              context.read<OrdersBloc>().add(
+                                  OrdersEvent.getOrders(
+                                      type: context
+                                              .read<InputGetOrdersCubitCubit>()
+                                              .type ??
+                                          OrderStatus.waiting.name,
+                                      page: context
+                                              .read<InputGetOrdersCubitCubit>()
+                                              .page ??
+                                          1));
+                              context.pushReplacementNamed(
+                                  RoutesNames.orderDetailsRoute,
+                                  pathParameters: {
+                                    "id": value.confirmed.data.id.toString(),
+                                  },
+                                  extra: context.read<InputPaymentCubit>());
+                            },
+                            success: (value) {
+                              // Navigator.of(context).pop();
+                              updateAttachmentsBloc
+                                  .add(UpdateAttachmentsEvent.confirmWaiting(
                                       input: InputConfirmWaitingModel(
                                 totalPaid: double.parse("0"),
                                 orderId: widget.orderId,

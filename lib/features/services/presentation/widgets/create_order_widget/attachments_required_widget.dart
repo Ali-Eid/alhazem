@@ -10,8 +10,8 @@ import '../../../../../core/app/depndency_injection.dart';
 import '../../../../../core/constants/color_manager.dart';
 import '../../../../../core/constants/values_manager.dart';
 import '../../../../contacts/domain/models/input_create_traveler_model/input_create_traveler_model.dart';
-import '../../../../contacts/domain/models/missed_attachments_model/input_model/input_missed_attachment_model.dart';
 import '../../../../orders/domain/models/input_models/input_create_model/input_create_order_model.dart';
+import '../../../../orders/domain/models/missed_attachments_model/input_model/input_missed_attachment_model.dart';
 import '../../blocs/input_value_create_order_cubit/input_value_create_order_cubit.dart';
 
 class AttachmentsRequiredWidget extends StatefulWidget {

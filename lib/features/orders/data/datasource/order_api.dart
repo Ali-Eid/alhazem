@@ -10,6 +10,7 @@ import '../../../../core/bases/models/response_model/response_model.dart';
 import '../../../../core/constants/endpoints.dart';
 import '../../domain/models/input_models/input_confirm_waiting_model/input_confirm_waiting_model.dart';
 import '../../domain/models/input_models/input_create_model/input_create_order_model.dart';
+import '../../domain/models/missed_attachments_model/input_model/input_missed_attachment_model.dart';
 import '../../domain/models/order_details_model/order_details_model.dart';
 import '../../domain/models/order_model/order_model.dart';
 part 'order_api.g.dart';
@@ -46,4 +47,9 @@ abstract class OrdersServiceClient {
   @POST(Endpoints.CONFIRM_ORDER)
   Future<HttpResponse<ResponseModel<CreateOrderModel>>> confirmWaitingOrder(
       {@Body() required InputConfirmWaitingModel input});
+
+  //update attachments
+  @POST(Endpoints.UPDATE_ATTACHMENTS)
+  Future<HttpResponse<ResponseModel>> updateAttachmentsContact(
+      {@Body() required InputUpdateAttachmentsModel input});
 }

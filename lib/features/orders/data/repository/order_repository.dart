@@ -14,6 +14,7 @@ import 'package:dio/dio.dart';
 import 'package:multiple_result/src/result.dart';
 
 import '../../../../core/network/network_info.dart';
+import '../../domain/models/missed_attachments_model/input_model/input_missed_attachment_model.dart';
 import '../../domain/models/order_model/order_model.dart';
 
 class OrderRepositoryImpl implements OrderRepository {
@@ -146,6 +147,26 @@ class OrderRepositoryImpl implements OrderRepository {
       try {
         final response =
             await ordersServiceClient.confirmWaitingOrder(input: input);
+        if (response.response.statusCode == 200) {
+          return Success(response.data);
+        } else {
+          return Error(FailureModel.fromJson(response.response.data));
+        }
+      } on DioException catch (e) {
+        return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
+      }
+    } else {
+      return Error(FailureModel(message: "noInternetError"));
+    }
+  }
+
+  @override
+  Future<Result<ResponseModel, FailureModel>> updateAttachmentsContact(
+      {required InputUpdateAttachmentsModel input}) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final response =
+            await ordersServiceClient.updateAttachmentsContact(input: input);
         if (response.response.statusCode == 200) {
           return Success(response.data);
         } else {

@@ -3,11 +3,12 @@ import 'package:alhazem/core/constants/values_manager.dart';
 import 'package:flutter/material.dart';
 
 class FontConstants {
-  static const String fontFamily = "";
+  static const String fontFamily = "IBM Plex Sans Arabic";
 }
 
 ThemeData lightTheme() {
   return ThemeData(
+    fontFamily: FontConstants.fontFamily,
     brightness: Brightness.light,
     useMaterial3: true,
     scaffoldBackgroundColor: ColorManager.background,

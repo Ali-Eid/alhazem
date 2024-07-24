@@ -1,4 +1,5 @@
 import 'package:alhazem/core/constants/assets_manager.dart';
+import 'package:alhazem/core/constants/color_manager.dart';
 import 'package:alhazem/core/constants/values_manager.dart';
 import 'package:alhazem/core/routers/routes_manager.dart';
 import 'package:alhazem/features/splash/presentations/blocs/app_bloc/app_bloc.dart';
@@ -61,9 +62,11 @@ class _SplashViewState extends State<SplashView> {
                   fit: BoxFit.fill),
               SizedBox(height: AppSizeH.s10),
               Text(
-                "Al-Hazem",
-                style: TextStyle(
-                    fontWeight: FontWeight.bold, fontSize: AppSizeSp.s22),
+                "الحازم",
+                style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                    color: ColorManager.shipGrey,
+                    fontWeight: FontWeight.bold,
+                    fontSize: AppSizeSp.s22),
               )
             ],
           ),

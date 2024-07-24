@@ -15,6 +15,7 @@ abstract class OrderModel with _$OrderModel {
     @Default("") @JsonKey(name: "partner_number") String partnerNumber,
     @Default("") @JsonKey(name: "partner_name") String partnerName,
     @Default(0) @JsonKey(name: "paid_total") num totalPaid,
+    @Default(false) @JsonKey(name: "is_office") bool isOffice,
     @Default(0) num total,
     @Default(0) @JsonKey(name: "remained_total") num remainedTotal,
   }) = _OrderModel;
