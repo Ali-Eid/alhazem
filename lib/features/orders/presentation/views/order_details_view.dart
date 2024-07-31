@@ -239,7 +239,7 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                                       OrderDetailsWidget(
                                         name: "المبلغ الاجمالي",
                                         value:
-                                            "${context.read<InputPaymentCubit>().total} ${context.read<CurrenciesBloc>().currencies.first.name}",
+                                            "${context.read<InputPaymentCubit>().total} ${context.read<CurrenciesBloc>().currencies.isEmpty ? "" : context.read<CurrenciesBloc>().currencies.first.name}",
                                       ),
                                       Divider(
                                         endIndent: AppSizeW.s40,
@@ -248,7 +248,7 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                                       OrderDetailsWidget(
                                         name: "المبلغ المقبوض",
                                         value:
-                                            "${context.read<InputPaymentCubit>().totalPaid} ${context.read<CurrenciesBloc>().currencies.first.name}",
+                                            "${context.read<InputPaymentCubit>().totalPaid} ${context.read<CurrenciesBloc>().currencies.isEmpty ? "" : context.read<CurrenciesBloc>().currencies.first.name}",
                                       ),
                                       Divider(
                                         endIndent: AppSizeW.s40,
@@ -257,7 +257,7 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                                       OrderDetailsWidget(
                                         name: "المبلغ المتبقي",
                                         value:
-                                            "${context.read<InputPaymentCubit>().remainingTotal} ${context.read<CurrenciesBloc>().currencies.first.name}",
+                                            "${context.read<InputPaymentCubit>().remainingTotal} ${context.read<CurrenciesBloc>().currencies.isEmpty ? "" : context.read<CurrenciesBloc>().currencies.first.name}",
                                       ),
                                     ],
                                   ),

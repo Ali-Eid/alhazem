@@ -14,7 +14,7 @@ class NetworkInfoImplementer implements NetworkInfo {
             value.contains(ConnectivityResult.wifi)) {
           return true;
         } else {
-          return false;
+          return true;
         }
       });
 }

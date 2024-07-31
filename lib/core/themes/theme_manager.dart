@@ -12,6 +12,8 @@ ThemeData lightTheme() {
     brightness: Brightness.light,
     useMaterial3: true,
     scaffoldBackgroundColor: ColorManager.background,
+    visualDensity: VisualDensity.adaptivePlatformDensity,
+
     // primaryColor: ColorManager.primary,
     colorSchemeSeed: ColorManager.primary,
     appBarTheme: AppBarTheme(

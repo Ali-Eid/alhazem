@@ -39,7 +39,7 @@ class OrderRepositoryImpl implements OrderRepository {
         return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
       }
     } else {
-      return Error(FailureModel(message: "noInternetError"));
+      return Error(FailureModel(message: "لا يوجد اتصال انترنت"));
     }
   }
 
@@ -58,7 +58,7 @@ class OrderRepositoryImpl implements OrderRepository {
         return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
       }
     } else {
-      return Error(FailureModel(message: "noInternetError"));
+      return Error(FailureModel(message: "لا يوجد اتصال انترنت"));
     }
   }
 
@@ -78,7 +78,7 @@ class OrderRepositoryImpl implements OrderRepository {
         return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
       }
     } else {
-      return Error(FailureModel(message: "noInternetError"));
+      return Error(FailureModel(message: "لا يوجد اتصال انترنت"));
     }
   }
 
@@ -97,7 +97,7 @@ class OrderRepositoryImpl implements OrderRepository {
         return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
       }
     } else {
-      return Error(FailureModel(message: "noInternetError"));
+      return Error(FailureModel(message: "لا يوجد اتصال انترنت"));
     }
   }
 
@@ -117,7 +117,7 @@ class OrderRepositoryImpl implements OrderRepository {
         return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
       }
     } else {
-      return Error(FailureModel(message: "noInternetError"));
+      return Error(FailureModel(message: "لا يوجد اتصال انترنت"));
     }
   }
 
@@ -136,7 +136,7 @@ class OrderRepositoryImpl implements OrderRepository {
         return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
       }
     } else {
-      return Error(FailureModel(message: "noInternetError"));
+      return Error(FailureModel(message: "لا يوجد اتصال انترنت"));
     }
   }
 
@@ -156,7 +156,7 @@ class OrderRepositoryImpl implements OrderRepository {
         return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
       }
     } else {
-      return Error(FailureModel(message: "noInternetError"));
+      return Error(FailureModel(message: "لا يوجد اتصال انترنت"));
     }
   }
 
@@ -176,7 +176,7 @@ class OrderRepositoryImpl implements OrderRepository {
         return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
       }
     } else {
-      return Error(FailureModel(message: "noInternetError"));
+      return Error(FailureModel(message: "لا يوجد اتصال انترنت"));
     }
   }
 }

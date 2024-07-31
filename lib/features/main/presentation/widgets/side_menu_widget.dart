@@ -18,7 +18,14 @@ class SideMenuWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-        shape: const RoundedRectangleBorder(),
+        shadowColor: ColorManager.secondary,
+        elevation: 15,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadiusDirectional.only(
+                topEnd: Radius.circular(AppSizeR.s10),
+                bottomEnd: Radius.circular(AppSizeR.s10)),
+            side:
+                BorderSide(color: ColorManager.secondary, width: AppSizeW.s1)),
         child: Column(
           children: [
             Expanded(
@@ -97,13 +104,13 @@ class SideMenuWidget extends StatelessWidget {
                       context.goNamed(RoutesNames.ordersRoute);
                     },
                   ),
-                  // DrawerListTile(
-                  //   title: "الاعدادات",
-                  //   svgSrc: IconAssets.settingIcon,
-                  //   press: () {
-                  //     context.goNamed(RoutesNames.settingsRoute);
-                  //   },
-                  // ),
+                  DrawerListTile(
+                    title: "الاعدادات",
+                    svgSrc: IconAssets.settingIcon,
+                    press: () {
+                      context.goNamed(RoutesNames.settingsRoute);
+                    },
+                  ),
                 ],
               ),
             ),

@@ -265,6 +265,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.9"
+  dylib:
+    dependency: transitive
+    description:
+      name: dylib
+      sha256: bf609b3eb6492a3309b3d1dbe8f83a4031de5535dd7686be33487051cc760bb0
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.3.3"
   easy_localization:
     dependency: "direct main"
     description:
@@ -374,14 +382,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_barcode_listener:
-    dependency: "direct main"
-    description:
-      name: flutter_barcode_listener
-      sha256: "095b04a29ddab58c623f3a78d88c641b870a6d4bc4bdf0c7a0d4bc58e337aed8"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.1.4"
   flutter_bloc:
     dependency: "direct main"
     description:
@@ -398,6 +398,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.13.1"
+  flutter_libserialport:
+    dependency: "direct main"
+    description:
+      name: flutter_libserialport
+      sha256: "20c320dcde8592a16f9badc0cacad61b1fb283dbec647b6ebfc1020f8274c67b"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.4.0"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -649,10 +657,10 @@ packages:
     dependency: transitive
     description:
       name: js
-      sha256: c1b2e9b5ea78c45e1a0788d29606ba27dc5f71f019f32ca5140f61ef071838cf
+      sha256: f2c445dce49627136094980615a031419f7f3eb393237e4ecd97ac15dea343f3
       url: "https://pub.dev"
     source: hosted
-    version: "0.7.1"
+    version: "0.6.7"
   json_annotation:
     dependency: "direct main"
     description:
@@ -693,6 +701,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.1"
+  libserialport:
+    dependency: transitive
+    description:
+      name: libserialport
+      sha256: "392e1592def65282429832ec66fa25e9e163d3b37716b97691482e2406720727"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.3.0+1"
   lints:
     dependency: transitive
     description:

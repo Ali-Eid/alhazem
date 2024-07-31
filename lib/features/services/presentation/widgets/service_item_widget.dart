@@ -59,7 +59,7 @@ class _ServiceItemWidgetState extends State<ServiceItemWidget> {
                     bloc: context.read<CurrenciesBloc>(),
                     builder: (context, state) {
                       return Text(
-                        "${widget.model.price} ${context.read<CurrenciesBloc>().currencies.first.name}",
+                        "${widget.model.price} ${context.read<CurrenciesBloc>().currencies.isEmpty ? "" : context.read<CurrenciesBloc>().currencies.first.name}",
                         style: Theme.of(context).textTheme.titleMedium,
                       );
                     },

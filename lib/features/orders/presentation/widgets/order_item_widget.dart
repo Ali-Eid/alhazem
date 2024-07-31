@@ -136,7 +136,7 @@ class _OrderItemWidgetState extends State<OrderItemWidget> {
                             valueStyle:
                                 Theme.of(context).textTheme.displaySmall,
                             value:
-                                '${inputPaymentCubit.total} ${context.read<CurrenciesBloc>().currencies.first.name}',
+                                '${inputPaymentCubit.total} ${context.read<CurrenciesBloc>().currencies.isEmpty ? "" : context.read<CurrenciesBloc>().currencies.first.name}',
                           ),
                           SizedBox(height: AppSizeH.s10),
                           TitleValueItemOrder(
@@ -145,7 +145,7 @@ class _OrderItemWidgetState extends State<OrderItemWidget> {
                             valueStyle:
                                 Theme.of(context).textTheme.displaySmall,
                             value:
-                                '${inputPaymentCubit.totalPaid} ${context.read<CurrenciesBloc>().currencies.first.name}',
+                                '${inputPaymentCubit.totalPaid} ${context.read<CurrenciesBloc>().currencies.isEmpty ? "" : context.read<CurrenciesBloc>().currencies.first.name}',
                           ),
                           SizedBox(height: AppSizeH.s10),
                           TitleValueItemOrder(
@@ -154,7 +154,7 @@ class _OrderItemWidgetState extends State<OrderItemWidget> {
                             valueStyle:
                                 Theme.of(context).textTheme.displaySmall,
                             value:
-                                '${inputPaymentCubit.remainingTotal} ${context.read<CurrenciesBloc>().currencies.first.name}',
+                                '${inputPaymentCubit.remainingTotal} ${context.read<CurrenciesBloc>().currencies.isEmpty ? "" : context.read<CurrenciesBloc>().currencies.first.name}',
                           ),
                         ],
                       ),
@@ -163,7 +163,7 @@ class _OrderItemWidgetState extends State<OrderItemWidget> {
                 ),
               ),
             ),
-            widget.model.state == OrderStatus.sale.name
+            widget.model.state != OrderStatus.cancel.name
                 ? inputPaymentCubit.total > inputPaymentCubit.totalPaid
                     ? Padding(
                         padding: EdgeInsets.symmetric(
@@ -300,7 +300,7 @@ class _CreatePaymentWidgetState extends State<CreatePaymentWidget> {
                       bloc: context.read<InputPaymentCubit>(),
                       builder: (context, state) {
                         return Text(
-                          "${context.read<InputPaymentCubit>().total} ${context.read<CurrenciesBloc>().currencies.first.name}",
+                          "${context.read<InputPaymentCubit>().total} ${context.read<CurrenciesBloc>().currencies.isEmpty ? "" : context.read<CurrenciesBloc>().currencies.first.name}",
                           style: Theme.of(context).textTheme.displaySmall,
                         );
                       },
@@ -319,7 +319,7 @@ class _CreatePaymentWidgetState extends State<CreatePaymentWidget> {
                       bloc: context.read<InputPaymentCubit>(),
                       builder: (context, state) {
                         return Text(
-                          "${context.read<InputPaymentCubit>().remainingTotal} ${context.read<CurrenciesBloc>().currencies.first.name}",
+                          "${context.read<InputPaymentCubit>().remainingTotal} ${context.read<CurrenciesBloc>().currencies.isEmpty ? "" : context.read<CurrenciesBloc>().currencies.first.name}",
                           style: Theme.of(context).textTheme.displaySmall,
                         );
                       },
@@ -379,7 +379,7 @@ class _CreatePaymentWidgetState extends State<CreatePaymentWidget> {
                       bloc: context.read<InputPaymentCubit>(),
                       builder: (context, state) {
                         return Text(
-                          "${context.read<InputPaymentCubit>().totalPaid} ${context.read<CurrenciesBloc>().currencies.first.name}",
+                          "${context.read<InputPaymentCubit>().totalPaid} ${context.read<CurrenciesBloc>().currencies.isEmpty ? "" : context.read<CurrenciesBloc>().currencies.first.name}",
                           style: Theme.of(context).textTheme.headlineSmall,
                         );
                       },

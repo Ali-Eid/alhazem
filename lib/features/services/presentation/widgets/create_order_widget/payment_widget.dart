@@ -42,7 +42,9 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                   ),
                   SizedBox(width: AppSizeW.s6),
                   Text(
-                    context.read<CurrenciesBloc>().currencies.first.name,
+                    context.read<CurrenciesBloc>().currencies.isEmpty
+                        ? ""
+                        : context.read<CurrenciesBloc>().currencies.first.name,
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
                 ],

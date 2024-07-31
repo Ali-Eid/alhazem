@@ -30,7 +30,7 @@ class AuthRepositoryImp implements AuthRepository {
         return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
       }
     } else {
-      return Error(FailureModel(message: "noInternetError"));
+      return Error(FailureModel(message: "لا يوجد اتصال انترنت"));
     }
   }
 }

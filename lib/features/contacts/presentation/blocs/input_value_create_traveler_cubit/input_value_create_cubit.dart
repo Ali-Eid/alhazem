@@ -60,6 +60,51 @@ class InputValueCreateCubit extends Cubit<int> {
   TextEditingController nationalNumberIdentityController =
       TextEditingController();
 
+  bool fromBarcode = true;
+  bool resetInfoBarcode = false;
+  void setFromBarcode(bool scan) {
+    resetInfoBarcode = false;
+    fromBarcode = scan;
+    emit(Random().nextInt(100));
+  }
+
+  void parseBarcode(String barcode) {
+    List<String> parts = barcode.split('#');
+    if (parts.length >= 6) {
+      resetInfoBarcode = true;
+      nameIdentityController.text = parts[0];
+      surnameIdentityController.text = parts[1];
+      fatherNameIdentityController.text = parts[2];
+      motherNameIdentityController.text = parts[3];
+      dobIdentityController.text = parts[4].dateOfBirth;
+      birthPlaceIdentityController.text = parts[4].placeOfBirth;
+      nationalNumberIdentityController.text = parts[5];
+      emit(Random().nextInt(100));
+    } else {
+      resetInfoBarcode = false;
+      nameIdentityController.text = "";
+      surnameIdentityController.text = "";
+      fatherNameIdentityController.text = "";
+      motherNameIdentityController.text = "";
+      dobIdentityController.text = "".dateOfBirth;
+      birthPlaceIdentityController.text = "".placeOfBirth;
+      nationalNumberIdentityController.text = "";
+      emit(Random().nextInt(100));
+    }
+  }
+
+  void resetBarcode() {
+    resetInfoBarcode = false;
+    nameIdentityController.text = "";
+    surnameIdentityController.text = "";
+    fatherNameIdentityController.text = "";
+    motherNameIdentityController.text = "";
+    dobIdentityController.text = "";
+    birthPlaceIdentityController.text = "";
+    nationalNumberIdentityController.text = "";
+    emit(Random().nextInt(100));
+  }
+
 //select type Attachments
   List<StaticModel> attachmentsTypes = [];
   List<StaticModel> attachmentsTypesTemp = [];

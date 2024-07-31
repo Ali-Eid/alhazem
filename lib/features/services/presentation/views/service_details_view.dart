@@ -191,7 +191,7 @@ class _ServiceDetailsViewState extends State<ServiceDetailsView> {
                                         loaded: (value) {
                                           return Expanded(
                                             child: Text(
-                                              "${value.price} ${context.read<CurrenciesBloc>().currencies.first.name}",
+                                              "${value.price} ${context.read<CurrenciesBloc>().currencies.isEmpty ? "" : context.read<CurrenciesBloc>().currencies.first.name}",
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .labelSmall,
@@ -201,7 +201,7 @@ class _ServiceDetailsViewState extends State<ServiceDetailsView> {
                                         orElse: () {
                                           return Expanded(
                                             child: Text(
-                                              "${checkPriceBloc.price} ${context.read<CurrenciesBloc>().currencies.first.name}",
+                                              "${checkPriceBloc.price} ${context.read<CurrenciesBloc>().currencies.isEmpty ? "" : context.read<CurrenciesBloc>().currencies.first.name}",
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .labelSmall,

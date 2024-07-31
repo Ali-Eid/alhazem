@@ -4,6 +4,7 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   file_selector_linux
+  flutter_libserialport
   screen_retriever
   window_manager
 )

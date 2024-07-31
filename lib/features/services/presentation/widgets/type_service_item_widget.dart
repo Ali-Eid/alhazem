@@ -82,8 +82,9 @@ class TypeServiceItemWidget extends StatelessWidget {
                                   Colors.grey.shade500, BlendMode.srcIn));
                         },
                         loadingBuilder: (context, progress) {
-                          return const Center(
-                            child: CircularProgressIndicator(),
+                          return Center(
+                            child: CircularProgressIndicator(
+                                value: progress.progressPercentage.value),
                           );
                         },
                       ),
@@ -110,13 +111,23 @@ class TypeServiceItemWidget extends StatelessWidget {
                           Tooltip(
                             message: "استعراض",
                             child: IconButton(
-                              onPressed: () {
-                                context.goNamed(RoutesNames.servicesRoute,
-                                    pathParameters: {
-                                      "typeId": model.id.toString(),
-                                      "typeName": model.name
-                                    });
-                              },
+                              onPressed: context
+                                          .read<LeadContactBloc>()
+                                          .leadId !=
+                                      null
+                                  ? () {
+                                      context.goNamed(RoutesNames.servicesRoute,
+                                          pathParameters: {
+                                            "typeId": model.id.toString(),
+                                            "typeName": model.name
+                                          });
+                                    }
+                                  : () {
+                                      showToast(
+                                          context: context,
+                                          message: "الرجاء انشاء عميل اولاً",
+                                          type: ToastificationType.error);
+                                    },
                               icon: Icon(
                                 Icons.arrow_circle_left_outlined,
                                 color: Colors.black.withOpacity(.5),
