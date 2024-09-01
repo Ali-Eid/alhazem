@@ -20,32 +20,38 @@ mixin _$TravelerEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(InputCreateTravelerModel input) createTraveler,
+    required TResult Function(InputCreateTravelerModel input) updateTraveler,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(InputCreateTravelerModel input)? createTraveler,
+    TResult? Function(InputCreateTravelerModel input)? updateTraveler,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(InputCreateTravelerModel input)? createTraveler,
+    TResult Function(InputCreateTravelerModel input)? updateTraveler,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_CreateTraveler value) createTraveler,
+    required TResult Function(_UpdateTraveler value) updateTraveler,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_CreateTraveler value)? createTraveler,
+    TResult? Function(_UpdateTraveler value)? updateTraveler,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_CreateTraveler value)? createTraveler,
+    TResult Function(_UpdateTraveler value)? updateTraveler,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -169,6 +175,7 @@ class _$CreateTravelerImpl implements _CreateTraveler {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(InputCreateTravelerModel input) createTraveler,
+    required TResult Function(InputCreateTravelerModel input) updateTraveler,
   }) {
     return createTraveler(input);
   }
@@ -177,6 +184,7 @@ class _$CreateTravelerImpl implements _CreateTraveler {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(InputCreateTravelerModel input)? createTraveler,
+    TResult? Function(InputCreateTravelerModel input)? updateTraveler,
   }) {
     return createTraveler?.call(input);
   }
@@ -185,6 +193,7 @@ class _$CreateTravelerImpl implements _CreateTraveler {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(InputCreateTravelerModel input)? createTraveler,
+    TResult Function(InputCreateTravelerModel input)? updateTraveler,
     required TResult orElse(),
   }) {
     if (createTraveler != null) {
@@ -197,6 +206,7 @@ class _$CreateTravelerImpl implements _CreateTraveler {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_CreateTraveler value) createTraveler,
+    required TResult Function(_UpdateTraveler value) updateTraveler,
   }) {
     return createTraveler(this);
   }
@@ -205,6 +215,7 @@ class _$CreateTravelerImpl implements _CreateTraveler {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_CreateTraveler value)? createTraveler,
+    TResult? Function(_UpdateTraveler value)? updateTraveler,
   }) {
     return createTraveler?.call(this);
   }
@@ -213,6 +224,7 @@ class _$CreateTravelerImpl implements _CreateTraveler {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_CreateTraveler value)? createTraveler,
+    TResult Function(_UpdateTraveler value)? updateTraveler,
     required TResult orElse(),
   }) {
     if (createTraveler != null) {
@@ -231,6 +243,148 @@ abstract class _CreateTraveler implements TravelerEvent {
   @override
   @JsonKey(ignore: true)
   _$$CreateTravelerImplCopyWith<_$CreateTravelerImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$UpdateTravelerImplCopyWith<$Res>
+    implements $TravelerEventCopyWith<$Res> {
+  factory _$$UpdateTravelerImplCopyWith(_$UpdateTravelerImpl value,
+          $Res Function(_$UpdateTravelerImpl) then) =
+      __$$UpdateTravelerImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({InputCreateTravelerModel input});
+
+  @override
+  $InputCreateTravelerModelCopyWith<$Res> get input;
+}
+
+/// @nodoc
+class __$$UpdateTravelerImplCopyWithImpl<$Res>
+    extends _$TravelerEventCopyWithImpl<$Res, _$UpdateTravelerImpl>
+    implements _$$UpdateTravelerImplCopyWith<$Res> {
+  __$$UpdateTravelerImplCopyWithImpl(
+      _$UpdateTravelerImpl _value, $Res Function(_$UpdateTravelerImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? input = null,
+  }) {
+    return _then(_$UpdateTravelerImpl(
+      input: null == input
+          ? _value.input
+          : input // ignore: cast_nullable_to_non_nullable
+              as InputCreateTravelerModel,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UpdateTravelerImpl implements _UpdateTraveler {
+  const _$UpdateTravelerImpl({required this.input});
+
+  @override
+  final InputCreateTravelerModel input;
+
+  @override
+  String toString() {
+    return 'TravelerEvent.updateTraveler(input: $input)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateTravelerImpl &&
+            (identical(other.input, input) || other.input == input));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, input);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UpdateTravelerImplCopyWith<_$UpdateTravelerImpl> get copyWith =>
+      __$$UpdateTravelerImplCopyWithImpl<_$UpdateTravelerImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(InputCreateTravelerModel input) createTraveler,
+    required TResult Function(InputCreateTravelerModel input) updateTraveler,
+  }) {
+    return updateTraveler(input);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(InputCreateTravelerModel input)? createTraveler,
+    TResult? Function(InputCreateTravelerModel input)? updateTraveler,
+  }) {
+    return updateTraveler?.call(input);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(InputCreateTravelerModel input)? createTraveler,
+    TResult Function(InputCreateTravelerModel input)? updateTraveler,
+    required TResult orElse(),
+  }) {
+    if (updateTraveler != null) {
+      return updateTraveler(input);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_CreateTraveler value) createTraveler,
+    required TResult Function(_UpdateTraveler value) updateTraveler,
+  }) {
+    return updateTraveler(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_CreateTraveler value)? createTraveler,
+    TResult? Function(_UpdateTraveler value)? updateTraveler,
+  }) {
+    return updateTraveler?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_CreateTraveler value)? createTraveler,
+    TResult Function(_UpdateTraveler value)? updateTraveler,
+    required TResult orElse(),
+  }) {
+    if (updateTraveler != null) {
+      return updateTraveler(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateTraveler implements TravelerEvent {
+  const factory _UpdateTraveler(
+      {required final InputCreateTravelerModel input}) = _$UpdateTravelerImpl;
+
+  @override
+  InputCreateTravelerModel get input;
+  @override
+  @JsonKey(ignore: true)
+  _$$UpdateTravelerImplCopyWith<_$UpdateTravelerImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

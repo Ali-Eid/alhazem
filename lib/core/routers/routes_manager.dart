@@ -1,3 +1,7 @@
+import 'package:alhazem/features/contacts/domain/models/contact_details_model/contact_details_model.dart';
+import 'package:alhazem/features/contacts/presentation/blocs/input_value_create_traveler_cubit/input_value_create_cubit.dart';
+import 'package:alhazem/features/contacts/presentation/views/contact_details_view.dart';
+import 'package:alhazem/features/contacts/presentation/views/contact_edit_view.dart';
 import 'package:alhazem/features/contacts/presentation/views/contacts_view.dart';
 import 'package:alhazem/features/contacts/presentation/views/create_contract_view.dart';
 import 'package:alhazem/features/main/presentation/views/main_view.dart';
@@ -13,7 +17,6 @@ import 'package:go_router/go_router.dart';
 
 import '../../features/auth/presentation/views/login_view.dart';
 import '../../features/contacts/presentation/views/create_office_view.dart';
-import '../../features/home/presentation/views/home_view.dart';
 import '../../features/main/presentation/views/general_search_view.dart';
 import '../../features/orders/presentation/blocs/currencies_bloc/currencies_bloc.dart';
 import '../../features/orders/presentation/blocs/input_get_orders_cubit/input_get_orders_cubit_cubit.dart';
@@ -28,6 +31,9 @@ class RoutesNames {
   static const String servicesRoute = '/services';
   static const String servicesDetailsRoute = 'services-details';
   static const String contactsRoute = '/contacts';
+  static const String contactDetailsRoute = 'contact-details';
+  static const String editContactDetailsRoute = 'edit-contact-details';
+
   static const String createContactRoute = 'create-contact';
   static const String createOfficeRoute = 'create-office';
   static const String ordersRoute = '/orders';
@@ -44,8 +50,11 @@ class RoutesPaths {
   static const String servicesRoute = 'services/:typeId/:typeName';
   static const String servicesDetailsRoute = 'services-details/:serviceId';
   static const String contactsRoute = '/contacts';
-  static const String createContactRoute = '/create-contact';
-  static const String createOfficeRoute = '/create-office';
+  static const String contactDetailsRoute = 'contact-details/:id';
+  static const String editContactDetailsRoute = 'edit-contact-details';
+
+  static const String createContactRoute = 'create-contact';
+  static const String createOfficeRoute = 'create-office';
 
   static const String ordersRoute = '/orders';
   static const String orderDetailsRoute = 'order-details/:id';
@@ -141,31 +150,62 @@ class AppRouter {
                   ),
                 ]),
             GoRoute(
-              name: RoutesNames.contactsRoute,
-              path: RoutesPaths.contactsRoute,
-              pageBuilder: (context, state) {
-                return NoTransitionPage(
-                  key: state.pageKey,
-                  child: const ContactsView(),
-                );
-              },
-            ),
-            GoRoute(
-              name: RoutesNames.createContactRoute,
-              path: RoutesPaths.createContactRoute,
-              pageBuilder: (context, state) {
-                return NoTransitionPage(
-                    key: state.pageKey, child: const CreateContractView());
-              },
-            ),
-            GoRoute(
-              name: RoutesNames.createOfficeRoute,
-              path: RoutesPaths.createOfficeRoute,
-              pageBuilder: (context, state) {
-                return NoTransitionPage(
-                    key: state.pageKey, child: const CreateOfficeView());
-              },
-            ),
+                name: RoutesNames.contactsRoute,
+                path: RoutesPaths.contactsRoute,
+                pageBuilder: (context, state) {
+                  return NoTransitionPage(
+                    key: state.pageKey,
+                    child: const ContactsView(),
+                  );
+                },
+                routes: [
+                  GoRoute(
+                      name: RoutesNames.contactDetailsRoute,
+                      path: RoutesPaths.contactDetailsRoute,
+                      pageBuilder: (context, state) {
+                        return NoTransitionPage(
+                          key: state.pageKey,
+                          child: ContactDetailsView(
+                            contactId:
+                                int.parse(state.pathParameters["id"] ?? "0"),
+                          ),
+                        );
+                      },
+                      routes: [
+                        GoRoute(
+                            name: RoutesNames.editContactDetailsRoute,
+                            path: RoutesPaths.editContactDetailsRoute,
+                            pageBuilder: (context, state) {
+                              List values = state.extra as List;
+                              return NoTransitionPage(
+                                key: state.pageKey,
+                                child: BlocProvider.value(
+                                  value: values[0] as InputValueCreateCubit,
+                                  child: ContactEditView(
+                                    model: values[1],
+                                  ),
+                                ),
+                              );
+                            }),
+                      ]),
+                  GoRoute(
+                    name: RoutesNames.createContactRoute,
+                    path: RoutesPaths.createContactRoute,
+                    pageBuilder: (context, state) {
+                      return NoTransitionPage(
+                          key: state.pageKey,
+                          child: const CreateContractView());
+                    },
+                  ),
+                  GoRoute(
+                    name: RoutesNames.createOfficeRoute,
+                    path: RoutesPaths.createOfficeRoute,
+                    pageBuilder: (context, state) {
+                      return NoTransitionPage(
+                          key: state.pageKey, child: const CreateOfficeView());
+                    },
+                  ),
+                ]),
             GoRoute(
                 name: RoutesNames.ordersRoute,
                 path: RoutesPaths.ordersRoute,

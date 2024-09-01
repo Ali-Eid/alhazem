@@ -8,6 +8,7 @@ import 'package:number_pagination/number_pagination.dart';
 import '../../../../core/app/depndency_injection.dart';
 import '../../../../core/constants/color_manager.dart';
 import '../../../../core/constants/values_manager.dart';
+import '../../../contacts/presentation/views/contacts_view.dart';
 import '../../../orders/presentation/widgets/order_item_widget.dart';
 import '../../../services/presentation/views/types_services_view.dart';
 import '../../../services/presentation/widgets/service_item_widget.dart';
@@ -59,7 +60,7 @@ class _GeneralSearchViewState extends State<GeneralSearchView> {
                         title: "لا يوجد بيانات",
                         subTitle: "الذهاب لصفحة الطلبات",
                         onPressed: () {
-                          context.goNamed(RoutesNames.typeServicesRoute);
+                          context.goNamed(RoutesNames.ordersRoute);
                         },
                       ),
                     )
@@ -151,6 +152,78 @@ class _GeneralSearchViewState extends State<GeneralSearchView> {
                         itemBuilder: (context, index) {
                           return ServiceItemWidget(
                             model: value.services.data[index],
+                          );
+                        },
+                      )),
+                      BlocBuilder(
+                        bloc: generalSearchBloc,
+                        builder: (context, GeneralSearchState state) {
+                          return generalSearchBloc.totalPages != null &&
+                                  generalSearchBloc.totalCounts != 0
+                              ? NumberPagination(
+                                  onPageChanged: (int pageNumber) {
+                                    //To optimize further, use a package that supports partial updates instead of setState (e.g. riverpod)
+                                    setState(() {
+                                      selectedPageNumber = pageNumber;
+                                    });
+                                    generalSearchBloc.add(
+                                        GeneralSearchEvent.generalSearch(
+                                            type: widget.filter,
+                                            value: widget.value,
+                                            page: selectedPageNumber));
+                                  },
+                                  groupSpacing: AppSizeW.s30,
+                                  iconNext: Icon(
+                                      Icons.arrow_forward_ios_rounded,
+                                      size: AppSizeSp.s15),
+                                  iconPrevious: Icon(
+                                      Icons.arrow_back_ios_new_rounded,
+                                      size: AppSizeSp.s15),
+                                  pageTotal: generalSearchBloc.totalPages ?? 1,
+                                  pageInit:
+                                      selectedPageNumber, // picked number when init page
+                                  colorPrimary: ColorManager.primary,
+                                  colorSub: ColorManager.white,
+                                  buttonElevation: AppSizeR.s3,
+                                  fontSize: AppSizeSp.s14,
+                                )
+                              : const SizedBox();
+                        },
+                      ),
+                    ]);
+            },
+            loadedSearchContacts: (value) {
+              return value.contacts.data.isEmpty
+                  ? Center(
+                      child: EmptyWidget(
+                        iconData: Icons.arrow_circle_left_outlined,
+                        title: "لا يوجد بيانات",
+                        subTitle: "الذهاب لصفحة الزبائن",
+                        onPressed: () {
+                          context.goNamed(RoutesNames.contactsRoute);
+                        },
+                      ),
+                    )
+                  : Column(children: [
+                      Expanded(
+                          child: GridView.builder(
+                        padding: EdgeInsets.all(AppSizeW.s15),
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisSpacing: AppSizeW.s13,
+                            mainAxisSpacing: AppSizeH.s15,
+                            crossAxisCount: 5),
+                        itemCount: value.contacts.data.length,
+                        itemBuilder: (context, index) {
+                          return InkWell(
+                            onTap: () {
+                              context.goNamed(RoutesNames.contactDetailsRoute,
+                                  pathParameters: {
+                                    "id": "${value.contacts.data[index].id}"
+                                  });
+                            },
+                            child: ContactItemWidget(
+                              model: value.contacts.data[index],
+                            ),
                           );
                         },
                       )),

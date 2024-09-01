@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'input_create_traveler_model.dart';
+part of 'contact_details_model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,32 +14,708 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-InputCreateTravelerModel _$InputCreateTravelerModelFromJson(
-    Map<String, dynamic> json) {
-  return _InputCreateTravelerModel.fromJson(json);
+ContactDetailsModel _$ContactDetailsModelFromJson(Map<String, dynamic> json) {
+  return _ContactDetailsModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$InputCreateTravelerModel {
-  @JsonKey(name: "contact_id")
-  int? get contactId => throw _privateConstructorUsedError; //first info
+mixin _$ContactDetailsModel {
+  int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  @JsonKey(name: "phone_number")
-  String get phoneNumber => throw _privateConstructorUsedError;
-  @JsonKey(name: "whatsapp_number")
-  String get whatsAppNumber => throw _privateConstructorUsedError;
-  @JsonKey(name: "state_id")
-  int get stateId => throw _privateConstructorUsedError;
-  @JsonKey(name: "country_id")
-  int get countryId => throw _privateConstructorUsedError;
-  @JsonKey(name: "office_id")
-  int? get officeId => throw _privateConstructorUsedError;
-  bool get vip => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
+  String get phone => throw _privateConstructorUsedError;
+  @JsonKey(name: "is_lead")
+  bool get isLead => throw _privateConstructorUsedError;
+  @JsonKey(name: "whatsapp_number")
+  String get whatsappNumber => throw _privateConstructorUsedError;
+  bool get vip => throw _privateConstructorUsedError;
   String get city => throw _privateConstructorUsedError;
   String get street => throw _privateConstructorUsedError;
   String get street2 => throw _privateConstructorUsedError;
-  String? get reference => throw _privateConstructorUsedError; //passport
+  String get reference => throw _privateConstructorUsedError;
+  @JsonKey(name: "office")
+  StaticModel get office => throw _privateConstructorUsedError;
+  @JsonKey(name: "state_id")
+  StaticModel get state => throw _privateConstructorUsedError;
+  @JsonKey(name: "country_id")
+  StaticModel get country => throw _privateConstructorUsedError; //Basic info
+  @JsonKey(name: "identity_father")
+  String get identityFather => throw _privateConstructorUsedError;
+  @JsonKey(name: "identity_mother")
+  String get identityMother => throw _privateConstructorUsedError;
+  @JsonKey(name: "identity_date_of_birthday")
+  String get identityDateOfBirthday => throw _privateConstructorUsedError;
+  @JsonKey(name: "identity_place_of_birthday")
+  String get identityPlaceOfBirthday => throw _privateConstructorUsedError;
+  @JsonKey(name: "identity_national_number")
+  String get identityNationalNumber => throw _privateConstructorUsedError;
+  @JsonKey(name: "identity_surname")
+  String get identitySurname => throw _privateConstructorUsedError;
+  @JsonKey(name: "identity_gender")
+  String get identityGender => throw _privateConstructorUsedError; //Passport
+  @JsonKey(name: "passport")
+  List<PassportModel> get passport => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ContactDetailsModelCopyWith<ContactDetailsModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ContactDetailsModelCopyWith<$Res> {
+  factory $ContactDetailsModelCopyWith(
+          ContactDetailsModel value, $Res Function(ContactDetailsModel) then) =
+      _$ContactDetailsModelCopyWithImpl<$Res, ContactDetailsModel>;
+  @useResult
+  $Res call(
+      {int id,
+      String name,
+      String type,
+      String phone,
+      @JsonKey(name: "is_lead") bool isLead,
+      @JsonKey(name: "whatsapp_number") String whatsappNumber,
+      bool vip,
+      String city,
+      String street,
+      String street2,
+      String reference,
+      @JsonKey(name: "office") StaticModel office,
+      @JsonKey(name: "state_id") StaticModel state,
+      @JsonKey(name: "country_id") StaticModel country,
+      @JsonKey(name: "identity_father") String identityFather,
+      @JsonKey(name: "identity_mother") String identityMother,
+      @JsonKey(name: "identity_date_of_birthday") String identityDateOfBirthday,
+      @JsonKey(name: "identity_place_of_birthday")
+      String identityPlaceOfBirthday,
+      @JsonKey(name: "identity_national_number") String identityNationalNumber,
+      @JsonKey(name: "identity_surname") String identitySurname,
+      @JsonKey(name: "identity_gender") String identityGender,
+      @JsonKey(name: "passport") List<PassportModel> passport});
+
+  $StaticModelCopyWith<$Res> get office;
+  $StaticModelCopyWith<$Res> get state;
+  $StaticModelCopyWith<$Res> get country;
+}
+
+/// @nodoc
+class _$ContactDetailsModelCopyWithImpl<$Res, $Val extends ContactDetailsModel>
+    implements $ContactDetailsModelCopyWith<$Res> {
+  _$ContactDetailsModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? name = null,
+    Object? type = null,
+    Object? phone = null,
+    Object? isLead = null,
+    Object? whatsappNumber = null,
+    Object? vip = null,
+    Object? city = null,
+    Object? street = null,
+    Object? street2 = null,
+    Object? reference = null,
+    Object? office = null,
+    Object? state = null,
+    Object? country = null,
+    Object? identityFather = null,
+    Object? identityMother = null,
+    Object? identityDateOfBirthday = null,
+    Object? identityPlaceOfBirthday = null,
+    Object? identityNationalNumber = null,
+    Object? identitySurname = null,
+    Object? identityGender = null,
+    Object? passport = null,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      phone: null == phone
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
+              as String,
+      isLead: null == isLead
+          ? _value.isLead
+          : isLead // ignore: cast_nullable_to_non_nullable
+              as bool,
+      whatsappNumber: null == whatsappNumber
+          ? _value.whatsappNumber
+          : whatsappNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      vip: null == vip
+          ? _value.vip
+          : vip // ignore: cast_nullable_to_non_nullable
+              as bool,
+      city: null == city
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
+              as String,
+      street: null == street
+          ? _value.street
+          : street // ignore: cast_nullable_to_non_nullable
+              as String,
+      street2: null == street2
+          ? _value.street2
+          : street2 // ignore: cast_nullable_to_non_nullable
+              as String,
+      reference: null == reference
+          ? _value.reference
+          : reference // ignore: cast_nullable_to_non_nullable
+              as String,
+      office: null == office
+          ? _value.office
+          : office // ignore: cast_nullable_to_non_nullable
+              as StaticModel,
+      state: null == state
+          ? _value.state
+          : state // ignore: cast_nullable_to_non_nullable
+              as StaticModel,
+      country: null == country
+          ? _value.country
+          : country // ignore: cast_nullable_to_non_nullable
+              as StaticModel,
+      identityFather: null == identityFather
+          ? _value.identityFather
+          : identityFather // ignore: cast_nullable_to_non_nullable
+              as String,
+      identityMother: null == identityMother
+          ? _value.identityMother
+          : identityMother // ignore: cast_nullable_to_non_nullable
+              as String,
+      identityDateOfBirthday: null == identityDateOfBirthday
+          ? _value.identityDateOfBirthday
+          : identityDateOfBirthday // ignore: cast_nullable_to_non_nullable
+              as String,
+      identityPlaceOfBirthday: null == identityPlaceOfBirthday
+          ? _value.identityPlaceOfBirthday
+          : identityPlaceOfBirthday // ignore: cast_nullable_to_non_nullable
+              as String,
+      identityNationalNumber: null == identityNationalNumber
+          ? _value.identityNationalNumber
+          : identityNationalNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      identitySurname: null == identitySurname
+          ? _value.identitySurname
+          : identitySurname // ignore: cast_nullable_to_non_nullable
+              as String,
+      identityGender: null == identityGender
+          ? _value.identityGender
+          : identityGender // ignore: cast_nullable_to_non_nullable
+              as String,
+      passport: null == passport
+          ? _value.passport
+          : passport // ignore: cast_nullable_to_non_nullable
+              as List<PassportModel>,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $StaticModelCopyWith<$Res> get office {
+    return $StaticModelCopyWith<$Res>(_value.office, (value) {
+      return _then(_value.copyWith(office: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $StaticModelCopyWith<$Res> get state {
+    return $StaticModelCopyWith<$Res>(_value.state, (value) {
+      return _then(_value.copyWith(state: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $StaticModelCopyWith<$Res> get country {
+    return $StaticModelCopyWith<$Res>(_value.country, (value) {
+      return _then(_value.copyWith(country: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$ContactDetailsModelImplCopyWith<$Res>
+    implements $ContactDetailsModelCopyWith<$Res> {
+  factory _$$ContactDetailsModelImplCopyWith(_$ContactDetailsModelImpl value,
+          $Res Function(_$ContactDetailsModelImpl) then) =
+      __$$ContactDetailsModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {int id,
+      String name,
+      String type,
+      String phone,
+      @JsonKey(name: "is_lead") bool isLead,
+      @JsonKey(name: "whatsapp_number") String whatsappNumber,
+      bool vip,
+      String city,
+      String street,
+      String street2,
+      String reference,
+      @JsonKey(name: "office") StaticModel office,
+      @JsonKey(name: "state_id") StaticModel state,
+      @JsonKey(name: "country_id") StaticModel country,
+      @JsonKey(name: "identity_father") String identityFather,
+      @JsonKey(name: "identity_mother") String identityMother,
+      @JsonKey(name: "identity_date_of_birthday") String identityDateOfBirthday,
+      @JsonKey(name: "identity_place_of_birthday")
+      String identityPlaceOfBirthday,
+      @JsonKey(name: "identity_national_number") String identityNationalNumber,
+      @JsonKey(name: "identity_surname") String identitySurname,
+      @JsonKey(name: "identity_gender") String identityGender,
+      @JsonKey(name: "passport") List<PassportModel> passport});
+
+  @override
+  $StaticModelCopyWith<$Res> get office;
+  @override
+  $StaticModelCopyWith<$Res> get state;
+  @override
+  $StaticModelCopyWith<$Res> get country;
+}
+
+/// @nodoc
+class __$$ContactDetailsModelImplCopyWithImpl<$Res>
+    extends _$ContactDetailsModelCopyWithImpl<$Res, _$ContactDetailsModelImpl>
+    implements _$$ContactDetailsModelImplCopyWith<$Res> {
+  __$$ContactDetailsModelImplCopyWithImpl(_$ContactDetailsModelImpl _value,
+      $Res Function(_$ContactDetailsModelImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? name = null,
+    Object? type = null,
+    Object? phone = null,
+    Object? isLead = null,
+    Object? whatsappNumber = null,
+    Object? vip = null,
+    Object? city = null,
+    Object? street = null,
+    Object? street2 = null,
+    Object? reference = null,
+    Object? office = null,
+    Object? state = null,
+    Object? country = null,
+    Object? identityFather = null,
+    Object? identityMother = null,
+    Object? identityDateOfBirthday = null,
+    Object? identityPlaceOfBirthday = null,
+    Object? identityNationalNumber = null,
+    Object? identitySurname = null,
+    Object? identityGender = null,
+    Object? passport = null,
+  }) {
+    return _then(_$ContactDetailsModelImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      phone: null == phone
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
+              as String,
+      isLead: null == isLead
+          ? _value.isLead
+          : isLead // ignore: cast_nullable_to_non_nullable
+              as bool,
+      whatsappNumber: null == whatsappNumber
+          ? _value.whatsappNumber
+          : whatsappNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      vip: null == vip
+          ? _value.vip
+          : vip // ignore: cast_nullable_to_non_nullable
+              as bool,
+      city: null == city
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
+              as String,
+      street: null == street
+          ? _value.street
+          : street // ignore: cast_nullable_to_non_nullable
+              as String,
+      street2: null == street2
+          ? _value.street2
+          : street2 // ignore: cast_nullable_to_non_nullable
+              as String,
+      reference: null == reference
+          ? _value.reference
+          : reference // ignore: cast_nullable_to_non_nullable
+              as String,
+      office: null == office
+          ? _value.office
+          : office // ignore: cast_nullable_to_non_nullable
+              as StaticModel,
+      state: null == state
+          ? _value.state
+          : state // ignore: cast_nullable_to_non_nullable
+              as StaticModel,
+      country: null == country
+          ? _value.country
+          : country // ignore: cast_nullable_to_non_nullable
+              as StaticModel,
+      identityFather: null == identityFather
+          ? _value.identityFather
+          : identityFather // ignore: cast_nullable_to_non_nullable
+              as String,
+      identityMother: null == identityMother
+          ? _value.identityMother
+          : identityMother // ignore: cast_nullable_to_non_nullable
+              as String,
+      identityDateOfBirthday: null == identityDateOfBirthday
+          ? _value.identityDateOfBirthday
+          : identityDateOfBirthday // ignore: cast_nullable_to_non_nullable
+              as String,
+      identityPlaceOfBirthday: null == identityPlaceOfBirthday
+          ? _value.identityPlaceOfBirthday
+          : identityPlaceOfBirthday // ignore: cast_nullable_to_non_nullable
+              as String,
+      identityNationalNumber: null == identityNationalNumber
+          ? _value.identityNationalNumber
+          : identityNationalNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      identitySurname: null == identitySurname
+          ? _value.identitySurname
+          : identitySurname // ignore: cast_nullable_to_non_nullable
+              as String,
+      identityGender: null == identityGender
+          ? _value.identityGender
+          : identityGender // ignore: cast_nullable_to_non_nullable
+              as String,
+      passport: null == passport
+          ? _value._passport
+          : passport // ignore: cast_nullable_to_non_nullable
+              as List<PassportModel>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ContactDetailsModelImpl implements _ContactDetailsModel {
+  _$ContactDetailsModelImpl(
+      {this.id = 0,
+      this.name = "",
+      this.type = "",
+      this.phone = "",
+      @JsonKey(name: "is_lead") this.isLead = false,
+      @JsonKey(name: "whatsapp_number") this.whatsappNumber = "",
+      this.vip = false,
+      this.city = "",
+      this.street = "",
+      this.street2 = "",
+      this.reference = "",
+      @JsonKey(name: "office") this.office = const StaticModel(),
+      @JsonKey(name: "state_id") this.state = const StaticModel(),
+      @JsonKey(name: "country_id") this.country = const StaticModel(),
+      @JsonKey(name: "identity_father") this.identityFather = "",
+      @JsonKey(name: "identity_mother") this.identityMother = "",
+      @JsonKey(name: "identity_date_of_birthday")
+      this.identityDateOfBirthday = "",
+      @JsonKey(name: "identity_place_of_birthday")
+      this.identityPlaceOfBirthday = "",
+      @JsonKey(name: "identity_national_number")
+      this.identityNationalNumber = "",
+      @JsonKey(name: "identity_surname") this.identitySurname = "",
+      @JsonKey(name: "identity_gender") this.identityGender = "",
+      @JsonKey(name: "passport") final List<PassportModel> passport = const []})
+      : _passport = passport;
+
+  factory _$ContactDetailsModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ContactDetailsModelImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final int id;
+  @override
+  @JsonKey()
+  final String name;
+  @override
+  @JsonKey()
+  final String type;
+  @override
+  @JsonKey()
+  final String phone;
+  @override
+  @JsonKey(name: "is_lead")
+  final bool isLead;
+  @override
+  @JsonKey(name: "whatsapp_number")
+  final String whatsappNumber;
+  @override
+  @JsonKey()
+  final bool vip;
+  @override
+  @JsonKey()
+  final String city;
+  @override
+  @JsonKey()
+  final String street;
+  @override
+  @JsonKey()
+  final String street2;
+  @override
+  @JsonKey()
+  final String reference;
+  @override
+  @JsonKey(name: "office")
+  final StaticModel office;
+  @override
+  @JsonKey(name: "state_id")
+  final StaticModel state;
+  @override
+  @JsonKey(name: "country_id")
+  final StaticModel country;
+//Basic info
+  @override
+  @JsonKey(name: "identity_father")
+  final String identityFather;
+  @override
+  @JsonKey(name: "identity_mother")
+  final String identityMother;
+  @override
+  @JsonKey(name: "identity_date_of_birthday")
+  final String identityDateOfBirthday;
+  @override
+  @JsonKey(name: "identity_place_of_birthday")
+  final String identityPlaceOfBirthday;
+  @override
+  @JsonKey(name: "identity_national_number")
+  final String identityNationalNumber;
+  @override
+  @JsonKey(name: "identity_surname")
+  final String identitySurname;
+  @override
+  @JsonKey(name: "identity_gender")
+  final String identityGender;
+//Passport
+  final List<PassportModel> _passport;
+//Passport
+  @override
+  @JsonKey(name: "passport")
+  List<PassportModel> get passport {
+    if (_passport is EqualUnmodifiableListView) return _passport;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_passport);
+  }
+
+  @override
+  String toString() {
+    return 'ContactDetailsModel(id: $id, name: $name, type: $type, phone: $phone, isLead: $isLead, whatsappNumber: $whatsappNumber, vip: $vip, city: $city, street: $street, street2: $street2, reference: $reference, office: $office, state: $state, country: $country, identityFather: $identityFather, identityMother: $identityMother, identityDateOfBirthday: $identityDateOfBirthday, identityPlaceOfBirthday: $identityPlaceOfBirthday, identityNationalNumber: $identityNationalNumber, identitySurname: $identitySurname, identityGender: $identityGender, passport: $passport)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ContactDetailsModelImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.phone, phone) || other.phone == phone) &&
+            (identical(other.isLead, isLead) || other.isLead == isLead) &&
+            (identical(other.whatsappNumber, whatsappNumber) ||
+                other.whatsappNumber == whatsappNumber) &&
+            (identical(other.vip, vip) || other.vip == vip) &&
+            (identical(other.city, city) || other.city == city) &&
+            (identical(other.street, street) || other.street == street) &&
+            (identical(other.street2, street2) || other.street2 == street2) &&
+            (identical(other.reference, reference) ||
+                other.reference == reference) &&
+            (identical(other.office, office) || other.office == office) &&
+            (identical(other.state, state) || other.state == state) &&
+            (identical(other.country, country) || other.country == country) &&
+            (identical(other.identityFather, identityFather) ||
+                other.identityFather == identityFather) &&
+            (identical(other.identityMother, identityMother) ||
+                other.identityMother == identityMother) &&
+            (identical(other.identityDateOfBirthday, identityDateOfBirthday) ||
+                other.identityDateOfBirthday == identityDateOfBirthday) &&
+            (identical(
+                    other.identityPlaceOfBirthday, identityPlaceOfBirthday) ||
+                other.identityPlaceOfBirthday == identityPlaceOfBirthday) &&
+            (identical(other.identityNationalNumber, identityNationalNumber) ||
+                other.identityNationalNumber == identityNationalNumber) &&
+            (identical(other.identitySurname, identitySurname) ||
+                other.identitySurname == identitySurname) &&
+            (identical(other.identityGender, identityGender) ||
+                other.identityGender == identityGender) &&
+            const DeepCollectionEquality().equals(other._passport, _passport));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        name,
+        type,
+        phone,
+        isLead,
+        whatsappNumber,
+        vip,
+        city,
+        street,
+        street2,
+        reference,
+        office,
+        state,
+        country,
+        identityFather,
+        identityMother,
+        identityDateOfBirthday,
+        identityPlaceOfBirthday,
+        identityNationalNumber,
+        identitySurname,
+        identityGender,
+        const DeepCollectionEquality().hash(_passport)
+      ]);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ContactDetailsModelImplCopyWith<_$ContactDetailsModelImpl> get copyWith =>
+      __$$ContactDetailsModelImplCopyWithImpl<_$ContactDetailsModelImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ContactDetailsModelImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ContactDetailsModel implements ContactDetailsModel {
+  factory _ContactDetailsModel(
+          {final int id,
+          final String name,
+          final String type,
+          final String phone,
+          @JsonKey(name: "is_lead") final bool isLead,
+          @JsonKey(name: "whatsapp_number") final String whatsappNumber,
+          final bool vip,
+          final String city,
+          final String street,
+          final String street2,
+          final String reference,
+          @JsonKey(name: "office") final StaticModel office,
+          @JsonKey(name: "state_id") final StaticModel state,
+          @JsonKey(name: "country_id") final StaticModel country,
+          @JsonKey(name: "identity_father") final String identityFather,
+          @JsonKey(name: "identity_mother") final String identityMother,
+          @JsonKey(name: "identity_date_of_birthday")
+          final String identityDateOfBirthday,
+          @JsonKey(name: "identity_place_of_birthday")
+          final String identityPlaceOfBirthday,
+          @JsonKey(name: "identity_national_number")
+          final String identityNationalNumber,
+          @JsonKey(name: "identity_surname") final String identitySurname,
+          @JsonKey(name: "identity_gender") final String identityGender,
+          @JsonKey(name: "passport") final List<PassportModel> passport}) =
+      _$ContactDetailsModelImpl;
+
+  factory _ContactDetailsModel.fromJson(Map<String, dynamic> json) =
+      _$ContactDetailsModelImpl.fromJson;
+
+  @override
+  int get id;
+  @override
+  String get name;
+  @override
+  String get type;
+  @override
+  String get phone;
+  @override
+  @JsonKey(name: "is_lead")
+  bool get isLead;
+  @override
+  @JsonKey(name: "whatsapp_number")
+  String get whatsappNumber;
+  @override
+  bool get vip;
+  @override
+  String get city;
+  @override
+  String get street;
+  @override
+  String get street2;
+  @override
+  String get reference;
+  @override
+  @JsonKey(name: "office")
+  StaticModel get office;
+  @override
+  @JsonKey(name: "state_id")
+  StaticModel get state;
+  @override
+  @JsonKey(name: "country_id")
+  StaticModel get country;
+  @override //Basic info
+  @JsonKey(name: "identity_father")
+  String get identityFather;
+  @override
+  @JsonKey(name: "identity_mother")
+  String get identityMother;
+  @override
+  @JsonKey(name: "identity_date_of_birthday")
+  String get identityDateOfBirthday;
+  @override
+  @JsonKey(name: "identity_place_of_birthday")
+  String get identityPlaceOfBirthday;
+  @override
+  @JsonKey(name: "identity_national_number")
+  String get identityNationalNumber;
+  @override
+  @JsonKey(name: "identity_surname")
+  String get identitySurname;
+  @override
+  @JsonKey(name: "identity_gender")
+  String get identityGender;
+  @override //Passport
+  @JsonKey(name: "passport")
+  List<PassportModel> get passport;
+  @override
+  @JsonKey(ignore: true)
+  _$$ContactDetailsModelImplCopyWith<_$ContactDetailsModelImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+PassportModel _$PassportModelFromJson(Map<String, dynamic> json) {
+  return _PassportModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$PassportModel {
   @JsonKey(name: "passport_name")
   String get passportName => throw _privateConstructorUsedError;
   @JsonKey(name: "e_passport_name")
@@ -93,51 +769,22 @@ mixin _$InputCreateTravelerModel {
   @JsonKey(name: "e_passport_job")
   String get ePassportJob => throw _privateConstructorUsedError;
   @JsonKey(name: "passport_file")
-  String get passportFile => throw _privateConstructorUsedError; //----Identity
-  @JsonKey(name: "identity_father")
-  String get identityFather => throw _privateConstructorUsedError;
-  @JsonKey(name: "identity_mother")
-  String get identityMother => throw _privateConstructorUsedError;
-  @JsonKey(name: "identity_date_of_birthday")
-  String get identityDateOfBirthday => throw _privateConstructorUsedError;
-  @JsonKey(name: "identity_place_of_birthday")
-  String get identityPlaceOfBirthday => throw _privateConstructorUsedError;
-  @JsonKey(name: "identity_national_number")
-  String get identityNationalNumber => throw _privateConstructorUsedError;
-  @JsonKey(name: "identity_surname")
-  String get identitySurname => throw _privateConstructorUsedError;
-  @JsonKey(name: "identity_gender")
-  String get identityGender => throw _privateConstructorUsedError;
-  List<AttachmentsCreateTravelerModel> get attachments =>
-      throw _privateConstructorUsedError;
+  String get passportFile => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $InputCreateTravelerModelCopyWith<InputCreateTravelerModel> get copyWith =>
+  $PassportModelCopyWith<PassportModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $InputCreateTravelerModelCopyWith<$Res> {
-  factory $InputCreateTravelerModelCopyWith(InputCreateTravelerModel value,
-          $Res Function(InputCreateTravelerModel) then) =
-      _$InputCreateTravelerModelCopyWithImpl<$Res, InputCreateTravelerModel>;
+abstract class $PassportModelCopyWith<$Res> {
+  factory $PassportModelCopyWith(
+          PassportModel value, $Res Function(PassportModel) then) =
+      _$PassportModelCopyWithImpl<$Res, PassportModel>;
   @useResult
   $Res call(
-      {@JsonKey(name: "contact_id") int? contactId,
-      String name,
-      @JsonKey(name: "phone_number") String phoneNumber,
-      @JsonKey(name: "whatsapp_number") String whatsAppNumber,
-      @JsonKey(name: "state_id") int stateId,
-      @JsonKey(name: "country_id") int countryId,
-      @JsonKey(name: "office_id") int? officeId,
-      bool vip,
-      String type,
-      String city,
-      String street,
-      String street2,
-      String? reference,
-      @JsonKey(name: "passport_name") String passportName,
+      {@JsonKey(name: "passport_name") String passportName,
       @JsonKey(name: "e_passport_name") String ePassportName,
       @JsonKey(name: "passport_surname") String passportSurname,
       @JsonKey(name: "e_passport_surname") String ePassportSurname,
@@ -170,23 +817,13 @@ abstract class $InputCreateTravelerModelCopyWith<$Res> {
       String ePassportNationalNumber,
       @JsonKey(name: "passport_job") String passportJob,
       @JsonKey(name: "e_passport_job") String ePassportJob,
-      @JsonKey(name: "passport_file") String passportFile,
-      @JsonKey(name: "identity_father") String identityFather,
-      @JsonKey(name: "identity_mother") String identityMother,
-      @JsonKey(name: "identity_date_of_birthday") String identityDateOfBirthday,
-      @JsonKey(name: "identity_place_of_birthday")
-      String identityPlaceOfBirthday,
-      @JsonKey(name: "identity_national_number") String identityNationalNumber,
-      @JsonKey(name: "identity_surname") String identitySurname,
-      @JsonKey(name: "identity_gender") String identityGender,
-      List<AttachmentsCreateTravelerModel> attachments});
+      @JsonKey(name: "passport_file") String passportFile});
 }
 
 /// @nodoc
-class _$InputCreateTravelerModelCopyWithImpl<$Res,
-        $Val extends InputCreateTravelerModel>
-    implements $InputCreateTravelerModelCopyWith<$Res> {
-  _$InputCreateTravelerModelCopyWithImpl(this._value, this._then);
+class _$PassportModelCopyWithImpl<$Res, $Val extends PassportModel>
+    implements $PassportModelCopyWith<$Res> {
+  _$PassportModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -196,19 +833,6 @@ class _$InputCreateTravelerModelCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? contactId = freezed,
-    Object? name = null,
-    Object? phoneNumber = null,
-    Object? whatsAppNumber = null,
-    Object? stateId = null,
-    Object? countryId = null,
-    Object? officeId = freezed,
-    Object? vip = null,
-    Object? type = null,
-    Object? city = null,
-    Object? street = null,
-    Object? street2 = null,
-    Object? reference = freezed,
     Object? passportName = null,
     Object? ePassportName = null,
     Object? passportSurname = null,
@@ -236,68 +860,8 @@ class _$InputCreateTravelerModelCopyWithImpl<$Res,
     Object? passportJob = null,
     Object? ePassportJob = null,
     Object? passportFile = null,
-    Object? identityFather = null,
-    Object? identityMother = null,
-    Object? identityDateOfBirthday = null,
-    Object? identityPlaceOfBirthday = null,
-    Object? identityNationalNumber = null,
-    Object? identitySurname = null,
-    Object? identityGender = null,
-    Object? attachments = null,
   }) {
     return _then(_value.copyWith(
-      contactId: freezed == contactId
-          ? _value.contactId
-          : contactId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      phoneNumber: null == phoneNumber
-          ? _value.phoneNumber
-          : phoneNumber // ignore: cast_nullable_to_non_nullable
-              as String,
-      whatsAppNumber: null == whatsAppNumber
-          ? _value.whatsAppNumber
-          : whatsAppNumber // ignore: cast_nullable_to_non_nullable
-              as String,
-      stateId: null == stateId
-          ? _value.stateId
-          : stateId // ignore: cast_nullable_to_non_nullable
-              as int,
-      countryId: null == countryId
-          ? _value.countryId
-          : countryId // ignore: cast_nullable_to_non_nullable
-              as int,
-      officeId: freezed == officeId
-          ? _value.officeId
-          : officeId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      vip: null == vip
-          ? _value.vip
-          : vip // ignore: cast_nullable_to_non_nullable
-              as bool,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String,
-      city: null == city
-          ? _value.city
-          : city // ignore: cast_nullable_to_non_nullable
-              as String,
-      street: null == street
-          ? _value.street
-          : street // ignore: cast_nullable_to_non_nullable
-              as String,
-      street2: null == street2
-          ? _value.street2
-          : street2 // ignore: cast_nullable_to_non_nullable
-              as String,
-      reference: freezed == reference
-          ? _value.reference
-          : reference // ignore: cast_nullable_to_non_nullable
-              as String?,
       passportName: null == passportName
           ? _value.passportName
           : passportName // ignore: cast_nullable_to_non_nullable
@@ -406,66 +970,20 @@ class _$InputCreateTravelerModelCopyWithImpl<$Res,
           ? _value.passportFile
           : passportFile // ignore: cast_nullable_to_non_nullable
               as String,
-      identityFather: null == identityFather
-          ? _value.identityFather
-          : identityFather // ignore: cast_nullable_to_non_nullable
-              as String,
-      identityMother: null == identityMother
-          ? _value.identityMother
-          : identityMother // ignore: cast_nullable_to_non_nullable
-              as String,
-      identityDateOfBirthday: null == identityDateOfBirthday
-          ? _value.identityDateOfBirthday
-          : identityDateOfBirthday // ignore: cast_nullable_to_non_nullable
-              as String,
-      identityPlaceOfBirthday: null == identityPlaceOfBirthday
-          ? _value.identityPlaceOfBirthday
-          : identityPlaceOfBirthday // ignore: cast_nullable_to_non_nullable
-              as String,
-      identityNationalNumber: null == identityNationalNumber
-          ? _value.identityNationalNumber
-          : identityNationalNumber // ignore: cast_nullable_to_non_nullable
-              as String,
-      identitySurname: null == identitySurname
-          ? _value.identitySurname
-          : identitySurname // ignore: cast_nullable_to_non_nullable
-              as String,
-      identityGender: null == identityGender
-          ? _value.identityGender
-          : identityGender // ignore: cast_nullable_to_non_nullable
-              as String,
-      attachments: null == attachments
-          ? _value.attachments
-          : attachments // ignore: cast_nullable_to_non_nullable
-              as List<AttachmentsCreateTravelerModel>,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$InputCreateTravelerModelImplCopyWith<$Res>
-    implements $InputCreateTravelerModelCopyWith<$Res> {
-  factory _$$InputCreateTravelerModelImplCopyWith(
-          _$InputCreateTravelerModelImpl value,
-          $Res Function(_$InputCreateTravelerModelImpl) then) =
-      __$$InputCreateTravelerModelImplCopyWithImpl<$Res>;
+abstract class _$$PassportModelImplCopyWith<$Res>
+    implements $PassportModelCopyWith<$Res> {
+  factory _$$PassportModelImplCopyWith(
+          _$PassportModelImpl value, $Res Function(_$PassportModelImpl) then) =
+      __$$PassportModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: "contact_id") int? contactId,
-      String name,
-      @JsonKey(name: "phone_number") String phoneNumber,
-      @JsonKey(name: "whatsapp_number") String whatsAppNumber,
-      @JsonKey(name: "state_id") int stateId,
-      @JsonKey(name: "country_id") int countryId,
-      @JsonKey(name: "office_id") int? officeId,
-      bool vip,
-      String type,
-      String city,
-      String street,
-      String street2,
-      String? reference,
-      @JsonKey(name: "passport_name") String passportName,
+      {@JsonKey(name: "passport_name") String passportName,
       @JsonKey(name: "e_passport_name") String ePassportName,
       @JsonKey(name: "passport_surname") String passportSurname,
       @JsonKey(name: "e_passport_surname") String ePassportSurname,
@@ -498,44 +1016,20 @@ abstract class _$$InputCreateTravelerModelImplCopyWith<$Res>
       String ePassportNationalNumber,
       @JsonKey(name: "passport_job") String passportJob,
       @JsonKey(name: "e_passport_job") String ePassportJob,
-      @JsonKey(name: "passport_file") String passportFile,
-      @JsonKey(name: "identity_father") String identityFather,
-      @JsonKey(name: "identity_mother") String identityMother,
-      @JsonKey(name: "identity_date_of_birthday") String identityDateOfBirthday,
-      @JsonKey(name: "identity_place_of_birthday")
-      String identityPlaceOfBirthday,
-      @JsonKey(name: "identity_national_number") String identityNationalNumber,
-      @JsonKey(name: "identity_surname") String identitySurname,
-      @JsonKey(name: "identity_gender") String identityGender,
-      List<AttachmentsCreateTravelerModel> attachments});
+      @JsonKey(name: "passport_file") String passportFile});
 }
 
 /// @nodoc
-class __$$InputCreateTravelerModelImplCopyWithImpl<$Res>
-    extends _$InputCreateTravelerModelCopyWithImpl<$Res,
-        _$InputCreateTravelerModelImpl>
-    implements _$$InputCreateTravelerModelImplCopyWith<$Res> {
-  __$$InputCreateTravelerModelImplCopyWithImpl(
-      _$InputCreateTravelerModelImpl _value,
-      $Res Function(_$InputCreateTravelerModelImpl) _then)
+class __$$PassportModelImplCopyWithImpl<$Res>
+    extends _$PassportModelCopyWithImpl<$Res, _$PassportModelImpl>
+    implements _$$PassportModelImplCopyWith<$Res> {
+  __$$PassportModelImplCopyWithImpl(
+      _$PassportModelImpl _value, $Res Function(_$PassportModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? contactId = freezed,
-    Object? name = null,
-    Object? phoneNumber = null,
-    Object? whatsAppNumber = null,
-    Object? stateId = null,
-    Object? countryId = null,
-    Object? officeId = freezed,
-    Object? vip = null,
-    Object? type = null,
-    Object? city = null,
-    Object? street = null,
-    Object? street2 = null,
-    Object? reference = freezed,
     Object? passportName = null,
     Object? ePassportName = null,
     Object? passportSurname = null,
@@ -563,68 +1057,8 @@ class __$$InputCreateTravelerModelImplCopyWithImpl<$Res>
     Object? passportJob = null,
     Object? ePassportJob = null,
     Object? passportFile = null,
-    Object? identityFather = null,
-    Object? identityMother = null,
-    Object? identityDateOfBirthday = null,
-    Object? identityPlaceOfBirthday = null,
-    Object? identityNationalNumber = null,
-    Object? identitySurname = null,
-    Object? identityGender = null,
-    Object? attachments = null,
   }) {
-    return _then(_$InputCreateTravelerModelImpl(
-      contactId: freezed == contactId
-          ? _value.contactId
-          : contactId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      phoneNumber: null == phoneNumber
-          ? _value.phoneNumber
-          : phoneNumber // ignore: cast_nullable_to_non_nullable
-              as String,
-      whatsAppNumber: null == whatsAppNumber
-          ? _value.whatsAppNumber
-          : whatsAppNumber // ignore: cast_nullable_to_non_nullable
-              as String,
-      stateId: null == stateId
-          ? _value.stateId
-          : stateId // ignore: cast_nullable_to_non_nullable
-              as int,
-      countryId: null == countryId
-          ? _value.countryId
-          : countryId // ignore: cast_nullable_to_non_nullable
-              as int,
-      officeId: freezed == officeId
-          ? _value.officeId
-          : officeId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      vip: null == vip
-          ? _value.vip
-          : vip // ignore: cast_nullable_to_non_nullable
-              as bool,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String,
-      city: null == city
-          ? _value.city
-          : city // ignore: cast_nullable_to_non_nullable
-              as String,
-      street: null == street
-          ? _value.street
-          : street // ignore: cast_nullable_to_non_nullable
-              as String,
-      street2: null == street2
-          ? _value.street2
-          : street2 // ignore: cast_nullable_to_non_nullable
-              as String,
-      reference: freezed == reference
-          ? _value.reference
-          : reference // ignore: cast_nullable_to_non_nullable
-              as String?,
+    return _then(_$PassportModelImpl(
       passportName: null == passportName
           ? _value.passportName
           : passportName // ignore: cast_nullable_to_non_nullable
@@ -733,60 +1167,15 @@ class __$$InputCreateTravelerModelImplCopyWithImpl<$Res>
           ? _value.passportFile
           : passportFile // ignore: cast_nullable_to_non_nullable
               as String,
-      identityFather: null == identityFather
-          ? _value.identityFather
-          : identityFather // ignore: cast_nullable_to_non_nullable
-              as String,
-      identityMother: null == identityMother
-          ? _value.identityMother
-          : identityMother // ignore: cast_nullable_to_non_nullable
-              as String,
-      identityDateOfBirthday: null == identityDateOfBirthday
-          ? _value.identityDateOfBirthday
-          : identityDateOfBirthday // ignore: cast_nullable_to_non_nullable
-              as String,
-      identityPlaceOfBirthday: null == identityPlaceOfBirthday
-          ? _value.identityPlaceOfBirthday
-          : identityPlaceOfBirthday // ignore: cast_nullable_to_non_nullable
-              as String,
-      identityNationalNumber: null == identityNationalNumber
-          ? _value.identityNationalNumber
-          : identityNationalNumber // ignore: cast_nullable_to_non_nullable
-              as String,
-      identitySurname: null == identitySurname
-          ? _value.identitySurname
-          : identitySurname // ignore: cast_nullable_to_non_nullable
-              as String,
-      identityGender: null == identityGender
-          ? _value.identityGender
-          : identityGender // ignore: cast_nullable_to_non_nullable
-              as String,
-      attachments: null == attachments
-          ? _value._attachments
-          : attachments // ignore: cast_nullable_to_non_nullable
-              as List<AttachmentsCreateTravelerModel>,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$InputCreateTravelerModelImpl implements _InputCreateTravelerModel {
-  _$InputCreateTravelerModelImpl(
-      {@JsonKey(name: "contact_id") this.contactId,
-      this.name = "",
-      @JsonKey(name: "phone_number") this.phoneNumber = "",
-      @JsonKey(name: "whatsapp_number") this.whatsAppNumber = "",
-      @JsonKey(name: "state_id") this.stateId = 0,
-      @JsonKey(name: "country_id") this.countryId = 0,
-      @JsonKey(name: "office_id") this.officeId,
-      this.vip = false,
-      this.type = "",
-      this.city = "",
-      this.street = "",
-      this.street2 = "",
-      this.reference,
-      @JsonKey(name: "passport_name") this.passportName = "",
+class _$PassportModelImpl implements _PassportModel {
+  const _$PassportModelImpl(
+      {@JsonKey(name: "passport_name") this.passportName = "",
       @JsonKey(name: "e_passport_name") this.ePassportName = "",
       @JsonKey(name: "passport_surname") this.passportSurname = "",
       @JsonKey(name: "e_passport_surname") this.ePassportSurname = "",
@@ -823,63 +1212,11 @@ class _$InputCreateTravelerModelImpl implements _InputCreateTravelerModel {
       this.ePassportNationalNumber = "",
       @JsonKey(name: "passport_job") this.passportJob = "",
       @JsonKey(name: "e_passport_job") this.ePassportJob = "",
-      @JsonKey(name: "passport_file") this.passportFile = "",
-      @JsonKey(name: "identity_father") this.identityFather = "",
-      @JsonKey(name: "identity_mother") this.identityMother = "",
-      @JsonKey(name: "identity_date_of_birthday")
-      this.identityDateOfBirthday = "",
-      @JsonKey(name: "identity_place_of_birthday")
-      this.identityPlaceOfBirthday = "",
-      @JsonKey(name: "identity_national_number")
-      this.identityNationalNumber = "",
-      @JsonKey(name: "identity_surname") this.identitySurname = "",
-      @JsonKey(name: "identity_gender") this.identityGender = "",
-      final List<AttachmentsCreateTravelerModel> attachments = const []})
-      : _attachments = attachments;
+      @JsonKey(name: "passport_file") this.passportFile = ""});
 
-  factory _$InputCreateTravelerModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$InputCreateTravelerModelImplFromJson(json);
+  factory _$PassportModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PassportModelImplFromJson(json);
 
-  @override
-  @JsonKey(name: "contact_id")
-  final int? contactId;
-//first info
-  @override
-  @JsonKey()
-  final String name;
-  @override
-  @JsonKey(name: "phone_number")
-  final String phoneNumber;
-  @override
-  @JsonKey(name: "whatsapp_number")
-  final String whatsAppNumber;
-  @override
-  @JsonKey(name: "state_id")
-  final int stateId;
-  @override
-  @JsonKey(name: "country_id")
-  final int countryId;
-  @override
-  @JsonKey(name: "office_id")
-  final int? officeId;
-  @override
-  @JsonKey()
-  final bool vip;
-  @override
-  @JsonKey()
-  final String type;
-  @override
-  @JsonKey()
-  final String city;
-  @override
-  @JsonKey()
-  final String street;
-  @override
-  @JsonKey()
-  final String street2;
-  @override
-  final String? reference;
-//passport
   @override
   @JsonKey(name: "passport_name")
   final String passportName;
@@ -961,66 +1298,17 @@ class _$InputCreateTravelerModelImpl implements _InputCreateTravelerModel {
   @override
   @JsonKey(name: "passport_file")
   final String passportFile;
-//----Identity
-  @override
-  @JsonKey(name: "identity_father")
-  final String identityFather;
-  @override
-  @JsonKey(name: "identity_mother")
-  final String identityMother;
-  @override
-  @JsonKey(name: "identity_date_of_birthday")
-  final String identityDateOfBirthday;
-  @override
-  @JsonKey(name: "identity_place_of_birthday")
-  final String identityPlaceOfBirthday;
-  @override
-  @JsonKey(name: "identity_national_number")
-  final String identityNationalNumber;
-  @override
-  @JsonKey(name: "identity_surname")
-  final String identitySurname;
-  @override
-  @JsonKey(name: "identity_gender")
-  final String identityGender;
-  final List<AttachmentsCreateTravelerModel> _attachments;
-  @override
-  @JsonKey()
-  List<AttachmentsCreateTravelerModel> get attachments {
-    if (_attachments is EqualUnmodifiableListView) return _attachments;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_attachments);
-  }
 
   @override
   String toString() {
-    return 'InputCreateTravelerModel(contactId: $contactId, name: $name, phoneNumber: $phoneNumber, whatsAppNumber: $whatsAppNumber, stateId: $stateId, countryId: $countryId, officeId: $officeId, vip: $vip, type: $type, city: $city, street: $street, street2: $street2, reference: $reference, passportName: $passportName, ePassportName: $ePassportName, passportSurname: $passportSurname, ePassportSurname: $ePassportSurname, passportMotherName: $passportMotherName, ePassportMotherName: $ePassportMotherName, passportFatherName: $passportFatherName, ePassportFatherName: $ePassportFatherName, passportDateOfBirthday: $passportDateOfBirthday, ePassportDateOfBirthday: $ePassportDateOfBirthday, passportPlaceOfBirthday: $passportPlaceOfBirthday, ePassportPlaceOfBirthday: $ePassportPlaceOfBirthday, passportGender: $passportGender, ePassportGender: $ePassportGender, passportNumberOfPassport: $passportNumberOfPassport, ePassportNumberOfPassport: $ePassportNumberOfPassport, passportReleaseDate: $passportReleaseDate, ePassportReleaseDate: $ePassportReleaseDate, passportPlaceOfIssue: $passportPlaceOfIssue, ePassportPlaceOfIssue: $ePassportPlaceOfIssue, passportExpirationDate: $passportExpirationDate, ePassportExpirationDate: $ePassportExpirationDate, passportNationalNumber: $passportNationalNumber, ePassportNationalNumber: $ePassportNationalNumber, passportJob: $passportJob, ePassportJob: $ePassportJob, passportFile: $passportFile, identityFather: $identityFather, identityMother: $identityMother, identityDateOfBirthday: $identityDateOfBirthday, identityPlaceOfBirthday: $identityPlaceOfBirthday, identityNationalNumber: $identityNationalNumber, identitySurname: $identitySurname, identityGender: $identityGender, attachments: $attachments)';
+    return 'PassportModel(passportName: $passportName, ePassportName: $ePassportName, passportSurname: $passportSurname, ePassportSurname: $ePassportSurname, passportMotherName: $passportMotherName, ePassportMotherName: $ePassportMotherName, passportFatherName: $passportFatherName, ePassportFatherName: $ePassportFatherName, passportDateOfBirthday: $passportDateOfBirthday, ePassportDateOfBirthday: $ePassportDateOfBirthday, passportPlaceOfBirthday: $passportPlaceOfBirthday, ePassportPlaceOfBirthday: $ePassportPlaceOfBirthday, passportGender: $passportGender, ePassportGender: $ePassportGender, passportNumberOfPassport: $passportNumberOfPassport, ePassportNumberOfPassport: $ePassportNumberOfPassport, passportReleaseDate: $passportReleaseDate, ePassportReleaseDate: $ePassportReleaseDate, passportPlaceOfIssue: $passportPlaceOfIssue, ePassportPlaceOfIssue: $ePassportPlaceOfIssue, passportExpirationDate: $passportExpirationDate, ePassportExpirationDate: $ePassportExpirationDate, passportNationalNumber: $passportNationalNumber, ePassportNationalNumber: $ePassportNationalNumber, passportJob: $passportJob, ePassportJob: $ePassportJob, passportFile: $passportFile)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$InputCreateTravelerModelImpl &&
-            (identical(other.contactId, contactId) ||
-                other.contactId == contactId) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.phoneNumber, phoneNumber) ||
-                other.phoneNumber == phoneNumber) &&
-            (identical(other.whatsAppNumber, whatsAppNumber) ||
-                other.whatsAppNumber == whatsAppNumber) &&
-            (identical(other.stateId, stateId) || other.stateId == stateId) &&
-            (identical(other.countryId, countryId) ||
-                other.countryId == countryId) &&
-            (identical(other.officeId, officeId) ||
-                other.officeId == officeId) &&
-            (identical(other.vip, vip) || other.vip == vip) &&
-            (identical(other.type, type) || other.type == type) &&
-            (identical(other.city, city) || other.city == city) &&
-            (identical(other.street, street) || other.street == street) &&
-            (identical(other.street2, street2) || other.street2 == street2) &&
-            (identical(other.reference, reference) ||
-                other.reference == reference) &&
+            other is _$PassportModelImpl &&
             (identical(other.passportName, passportName) ||
                 other.passportName == passportName) &&
             (identical(other.ePassportName, ePassportName) ||
@@ -1073,34 +1361,14 @@ class _$InputCreateTravelerModelImpl implements _InputCreateTravelerModel {
                 other.passportJob == passportJob) &&
             (identical(other.ePassportJob, ePassportJob) ||
                 other.ePassportJob == ePassportJob) &&
-            (identical(other.passportFile, passportFile) || other.passportFile == passportFile) &&
-            (identical(other.identityFather, identityFather) || other.identityFather == identityFather) &&
-            (identical(other.identityMother, identityMother) || other.identityMother == identityMother) &&
-            (identical(other.identityDateOfBirthday, identityDateOfBirthday) || other.identityDateOfBirthday == identityDateOfBirthday) &&
-            (identical(other.identityPlaceOfBirthday, identityPlaceOfBirthday) || other.identityPlaceOfBirthday == identityPlaceOfBirthday) &&
-            (identical(other.identityNationalNumber, identityNationalNumber) || other.identityNationalNumber == identityNationalNumber) &&
-            (identical(other.identitySurname, identitySurname) || other.identitySurname == identitySurname) &&
-            (identical(other.identityGender, identityGender) || other.identityGender == identityGender) &&
-            const DeepCollectionEquality().equals(other._attachments, _attachments));
+            (identical(other.passportFile, passportFile) ||
+                other.passportFile == passportFile));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
-        contactId,
-        name,
-        phoneNumber,
-        whatsAppNumber,
-        stateId,
-        countryId,
-        officeId,
-        vip,
-        type,
-        city,
-        street,
-        street2,
-        reference,
         passportName,
         ePassportName,
         passportSurname,
@@ -1127,48 +1395,26 @@ class _$InputCreateTravelerModelImpl implements _InputCreateTravelerModel {
         ePassportNationalNumber,
         passportJob,
         ePassportJob,
-        passportFile,
-        identityFather,
-        identityMother,
-        identityDateOfBirthday,
-        identityPlaceOfBirthday,
-        identityNationalNumber,
-        identitySurname,
-        identityGender,
-        const DeepCollectionEquality().hash(_attachments)
+        passportFile
       ]);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$InputCreateTravelerModelImplCopyWith<_$InputCreateTravelerModelImpl>
-      get copyWith => __$$InputCreateTravelerModelImplCopyWithImpl<
-          _$InputCreateTravelerModelImpl>(this, _$identity);
+  _$$PassportModelImplCopyWith<_$PassportModelImpl> get copyWith =>
+      __$$PassportModelImplCopyWithImpl<_$PassportModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$InputCreateTravelerModelImplToJson(
+    return _$$PassportModelImplToJson(
       this,
     );
   }
 }
 
-abstract class _InputCreateTravelerModel implements InputCreateTravelerModel {
-  factory _InputCreateTravelerModel(
-      {@JsonKey(name: "contact_id") final int? contactId,
-      final String name,
-      @JsonKey(name: "phone_number") final String phoneNumber,
-      @JsonKey(name: "whatsapp_number") final String whatsAppNumber,
-      @JsonKey(name: "state_id") final int stateId,
-      @JsonKey(name: "country_id") final int countryId,
-      @JsonKey(name: "office_id") final int? officeId,
-      final bool vip,
-      final String type,
-      final String city,
-      final String street,
-      final String street2,
-      final String? reference,
-      @JsonKey(name: "passport_name") final String passportName,
+abstract class _PassportModel implements PassportModel {
+  const factory _PassportModel(
+      {@JsonKey(name: "passport_name") final String passportName,
       @JsonKey(name: "e_passport_name") final String ePassportName,
       @JsonKey(name: "passport_surname") final String passportSurname,
       @JsonKey(name: "e_passport_surname") final String ePassportSurname,
@@ -1207,56 +1453,13 @@ abstract class _InputCreateTravelerModel implements InputCreateTravelerModel {
       final String ePassportNationalNumber,
       @JsonKey(name: "passport_job") final String passportJob,
       @JsonKey(name: "e_passport_job") final String ePassportJob,
-      @JsonKey(name: "passport_file") final String passportFile,
-      @JsonKey(name: "identity_father") final String identityFather,
-      @JsonKey(name: "identity_mother") final String identityMother,
-      @JsonKey(name: "identity_date_of_birthday")
-      final String identityDateOfBirthday,
-      @JsonKey(name: "identity_place_of_birthday")
-      final String identityPlaceOfBirthday,
-      @JsonKey(name: "identity_national_number")
-      final String identityNationalNumber,
-      @JsonKey(name: "identity_surname") final String identitySurname,
-      @JsonKey(name: "identity_gender") final String identityGender,
-      final List<AttachmentsCreateTravelerModel>
-          attachments}) = _$InputCreateTravelerModelImpl;
+      @JsonKey(name: "passport_file")
+      final String passportFile}) = _$PassportModelImpl;
 
-  factory _InputCreateTravelerModel.fromJson(Map<String, dynamic> json) =
-      _$InputCreateTravelerModelImpl.fromJson;
+  factory _PassportModel.fromJson(Map<String, dynamic> json) =
+      _$PassportModelImpl.fromJson;
 
   @override
-  @JsonKey(name: "contact_id")
-  int? get contactId;
-  @override //first info
-  String get name;
-  @override
-  @JsonKey(name: "phone_number")
-  String get phoneNumber;
-  @override
-  @JsonKey(name: "whatsapp_number")
-  String get whatsAppNumber;
-  @override
-  @JsonKey(name: "state_id")
-  int get stateId;
-  @override
-  @JsonKey(name: "country_id")
-  int get countryId;
-  @override
-  @JsonKey(name: "office_id")
-  int? get officeId;
-  @override
-  bool get vip;
-  @override
-  String get type;
-  @override
-  String get city;
-  @override
-  String get street;
-  @override
-  String get street2;
-  @override
-  String? get reference;
-  @override //passport
   @JsonKey(name: "passport_name")
   String get passportName;
   @override
@@ -1337,226 +1540,8 @@ abstract class _InputCreateTravelerModel implements InputCreateTravelerModel {
   @override
   @JsonKey(name: "passport_file")
   String get passportFile;
-  @override //----Identity
-  @JsonKey(name: "identity_father")
-  String get identityFather;
-  @override
-  @JsonKey(name: "identity_mother")
-  String get identityMother;
-  @override
-  @JsonKey(name: "identity_date_of_birthday")
-  String get identityDateOfBirthday;
-  @override
-  @JsonKey(name: "identity_place_of_birthday")
-  String get identityPlaceOfBirthday;
-  @override
-  @JsonKey(name: "identity_national_number")
-  String get identityNationalNumber;
-  @override
-  @JsonKey(name: "identity_surname")
-  String get identitySurname;
-  @override
-  @JsonKey(name: "identity_gender")
-  String get identityGender;
-  @override
-  List<AttachmentsCreateTravelerModel> get attachments;
   @override
   @JsonKey(ignore: true)
-  _$$InputCreateTravelerModelImplCopyWith<_$InputCreateTravelerModelImpl>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-AttachmentsCreateTravelerModel _$AttachmentsCreateTravelerModelFromJson(
-    Map<String, dynamic> json) {
-  return _AttachmentsCreateTravelerModel.fromJson(json);
-}
-
-/// @nodoc
-mixin _$AttachmentsCreateTravelerModel {
-  String get name => throw _privateConstructorUsedError;
-  int get type => throw _privateConstructorUsedError;
-  List<String> get file => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $AttachmentsCreateTravelerModelCopyWith<AttachmentsCreateTravelerModel>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $AttachmentsCreateTravelerModelCopyWith<$Res> {
-  factory $AttachmentsCreateTravelerModelCopyWith(
-          AttachmentsCreateTravelerModel value,
-          $Res Function(AttachmentsCreateTravelerModel) then) =
-      _$AttachmentsCreateTravelerModelCopyWithImpl<$Res,
-          AttachmentsCreateTravelerModel>;
-  @useResult
-  $Res call({String name, int type, List<String> file});
-}
-
-/// @nodoc
-class _$AttachmentsCreateTravelerModelCopyWithImpl<$Res,
-        $Val extends AttachmentsCreateTravelerModel>
-    implements $AttachmentsCreateTravelerModelCopyWith<$Res> {
-  _$AttachmentsCreateTravelerModelCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? name = null,
-    Object? type = null,
-    Object? file = null,
-  }) {
-    return _then(_value.copyWith(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as int,
-      file: null == file
-          ? _value.file
-          : file // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$AttachmentsCreateTravelerModelImplCopyWith<$Res>
-    implements $AttachmentsCreateTravelerModelCopyWith<$Res> {
-  factory _$$AttachmentsCreateTravelerModelImplCopyWith(
-          _$AttachmentsCreateTravelerModelImpl value,
-          $Res Function(_$AttachmentsCreateTravelerModelImpl) then) =
-      __$$AttachmentsCreateTravelerModelImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String name, int type, List<String> file});
-}
-
-/// @nodoc
-class __$$AttachmentsCreateTravelerModelImplCopyWithImpl<$Res>
-    extends _$AttachmentsCreateTravelerModelCopyWithImpl<$Res,
-        _$AttachmentsCreateTravelerModelImpl>
-    implements _$$AttachmentsCreateTravelerModelImplCopyWith<$Res> {
-  __$$AttachmentsCreateTravelerModelImplCopyWithImpl(
-      _$AttachmentsCreateTravelerModelImpl _value,
-      $Res Function(_$AttachmentsCreateTravelerModelImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? name = null,
-    Object? type = null,
-    Object? file = null,
-  }) {
-    return _then(_$AttachmentsCreateTravelerModelImpl(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as int,
-      file: null == file
-          ? _value._file
-          : file // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$AttachmentsCreateTravelerModelImpl
-    implements _AttachmentsCreateTravelerModel {
-  const _$AttachmentsCreateTravelerModelImpl(
-      {this.name = "", this.type = 0, final List<String> file = const []})
-      : _file = file;
-
-  factory _$AttachmentsCreateTravelerModelImpl.fromJson(
-          Map<String, dynamic> json) =>
-      _$$AttachmentsCreateTravelerModelImplFromJson(json);
-
-  @override
-  @JsonKey()
-  final String name;
-  @override
-  @JsonKey()
-  final int type;
-  final List<String> _file;
-  @override
-  @JsonKey()
-  List<String> get file {
-    if (_file is EqualUnmodifiableListView) return _file;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_file);
-  }
-
-  @override
-  String toString() {
-    return 'AttachmentsCreateTravelerModel(name: $name, type: $type, file: $file)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$AttachmentsCreateTravelerModelImpl &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.type, type) || other.type == type) &&
-            const DeepCollectionEquality().equals(other._file, _file));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, name, type, const DeepCollectionEquality().hash(_file));
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$AttachmentsCreateTravelerModelImplCopyWith<
-          _$AttachmentsCreateTravelerModelImpl>
-      get copyWith => __$$AttachmentsCreateTravelerModelImplCopyWithImpl<
-          _$AttachmentsCreateTravelerModelImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$AttachmentsCreateTravelerModelImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class _AttachmentsCreateTravelerModel
-    implements AttachmentsCreateTravelerModel {
-  const factory _AttachmentsCreateTravelerModel(
-      {final String name,
-      final int type,
-      final List<String> file}) = _$AttachmentsCreateTravelerModelImpl;
-
-  factory _AttachmentsCreateTravelerModel.fromJson(Map<String, dynamic> json) =
-      _$AttachmentsCreateTravelerModelImpl.fromJson;
-
-  @override
-  String get name;
-  @override
-  int get type;
-  @override
-  List<String> get file;
-  @override
-  @JsonKey(ignore: true)
-  _$$AttachmentsCreateTravelerModelImplCopyWith<
-          _$AttachmentsCreateTravelerModelImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$PassportModelImplCopyWith<_$PassportModelImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

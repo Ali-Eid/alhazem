@@ -2,7 +2,9 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
 
+import 'package:alhazem/core/bases/enums/entity_type.dart';
 import 'package:alhazem/core/utils/extensions/extensions.dart';
+import 'package:alhazem/features/contacts/domain/models/contact_details_model/contact_details_model.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -117,24 +119,24 @@ class InputValueCreateCubit extends Cubit<int> {
 
   void setVip(bool? vip) {
     isVip = vip;
-    emit(isVip.hashCode);
+    emit(Random().nextInt(100));
   }
 
   void setCountry(StaticModel? country) {
     countrySelected = country;
-    emit(countrySelected.hashCode);
+    emit(Random().nextInt(100));
   }
 
   StaticModel? stateSelected;
   StaticModel? officeSelected;
   void setState(StaticModel? state) {
     stateSelected = state;
-    emit(stateSelected.hashCode);
+    emit(Random().nextInt(100));
   }
 
   void setOffice(StaticModel? office) {
     officeSelected = office;
-    emit(officeSelected.hashCode);
+    emit(Random().nextInt(100));
   }
   //public info
 
@@ -142,26 +144,26 @@ class InputValueCreateCubit extends Cubit<int> {
     if (dateTime != null) {
       dobPassportController.text = dateTime.toFormattedString();
     }
-    emit(dobPassportController.text.hashCode);
+    emit(Random().nextInt(100));
   }
 
   void setGender(StaticModel? gender) {
     genderSelected = gender;
-    emit(genderSelected.hashCode);
+    emit(Random().nextInt(100));
   }
 
   void setIssuedDate(DateTime? dateTime) {
     if (dateTime != null) {
       issuedDatePassportController.text = dateTime.toFormattedString();
     }
-    emit(issuedDatePassportController.text.hashCode);
+    emit(Random().nextInt(100));
   }
 
   void setExpirationDate(DateTime? dateTime) {
     if (dateTime != null) {
       expirationDatePassportController.text = dateTime.toFormattedString();
     }
-    emit(expirationDatePassportController.text.hashCode);
+    emit(Random().nextInt(100));
   }
 
   //Identity
@@ -169,7 +171,7 @@ class InputValueCreateCubit extends Cubit<int> {
     if (dateTime != null) {
       dobIdentityController.text = dateTime.toFormattedString();
     }
-    emit(dobIdentityController.text.hashCode);
+    emit(Random().nextInt(100));
   }
 
   //attachments
@@ -284,6 +286,80 @@ class InputValueCreateCubit extends Cubit<int> {
     genderSelected = null;
     officeSelected = null;
     isVip = false;
+    emit(Random().nextInt(100));
+  }
+
+  int? contactId;
+  bool isEdit = false;
+  //---Edit-----
+
+  void setEdit(bool edit) {
+    isEdit = edit;
+    emit(Random().nextInt(100));
+  }
+
+  void editContact(ContactDetailsModel contactDetails) {
+    contactId = contactDetails.id;
+    nameController.text = contactDetails.name;
+    nameIdentityController.text = contactDetails.name;
+    surnameIdentityController.text = contactDetails.identitySurname;
+    phoneController.text = contactDetails.phone;
+    whatsAppController.text = contactDetails.whatsappNumber;
+    isVip = contactDetails.vip;
+    fatherNameIdentityController.text = contactDetails.identityFather;
+    motherNameIdentityController.text = contactDetails.identityMother;
+    dobIdentityController.text = contactDetails.identityDateOfBirthday;
+    birthPlaceIdentityController.text = contactDetails.identityPlaceOfBirthday;
+    nationalNumberIdentityController.text =
+        contactDetails.identityNationalNumber;
+    genderSelected = StaticModel(name: contactDetails.identityGender);
+    noteController.text = contactDetails.reference;
+    officeSelected = contactDetails.office == const StaticModel()
+        ? const StaticModel(id: 0, name: "بلا مكتب")
+        : StaticModel(
+            id: contactDetails.office.id, name: contactDetails.office.name);
+    setCountry(StaticModel(
+        id: contactDetails.country.id, name: contactDetails.country.name));
+    setState(StaticModel(
+        id: contactDetails.state.id, name: contactDetails.state.name));
+    cityController.text = contactDetails.city;
+    if (contactDetails.type == EntityType.person.name &&
+        contactDetails.passport.isNotEmpty) {
+      //passport
+      namePassportController.text = contactDetails.passport.first.passportName;
+      eNamePassportController.text =
+          contactDetails.passport.first.ePassportName;
+      surnamePassportController.text =
+          contactDetails.passport.first.passportSurname;
+      eSurnamePassportController.text =
+          contactDetails.passport.first.ePassportSurname;
+      fatherNamePassportController.text =
+          contactDetails.passport.first.passportFatherName;
+      eFatherNamePassportController.text =
+          contactDetails.passport.first.ePassportFatherName;
+      motherNamePassportController.text =
+          contactDetails.passport.first.passportMotherName;
+      eMotherNamePassportController.text =
+          contactDetails.passport.first.ePassportMotherName;
+      dobPassportController.text =
+          contactDetails.passport.first.passportDateOfBirthday;
+      birthPlacePassportController.text =
+          contactDetails.passport.first.passportPlaceOfBirthday;
+      eBirthPlacePassportController.text =
+          contactDetails.passport.first.ePassportPlaceOfBirthday;
+      numberPassportController.text =
+          contactDetails.passport.first.passportNumberOfPassport;
+      placeIssuePassportController.text =
+          contactDetails.passport.first.passportPlaceOfIssue;
+      nationalNumberPassportController.text =
+          contactDetails.passport.first.passportNationalNumber;
+      jobPassportController.text = contactDetails.passport.first.passportJob;
+      issuedDatePassportController.text =
+          contactDetails.passport.first.passportReleaseDate;
+      expirationDatePassportController.text =
+          contactDetails.passport.first.passportExpirationDate;
+    }
+
     emit(Random().nextInt(100));
   }
 }

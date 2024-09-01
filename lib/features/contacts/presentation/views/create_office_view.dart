@@ -244,6 +244,8 @@ class _CreateOfficeViewState extends State<CreateOfficeView> {
                                                 child: SizedBox(
                                                   width: AppSizeW.s250,
                                                   child: DropDownWidget(
+                                                      hintSearchText:
+                                                          "البحث...",
                                                       validator: (value) {
                                                         if (value == null) {
                                                           return "الرجاء اختيار البلد";
@@ -284,6 +286,8 @@ class _CreateOfficeViewState extends State<CreateOfficeView> {
                                                   return state.maybeMap(
                                                     loaded: (value) {
                                                       return DropDownWidget(
+                                                          hintSearchText:
+                                                              "البحث...",
                                                           // validator: (value) {
                                                           //   if (value == null) {
                                                           //     return "الرجاء اختيار المنطقة";
@@ -296,18 +300,20 @@ class _CreateOfficeViewState extends State<CreateOfficeView> {
                                                                     state);
                                                           },
                                                           items: value.states,
-                                                          labelText: "المنطقة");
+                                                          labelText: "المدينة");
                                                     },
                                                     orElse: () {
                                                       return DropDownWidget(
+                                                          hintSearchText:
+                                                              "البحث...",
                                                           validator: (value) {
                                                             if (value == null) {
-                                                              return "الرجاء اختيار المنطقة";
+                                                              return "الرجاء اختيار المدينة";
                                                             }
                                                             return null;
                                                           },
                                                           items: const [],
-                                                          labelText: "المنطقة");
+                                                          labelText: "المدينة");
                                                     },
                                                   );
                                                 },
@@ -318,21 +324,14 @@ class _CreateOfficeViewState extends State<CreateOfficeView> {
                                               validator: (value) {
                                                 if (value != null &&
                                                     value.isEmpty) {
-                                                  return "المدينة لا يمكن ان يكون فارغة";
+                                                  return "المنطقة لا يمكن ان يكون فارغة";
                                                 }
                                                 return null;
                                               },
-                                              labelText: "المدينة",
+                                              labelText: "المنطقة",
                                               controller: inputValueCubit
                                                   .cityController),
                                           InputFieldWidget(
-                                              validator: (value) {
-                                                if (value != null &&
-                                                    value.isEmpty) {
-                                                  return "الشارع لا يمكن ان يكون فارغ";
-                                                }
-                                                return null;
-                                              },
                                               labelText: "الشارع",
                                               controller: inputValueCubit
                                                   .streetController),

@@ -307,6 +307,7 @@ class _CreateTravelerWidgetState extends State<CreateTravelerWidget> {
                                               child: SizedBox(
                                                 width: AppSizeW.s250,
                                                 child: DropDownWidget(
+                                                    hintSearchText: "البحث...",
                                                     validator: (value) {
                                                       if (value == null) {
                                                         return "الرجاء اختيار البلد";
@@ -345,6 +346,8 @@ class _CreateTravelerWidgetState extends State<CreateTravelerWidget> {
                                                 return state.maybeMap(
                                                   loaded: (value) {
                                                     return DropDownWidget(
+                                                        hintSearchText:
+                                                            "البحث...",
                                                         // validator: (value) {
                                                         //   if (value == null) {
                                                         //     return "الرجاء اختيار المنطقة";
@@ -356,18 +359,20 @@ class _CreateTravelerWidgetState extends State<CreateTravelerWidget> {
                                                               .setState(state);
                                                         },
                                                         items: value.states,
-                                                        labelText: "المنطقة");
+                                                        labelText: "المدينة");
                                                   },
                                                   orElse: () {
                                                     return DropDownWidget(
+                                                        hintSearchText:
+                                                            "البحث...",
                                                         validator: (value) {
                                                           if (value == null) {
-                                                            return "الرجاء اختيار المنطقة";
+                                                            return "الرجاء اختيار المدينة";
                                                           }
                                                           return null;
                                                         },
                                                         items: const [],
-                                                        labelText: "المنطقة");
+                                                        labelText: "المدينة");
                                                   },
                                                 );
                                               },
@@ -378,11 +383,11 @@ class _CreateTravelerWidgetState extends State<CreateTravelerWidget> {
                                             validator: (value) {
                                               if (value != null &&
                                                   value.isEmpty) {
-                                                return "المدينة لا يمكن ان يكون فارغة";
+                                                return "المنطقة لا يمكن ان يكون فارغة";
                                               }
                                               return null;
                                             },
-                                            labelText: "المدينة",
+                                            labelText: "المنطقة",
                                             controller:
                                                 inputValueCubit.cityController),
                                         InputFieldWidget(
@@ -410,6 +415,7 @@ class _CreateTravelerWidgetState extends State<CreateTravelerWidget> {
                                               child: SizedBox(
                                                 width: AppSizeW.s250,
                                                 child: DropDownWidget(
+                                                    hintSearchText: "البحث...",
                                                     validator: (value) {
                                                       if (value == null) {
                                                         return "الرجاء اختيار المكتب";
@@ -893,6 +899,9 @@ class _CreateTravelerWidgetState extends State<CreateTravelerWidget> {
                                                       child: SizedBox(
                                                         width: AppSizeW.s250,
                                                         child: DropDownWidget(
+                                                          notSearch: false,
+                                                          hintSearchText:
+                                                              "البحث...",
                                                           validator: (value) {
                                                             if (value == null) {
                                                               return "الرجاء اختيار الجنس";

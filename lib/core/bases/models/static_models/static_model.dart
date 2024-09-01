@@ -5,7 +5,7 @@ part 'static_model.g.dart';
 
 @freezed
 abstract class StaticModel with _$StaticModel {
-  factory StaticModel({
+  const factory StaticModel({
     @Default(0) int id,
     @Default("") String name,
   }) = _StaticModel;

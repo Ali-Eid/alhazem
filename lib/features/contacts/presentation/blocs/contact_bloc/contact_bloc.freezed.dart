@@ -16,48 +16,49 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ContactEvent {
-  EntityType? get type => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(EntityType? type) getContact,
-    required TResult Function(EntityType? type, int page) getContactPagination,
+    required TResult Function(EntityType type, int page) getContact,
+    required TResult Function(int contactId) getContactById,
+    required TResult Function(ContactModel model) editContact,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(EntityType? type)? getContact,
-    TResult? Function(EntityType? type, int page)? getContactPagination,
+    TResult? Function(EntityType type, int page)? getContact,
+    TResult? Function(int contactId)? getContactById,
+    TResult? Function(ContactModel model)? editContact,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(EntityType? type)? getContact,
-    TResult Function(EntityType? type, int page)? getContactPagination,
+    TResult Function(EntityType type, int page)? getContact,
+    TResult Function(int contactId)? getContactById,
+    TResult Function(ContactModel model)? editContact,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetContact value) getContact,
-    required TResult Function(_GetContactPagination value) getContactPagination,
+    required TResult Function(_GetContactById value) getContactById,
+    required TResult Function(_EditContact value) editContact,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetContact value)? getContact,
-    TResult? Function(_GetContactPagination value)? getContactPagination,
+    TResult? Function(_GetContactById value)? getContactById,
+    TResult? Function(_EditContact value)? editContact,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetContact value)? getContact,
-    TResult Function(_GetContactPagination value)? getContactPagination,
+    TResult Function(_GetContactById value)? getContactById,
+    TResult Function(_EditContact value)? editContact,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $ContactEventCopyWith<ContactEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -66,8 +67,6 @@ abstract class $ContactEventCopyWith<$Res> {
   factory $ContactEventCopyWith(
           ContactEvent value, $Res Function(ContactEvent) then) =
       _$ContactEventCopyWithImpl<$Res, ContactEvent>;
-  @useResult
-  $Res call({EntityType? type});
 }
 
 /// @nodoc
@@ -79,30 +78,15 @@ class _$ContactEventCopyWithImpl<$Res, $Val extends ContactEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? type = freezed,
-  }) {
-    return _then(_value.copyWith(
-      type: freezed == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as EntityType?,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$GetContactImplCopyWith<$Res>
-    implements $ContactEventCopyWith<$Res> {
+abstract class _$$GetContactImplCopyWith<$Res> {
   factory _$$GetContactImplCopyWith(
           _$GetContactImpl value, $Res Function(_$GetContactImpl) then) =
       __$$GetContactImplCopyWithImpl<$Res>;
-  @override
   @useResult
-  $Res call({EntityType? type});
+  $Res call({EntityType type, int page});
 }
 
 /// @nodoc
@@ -116,151 +100,14 @@ class __$$GetContactImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? type = freezed,
-  }) {
-    return _then(_$GetContactImpl(
-      type: freezed == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as EntityType?,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$GetContactImpl implements _GetContact {
-  const _$GetContactImpl({this.type});
-
-  @override
-  final EntityType? type;
-
-  @override
-  String toString() {
-    return 'ContactEvent.getContact(type: $type)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$GetContactImpl &&
-            (identical(other.type, type) || other.type == type));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, type);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$GetContactImplCopyWith<_$GetContactImpl> get copyWith =>
-      __$$GetContactImplCopyWithImpl<_$GetContactImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(EntityType? type) getContact,
-    required TResult Function(EntityType? type, int page) getContactPagination,
-  }) {
-    return getContact(type);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(EntityType? type)? getContact,
-    TResult? Function(EntityType? type, int page)? getContactPagination,
-  }) {
-    return getContact?.call(type);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(EntityType? type)? getContact,
-    TResult Function(EntityType? type, int page)? getContactPagination,
-    required TResult orElse(),
-  }) {
-    if (getContact != null) {
-      return getContact(type);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_GetContact value) getContact,
-    required TResult Function(_GetContactPagination value) getContactPagination,
-  }) {
-    return getContact(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetContact value)? getContact,
-    TResult? Function(_GetContactPagination value)? getContactPagination,
-  }) {
-    return getContact?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetContact value)? getContact,
-    TResult Function(_GetContactPagination value)? getContactPagination,
-    required TResult orElse(),
-  }) {
-    if (getContact != null) {
-      return getContact(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _GetContact implements ContactEvent {
-  const factory _GetContact({final EntityType? type}) = _$GetContactImpl;
-
-  @override
-  EntityType? get type;
-  @override
-  @JsonKey(ignore: true)
-  _$$GetContactImplCopyWith<_$GetContactImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$GetContactPaginationImplCopyWith<$Res>
-    implements $ContactEventCopyWith<$Res> {
-  factory _$$GetContactPaginationImplCopyWith(_$GetContactPaginationImpl value,
-          $Res Function(_$GetContactPaginationImpl) then) =
-      __$$GetContactPaginationImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({EntityType? type, int page});
-}
-
-/// @nodoc
-class __$$GetContactPaginationImplCopyWithImpl<$Res>
-    extends _$ContactEventCopyWithImpl<$Res, _$GetContactPaginationImpl>
-    implements _$$GetContactPaginationImplCopyWith<$Res> {
-  __$$GetContactPaginationImplCopyWithImpl(_$GetContactPaginationImpl _value,
-      $Res Function(_$GetContactPaginationImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? type = freezed,
+    Object? type = null,
     Object? page = null,
   }) {
-    return _then(_$GetContactPaginationImpl(
-      type: freezed == type
+    return _then(_$GetContactImpl(
+      type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as EntityType?,
+              as EntityType,
       page: null == page
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
@@ -271,24 +118,24 @@ class __$$GetContactPaginationImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$GetContactPaginationImpl implements _GetContactPagination {
-  const _$GetContactPaginationImpl({this.type, required this.page});
+class _$GetContactImpl implements _GetContact {
+  const _$GetContactImpl({required this.type, required this.page});
 
   @override
-  final EntityType? type;
+  final EntityType type;
   @override
   final int page;
 
   @override
   String toString() {
-    return 'ContactEvent.getContactPagination(type: $type, page: $page)';
+    return 'ContactEvent.getContact(type: $type, page: $page)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$GetContactPaginationImpl &&
+            other is _$GetContactImpl &&
             (identical(other.type, type) || other.type == type) &&
             (identical(other.page, page) || other.page == page));
   }
@@ -299,38 +146,39 @@ class _$GetContactPaginationImpl implements _GetContactPagination {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$GetContactPaginationImplCopyWith<_$GetContactPaginationImpl>
-      get copyWith =>
-          __$$GetContactPaginationImplCopyWithImpl<_$GetContactPaginationImpl>(
-              this, _$identity);
+  _$$GetContactImplCopyWith<_$GetContactImpl> get copyWith =>
+      __$$GetContactImplCopyWithImpl<_$GetContactImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(EntityType? type) getContact,
-    required TResult Function(EntityType? type, int page) getContactPagination,
+    required TResult Function(EntityType type, int page) getContact,
+    required TResult Function(int contactId) getContactById,
+    required TResult Function(ContactModel model) editContact,
   }) {
-    return getContactPagination(type, page);
+    return getContact(type, page);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(EntityType? type)? getContact,
-    TResult? Function(EntityType? type, int page)? getContactPagination,
+    TResult? Function(EntityType type, int page)? getContact,
+    TResult? Function(int contactId)? getContactById,
+    TResult? Function(ContactModel model)? editContact,
   }) {
-    return getContactPagination?.call(type, page);
+    return getContact?.call(type, page);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(EntityType? type)? getContact,
-    TResult Function(EntityType? type, int page)? getContactPagination,
+    TResult Function(EntityType type, int page)? getContact,
+    TResult Function(int contactId)? getContactById,
+    TResult Function(ContactModel model)? editContact,
     required TResult orElse(),
   }) {
-    if (getContactPagination != null) {
-      return getContactPagination(type, page);
+    if (getContact != null) {
+      return getContact(type, page);
     }
     return orElse();
   }
@@ -339,46 +187,339 @@ class _$GetContactPaginationImpl implements _GetContactPagination {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetContact value) getContact,
-    required TResult Function(_GetContactPagination value) getContactPagination,
+    required TResult Function(_GetContactById value) getContactById,
+    required TResult Function(_EditContact value) editContact,
   }) {
-    return getContactPagination(this);
+    return getContact(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetContact value)? getContact,
-    TResult? Function(_GetContactPagination value)? getContactPagination,
+    TResult? Function(_GetContactById value)? getContactById,
+    TResult? Function(_EditContact value)? editContact,
   }) {
-    return getContactPagination?.call(this);
+    return getContact?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetContact value)? getContact,
-    TResult Function(_GetContactPagination value)? getContactPagination,
+    TResult Function(_GetContactById value)? getContactById,
+    TResult Function(_EditContact value)? editContact,
     required TResult orElse(),
   }) {
-    if (getContactPagination != null) {
-      return getContactPagination(this);
+    if (getContact != null) {
+      return getContact(this);
     }
     return orElse();
   }
 }
 
-abstract class _GetContactPagination implements ContactEvent {
-  const factory _GetContactPagination(
-      {final EntityType? type,
-      required final int page}) = _$GetContactPaginationImpl;
+abstract class _GetContact implements ContactEvent {
+  const factory _GetContact(
+      {required final EntityType type,
+      required final int page}) = _$GetContactImpl;
+
+  EntityType get type;
+  int get page;
+  @JsonKey(ignore: true)
+  _$$GetContactImplCopyWith<_$GetContactImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$GetContactByIdImplCopyWith<$Res> {
+  factory _$$GetContactByIdImplCopyWith(_$GetContactByIdImpl value,
+          $Res Function(_$GetContactByIdImpl) then) =
+      __$$GetContactByIdImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int contactId});
+}
+
+/// @nodoc
+class __$$GetContactByIdImplCopyWithImpl<$Res>
+    extends _$ContactEventCopyWithImpl<$Res, _$GetContactByIdImpl>
+    implements _$$GetContactByIdImplCopyWith<$Res> {
+  __$$GetContactByIdImplCopyWithImpl(
+      _$GetContactByIdImpl _value, $Res Function(_$GetContactByIdImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? contactId = null,
+  }) {
+    return _then(_$GetContactByIdImpl(
+      contactId: null == contactId
+          ? _value.contactId
+          : contactId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetContactByIdImpl implements _GetContactById {
+  const _$GetContactByIdImpl({required this.contactId});
 
   @override
-  EntityType? get type;
-  int get page;
+  final int contactId;
+
   @override
+  String toString() {
+    return 'ContactEvent.getContactById(contactId: $contactId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetContactByIdImpl &&
+            (identical(other.contactId, contactId) ||
+                other.contactId == contactId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, contactId);
+
   @JsonKey(ignore: true)
-  _$$GetContactPaginationImplCopyWith<_$GetContactPaginationImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetContactByIdImplCopyWith<_$GetContactByIdImpl> get copyWith =>
+      __$$GetContactByIdImplCopyWithImpl<_$GetContactByIdImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(EntityType type, int page) getContact,
+    required TResult Function(int contactId) getContactById,
+    required TResult Function(ContactModel model) editContact,
+  }) {
+    return getContactById(contactId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(EntityType type, int page)? getContact,
+    TResult? Function(int contactId)? getContactById,
+    TResult? Function(ContactModel model)? editContact,
+  }) {
+    return getContactById?.call(contactId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(EntityType type, int page)? getContact,
+    TResult Function(int contactId)? getContactById,
+    TResult Function(ContactModel model)? editContact,
+    required TResult orElse(),
+  }) {
+    if (getContactById != null) {
+      return getContactById(contactId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetContact value) getContact,
+    required TResult Function(_GetContactById value) getContactById,
+    required TResult Function(_EditContact value) editContact,
+  }) {
+    return getContactById(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetContact value)? getContact,
+    TResult? Function(_GetContactById value)? getContactById,
+    TResult? Function(_EditContact value)? editContact,
+  }) {
+    return getContactById?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetContact value)? getContact,
+    TResult Function(_GetContactById value)? getContactById,
+    TResult Function(_EditContact value)? editContact,
+    required TResult orElse(),
+  }) {
+    if (getContactById != null) {
+      return getContactById(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetContactById implements ContactEvent {
+  const factory _GetContactById({required final int contactId}) =
+      _$GetContactByIdImpl;
+
+  int get contactId;
+  @JsonKey(ignore: true)
+  _$$GetContactByIdImplCopyWith<_$GetContactByIdImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$EditContactImplCopyWith<$Res> {
+  factory _$$EditContactImplCopyWith(
+          _$EditContactImpl value, $Res Function(_$EditContactImpl) then) =
+      __$$EditContactImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({ContactModel model});
+
+  $ContactModelCopyWith<$Res> get model;
+}
+
+/// @nodoc
+class __$$EditContactImplCopyWithImpl<$Res>
+    extends _$ContactEventCopyWithImpl<$Res, _$EditContactImpl>
+    implements _$$EditContactImplCopyWith<$Res> {
+  __$$EditContactImplCopyWithImpl(
+      _$EditContactImpl _value, $Res Function(_$EditContactImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? model = null,
+  }) {
+    return _then(_$EditContactImpl(
+      model: null == model
+          ? _value.model
+          : model // ignore: cast_nullable_to_non_nullable
+              as ContactModel,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ContactModelCopyWith<$Res> get model {
+    return $ContactModelCopyWith<$Res>(_value.model, (value) {
+      return _then(_value.copyWith(model: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$EditContactImpl implements _EditContact {
+  const _$EditContactImpl({required this.model});
+
+  @override
+  final ContactModel model;
+
+  @override
+  String toString() {
+    return 'ContactEvent.editContact(model: $model)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$EditContactImpl &&
+            (identical(other.model, model) || other.model == model));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, model);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$EditContactImplCopyWith<_$EditContactImpl> get copyWith =>
+      __$$EditContactImplCopyWithImpl<_$EditContactImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(EntityType type, int page) getContact,
+    required TResult Function(int contactId) getContactById,
+    required TResult Function(ContactModel model) editContact,
+  }) {
+    return editContact(model);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(EntityType type, int page)? getContact,
+    TResult? Function(int contactId)? getContactById,
+    TResult? Function(ContactModel model)? editContact,
+  }) {
+    return editContact?.call(model);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(EntityType type, int page)? getContact,
+    TResult Function(int contactId)? getContactById,
+    TResult Function(ContactModel model)? editContact,
+    required TResult orElse(),
+  }) {
+    if (editContact != null) {
+      return editContact(model);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetContact value) getContact,
+    required TResult Function(_GetContactById value) getContactById,
+    required TResult Function(_EditContact value) editContact,
+  }) {
+    return editContact(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetContact value)? getContact,
+    TResult? Function(_GetContactById value)? getContactById,
+    TResult? Function(_EditContact value)? editContact,
+  }) {
+    return editContact?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetContact value)? getContact,
+    TResult Function(_GetContactById value)? getContactById,
+    TResult Function(_EditContact value)? editContact,
+    required TResult orElse(),
+  }) {
+    if (editContact != null) {
+      return editContact(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _EditContact implements ContactEvent {
+  const factory _EditContact({required final ContactModel model}) =
+      _$EditContactImpl;
+
+  ContactModel get model;
+  @JsonKey(ignore: true)
+  _$$EditContactImplCopyWith<_$EditContactImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -391,6 +532,8 @@ mixin _$ContactState {
             ResponsePaginationModel<List<ContactModel>> contacts,
             bool? isLoading)
         loaded,
+    required TResult Function(ResponseModel<List<ContactDetailsModel>> contact)
+        loadedContactDetails,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -401,6 +544,8 @@ mixin _$ContactState {
     TResult? Function(ResponsePaginationModel<List<ContactModel>> contacts,
             bool? isLoading)?
         loaded,
+    TResult? Function(ResponseModel<List<ContactDetailsModel>> contact)?
+        loadedContactDetails,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -411,6 +556,8 @@ mixin _$ContactState {
     TResult Function(ResponsePaginationModel<List<ContactModel>> contacts,
             bool? isLoading)?
         loaded,
+    TResult Function(ResponseModel<List<ContactDetailsModel>> contact)?
+        loadedContactDetails,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -420,6 +567,7 @@ mixin _$ContactState {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_LoadedContactDetails value) loadedContactDetails,
     required TResult Function(_Error value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -428,6 +576,7 @@ mixin _$ContactState {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_LoadedContactDetails value)? loadedContactDetails,
     TResult? Function(_Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -436,6 +585,7 @@ mixin _$ContactState {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_LoadedContactDetails value)? loadedContactDetails,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) =>
@@ -504,6 +654,8 @@ class _$InitialImpl implements _Initial {
             ResponsePaginationModel<List<ContactModel>> contacts,
             bool? isLoading)
         loaded,
+    required TResult Function(ResponseModel<List<ContactDetailsModel>> contact)
+        loadedContactDetails,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -517,6 +669,8 @@ class _$InitialImpl implements _Initial {
     TResult? Function(ResponsePaginationModel<List<ContactModel>> contacts,
             bool? isLoading)?
         loaded,
+    TResult? Function(ResponseModel<List<ContactDetailsModel>> contact)?
+        loadedContactDetails,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -530,6 +684,8 @@ class _$InitialImpl implements _Initial {
     TResult Function(ResponsePaginationModel<List<ContactModel>> contacts,
             bool? isLoading)?
         loaded,
+    TResult Function(ResponseModel<List<ContactDetailsModel>> contact)?
+        loadedContactDetails,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -545,6 +701,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_LoadedContactDetails value) loadedContactDetails,
     required TResult Function(_Error value) error,
   }) {
     return initial(this);
@@ -556,6 +713,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_LoadedContactDetails value)? loadedContactDetails,
     TResult? Function(_Error value)? error,
   }) {
     return initial?.call(this);
@@ -567,6 +725,7 @@ class _$InitialImpl implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_LoadedContactDetails value)? loadedContactDetails,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -625,6 +784,8 @@ class _$LoadingImpl implements _Loading {
             ResponsePaginationModel<List<ContactModel>> contacts,
             bool? isLoading)
         loaded,
+    required TResult Function(ResponseModel<List<ContactDetailsModel>> contact)
+        loadedContactDetails,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -638,6 +799,8 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(ResponsePaginationModel<List<ContactModel>> contacts,
             bool? isLoading)?
         loaded,
+    TResult? Function(ResponseModel<List<ContactDetailsModel>> contact)?
+        loadedContactDetails,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -651,6 +814,8 @@ class _$LoadingImpl implements _Loading {
     TResult Function(ResponsePaginationModel<List<ContactModel>> contacts,
             bool? isLoading)?
         loaded,
+    TResult Function(ResponseModel<List<ContactDetailsModel>> contact)?
+        loadedContactDetails,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -666,6 +831,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_LoadedContactDetails value) loadedContactDetails,
     required TResult Function(_Error value) error,
   }) {
     return loading(this);
@@ -677,6 +843,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_LoadedContactDetails value)? loadedContactDetails,
     TResult? Function(_Error value)? error,
   }) {
     return loading?.call(this);
@@ -688,6 +855,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_LoadedContactDetails value)? loadedContactDetails,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -795,6 +963,8 @@ class _$LoadedImpl implements _Loaded {
             ResponsePaginationModel<List<ContactModel>> contacts,
             bool? isLoading)
         loaded,
+    required TResult Function(ResponseModel<List<ContactDetailsModel>> contact)
+        loadedContactDetails,
     required TResult Function(String message) error,
   }) {
     return loaded(contacts, isLoading);
@@ -808,6 +978,8 @@ class _$LoadedImpl implements _Loaded {
     TResult? Function(ResponsePaginationModel<List<ContactModel>> contacts,
             bool? isLoading)?
         loaded,
+    TResult? Function(ResponseModel<List<ContactDetailsModel>> contact)?
+        loadedContactDetails,
     TResult? Function(String message)? error,
   }) {
     return loaded?.call(contacts, isLoading);
@@ -821,6 +993,8 @@ class _$LoadedImpl implements _Loaded {
     TResult Function(ResponsePaginationModel<List<ContactModel>> contacts,
             bool? isLoading)?
         loaded,
+    TResult Function(ResponseModel<List<ContactDetailsModel>> contact)?
+        loadedContactDetails,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -836,6 +1010,7 @@ class _$LoadedImpl implements _Loaded {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_LoadedContactDetails value) loadedContactDetails,
     required TResult Function(_Error value) error,
   }) {
     return loaded(this);
@@ -847,6 +1022,7 @@ class _$LoadedImpl implements _Loaded {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_LoadedContactDetails value)? loadedContactDetails,
     TResult? Function(_Error value)? error,
   }) {
     return loaded?.call(this);
@@ -858,6 +1034,7 @@ class _$LoadedImpl implements _Loaded {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_LoadedContactDetails value)? loadedContactDetails,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -878,6 +1055,182 @@ abstract class _Loaded implements ContactState {
   @JsonKey(ignore: true)
   _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$LoadedContactDetailsImplCopyWith<$Res> {
+  factory _$$LoadedContactDetailsImplCopyWith(_$LoadedContactDetailsImpl value,
+          $Res Function(_$LoadedContactDetailsImpl) then) =
+      __$$LoadedContactDetailsImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({ResponseModel<List<ContactDetailsModel>> contact});
+
+  $ResponseModelCopyWith<List<ContactDetailsModel>, $Res> get contact;
+}
+
+/// @nodoc
+class __$$LoadedContactDetailsImplCopyWithImpl<$Res>
+    extends _$ContactStateCopyWithImpl<$Res, _$LoadedContactDetailsImpl>
+    implements _$$LoadedContactDetailsImplCopyWith<$Res> {
+  __$$LoadedContactDetailsImplCopyWithImpl(_$LoadedContactDetailsImpl _value,
+      $Res Function(_$LoadedContactDetailsImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? contact = null,
+  }) {
+    return _then(_$LoadedContactDetailsImpl(
+      contact: null == contact
+          ? _value.contact
+          : contact // ignore: cast_nullable_to_non_nullable
+              as ResponseModel<List<ContactDetailsModel>>,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ResponseModelCopyWith<List<ContactDetailsModel>, $Res> get contact {
+    return $ResponseModelCopyWith<List<ContactDetailsModel>, $Res>(
+        _value.contact, (value) {
+      return _then(_value.copyWith(contact: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$LoadedContactDetailsImpl implements _LoadedContactDetails {
+  const _$LoadedContactDetailsImpl({required this.contact});
+
+  @override
+  final ResponseModel<List<ContactDetailsModel>> contact;
+
+  @override
+  String toString() {
+    return 'ContactState.loadedContactDetails(contact: $contact)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LoadedContactDetailsImpl &&
+            (identical(other.contact, contact) || other.contact == contact));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, contact);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LoadedContactDetailsImplCopyWith<_$LoadedContactDetailsImpl>
+      get copyWith =>
+          __$$LoadedContactDetailsImplCopyWithImpl<_$LoadedContactDetailsImpl>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(
+            ResponsePaginationModel<List<ContactModel>> contacts,
+            bool? isLoading)
+        loaded,
+    required TResult Function(ResponseModel<List<ContactDetailsModel>> contact)
+        loadedContactDetails,
+    required TResult Function(String message) error,
+  }) {
+    return loadedContactDetails(contact);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(ResponsePaginationModel<List<ContactModel>> contacts,
+            bool? isLoading)?
+        loaded,
+    TResult? Function(ResponseModel<List<ContactDetailsModel>> contact)?
+        loadedContactDetails,
+    TResult? Function(String message)? error,
+  }) {
+    return loadedContactDetails?.call(contact);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(ResponsePaginationModel<List<ContactModel>> contacts,
+            bool? isLoading)?
+        loaded,
+    TResult Function(ResponseModel<List<ContactDetailsModel>> contact)?
+        loadedContactDetails,
+    TResult Function(String message)? error,
+    required TResult orElse(),
+  }) {
+    if (loadedContactDetails != null) {
+      return loadedContactDetails(contact);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_LoadedContactDetails value) loadedContactDetails,
+    required TResult Function(_Error value) error,
+  }) {
+    return loadedContactDetails(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_LoadedContactDetails value)? loadedContactDetails,
+    TResult? Function(_Error value)? error,
+  }) {
+    return loadedContactDetails?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Loaded value)? loaded,
+    TResult Function(_LoadedContactDetails value)? loadedContactDetails,
+    TResult Function(_Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (loadedContactDetails != null) {
+      return loadedContactDetails(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LoadedContactDetails implements ContactState {
+  const factory _LoadedContactDetails(
+          {required final ResponseModel<List<ContactDetailsModel>> contact}) =
+      _$LoadedContactDetailsImpl;
+
+  ResponseModel<List<ContactDetailsModel>> get contact;
+  @JsonKey(ignore: true)
+  _$$LoadedContactDetailsImplCopyWith<_$LoadedContactDetailsImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -950,6 +1303,8 @@ class _$ErrorImpl implements _Error {
             ResponsePaginationModel<List<ContactModel>> contacts,
             bool? isLoading)
         loaded,
+    required TResult Function(ResponseModel<List<ContactDetailsModel>> contact)
+        loadedContactDetails,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -963,6 +1318,8 @@ class _$ErrorImpl implements _Error {
     TResult? Function(ResponsePaginationModel<List<ContactModel>> contacts,
             bool? isLoading)?
         loaded,
+    TResult? Function(ResponseModel<List<ContactDetailsModel>> contact)?
+        loadedContactDetails,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -976,6 +1333,8 @@ class _$ErrorImpl implements _Error {
     TResult Function(ResponsePaginationModel<List<ContactModel>> contacts,
             bool? isLoading)?
         loaded,
+    TResult Function(ResponseModel<List<ContactDetailsModel>> contact)?
+        loadedContactDetails,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -991,6 +1350,7 @@ class _$ErrorImpl implements _Error {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_LoadedContactDetails value) loadedContactDetails,
     required TResult Function(_Error value) error,
   }) {
     return error(this);
@@ -1002,6 +1362,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_LoadedContactDetails value)? loadedContactDetails,
     TResult? Function(_Error value)? error,
   }) {
     return error?.call(this);
@@ -1013,6 +1374,7 @@ class _$ErrorImpl implements _Error {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_LoadedContactDetails value)? loadedContactDetails,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {

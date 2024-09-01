@@ -1,5 +1,7 @@
 import 'package:alhazem/core/bases/enums/entity_type.dart';
+import 'package:alhazem/core/bases/models/pagination_model/pagination_model.dart';
 import 'package:alhazem/core/bases/models/response_model/response_model.dart';
+import 'package:alhazem/features/contacts/domain/models/contact_details_model/contact_details_model.dart';
 import 'package:alhazem/features/contacts/domain/models/contact_model/contact_model.dart';
 import 'package:alhazem/features/contacts/domain/usecases/contact_usecases.dart';
 import 'package:bloc/bloc.dart';
@@ -12,20 +14,29 @@ part 'contact_bloc.freezed.dart';
 
 class ContactBloc extends Bloc<ContactEvent, ContactState> {
   final GetContactsUsecase getContactsUsecase;
-  int pageNum = 1;
+  final GetContactByIdUsecase getContactByIdUsecase;
+  String? type;
+  int? totalPages;
+  int totalCounts = 0;
+  int? currentpage;
   List<ContactModel> contacts = [];
-  ContactBloc({required this.getContactsUsecase}) : super(const _Initial()) {
+  ContactBloc(
+      {required this.getContactsUsecase, required this.getContactByIdUsecase})
+      : super(const _Initial()) {
     on<ContactEvent>((event, emit) async {
       await event.map(
         getContact: (value) async {
-          pageNum = 1;
           contacts.clear();
+          type = value.type.name;
           emit(const ContactState.loading());
           final failureOrContacts = await getContactsUsecase
-              .execute((type: value.type, page: pageNum));
+              .execute((type: value.type, page: value.page));
           failureOrContacts.when(
             (success) {
               contacts.addAll(success.data);
+              totalPages = success.meta.totalPages;
+              totalCounts = success.meta.itemsCount;
+              currentpage = success.meta.currentPage;
               emit(ContactState.loaded(contacts: success));
             },
             (error) {
@@ -33,24 +44,31 @@ class ContactBloc extends Bloc<ContactEvent, ContactState> {
             },
           );
         },
-        getContactPagination: (value) async {
-          pageNum += 1;
-          emit(ContactState.loaded(
-              contacts: const ResponsePaginationModel(data: []),
-              isLoading: true));
-          final failureOrContacts = await getContactsUsecase
-              .execute((type: value.type, page: pageNum));
-          failureOrContacts.when(
+        getContactById: (value) async {
+          emit(const ContactState.loading());
+          final failureOrContact =
+              await getContactByIdUsecase.execute(value.contactId);
+          failureOrContact.when(
             (success) {
-              contacts.addAll(success.data);
-              emit(ContactState.loaded(
-                  contacts: ResponsePaginationModel(
-                      data: contacts, meta: success.meta)));
+              emit(ContactState.loadedContactDetails(contact: success));
             },
             (error) {
               emit(ContactState.error(message: error.message));
             },
           );
+        },
+        editContact: (value) async {
+          emit(const ContactState.loading());
+          var index =
+              contacts.indexWhere((element) => element.id == value.model.id);
+          contacts[index] = value.model;
+          emit(ContactState.loaded(
+              contacts: ResponsePaginationModel<List<ContactModel>>(
+                  meta: PaginationModel(
+                      currentPage: currentpage ?? 0,
+                      itemsCount: totalCounts,
+                      totalPages: totalPages ?? 0),
+                  data: contacts)));
         },
       );
     }, transformer: droppable());

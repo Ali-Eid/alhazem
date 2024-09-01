@@ -1,4 +1,5 @@
 import 'package:alhazem/core/themes/theme_manager.dart';
+import 'package:alhazem/features/contacts/presentation/blocs/contact_bloc/contact_bloc.dart';
 import 'package:alhazem/features/main/presentation/blocs/search_bloc/search_bloc.dart';
 import 'package:alhazem/features/main/presentation/blocs/type_search_bloc/type_search_bloc.dart';
 import 'package:alhazem/features/orders/presentation/blocs/currencies_bloc/currencies_bloc.dart';
@@ -42,6 +43,9 @@ class _MyAppState extends State<MyApp> {
         ),
         BlocProvider(
           create: (context) => instance<LeadContactBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => instance<ContactBloc>(),
         ),
         BlocProvider(
           create: (context) => instance<SearchBloc>(),

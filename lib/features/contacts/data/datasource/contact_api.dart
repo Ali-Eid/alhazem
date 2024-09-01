@@ -12,6 +12,7 @@ import '../../../../core/bases/enums/keys_filter_type.dart';
 import '../../../../core/bases/models/response_model/response_model.dart';
 import '../../../../core/constants/endpoints.dart';
 import '../../../services/domain/models/check_price_model/check_price_model.dart';
+import '../../domain/models/contact_details_model/contact_details_model.dart';
 import '../../domain/models/crate_lead_model/create_lead_model.dart';
 
 part 'contact_api.g.dart';
@@ -27,12 +28,20 @@ abstract class ContactsServiceClient {
   @POST(Endpoints.CREATE_TRAVELER)
   Future<HttpResponse<ResponseModel<ContactModel>>> createTraveler(
       {@Body() required InputCreateTravelerModel input});
+  @POST(Endpoints.UPDATE_TRAVELER)
+  Future<HttpResponse<ResponseModel<ContactModel>>> updateTraveler(
+      {@Body() required InputCreateTravelerModel input});
 
   @GET(Endpoints.CONTACTS)
   Future<HttpResponse<ResponsePaginationModel<List<ContactModel>>>>
       getContacts({
     @Query("type") EntityType? type,
     @Query("page") required int page,
+  });
+  @GET(Endpoints.CONTACT_BY_ID)
+  Future<HttpResponse<ResponseModel<List<ContactDetailsModel>>>>
+      getContactById({
+    @Path("id") required int contactId,
   });
 
   @GET(Endpoints.SEARCH)

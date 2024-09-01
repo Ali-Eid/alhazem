@@ -13,6 +13,7 @@ import '../../domain/models/order_details_model/order_details_model.dart';
 import '../blocs/currencies_bloc/currencies_bloc.dart';
 import '../blocs/input_payment_cubit/input_payment_cubit.dart';
 import '../blocs/payment_bloc/payment_bloc.dart';
+import '../widgets/archive_attachments_widget/archive_attachments_widget.dart';
 import '../widgets/missed_attachments_widgets/missed_attachments_widget.dart';
 import '../widgets/order_item_widget.dart';
 import '../widgets/return_reason_order_details_widget.dart';
@@ -128,6 +129,62 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                             value.orderDetails.data.first.attachmentsMissed.any(
                               (element) => element.attachment.isNotEmpty,
                             ),
+                        replacement: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            ElevatedButton(
+                                style: ButtonStyle(
+                                  backgroundColor: WidgetStateProperty.all(
+                                    ColorManager.smokeyGrey,
+                                  ),
+                                ),
+                                onPressed: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (_) {
+                                      return AlertDialogWidget(
+                                        title: "ارشفة مرفقات",
+                                        content: SizedBox(
+                                          width:
+                                              MediaQuery.sizeOf(context).width *
+                                                  0.5,
+                                          // height: AppSizeH.s425,
+                                          child: MultiBlocProvider(
+                                            providers: [
+                                              BlocProvider.value(
+                                                  value: context.read<
+                                                      InputPaymentCubit>()),
+                                              BlocProvider(
+                                                create: (context) => instance<
+                                                    InputValueCreateOrderCubit>(),
+                                              )
+                                            ],
+                                            child: ArchiveAttachmentsWidget(
+                                                orderId: value
+                                                    .orderDetails.data.first.id,
+                                                orders: value.orderDetails.data
+                                                    .first.orderItems),
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  );
+                                },
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  width: AppSizeW.s200,
+                                  height: AppSizeH.s35,
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      const Icon(Icons.upload),
+                                      SizedBox(width: AppSizeW.s12),
+                                      const Text("رفع مرفقات ( أرشفة )")
+                                    ],
+                                  ),
+                                )),
+                          ],
+                        ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [

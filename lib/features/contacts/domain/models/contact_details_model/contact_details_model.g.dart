@@ -1,27 +1,78 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'input_create_traveler_model.dart';
+part of 'contact_details_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$InputCreateTravelerModelImpl _$$InputCreateTravelerModelImplFromJson(
+_$ContactDetailsModelImpl _$$ContactDetailsModelImplFromJson(
         Map<String, dynamic> json) =>
-    _$InputCreateTravelerModelImpl(
-      contactId: (json['contact_id'] as num?)?.toInt(),
+    _$ContactDetailsModelImpl(
+      id: (json['id'] as num?)?.toInt() ?? 0,
       name: json['name'] as String? ?? "",
-      phoneNumber: json['phone_number'] as String? ?? "",
-      whatsAppNumber: json['whatsapp_number'] as String? ?? "",
-      stateId: (json['state_id'] as num?)?.toInt() ?? 0,
-      countryId: (json['country_id'] as num?)?.toInt() ?? 0,
-      officeId: (json['office_id'] as num?)?.toInt(),
-      vip: json['vip'] as bool? ?? false,
       type: json['type'] as String? ?? "",
+      phone: json['phone'] as String? ?? "",
+      isLead: json['is_lead'] as bool? ?? false,
+      whatsappNumber: json['whatsapp_number'] as String? ?? "",
+      vip: json['vip'] as bool? ?? false,
       city: json['city'] as String? ?? "",
       street: json['street'] as String? ?? "",
       street2: json['street2'] as String? ?? "",
-      reference: json['reference'] as String?,
+      reference: json['reference'] as String? ?? "",
+      office: json['office'] == null
+          ? const StaticModel()
+          : StaticModel.fromJson(json['office'] as Map<String, dynamic>),
+      state: json['state_id'] == null
+          ? const StaticModel()
+          : StaticModel.fromJson(json['state_id'] as Map<String, dynamic>),
+      country: json['country_id'] == null
+          ? const StaticModel()
+          : StaticModel.fromJson(json['country_id'] as Map<String, dynamic>),
+      identityFather: json['identity_father'] as String? ?? "",
+      identityMother: json['identity_mother'] as String? ?? "",
+      identityDateOfBirthday:
+          json['identity_date_of_birthday'] as String? ?? "",
+      identityPlaceOfBirthday:
+          json['identity_place_of_birthday'] as String? ?? "",
+      identityNationalNumber: json['identity_national_number'] as String? ?? "",
+      identitySurname: json['identity_surname'] as String? ?? "",
+      identityGender: json['identity_gender'] as String? ?? "",
+      passport: (json['passport'] as List<dynamic>?)
+              ?.map((e) => PassportModel.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+    );
+
+Map<String, dynamic> _$$ContactDetailsModelImplToJson(
+        _$ContactDetailsModelImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'type': instance.type,
+      'phone': instance.phone,
+      'is_lead': instance.isLead,
+      'whatsapp_number': instance.whatsappNumber,
+      'vip': instance.vip,
+      'city': instance.city,
+      'street': instance.street,
+      'street2': instance.street2,
+      'reference': instance.reference,
+      'office': instance.office,
+      'state_id': instance.state,
+      'country_id': instance.country,
+      'identity_father': instance.identityFather,
+      'identity_mother': instance.identityMother,
+      'identity_date_of_birthday': instance.identityDateOfBirthday,
+      'identity_place_of_birthday': instance.identityPlaceOfBirthday,
+      'identity_national_number': instance.identityNationalNumber,
+      'identity_surname': instance.identitySurname,
+      'identity_gender': instance.identityGender,
+      'passport': instance.passport,
+    };
+
+_$PassportModelImpl _$$PassportModelImplFromJson(Map<String, dynamic> json) =>
+    _$PassportModelImpl(
       passportName: json['passport_name'] as String? ?? "",
       ePassportName: json['e_passport_name'] as String? ?? "",
       passportSurname: json['passport_surname'] as String? ?? "",
@@ -57,38 +108,10 @@ _$InputCreateTravelerModelImpl _$$InputCreateTravelerModelImplFromJson(
       passportJob: json['passport_job'] as String? ?? "",
       ePassportJob: json['e_passport_job'] as String? ?? "",
       passportFile: json['passport_file'] as String? ?? "",
-      identityFather: json['identity_father'] as String? ?? "",
-      identityMother: json['identity_mother'] as String? ?? "",
-      identityDateOfBirthday:
-          json['identity_date_of_birthday'] as String? ?? "",
-      identityPlaceOfBirthday:
-          json['identity_place_of_birthday'] as String? ?? "",
-      identityNationalNumber: json['identity_national_number'] as String? ?? "",
-      identitySurname: json['identity_surname'] as String? ?? "",
-      identityGender: json['identity_gender'] as String? ?? "",
-      attachments: (json['attachments'] as List<dynamic>?)
-              ?.map((e) => AttachmentsCreateTravelerModel.fromJson(
-                  e as Map<String, dynamic>))
-              .toList() ??
-          const [],
     );
 
-Map<String, dynamic> _$$InputCreateTravelerModelImplToJson(
-        _$InputCreateTravelerModelImpl instance) =>
+Map<String, dynamic> _$$PassportModelImplToJson(_$PassportModelImpl instance) =>
     <String, dynamic>{
-      'contact_id': instance.contactId,
-      'name': instance.name,
-      'phone_number': instance.phoneNumber,
-      'whatsapp_number': instance.whatsAppNumber,
-      'state_id': instance.stateId,
-      'country_id': instance.countryId,
-      'office_id': instance.officeId,
-      'vip': instance.vip,
-      'type': instance.type,
-      'city': instance.city,
-      'street': instance.street,
-      'street2': instance.street2,
-      'reference': instance.reference,
       'passport_name': instance.passportName,
       'e_passport_name': instance.ePassportName,
       'passport_surname': instance.passportSurname,
@@ -116,31 +139,4 @@ Map<String, dynamic> _$$InputCreateTravelerModelImplToJson(
       'passport_job': instance.passportJob,
       'e_passport_job': instance.ePassportJob,
       'passport_file': instance.passportFile,
-      'identity_father': instance.identityFather,
-      'identity_mother': instance.identityMother,
-      'identity_date_of_birthday': instance.identityDateOfBirthday,
-      'identity_place_of_birthday': instance.identityPlaceOfBirthday,
-      'identity_national_number': instance.identityNationalNumber,
-      'identity_surname': instance.identitySurname,
-      'identity_gender': instance.identityGender,
-      'attachments': instance.attachments,
-    };
-
-_$AttachmentsCreateTravelerModelImpl
-    _$$AttachmentsCreateTravelerModelImplFromJson(Map<String, dynamic> json) =>
-        _$AttachmentsCreateTravelerModelImpl(
-          name: json['name'] as String? ?? "",
-          type: (json['type'] as num?)?.toInt() ?? 0,
-          file: (json['file'] as List<dynamic>?)
-                  ?.map((e) => e as String)
-                  .toList() ??
-              const [],
-        );
-
-Map<String, dynamic> _$$AttachmentsCreateTravelerModelImplToJson(
-        _$AttachmentsCreateTravelerModelImpl instance) =>
-    <String, dynamic>{
-      'name': instance.name,
-      'type': instance.type,
-      'file': instance.file,
     };

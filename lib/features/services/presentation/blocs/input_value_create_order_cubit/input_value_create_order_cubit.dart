@@ -7,6 +7,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../../../../core/bases/models/static_models/static_model.dart';
 import '../../../../contacts/domain/models/contact_model/contact_model.dart';
 import '../../../../contacts/domain/models/input_create_traveler_model/input_create_traveler_model.dart';
 import '../../../../orders/domain/models/create_order_model/create_order_model.dart';
@@ -190,6 +191,35 @@ class InputValueCreateOrderCubit extends Cubit<int> {
       }
     }
 
+    emit(Random().nextInt(100));
+  }
+
+  //select type Attachments
+  List<StaticModel> attachmentsTypes = [];
+  List<StaticModel> attachmentsTypesTemp = [];
+  List<AttachmentsCreateTravelerModel> attachmentsUpload = [];
+
+  //attachments
+  void setAttachmentsTypeTemp() {
+    attachmentsTypesTemp.clear();
+    attachmentsTypesTemp.addAll(attachmentsTypes);
+    emit(Random().nextInt(100));
+  }
+
+  void addAttachmentType(StaticModel attachment) {
+    attachmentsTypesTemp.add(attachment);
+    emit(Random().nextInt(100));
+  }
+
+  void removeAttachmentType(StaticModel attachment) {
+    attachmentsTypesTemp.remove(attachment);
+
+    emit(Random().nextInt(100));
+  }
+
+  void setAttachmentsType() {
+    attachmentsTypes.clear();
+    attachmentsTypes.addAll(attachmentsTypesTemp);
     emit(Random().nextInt(100));
   }
 }

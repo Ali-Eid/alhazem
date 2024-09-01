@@ -32,10 +32,7 @@ import '../../features/contacts/presentation/blocs/contact_bloc/contact_bloc.dar
 import '../../features/contacts/presentation/blocs/lead_contact_bloc/lead_contact_bloc.dart';
 import '../../features/contacts/presentation/blocs/static_bloc/static_bloc.dart';
 import '../../features/contacts/presentation/blocs/traveler_bloc/traveler_bloc.dart';
-import '../../features/home/data/datasource/remote_data_source/home_api.dart';
-import '../../features/home/data/repository/post_repository_impl.dart';
-import '../../features/home/domain/repositories/post_repository.dart';
-import '../../features/home/domain/usecases/post_usecase.dart';
+
 import '../../features/main/domain/usecases/general_search_usecases.dart';
 import '../../features/main/presentation/blocs/type_search_bloc/type_search_bloc.dart';
 import '../../features/orders/data/datasource/order_api.dart';
@@ -69,7 +66,6 @@ Future<void> initAppModule() async {
       () => NetworkInfoImplementer(Connectivity()));
 
   //Service Client
-  instance.registerLazySingleton(() => HomeServiceClient(dio));
   instance.registerLazySingleton(() => AuthServiceClient(dio));
   instance.registerLazySingleton(() => ServicesServiceClient(dio));
   instance.registerLazySingleton(() => OrdersServiceClient(dio));
@@ -230,8 +226,9 @@ Future<void> initContact() async {
   }
 
   if (!GetIt.I.isRegistered<ContactBloc>()) {
-    instance.registerFactory(
-        () => ContactBloc(getContactsUsecase: instance<GetContactsUsecase>()));
+    instance.registerFactory(() => ContactBloc(
+        getContactsUsecase: instance<GetContactsUsecase>(),
+        getContactByIdUsecase: instance<GetContactByIdUsecase>()));
   }
   if (!GetIt.I.isRegistered<StaticBloc>()) {
     instance.registerFactory(() => StaticBloc(
@@ -242,8 +239,9 @@ Future<void> initContact() async {
         ));
   }
   if (!GetIt.I.isRegistered<TravelerBloc>()) {
-    instance.registerFactory(() =>
-        TravelerBloc(createTravelerUsecase: instance<CreateTravelerUsecase>()));
+    instance.registerFactory(() => TravelerBloc(
+        createTravelerUsecase: instance<CreateTravelerUsecase>(),
+        updateTravelerUsecase: instance<UpdateTravelerUsecase>()));
   }
 
   //repositories
@@ -276,6 +274,10 @@ Future<void> initContact() async {
     instance.registerLazySingleton(
         () => CreateTravelerUsecase(repository: instance<ContactRepository>()));
   }
+  if (!GetIt.I.isRegistered<UpdateTravelerUsecase>()) {
+    instance.registerLazySingleton(
+        () => UpdateTravelerUsecase(repository: instance<ContactRepository>()));
+  }
 
   if (!GetIt.I.isRegistered<GetCountriesUsecase>()) {
     instance.registerLazySingleton(
@@ -288,6 +290,10 @@ Future<void> initContact() async {
   if (!GetIt.I.isRegistered<GetOfficesUsecase>()) {
     instance.registerLazySingleton(
         () => GetOfficesUsecase(repository: instance<ContactRepository>()));
+  }
+  if (!GetIt.I.isRegistered<GetContactByIdUsecase>()) {
+    instance.registerLazySingleton(
+        () => GetContactByIdUsecase(repository: instance<ContactRepository>()));
   }
 }
 

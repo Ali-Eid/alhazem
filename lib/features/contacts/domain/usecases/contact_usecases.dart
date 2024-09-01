@@ -3,6 +3,7 @@ import 'package:alhazem/core/bases/models/failure_model/failure_model.dart';
 import 'package:alhazem/core/bases/models/response_model/response_model.dart';
 import 'package:alhazem/core/bases/models/static_models/static_model.dart';
 import 'package:alhazem/core/bases/usecases/base_usecase.dart';
+import 'package:alhazem/features/contacts/domain/models/contact_details_model/contact_details_model.dart';
 import 'package:alhazem/features/contacts/domain/models/contact_model/contact_model.dart';
 import 'package:alhazem/features/contacts/domain/models/input_create_traveler_model/input_create_traveler_model.dart';
 import 'package:alhazem/features/contacts/domain/models/input_lead_model/input_lead_model.dart';
@@ -68,6 +69,20 @@ class CreateTravelerUsecase
   }
 }
 
+class UpdateTravelerUsecase
+    implements
+        BaseUseCase<InputCreateTravelerModel, ResponseModel<ContactModel>> {
+  final ContactRepository repository;
+
+  UpdateTravelerUsecase({required this.repository});
+
+  @override
+  Future<Result<ResponseModel<ContactModel>, FailureModel>> execute(
+      InputCreateTravelerModel input) async {
+    return await repository.updateTraveler(input: input);
+  }
+}
+
 //Static
 class GetAttachmentsTypeUsecase
     implements BaseUseCaseEmptyInput<ResponseModel<List<StaticModel>>> {
@@ -115,5 +130,18 @@ class GetStatesUsecase
   Future<Result<ResponseModel<List<StaticModel>>, FailureModel>> execute(
       int countryId) async {
     return await repository.getStates(countryId: countryId);
+  }
+}
+
+class GetContactByIdUsecase
+    implements BaseUseCase<int, ResponseModel<List<ContactDetailsModel>>> {
+  final ContactRepository repository;
+
+  GetContactByIdUsecase({required this.repository});
+
+  @override
+  Future<Result<ResponseModel<List<ContactDetailsModel>>, FailureModel>>
+      execute(int contactId) async {
+    return await repository.getContactById(contactId: contactId);
   }
 }

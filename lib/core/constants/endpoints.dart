@@ -29,9 +29,11 @@ class Endpoints {
   static const String CRM = "/crm";
   static const String CREATE_LEAD = "$CRM/lead";
   static const String CREATE_TRAVELER = "/contact/create/traveler";
+  static const String UPDATE_TRAVELER = "/contact/update/traveler";
 
   //Contacts
   static const String CONTACTS = "/contacts";
+  static const String CONTACT_BY_ID = "/contact/{id}";
   static const String UPDATE_ATTACHMENTS = "/attachment/update";
 
   //Search

@@ -7,6 +7,9 @@ import 'package:flutter/widgets.dart';
 class DropDownWidget extends StatefulWidget {
   final List<StaticModel> items;
   final String? labelText;
+  final StaticModel? selectedValue;
+  final String? hintSearchText;
+  final bool? notSearch;
   final Function(StaticModel?)? onChanged;
   final FormFieldValidator<StaticModel>? validator;
 
@@ -16,6 +19,9 @@ class DropDownWidget extends StatefulWidget {
     this.labelText,
     this.validator,
     this.onChanged,
+    this.selectedValue,
+    this.hintSearchText,
+    this.notSearch,
   });
 
   @override
@@ -23,6 +29,8 @@ class DropDownWidget extends StatefulWidget {
 }
 
 class _DropDownWidgetState extends State<DropDownWidget> {
+  final TextEditingController textEditingController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return DropdownButtonFormField2<StaticModel>(
@@ -30,7 +38,17 @@ class _DropDownWidgetState extends State<DropDownWidget> {
       autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: InputDecoration(
         labelText: widget.labelText, // Set label text
+
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(AppSizeR.s4),
+        ),
+        // Add more decoration..
       ),
+      hint: widget.selectedValue != null
+          ? Text(
+              widget.selectedValue?.name ?? "${widget.labelText}",
+            )
+          : null,
       items: widget.items
           .map((item) => DropdownMenuItem<StaticModel>(
                 value: item,
@@ -50,10 +68,48 @@ class _DropDownWidgetState extends State<DropDownWidget> {
         iconSize: AppSizeSp.s24,
       ),
       dropdownStyleData: DropdownStyleData(
+        maxHeight: AppSizeH.s500,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(AppSizeR.s6),
+          borderRadius: BorderRadius.circular(AppSizeR.s4),
         ),
       ),
+      dropdownSearchData: (widget.notSearch ?? true)
+          ? DropdownSearchData(
+              searchController: textEditingController,
+              searchInnerWidgetHeight: AppSizeH.s50,
+              searchInnerWidget: Container(
+                height: AppSizeH.s60,
+                padding: EdgeInsetsDirectional.only(
+                  top: AppSizeH.s8,
+                  bottom: AppSizeH.s4,
+                  start: AppSizeW.s8,
+                  end: AppSizeW.s8,
+                ),
+                child: TextFormField(
+                    // expands: true,
+                    maxLines: 1,
+                    controller: textEditingController,
+                    style: Theme.of(context).textTheme.headlineLarge,
+                    decoration: InputDecoration(
+                        hintText: widget.hintSearchText,
+                        contentPadding: EdgeInsets.symmetric(
+                            vertical: 0, horizontal: AppSizeW.s6))),
+              ),
+              searchMatchFn: (item, searchValue) {
+                return item.value!.name
+                    .toString()
+                    .toLowerCase()
+                    .contains(searchValue.toLowerCase());
+              },
+            )
+          : null,
+      onMenuStateChange: (widget.notSearch ?? true)
+          ? (isOpen) {
+              if (!isOpen) {
+                textEditingController.clear();
+              }
+            }
+          : null,
       menuItemStyleData: MenuItemStyleData(
         padding: EdgeInsets.symmetric(horizontal: AppSizeW.s6),
       ),

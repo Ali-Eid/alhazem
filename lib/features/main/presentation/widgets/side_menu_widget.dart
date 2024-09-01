@@ -104,13 +104,13 @@ class SideMenuWidget extends StatelessWidget {
                       context.goNamed(RoutesNames.ordersRoute);
                     },
                   ),
-                  DrawerListTile(
-                    title: "الاعدادات",
-                    svgSrc: IconAssets.settingIcon,
-                    press: () {
-                      context.goNamed(RoutesNames.settingsRoute);
-                    },
-                  ),
+                  // DrawerListTile(
+                  //   title: "الاعدادات",
+                  //   svgSrc: IconAssets.settingIcon,
+                  //   press: () {
+                  //     context.goNamed(RoutesNames.settingsRoute);
+                  //   },
+                  // ),
                 ],
               ),
             ),
@@ -274,6 +274,7 @@ class _DrawereExpandableListTileState extends State<DrawereExpandableListTile> {
       children: [
         InkWell(
           onTap: () {
+            context.goNamed(RoutesNames.contactsRoute);
             setState(() {
               isExpanded = !isExpanded;
             });

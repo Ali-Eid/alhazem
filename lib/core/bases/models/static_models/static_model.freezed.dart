@@ -108,7 +108,7 @@ class __$$StaticModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$StaticModelImpl implements _StaticModel {
-  _$StaticModelImpl({this.id = 0, this.name = ""});
+  const _$StaticModelImpl({this.id = 0, this.name = ""});
 
   factory _$StaticModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$StaticModelImplFromJson(json);
@@ -153,7 +153,8 @@ class _$StaticModelImpl implements _StaticModel {
 }
 
 abstract class _StaticModel implements StaticModel {
-  factory _StaticModel({final int id, final String name}) = _$StaticModelImpl;
+  const factory _StaticModel({final int id, final String name}) =
+      _$StaticModelImpl;
 
   factory _StaticModel.fromJson(Map<String, dynamic> json) =
       _$StaticModelImpl.fromJson;

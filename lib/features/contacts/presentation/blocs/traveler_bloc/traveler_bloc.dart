@@ -12,13 +12,30 @@ part 'traveler_bloc.freezed.dart';
 
 class TravelerBloc extends Bloc<TravelerEvent, TravelerState> {
   final CreateTravelerUsecase createTravelerUsecase;
-  TravelerBloc({required this.createTravelerUsecase}) : super(_Initial()) {
+  final UpdateTravelerUsecase updateTravelerUsecase;
+  TravelerBloc(
+      {required this.createTravelerUsecase,
+      required this.updateTravelerUsecase})
+      : super(const _Initial()) {
     on<TravelerEvent>((event, emit) async {
       await event.map(
         createTraveler: (value) async {
-          emit(TravelerState.loading());
+          emit(const TravelerState.loading());
           final failureOrSuccess =
               await createTravelerUsecase.execute(value.input);
+          failureOrSuccess.when(
+            (success) {
+              emit(TravelerState.loaded(contact: success));
+            },
+            (error) {
+              emit(TravelerState.error(message: error.message));
+            },
+          );
+        },
+        updateTraveler: (value) async {
+          emit(const TravelerState.loading());
+          final failureOrSuccess = await updateTravelerUsecase
+              .execute(value.input);
           failureOrSuccess.when(
             (success) {
               emit(TravelerState.loaded(contact: success));

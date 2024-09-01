@@ -1,31 +1,54 @@
 // ignore_for_file: invalid_annotation_target
 
-import 'package:alhazem/core/bases/enums/entity_type.dart';
+import 'package:alhazem/core/bases/models/static_models/static_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../../../core/bases/enums/gender_type.dart';
-
-part 'input_create_traveler_model.freezed.dart';
-part 'input_create_traveler_model.g.dart';
+part 'contact_details_model.freezed.dart';
+part 'contact_details_model.g.dart';
 
 @freezed
-abstract class InputCreateTravelerModel with _$InputCreateTravelerModel {
-  factory InputCreateTravelerModel({
-    @JsonKey(name: "contact_id") int? contactId,
-    //first info
-    @Default("") String name,
-    @Default("") @JsonKey(name: "phone_number") String phoneNumber,
-    @Default("") @JsonKey(name: "whatsapp_number") String whatsAppNumber,
-    @Default(0) @JsonKey(name: "state_id") int stateId,
-    @Default(0) @JsonKey(name: "country_id") int countryId,
-    @JsonKey(name: "office_id") int? officeId,
-    @Default(false) bool vip,
-    @Default("") String type,
-    @Default("") String city,
-    @Default("") String street,
-    @Default("") String street2,
-    String? reference,
-    //passport
+abstract class ContactDetailsModel with _$ContactDetailsModel {
+  factory ContactDetailsModel(
+      {@Default(0) int id,
+      @Default("") String name,
+      @Default("") String type,
+      @Default("") String phone,
+      @Default(false) @JsonKey(name: "is_lead") bool isLead,
+      @Default("") @JsonKey(name: "whatsapp_number") String whatsappNumber,
+      @Default(false) bool vip,
+      @Default("") String city,
+      @Default("") String street,
+      @Default("") String street2,
+      @Default("") String reference,
+      @Default(StaticModel()) @JsonKey(name: "office") StaticModel office,
+      @Default(StaticModel()) @JsonKey(name: "state_id") StaticModel state,
+      @Default(StaticModel()) @JsonKey(name: "country_id") StaticModel country,
+      //Basic info
+      @Default("") @JsonKey(name: "identity_father") String identityFather,
+      @Default("") @JsonKey(name: "identity_mother") String identityMother,
+      @Default("")
+      @JsonKey(name: "identity_date_of_birthday")
+      String identityDateOfBirthday,
+      @Default("")
+      @JsonKey(name: "identity_place_of_birthday")
+      String identityPlaceOfBirthday,
+      @Default("")
+      @JsonKey(name: "identity_national_number")
+      String identityNationalNumber,
+      @Default("") @JsonKey(name: "identity_surname") String identitySurname,
+      @Default("") @JsonKey(name: "identity_gender") String identityGender,
+
+      //Passport
+      @Default([])
+      @JsonKey(name: "passport")
+      List<PassportModel> passport}) = _ContactDetailsModel;
+  factory ContactDetailsModel.fromJson(Map<String, dynamic> json) =>
+      _$ContactDetailsModelFromJson(json);
+}
+
+@freezed
+abstract class PassportModel with _$PassportModel {
+  const factory PassportModel({
     @Default("") @JsonKey(name: "passport_name") String passportName,
     @Default("") @JsonKey(name: "e_passport_name") String ePassportName,
     @Default("") @JsonKey(name: "passport_surname") String passportSurname,
@@ -89,35 +112,7 @@ abstract class InputCreateTravelerModel with _$InputCreateTravelerModel {
     @Default("") @JsonKey(name: "passport_job") String passportJob,
     @Default("") @JsonKey(name: "e_passport_job") String ePassportJob,
     @Default("") @JsonKey(name: "passport_file") String passportFile,
-
-    //----Identity
-    @Default("") @JsonKey(name: "identity_father") String identityFather,
-    @Default("") @JsonKey(name: "identity_mother") String identityMother,
-    @Default("")
-    @JsonKey(name: "identity_date_of_birthday")
-    String identityDateOfBirthday,
-    @Default("")
-    @JsonKey(name: "identity_place_of_birthday")
-    String identityPlaceOfBirthday,
-    @Default("")
-    @JsonKey(name: "identity_national_number")
-    String identityNationalNumber,
-    @Default("") @JsonKey(name: "identity_surname") String identitySurname,
-    @Default("") @JsonKey(name: "identity_gender") String identityGender,
-    @Default([]) List<AttachmentsCreateTravelerModel> attachments,
-  }) = _InputCreateTravelerModel;
-  factory InputCreateTravelerModel.fromJson(Map<String, dynamic> json) =>
-      _$InputCreateTravelerModelFromJson(json);
-}
-
-@freezed
-abstract class AttachmentsCreateTravelerModel
-    with _$AttachmentsCreateTravelerModel {
-  const factory AttachmentsCreateTravelerModel({
-    @Default("") String name,
-    @Default(0) int type,
-    @Default([]) List<String> file,
-  }) = _AttachmentsCreateTravelerModel;
-  factory AttachmentsCreateTravelerModel.fromJson(Map<String, dynamic> json) =>
-      _$AttachmentsCreateTravelerModelFromJson(json);
+  }) = _PassportModel;
+  factory PassportModel.fromJson(Map<String, dynamic> json) =>
+      _$PassportModelFromJson(json);
 }

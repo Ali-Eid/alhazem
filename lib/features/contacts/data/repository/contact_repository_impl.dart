@@ -4,6 +4,7 @@ import 'package:alhazem/core/bases/models/failure_model/failure_model.dart';
 import 'package:alhazem/core/bases/models/response_model/response_model.dart';
 import 'package:alhazem/core/bases/models/static_models/static_model.dart';
 import 'package:alhazem/features/contacts/data/datasource/contact_api.dart';
+import 'package:alhazem/features/contacts/domain/models/contact_details_model/contact_details_model.dart';
 import 'package:alhazem/features/contacts/domain/models/contact_model/contact_model.dart';
 import 'package:alhazem/features/contacts/domain/models/input_create_traveler_model/input_create_traveler_model.dart';
 
@@ -168,6 +169,46 @@ class ContactRepositoryImpl implements ContactRepository {
     if (await networkInfo.isConnected) {
       try {
         final response = await contactsServiceClient.getOffices();
+        if (response.response.statusCode == 200) {
+          return Success(response.data);
+        } else {
+          return Error(FailureModel.fromJson(response.response.data));
+        }
+      } on DioException catch (e) {
+        return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
+      }
+    } else {
+      return Error(FailureModel(message: "لا يوجد اتصال انترنت"));
+    }
+  }
+
+  @override
+  Future<Result<ResponseModel<List<ContactDetailsModel>>, FailureModel>>
+      getContactById({required int contactId}) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final response =
+            await contactsServiceClient.getContactById(contactId: contactId);
+        if (response.response.statusCode == 200) {
+          return Success(response.data);
+        } else {
+          return Error(FailureModel.fromJson(response.response.data));
+        }
+      } on DioException catch (e) {
+        return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
+      }
+    } else {
+      return Error(FailureModel(message: "لا يوجد اتصال انترنت"));
+    }
+  }
+
+  @override
+  Future<Result<ResponseModel<ContactModel>, FailureModel>> updateTraveler(
+      {required InputCreateTravelerModel input}) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final response =
+            await contactsServiceClient.updateTraveler(input: input);
         if (response.response.statusCode == 200) {
           return Success(response.data);
         } else {
