@@ -11,6 +11,7 @@ import '../../../../core/constants/values_manager.dart';
 import '../../../contacts/presentation/views/contacts_view.dart';
 import '../../../orders/presentation/widgets/order_item_widget.dart';
 import '../../../services/presentation/views/types_services_view.dart';
+import '../../../services/presentation/widgets/lead_status_widget.dart';
 import '../../../services/presentation/widgets/service_item_widget.dart';
 
 class GeneralSearchView extends StatefulWidget {
@@ -45,7 +46,10 @@ class _GeneralSearchViewState extends State<GeneralSearchView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.transparent,
       appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
         title: Text(widget.value),
       ),
       body: BlocBuilder(

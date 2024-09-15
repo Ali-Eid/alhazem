@@ -23,7 +23,7 @@ import '../../../../core/app/depndency_injection.dart';
 import '../../../../core/bases/enums/gender_type.dart';
 import '../../../../core/constants/values_manager.dart';
 import '../../../../core/routers/routes_manager.dart';
-import '../../../settings/presentation/views/settings_view.dart';
+import '../../../../core/widgets/bardoce_keyboard_key_listener.dart';
 import '../blocs/input_value_create_traveler_cubit/input_value_create_cubit.dart';
 import '../widgets/drop_down_widget.dart';
 import '../widgets/input_field_widget.dart';
@@ -897,7 +897,8 @@ class _CreateContractViewState extends State<CreateContractView> {
                                                                   AppSizeW.s8),
                                                       child: SizedBox(
                                                         width: AppSizeW.s250,
-                                                        child: DropDownWidget(notSearch: false,
+                                                        child: DropDownWidget(
+                                                          notSearch: false,
                                                           hintSearchText:
                                                               "البحث...",
                                                           validator: (value) {

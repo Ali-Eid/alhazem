@@ -10,7 +10,6 @@ import 'package:alhazem/features/orders/presentation/views/order_details_view.da
 import 'package:alhazem/features/orders/presentation/views/orders_view.dart';
 import 'package:alhazem/features/services/presentation/views/service_details_view.dart';
 import 'package:alhazem/features/services/presentation/views/service_view.dart';
-import 'package:alhazem/features/settings/presentation/views/settings_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -233,16 +232,6 @@ class AppRouter {
                     },
                   )
                 ]),
-            GoRoute(
-              name: RoutesNames.settingsRoute,
-              path: RoutesPaths.settingsRoute,
-              pageBuilder: (context, state) {
-                return NoTransitionPage(
-                  key: state.pageKey,
-                  child: const SettingsView(),
-                );
-              },
-            ),
             GoRoute(
               name: RoutesNames.searchRoute,
               path: RoutesPaths.searchRoute,

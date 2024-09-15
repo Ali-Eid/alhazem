@@ -5,9 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:toastification/toastification.dart';
 
 import '../../../../core/constants/assets_manager.dart';
 import '../../../../core/constants/values_manager.dart';
+import '../../../../core/widgets/toast.dart';
+import '../../../contacts/presentation/blocs/lead_contact_bloc/lead_contact_bloc.dart';
 
 class ServiceItemWidget extends StatefulWidget {
   final ServiceModel model;
@@ -22,10 +25,17 @@ class _ServiceItemWidgetState extends State<ServiceItemWidget> {
   Widget build(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(AppSizeR.s10),
-      onTap: () {
-        context.pushNamed(RoutesNames.servicesDetailsRoute,
-            pathParameters: {"serviceId": widget.model.id.toString()});
-      },
+      onTap: context.read<LeadContactBloc>().leadId != null
+          ? () {
+              context.pushNamed(RoutesNames.servicesDetailsRoute,
+                  pathParameters: {"serviceId": widget.model.id.toString()});
+            }
+          : () {
+              showToast(
+                  context: context,
+                  message: "الرجاء انشاء عميل اولاً",
+                  type: ToastificationType.error);
+            },
       child: Container(
         padding: EdgeInsets.all(AppSizeW.s16),
         decoration: BoxDecoration(

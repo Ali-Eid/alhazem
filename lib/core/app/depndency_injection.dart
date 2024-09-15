@@ -45,7 +45,6 @@ import '../../features/services/domain/repository/service_repository.dart';
 import '../../features/services/domain/usecases/check_price_usecase.dart';
 import '../../features/services/presentation/blocs/check_attachments_bloc/check_attachments_bloc.dart';
 import '../../features/services/presentation/blocs/check_price_bloc/check_price_bloc.dart';
-import '../../features/settings/presentation/blocs/reader_bloc/reader_setting_bloc.dart';
 import '../cache/app_preferences.dart';
 import '../network/dio_factory.dart';
 import '../network/general_dio_interceptor.dart';
@@ -81,11 +80,6 @@ Future<void> initAppModule() async {
   if (!GetIt.I.isRegistered<InputValueCreateOrderCubit>()) {
     instance.registerFactory(
       () => InputValueCreateOrderCubit(0),
-    );
-  }
-  if (!GetIt.I.isRegistered<ReaderSettingBloc>()) {
-    instance.registerFactory(
-      () => ReaderSettingBloc(),
     );
   }
 

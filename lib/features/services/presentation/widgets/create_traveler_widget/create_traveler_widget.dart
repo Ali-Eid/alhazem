@@ -16,6 +16,7 @@ import '../../../../../core/constants/color_manager.dart';
 import '../../../../../core/constants/values_manager.dart';
 import '../../../../../core/routers/routes_manager.dart';
 import '../../../../../core/widgets/alert_dialog_widget.dart';
+import '../../../../../core/widgets/bardoce_keyboard_key_listener.dart';
 import '../../../../../core/widgets/toast.dart';
 import '../../../../contacts/domain/models/input_create_traveler_model/input_create_traveler_model.dart';
 import '../../../../contacts/presentation/blocs/input_value_create_traveler_cubit/input_value_create_cubit.dart';
@@ -1063,204 +1064,556 @@ class _CreateTravelerWidgetState extends State<CreateTravelerWidget> {
                             ),
                             SizedBox(height: AppSizeH.s25),
                             //Identity section
-                            Container(
-                              padding:
-                                  EdgeInsets.symmetric(vertical: AppSizeH.s15),
-                              decoration: BoxDecoration(
-                                  color: ColorManager.white,
-                                  boxShadow: [
-                                    BoxShadow(
-                                        color: ColorManager.shadow,
-                                        blurRadius: AppSizeR.s2)
-                                  ],
-                                  borderRadius:
-                                      BorderRadius.circular(AppSizeR.s12)),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
+                            inputValueCubit.fromBarcode
+                                ? BarcodeKeyboardListener(
+                                    bufferDuration:
+                                        const Duration(milliseconds: 200),
+                                    onBarcodeScanned: (barcode) {
+                                      inputValueCubit.parseBarcode(barcode);
+                                    },
+                                    child: Container(
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: AppSizeH.s15),
+                                      decoration: BoxDecoration(
+                                          color: ColorManager.white,
+                                          boxShadow: [
+                                            BoxShadow(
+                                                color: ColorManager.shadow,
+                                                blurRadius: AppSizeR.s2)
+                                          ],
+                                          borderRadius: BorderRadius.circular(
+                                              AppSizeR.s12)),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: AppSizeW.s15),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text("معلومات الهوية",
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .titleMedium),
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
+                                                  children: [
+                                                    inputValueCubit
+                                                            .resetInfoBarcode
+                                                        ? TextButton(
+                                                            onPressed: () {
+                                                              inputValueCubit
+                                                                  .resetBarcode();
+                                                            },
+                                                            child: Text(
+                                                              "مسح البيانات",
+                                                              style: Theme.of(
+                                                                      context)
+                                                                  .textTheme
+                                                                  .titleMedium,
+                                                            ))
+                                                        : const SizedBox(),
+                                                    inputValueCubit
+                                                            .resetInfoBarcode
+                                                        ? const SizedBox()
+                                                        : inputValueCubit
+                                                                .fromBarcode
+                                                            ? Tooltip(
+                                                                message:
+                                                                    "المسح الضوئي",
+                                                                child:
+                                                                    IconButton(
+                                                                        onPressed:
+                                                                            () {
+                                                                          inputValueCubit
+                                                                              .setFromBarcode(!inputValueCubit.fromBarcode);
+                                                                        },
+                                                                        icon: const Icon(
+                                                                            Icons.qr_code_scanner_rounded)),
+                                                              )
+                                                            : Tooltip(
+                                                                message:
+                                                                    "الكتابة اليدوية",
+                                                                child:
+                                                                    IconButton(
+                                                                        onPressed:
+                                                                            () {
+                                                                          inputValueCubit
+                                                                              .setFromBarcode(!inputValueCubit.fromBarcode);
+                                                                        },
+                                                                        icon: const Icon(
+                                                                            Icons.insert_page_break_outlined)),
+                                                              ),
+                                                    IconButton(
+                                                        onPressed: () {
+                                                          setState(() {
+                                                            isExpandedIdentityInfo =
+                                                                !isExpandedIdentityInfo;
+                                                          });
+                                                        },
+                                                        icon: Icon(isExpandedIdentityInfo
+                                                            ? Icons
+                                                                .arrow_drop_down_sharp
+                                                            : Icons
+                                                                .arrow_drop_up_outlined))
+                                                  ],
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          SizedBox(height: AppSizeH.s15),
+                                          AnimatedSwitcher(
+                                            switchInCurve: Curves.linear,
+                                            switchOutCurve: Curves.linear,
+                                            reverseDuration: const Duration(
+                                                milliseconds: 500),
+                                            duration: const Duration(
+                                                milliseconds: 500),
+                                            child: !isExpandedIdentityInfo
+                                                ? const SizedBox()
+                                                : Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Padding(
+                                                        padding: EdgeInsets
+                                                            .symmetric(
+                                                                horizontal:
+                                                                    AppSizeW
+                                                                        .s15),
+                                                        child: Wrap(
+                                                          runSpacing:
+                                                              AppSizeH.s15,
+                                                          children: [
+                                                            InputFieldWidget(
+                                                                isReadOnly:
+                                                                    true,
+                                                                validator:
+                                                                    (value) {
+                                                                  if (value !=
+                                                                          null &&
+                                                                      value
+                                                                          .isEmpty) {
+                                                                    return "الأسم لا يمكن ان يكون فارغ";
+                                                                  }
+                                                                  return null;
+                                                                },
+                                                                labelText:
+                                                                    "الأسم",
+                                                                inputFormatters: [
+                                                                  FilteringTextInputFormatter
+                                                                      .allow(RegExp(
+                                                                          r'[ء-ي\s]')),
+                                                                ],
+                                                                controller:
+                                                                    inputValueCubit
+                                                                        .nameIdentityController),
+                                                            InputFieldWidget(
+                                                                isReadOnly:
+                                                                    true,
+                                                                validator:
+                                                                    (value) {
+                                                                  if (value !=
+                                                                          null &&
+                                                                      value
+                                                                          .isEmpty) {
+                                                                    return "الكنية لا يمكن ان يكون فارغ";
+                                                                  }
+                                                                  return null;
+                                                                },
+                                                                labelText:
+                                                                    "الكنية",
+                                                                inputFormatters: [
+                                                                  FilteringTextInputFormatter
+                                                                      .allow(RegExp(
+                                                                          r'[ء-ي\s]')),
+                                                                ],
+                                                                controller:
+                                                                    inputValueCubit
+                                                                        .surnameIdentityController),
+                                                            InputFieldWidget(
+                                                                isReadOnly:
+                                                                    true,
+                                                                validator:
+                                                                    (value) {
+                                                                  if (value !=
+                                                                          null &&
+                                                                      value
+                                                                          .isEmpty) {
+                                                                    return "اسم الاب لا يمكن ان يكون فارغ";
+                                                                  }
+                                                                  return null;
+                                                                },
+                                                                labelText:
+                                                                    "الاب",
+                                                                inputFormatters: [
+                                                                  FilteringTextInputFormatter
+                                                                      .allow(RegExp(
+                                                                          r'[ء-ي\s]')),
+                                                                ],
+                                                                controller:
+                                                                    inputValueCubit
+                                                                        .fatherNameIdentityController),
+                                                            InputFieldWidget(
+                                                                isReadOnly:
+                                                                    true,
+                                                                validator:
+                                                                    (value) {
+                                                                  if (value !=
+                                                                          null &&
+                                                                      value
+                                                                          .isEmpty) {
+                                                                    return "اسم الام لا يمكن ان يكون فارغ";
+                                                                  }
+                                                                  return null;
+                                                                },
+                                                                labelText:
+                                                                    "الام",
+                                                                inputFormatters: [
+                                                                  FilteringTextInputFormatter
+                                                                      .allow(RegExp(
+                                                                          r'[ء-ي\s]')),
+                                                                ],
+                                                                controller:
+                                                                    inputValueCubit
+                                                                        .motherNameIdentityController),
+                                                            InputFieldWidget(
+                                                                isReadOnly:
+                                                                    true,
+                                                                validator:
+                                                                    (value) {
+                                                                  if (value !=
+                                                                          null &&
+                                                                      value
+                                                                          .isEmpty) {
+                                                                    return "مكان الولادة لا يمكن ان يكون فارغ";
+                                                                  }
+                                                                  return null;
+                                                                },
+                                                                labelText:
+                                                                    "مكان الولادة",
+                                                                inputFormatters: [
+                                                                  FilteringTextInputFormatter
+                                                                      .allow(RegExp(
+                                                                          r'[ء-ي\s]')),
+                                                                ],
+                                                                controller:
+                                                                    inputValueCubit
+                                                                        .birthPlaceIdentityController),
+                                                            InputFieldWidget(
+                                                                isReadOnly:
+                                                                    true,
+                                                                validator:
+                                                                    (value) {
+                                                                  if (value !=
+                                                                          null &&
+                                                                      value
+                                                                          .isEmpty) {
+                                                                    return "الرجاء تحديد تاريخ الولادة";
+                                                                  }
+                                                                  return null;
+                                                                },
+                                                                labelText:
+                                                                    "تاريخ الولادة",
+                                                                controller:
+                                                                    inputValueCubit
+                                                                        .dobIdentityController),
+                                                            InputFieldWidget(
+                                                                isReadOnly:
+                                                                    true,
+                                                                validator:
+                                                                    (value) {
+                                                                  if (value !=
+                                                                          null &&
+                                                                      value
+                                                                          .isEmpty) {
+                                                                    return "الرقم الوطني لا يمكن ان يكون فارغ";
+                                                                  }
+                                                                  return null;
+                                                                },
+                                                                labelText:
+                                                                    "الرقم الوطني",
+                                                                inputFormatters: [
+                                                                  FilteringTextInputFormatter
+                                                                      .digitsOnly
+                                                                ],
+                                                                controller:
+                                                                    inputValueCubit
+                                                                        .nationalNumberIdentityController),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                          height: AppSizeH.s10),
+                                                    ],
+                                                  ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  )
+                                : Container(
                                     padding: EdgeInsets.symmetric(
-                                        horizontal: AppSizeW.s15),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                        vertical: AppSizeH.s15),
+                                    decoration: BoxDecoration(
+                                        color: ColorManager.white,
+                                        boxShadow: [
+                                          BoxShadow(
+                                              color: ColorManager.shadow,
+                                              blurRadius: AppSizeR.s2)
+                                        ],
+                                        borderRadius: BorderRadius.circular(
+                                            AppSizeR.s12)),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
-                                        Text("معلومات الهوية",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .titleMedium),
-                                        IconButton(
-                                            onPressed: () {
-                                              setState(() {
-                                                isExpandedIdentityInfo =
-                                                    !isExpandedIdentityInfo;
-                                              });
-                                            },
-                                            icon: Icon(isExpandedIdentityInfo
-                                                ? Icons.arrow_drop_down_sharp
-                                                : Icons.arrow_drop_up_outlined))
+                                        Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: AppSizeW.s15),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text("معلومات الهوية",
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .titleMedium),
+                                              Row(
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  Tooltip(
+                                                    message: "الكتابة اليدوية",
+                                                    child: IconButton(
+                                                        onPressed: () {
+                                                          inputValueCubit
+                                                              .setFromBarcode(
+                                                                  !inputValueCubit
+                                                                      .fromBarcode);
+                                                        },
+                                                        icon: const Icon(Icons
+                                                            .insert_page_break_outlined)),
+                                                  ),
+                                                  IconButton(
+                                                      onPressed: () {
+                                                        setState(() {
+                                                          isExpandedIdentityInfo =
+                                                              !isExpandedIdentityInfo;
+                                                        });
+                                                      },
+                                                      icon: Icon(isExpandedIdentityInfo
+                                                          ? Icons
+                                                              .arrow_drop_down_sharp
+                                                          : Icons
+                                                              .arrow_drop_up_outlined))
+                                                ],
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                        SizedBox(height: AppSizeH.s15),
+                                        AnimatedSwitcher(
+                                          switchInCurve: Curves.linear,
+                                          switchOutCurve: Curves.linear,
+                                          reverseDuration:
+                                              const Duration(milliseconds: 500),
+                                          duration:
+                                              const Duration(milliseconds: 500),
+                                          child: !isExpandedIdentityInfo
+                                              ? const SizedBox()
+                                              : Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsets.symmetric(
+                                                              horizontal:
+                                                                  AppSizeW.s15),
+                                                      child: Wrap(
+                                                        runSpacing:
+                                                            AppSizeH.s15,
+                                                        children: [
+                                                          InputFieldWidget(
+                                                              validator:
+                                                                  (value) {
+                                                                if (value !=
+                                                                        null &&
+                                                                    value
+                                                                        .isEmpty) {
+                                                                  return "الأسم لا يمكن ان يكون فارغ";
+                                                                }
+                                                                return null;
+                                                              },
+                                                              labelText:
+                                                                  "الأسم",
+                                                              inputFormatters: [
+                                                                FilteringTextInputFormatter
+                                                                    .allow(RegExp(
+                                                                        r'[ء-ي\s]')),
+                                                              ],
+                                                              controller:
+                                                                  inputValueCubit
+                                                                      .nameIdentityController),
+                                                          InputFieldWidget(
+                                                              validator:
+                                                                  (value) {
+                                                                if (value !=
+                                                                        null &&
+                                                                    value
+                                                                        .isEmpty) {
+                                                                  return "الكنية لا يمكن ان يكون فارغ";
+                                                                }
+                                                                return null;
+                                                              },
+                                                              labelText:
+                                                                  "الكنية",
+                                                              inputFormatters: [
+                                                                FilteringTextInputFormatter
+                                                                    .allow(RegExp(
+                                                                        r'[ء-ي\s]')),
+                                                              ],
+                                                              controller:
+                                                                  inputValueCubit
+                                                                      .surnameIdentityController),
+                                                          InputFieldWidget(
+                                                              validator:
+                                                                  (value) {
+                                                                if (value !=
+                                                                        null &&
+                                                                    value
+                                                                        .isEmpty) {
+                                                                  return "اسم الاب لا يمكن ان يكون فارغ";
+                                                                }
+                                                                return null;
+                                                              },
+                                                              labelText: "الاب",
+                                                              inputFormatters: [
+                                                                FilteringTextInputFormatter
+                                                                    .allow(RegExp(
+                                                                        r'[ء-ي\s]')),
+                                                              ],
+                                                              controller:
+                                                                  inputValueCubit
+                                                                      .fatherNameIdentityController),
+                                                          InputFieldWidget(
+                                                              validator:
+                                                                  (value) {
+                                                                if (value !=
+                                                                        null &&
+                                                                    value
+                                                                        .isEmpty) {
+                                                                  return "اسم الام لا يمكن ان يكون فارغ";
+                                                                }
+                                                                return null;
+                                                              },
+                                                              labelText: "الام",
+                                                              inputFormatters: [
+                                                                FilteringTextInputFormatter
+                                                                    .allow(RegExp(
+                                                                        r'[ء-ي\s]')),
+                                                              ],
+                                                              controller:
+                                                                  inputValueCubit
+                                                                      .motherNameIdentityController),
+                                                          InputFieldWidget(
+                                                              validator:
+                                                                  (value) {
+                                                                if (value !=
+                                                                        null &&
+                                                                    value
+                                                                        .isEmpty) {
+                                                                  return "مكان الولادة لا يمكن ان يكون فارغ";
+                                                                }
+                                                                return null;
+                                                              },
+                                                              labelText:
+                                                                  "مكان الولادة",
+                                                              inputFormatters: [
+                                                                FilteringTextInputFormatter
+                                                                    .allow(RegExp(
+                                                                        r'[ء-ي\s]')),
+                                                              ],
+                                                              controller:
+                                                                  inputValueCubit
+                                                                      .birthPlaceIdentityController),
+                                                          InputFieldWidget(
+                                                              validator:
+                                                                  (value) {
+                                                                if (value !=
+                                                                        null &&
+                                                                    value
+                                                                        .isEmpty) {
+                                                                  return "الرجاء تحديد تاريخ الولادة";
+                                                                }
+                                                                return null;
+                                                              },
+                                                              isReadOnly: true,
+                                                              onTap: () async {
+                                                                DateTime?
+                                                                    selectedDate =
+                                                                    await showDatePicker(
+                                                                  context:
+                                                                      context,
+                                                                  initialDatePickerMode:
+                                                                      DatePickerMode
+                                                                          .year,
+                                                                  initialEntryMode:
+                                                                      DatePickerEntryMode
+                                                                          .calendarOnly,
+                                                                  firstDate:
+                                                                      DateTime(
+                                                                          1900),
+                                                                  lastDate:
+                                                                      DateTime
+                                                                          .now(),
+                                                                );
+                                                                inputValueCubit
+                                                                    .setDobIdentity(
+                                                                        selectedDate);
+                                                              },
+                                                              labelText:
+                                                                  "تاريخ الولادة",
+                                                              controller:
+                                                                  inputValueCubit
+                                                                      .dobIdentityController),
+                                                          InputFieldWidget(
+                                                              validator:
+                                                                  (value) {
+                                                                if (value !=
+                                                                        null &&
+                                                                    value
+                                                                        .isEmpty) {
+                                                                  return "الرقم الوطني لا يمكن ان يكون فارغ";
+                                                                }
+                                                                return null;
+                                                              },
+                                                              labelText:
+                                                                  "الرقم الوطني",
+                                                              inputFormatters: [
+                                                                FilteringTextInputFormatter
+                                                                    .digitsOnly
+                                                              ],
+                                                              controller:
+                                                                  inputValueCubit
+                                                                      .nationalNumberIdentityController),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                        height: AppSizeH.s10),
+                                                  ],
+                                                ),
+                                        )
                                       ],
                                     ),
                                   ),
-                                  SizedBox(height: AppSizeH.s15),
-                                  AnimatedSwitcher(
-                                    switchInCurve: Curves.linear,
-                                    switchOutCurve: Curves.linear,
-                                    reverseDuration:
-                                        const Duration(milliseconds: 500),
-                                    duration: const Duration(milliseconds: 500),
-                                    child: !isExpandedIdentityInfo
-                                        ? const SizedBox()
-                                        : Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Padding(
-                                                padding: EdgeInsets.symmetric(
-                                                    horizontal: AppSizeW.s15),
-                                                child: Wrap(
-                                                  runSpacing: AppSizeH.s15,
-                                                  children: [
-                                                    InputFieldWidget(
-                                                        validator: (value) {
-                                                          if (value != null &&
-                                                              value.isEmpty) {
-                                                            return "الأسم لا يمكن ان يكون فارغ";
-                                                          }
-                                                          return null;
-                                                        },
-                                                        labelText: "الأسم",
-                                                        inputFormatters: [
-                                                          FilteringTextInputFormatter
-                                                              .allow(RegExp(
-                                                                  r'[ء-ي\s]')),
-                                                        ],
-                                                        controller: inputValueCubit
-                                                            .nameIdentityController),
-                                                    InputFieldWidget(
-                                                        validator: (value) {
-                                                          if (value != null &&
-                                                              value.isEmpty) {
-                                                            return "الكنية لا يمكن ان يكون فارغ";
-                                                          }
-                                                          return null;
-                                                        },
-                                                        labelText: "الكنية",
-                                                        inputFormatters: [
-                                                          FilteringTextInputFormatter
-                                                              .allow(RegExp(
-                                                                  r'[ء-ي\s]')),
-                                                        ],
-                                                        controller: inputValueCubit
-                                                            .surnameIdentityController),
-                                                    InputFieldWidget(
-                                                        validator: (value) {
-                                                          if (value != null &&
-                                                              value.isEmpty) {
-                                                            return "اسم الاب لا يمكن ان يكون فارغ";
-                                                          }
-                                                          return null;
-                                                        },
-                                                        labelText: "الاب",
-                                                        inputFormatters: [
-                                                          FilteringTextInputFormatter
-                                                              .allow(RegExp(
-                                                                  r'[ء-ي\s]')),
-                                                        ],
-                                                        controller: inputValueCubit
-                                                            .fatherNameIdentityController),
-                                                    InputFieldWidget(
-                                                        validator: (value) {
-                                                          if (value != null &&
-                                                              value.isEmpty) {
-                                                            return "اسم الام لا يمكن ان يكون فارغ";
-                                                          }
-                                                          return null;
-                                                        },
-                                                        labelText: "الام",
-                                                        inputFormatters: [
-                                                          FilteringTextInputFormatter
-                                                              .allow(RegExp(
-                                                                  r'[ء-ي\s]')),
-                                                        ],
-                                                        controller: inputValueCubit
-                                                            .motherNameIdentityController),
-                                                    InputFieldWidget(
-                                                        validator: (value) {
-                                                          if (value != null &&
-                                                              value.isEmpty) {
-                                                            return "مكان الولادة لا يمكن ان يكون فارغ";
-                                                          }
-                                                          return null;
-                                                        },
-                                                        labelText:
-                                                            "مكان الولادة",
-                                                        inputFormatters: [
-                                                          FilteringTextInputFormatter
-                                                              .allow(RegExp(
-                                                                  r'[ء-ي\s]')),
-                                                        ],
-                                                        controller: inputValueCubit
-                                                            .birthPlaceIdentityController),
-                                                    InputFieldWidget(
-                                                        validator: (value) {
-                                                          if (value != null &&
-                                                              value.isEmpty) {
-                                                            return "الرجاء تحديد تاريخ الولادة";
-                                                          }
-                                                          return null;
-                                                        },
-                                                        isReadOnly: true,
-                                                        onTap: () async {
-                                                          DateTime?
-                                                              selectedDate =
-                                                              await showDatePicker(
-                                                            context: context,
-                                                            initialDatePickerMode:
-                                                                DatePickerMode
-                                                                    .year,
-                                                            initialEntryMode:
-                                                                DatePickerEntryMode
-                                                                    .calendarOnly,
-                                                            firstDate:
-                                                                DateTime(1900),
-                                                            lastDate:
-                                                                DateTime.now(),
-                                                          );
-                                                          inputValueCubit
-                                                              .setDobIdentity(
-                                                                  selectedDate);
-                                                        },
-                                                        labelText:
-                                                            "تاريخ الولادة",
-                                                        controller: inputValueCubit
-                                                            .dobIdentityController),
-                                                    InputFieldWidget(
-                                                        validator: (value) {
-                                                          if (value != null &&
-                                                              value.isEmpty) {
-                                                            return "الرقم الوطني لا يمكن ان يكون فارغ";
-                                                          }
-                                                          return null;
-                                                        },
-                                                        labelText:
-                                                            "الرقم الوطني",
-                                                        inputFormatters: [
-                                                          FilteringTextInputFormatter
-                                                              .digitsOnly
-                                                        ],
-                                                        controller: inputValueCubit
-                                                            .nationalNumberIdentityController),
-                                                  ],
-                                                ),
-                                              ),
-                                              SizedBox(height: AppSizeH.s10),
-                                            ],
-                                          ),
-                                  )
-                                ],
-                              ),
-                            ),
 
                             //Attachments Section
                             SizedBox(height: AppSizeH.s25),

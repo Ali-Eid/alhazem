@@ -11,6 +11,7 @@ import 'package:flutter/widgets.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../../../../core/bases/enums/gender_type.dart';
 import '../../../../../core/bases/models/static_models/static_model.dart';
 import '../../../domain/models/input_create_traveler_model/input_create_traveler_model.dart';
 
@@ -312,7 +313,11 @@ class InputValueCreateCubit extends Cubit<int> {
     birthPlaceIdentityController.text = contactDetails.identityPlaceOfBirthday;
     nationalNumberIdentityController.text =
         contactDetails.identityNationalNumber;
-    genderSelected = StaticModel(name: contactDetails.identityGender);
+    genderSelected = StaticModel(
+        name: contactDetails.identityGender,
+        id: contactDetails.identityGender == GenderType.male.name
+            ? GenderType.male.index
+            : GenderType.female.index);
     noteController.text = contactDetails.reference;
     officeSelected = contactDetails.office == const StaticModel()
         ? const StaticModel(id: 0, name: "بلا مكتب")
