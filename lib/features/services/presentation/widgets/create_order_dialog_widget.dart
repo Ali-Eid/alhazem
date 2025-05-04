@@ -216,7 +216,7 @@ class _ButtonCreateDialogWidgetState extends State<ButtonCreateDialogWidget> {
         } else {
           showToast(
               context: context,
-              message: "Please select travelers",
+              message: "الرجاء اختيار مسافر",
               type: ToastificationType.warning);
         }
         break;
@@ -235,7 +235,7 @@ class _ButtonCreateDialogWidgetState extends State<ButtonCreateDialogWidget> {
                 .isEmpty) {
           showToast(
               context: context,
-              message: "Please enter the amount",
+              message: "الرجاء ادخال المبلغ",
               type: ToastificationType.warning);
         } else {
           context.read<CreateOrderBloc>().add(
